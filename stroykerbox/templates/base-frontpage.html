@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static customization_tags sekizai_tags catalog_tags %}
+
+{% block body_main_top %}
+<section class="section section-first mobile-show ">
+    <div class="container">
+        {% render_catalog_categories_menu_mobile False %}
+    </div>
+</section>
+{% endblock %}
+
+{% block body_main_center %}
+
+{% render_tag_container 'middle' %}
+{% endblock body_main_center %}
+
+{% block body_main_bottom %}
+{{ block.super }}
+
+{% addtoblock "js" %}
+{% if config.USE_AOS_JS %}
+<script src="{% static 'aos/aos.js' %}"></script>
+{% endif %}
+{% render_custom_scripts %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+{% if config.USE_AOS_JS %}
+<link href="{% static 'aos/aos.css' %}" rel="stylesheet">
+{% endif %}
+{% endaddtoblock %}
+
+{% endblock body_main_bottom %}
+

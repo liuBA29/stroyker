@@ -1,0 +1,76 @@
+{% if page_obj.paginator.num_pages > 1 %}
+{% load catalog_tags %}
+
+<div class="pagination">
+    {% if page_obj.has_previous %}
+
+    <a class="prev" href="?{% url_add_qs 'page' page_obj.previous_page_number %}"></a>
+    <span>
+        <a href="?{% url_add_qs 'page' 1 %}">
+            1
+        </a>
+    </span>
+
+    {% if page_obj.previous_page_number > 1 %}
+
+    {% if page_obj.previous_page_number|add:-1 > 1 %}
+    <span class="dot">...</span>
+    {% endif %}
+
+    {% if page_obj.number == page_obj.paginator.num_pages and page_obj.previous_page_number|add:-1 > 1 %}
+    <span>
+        <a href="?{% url_add_qs 'page' page_obj.previous_page_number|add:-1 %}">
+            {{ page_obj.previous_page_number|add:-1 }}
+        </a>
+    </span>
+    {% endif %}
+
+    <span>
+        <a href="?{% url_add_qs 'page' page_obj.previous_page_number %}">
+            {{ page_obj.previous_page_number }}
+        </a>
+    </span>
+
+    {% endif %}
+
+
+    {% endif %}
+
+    <span class="active">
+        <a href="">{{ page_obj.number }}</a>
+    </span>
+
+    {% if page_obj.has_next %}
+
+    {% if page_obj.next_page_number < page_obj.paginator.num_pages %}
+    <span>
+        <a href="?{% url_add_qs 'page' page_obj.next_page_number %}">
+            {{ page_obj.next_page_number }}
+        </a>
+    </span>
+
+    {% if page_obj.number == 1 and page_obj.next_page_number|add:1 < page_obj.paginator.num_pages %}
+    <span>
+        <a href="?{% url_add_qs 'page' page_obj.next_page_number|add:1 %}">
+            {{ page_obj.next_page_number|add:1 }}
+        </a>
+    </span>
+    {% endif %}
+
+    {% endif %}
+
+
+    {% if page_obj.next_page_number|add:1 < page_obj.paginator.num_pages %}
+    <span class="dot">...</span>
+    {% endif %}
+
+    <span>
+        <a href="?{% url_add_qs 'page' page_obj.paginator.num_pages %}">
+            {{ page_obj.paginator.num_pages }}
+        </a>
+    </span>
+    <a class="next" href="?{% url_add_qs 'page' page_obj.next_page_number %}"></a>
+
+    {% endif %}
+</div>
+{% endif %}

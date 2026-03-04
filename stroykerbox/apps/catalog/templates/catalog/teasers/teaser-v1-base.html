@@ -1,0 +1,147 @@
+{% load static catalog_tags reviews_tags thumbnail utils_tags %}
+
+{% block teaser_html %}
+<div class="product-item {% block product_teaser_class %}v1-base{% endblock %}">
+    <a href="{{ product.get_absolute_url }}" class="product-item__link">
+        <div class="product-item__image">
+
+            {% if product.main_image %}
+
+            {% if config.BEHAVIOR_IMAGE == '3' %}
+            <div class="product-card-slideshow">
+                <div class="product-card-slideshow__images">
+                    {% with photos=product.images.all %}
+                    {% for photo in photos %}
+                    {% thumbnail photo.image config.PRODUCT_THUMB_DEFAULT_RATIO as im %}
+                    <img data-sector-image="{{ photo.position }}" src="{{ im.url }}" class="product-card-slideshow__image" alt="{{photo.position}}">
+                    {% endthumbnail %}
+                    {% endfor %}
+                </div>
+                <div class="product-card-slideshow__sectors">
+                    {% for photo in photos %}
+                    <div data-sector="{{ photo.position }}" class="product-card-slideshow__sector"></div>
+                    {% endfor %}
+                </div>
+                <div class="product-card-slideshow__dots">
+                    {% for photo in photos %}
+                    <div data-sector-dot="{{ photo.position }}" class="product-card-slideshow__dot"></div>
+                    {% endfor %}
+                    {% endwith %}
+                </div>
+            </div>
+
+            {% elif config.BEHAVIOR_IMAGE == '2' %}
+            <div class="product-item__image-inner">
+                {% thumbnail product.main_image.image config.PRODUCT_THUMB_DEFAULT_RATIO as im %}
+                <img src="{{ im.url }}" alt="{{ product.name }}">
+                {% endthumbnail %}
+                {% thumbnail product.main_image_second.image config.PRODUCT_THUMB_DEFAULT_RATIO as im2 %}
+                <img src="{{ im2.url }}" alt="{{ product.name }}">
+                {% endthumbnail %}
+            </div>
+
+            {% elif config.BEHAVIOR_IMAGE == '1' %}
+            {% thumbnail product.main_image.image config.PRODUCT_THUMB_DEFAULT_RATIO as im %}
+            <img src="{{ im.url }}" alt="{{ product.name }}">
+            {% endthumbnail %}
+
+            {% if config.BEHAVIOR_IMAGE_PRODUCT_TEASER %}
+            {% thumbnail product.main_image_second.image config.PRODUCT_THUMB_DEFAULT_RATIO as im2 %}
+            <img src="{{ im2.url }}" alt="{{ product.name }} (фото 2)">
+            {% endthumbnail %}
+            {% endif %}
+
+            {% endif %}
+
+            {% elif config.PRODUCT_DEFAULT_IMAGE %}
+            {% get_media_prefix as MEDIA_URL %}
+            <img src="{{ MEDIA_URL }}{{ config.PRODUCT_DEFAULT_IMAGE }}" alt="{{ product.name }}">
+
+            {% endif %}
+
+            {% render_product_flags %}
+
+            {% block badge_area %}
+            {% render_product_sale_badge product True %}
+            {% endblock %}
+
+        </div>
+
+        <span class="product-item__content-top">
+            <span class="product-item__head">
+                <span class="product-item__art">{{ product.code }}</span>
+                {% render_product_average_rating product.pk %}
+            </span>
+
+            <span class="product-item__name">{{ product.name }}</span>
+            {% render_product_availability_status %}
+
+            {% if prices.main %}
+            {% include 'catalog/teasers/include/teaser-v1-price-block.html' %}
+            {% endif %}
+
+        </span>
+    </a>
+    <div class="product-item__content-bottom">
+        <div class="product-item__btns">
+
+            {% if product.has_price_from_to or product.price_from %}
+            <a href="#question-main"
+               class="st-button st-button_secondary st-button_without-price not-price"
+               data-product-code="{{ product.code }}"
+               data-product-name="{{ product.name }}"
+               data-form-main-msg="{{ config.NOPRICE_BTN_FORMTEXT }}"
+               data-form-subject="{{ config.NOPRICE_BTN_LABEL }}">
+                {{ config.NOPRICE_BTN_LABEL }}
+            </a>
+
+            {% elif product|is_available:request.location %}
+            <div class="input-number">
+                <div class="order-down"></div>
+                <input type="number"
+                       min="1"
+                       max="{% product_units_avail product %}"
+                       step="1"
+                       value="1" id="number" required="">
+                <div class="order-up"></div>
+            </div>
+            <a href="{% url 'cart:add_to_cart' product.pk %}" class="st-button st-button_primary st-button_add-to-cart add-to-cart">
+                {% if config.WHITETHEME_USE_CUSTOM_CART_ICON and config.WHITETHEME_CUSTOM_CART_ICON %}
+                <img class="st-button__icon st-button__icon_cart" src="{% get_media_prefix %}{{ config.WHITETHEME_CUSTOM_CART_ICON }}">
+                {% if config.WHITETHEME_CUSTOM_CART_ICON_HOVER %}
+                <img class="st-button__icon st-button__icon_cart hover" src="{% get_media_prefix %}{{ config.WHITETHEME_CUSTOM_CART_ICON_HOVER }}">
+                {% endif %}                
+                {% else %}
+                <svg class="st-button__icon st-button__icon_cart" width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.97738 18.6555C6.6956 18.6555 6.42014 18.7391 6.18584 18.8956C5.95155 19.0522 5.76894 19.2747 5.6611 19.535C5.55327 19.7954 5.52505 20.0818 5.58003 20.3582C5.635 20.6346 5.77069 20.8884 5.96994 21.0877C6.1692 21.2869 6.42306 21.4226 6.69943 21.4776C6.9758 21.5326 7.26227 21.5044 7.5226 21.3965C7.78294 21.2887 8.00545 21.1061 8.162 20.8718C8.31855 20.6375 8.40211 20.362 8.40211 20.0802C8.40211 19.7024 8.25201 19.34 7.98482 19.0728C7.71763 18.8056 7.35524 18.6555 6.97738 18.6555ZM19.515 18.6555C19.2332 18.6555 18.9578 18.7391 18.7235 18.8956C18.4892 19.0522 18.3066 19.2747 18.1987 19.535C18.0909 19.7954 18.0627 20.0818 18.1177 20.3582C18.1726 20.6346 18.3083 20.8884 18.5076 21.0877C18.7068 21.2869 18.9607 21.4226 19.2371 21.4776C19.5134 21.5326 19.7999 21.5044 20.0602 21.3965C20.3206 21.2887 20.5431 21.1061 20.6996 20.8718C20.8562 20.6375 20.9397 20.362 20.9397 20.0802C20.9397 19.7024 20.7896 19.34 20.5225 19.0728C20.2553 18.8056 19.8929 18.6555 19.515 18.6555ZM20.6548 17.5157V15.2361H8.41351L8.04878 13.7544L22.9344 11.0873V2.69852H5.3019L4.69781 0.418945H0.138672V2.69852H2.95394L6.63545 17.5157H20.6548Z"></path>
+                </svg>
+                {% endif %}
+                <p class="st-button__text">
+                    <span class="button__sub-title"></span>
+                    <span class="button__title"></span>
+                </p>
+            </a>
+            {% elif prices.main %}
+            <a href="#question-main"
+               class="st-button st-button_secondary st-button_not-availbe not-available"
+               data-product-code="{{ product.code }}"
+               data-product-name="{{ product.name }}"
+               data-form-main-msg="{{ config.NOAVAILABLE_BTN_FORMTEXT }}"
+               data-form-subject="{{ config.NOAVAILABLE_BTN_LABEL }}">
+                {{ config.NOAVAILABLE_BTN_LABEL }}
+            </a>
+
+            {% else %}
+            <a href="#question-main"
+               class="st-button st-button_secondary st-button_without-price not-price"
+               data-product-code="{{ product.code }}"
+               data-product-name="{{ product.name }}"
+               data-form-main-msg="{{ config.NOPRICE_BTN_FORMTEXT }}"
+               data-form-subject="{{ config.NOPRICE_BTN_LABEL }}">
+                {{ config.NOPRICE_BTN_LABEL }}
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock teaser_html %}

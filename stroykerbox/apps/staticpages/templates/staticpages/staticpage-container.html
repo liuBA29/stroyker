@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load seo_tags statictext_tags catalog_tags customization_tags sekizai_tags %}
+
+
+{% block body_main_top_content %}
+<h1>{% render_h1 %}</h1>
+
+<div class="clients-section">
+    {% for item in page.children.all %}
+    <a href="{{ item.get_absolute_url }}"
+       class="client-item client-item_bg"{% if item.teaser_image %}
+       style="background-image:url('{{ item.teaser_image.url }}');"{% endif %}>
+        <span class="client-item__text">{{ item.title }}</span>
+    </a>
+    {% endfor %}
+</div>
+
+{% endblock body_main_top_content %}
+
+{% block body_main_center %}
+{% if page.container %}
+{% if page.related_productset %}
+<section class="section">
+    <div class="container">
+        {% render_product_set_slider page.related_productset.key rows=2 %}
+    </div>
+</section>
+{% endif %}
+
+{% render_tag_container 'staticpage_container' %}
+
+{% endif %}
+
+{% include 'staticpages/include/custom-staticfiles.html' %}
+
+{% endblock body_main_center %}

@@ -1,0 +1,42 @@
+{% extends "admin/base_site.html" %}
+{% load %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">Главная</a>
+    &rsaquo; <a href="{% url 'admin:catalog_product_changelist'  %}">Товары</a>
+    &rsaquo; Импорт связанных товаров
+</div>
+{% endblock %}
+
+{% block title %}
+Импорт связанных товаров {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <h1>Импорт связанных товаров</h1>
+    <form method="POST" enctype="multipart/form-data" style="margin: 2rem 0">
+        {% csrf_token %}
+        {% for field in form %}
+        <div style="margin-top: 1rem">
+            {% if field.label %}
+            <div>
+                {{ field.label }}
+            </div>
+            {% endif %}
+            {{ field }}
+            {% if field.help_text %}
+            {% if field.field.widget.input_type == 'checkbox' %}
+            <span>{{ field.help_text }}</span>
+            {% else %}
+            <div>{{ field.help_text }}</div>
+            {% endif %}
+            {% endif %}
+        </div>
+        {% endfor %}
+        <input type="submit" style="margin-top: 2rem">
+    </form>
+
+</div>
+{% endblock %}

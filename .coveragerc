@@ -1,0 +1,14 @@
+[run]
+source = ./stroykerbox/apps/
+omit =
+    */migrations/*
+    */apps.py
+    */__init__.py
+    */urls.py
+    */*_urls.py
+    */test*
+    */admin.py
+
+[report]
+fail_under = 80
+skip_covered = True

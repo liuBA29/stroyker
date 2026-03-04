@@ -1,0 +1,17 @@
+{% load catalog_tags %}
+{% if title %}
+<h2 class="mb-20 mb-sm-25"{% if custom_block_title_color %} style="color: {{ custom_block_title_color }}"{% endif %}>{{ title }}</h2>
+{% endif %}
+<div class="slider-constructor"
+     data-rows="2"
+     data-sm-rows="{{ rows|default:1 }}"
+     data-slides="{{ config.SLIDER_CONSTRUCTOR__DATA_SLIDES }}"
+     data-sm-slides="{{ config.SLIDER_CONSTRUCTOR__DATA_SM_SLIDES }}"
+     data-md-slides="{{ config.SLIDER_CONSTRUCTOR__DATA_MD_SLIDES }}"
+     data-lg-slides="{{ config.SLIDER_CONSTRUCTOR__DATA_LG_SLIDES }}"
+     data-xl-slides="{{ product_set.products_per_row|default:config.SLIDER_CONSTRUCTOR__DATA_XL_SLIDES }}">
+    {% for item in items %}
+    {% include 'catalog/include/product-item.html' with product=item.product %}
+    {% endfor %}
+</div>
+

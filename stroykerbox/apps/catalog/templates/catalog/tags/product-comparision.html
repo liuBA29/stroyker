@@ -1,0 +1,55 @@
+{% load i18n %}
+{% if action_comparision == 'add' %}
+{% url 'catalog:comparison_add' as default_url %}
+{% url 'catalog:comparison_del' as reverse_url %}
+{% else %}
+{% url 'catalog:comparison_del' as default_url %}
+{% url 'catalog:comparison_add' as reverse_url %}
+{% endif %}
+
+{% if simple %}
+
+<form action="{{ default_url }}"
+      data-product-pk="{{ product.pk }}"
+      data-action-reverse="{{ reverse_url }}" method="post" class="product-comparison-form">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value="{{ product.pk }}">
+    {% trans "Добавть к сравнению" as btn_add_title %}
+    <button title="{{ btn_add_title }}"
+            type="submit"
+            class="product-comparison-btn btn-radius--comparison button-theme button-theme_secondary"{% if action_comparision == 'del' %} style="display: none"{% endif %}>
+        <svg class="icon">
+            <use xlink:href="#1"></use>
+        </svg>
+        <span>+</span>
+    </button>
+    {% trans "Убрать из сравнения" as btn_remove_title %}
+    <button title="{{ btn_remove_title }}"
+            type="submit"
+            class="product-comparison-btn btn-radius--comparison button-theme button-theme_secondary"{% if action_comparision == 'add' %} style="display: none"{% endif %}>
+        <svg class="icon">
+            <use xlink:href="#1"></use>
+        </svg>
+        <span>-</span>
+    </button>
+
+</form>
+
+{% else %}
+
+<form action="{{ default_url }}"
+      data-product-pk="{{ product.pk }}"
+      data-action-reverse="{{ reverse_url }}" method="post" class="product-comparison-form">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value="{{ product.pk }}">
+    <button type="submit"
+            class="btn-radius btn-radius--comparison button-theme button-theme_secondary"{% if action_comparision == 'del' %} style="display: none"{% endif %}>
+        {% trans "Сравнить" %}
+    </button>
+    <button type="submit"
+            class="btn-radius btn-radius--comparison button-theme button-theme_secondary"{% if action_comparision == 'add' %} style="display: none"{% endif %}>
+        {% trans "Не сравнивать" %}
+    </button>
+</form>
+
+{% endif %}

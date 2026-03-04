@@ -1,0 +1,48 @@
+{% extends 'email/email-base.html' %}
+{% load utils_tags i18n %}
+
+{% block mail_content %}
+
+{% if object %}
+<p>{% trans "Для управления запросом перейдите по ссылке" %}
+    <a href="http://{{ site.domain }}{% url 'admin:crm_crmrequestbase_change' object.pk %}">
+        {% trans "Управление запросом" %}
+    </a>
+</p>
+{% endif %}
+
+<table border="0" width="50%">
+    {% if location %}
+    <tr>
+        <th align="left">{% trans "Регион:" %}</th>
+        <td>{{ location.name }}</td>
+    </tr>
+    {% endif %}
+    <tr>
+        <th align="left">{% trans "Имя:" %}</th>
+        <td>{{ object.name }}</td>
+    </tr>
+    <tr>
+        <th align="left">{% trans "Телефон:" %}</th>
+        <td><a href="tel+{{ object.phone|clear_phone }}">{{ object.phone }}</a></td>
+    </tr>
+    <tr>
+        <th align="left">{% trans "Email:" %}</th>
+        <td>{{ object.email }}</td>
+    </tr>
+
+    {% if object.page_url %}
+    <tr>
+        <th align="left">{% trans "URL страницы отправки:" %}</th>
+        <td>{{ object.page_url }}</td>
+    </tr>
+    {% endif %}
+
+    {% if object.message %}
+    <tr>
+        <th align="left">{% trans "Сообщение:" %}</th>
+        <td>{{ object.message }}</td>
+    </tr>
+    {% endif %}
+</table>
+{% endblock mail_content %}

@@ -1,0 +1,16 @@
+{% load static %}
+<a href="{% url 'catalog:comparison' %}" class="header-compare mobile-hide">
+    <i class="icon">
+        {% if config.HEADER_ICON_COMPARE %}
+        <img class="icon-svg" src="{% get_media_prefix %}{{ config.HEADER_ICON_COMPARE }}"/>
+            {% if config.HEADER_ICON_COMPARE_HOVER %}
+            <img class="icon-svg hover" src="{% get_media_prefix %}{{ config.HEADER_ICON_COMPARE_HOVER }}"/>
+            {% endif %}
+        {% else %}
+        <svg class="icon-svg">
+            <use xlink:href="#compare-icon"></use>
+        </svg>
+        {% endif %}
+    </i>
+    <span id="products_comparison_count" class="empty">{{ count_comparision_products }}</span>
+</a>

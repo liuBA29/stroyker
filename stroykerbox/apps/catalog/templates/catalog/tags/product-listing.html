@@ -1,0 +1,27 @@
+{% load static catalog_tags statictext_tags sekizai_tags %}
+{% if products %}
+<div class="d-grid gap-grid gap-mobile-none row-gap-sm-20 grid-columns-1 grid-columns-lg-3 grid-columns-xl-{{ items_per_row|default:config.CATEGORY_PRODUCTS_PER_ROW }}">
+    {% for product in products %}
+    {% render_product_teaser_new product %}
+    {% empty %}
+    {% render_statictext 'no_category_or_products_text' %}
+    {% endfor %}
+</div>
+
+
+{% if config.PRODUCT_TEASER_VARIANT == '0' %}
+{% addtoblock "css" %}
+<style>
+@media (max-width: 576px){
+    .gap-grid.gap-mobile-none {
+        gap: 0!important;
+    }
+}
+</style>
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script src="{% static 'catalog/js/items-grid.js' %}?v1"></script>
+{% endaddtoblock %}
+{% endif %}
+{% endif %}
+

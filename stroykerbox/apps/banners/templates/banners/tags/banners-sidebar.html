@@ -1,0 +1,34 @@
+{% if banners %}
+
+{% load static sekizai_tags %}
+<div class="aside-banners-grid">
+    {% for banner in banners %}
+    <div class="content-standard-box">
+        <div class="content-standard-box__container">
+            {% if banner.image_url %}
+            <a class="content-image image-zoom" href="{{ banner.image_url }}" title="{{ banner.name }}">
+                {% else %}<div class="content-image image-zoom">{% endif %}
+                    <div class="image">
+                        <img data-bnr-pk="{{ banner.pk }}" class="bnr-image-for-page"
+                                                           src="{{ banner.image_file.url }}"
+                                                           alt="{{ banner.name }}">
+                    </div>
+                    {% if banner.image_url %}
+            </a>{% else %}</div>{% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% addtoblock 'js' %}
+<script>
+    var BNR_URLS = {
+        'inc_views': '{% url 'banners:views-increment' %}',
+        'inc_clicks': '{% url 'banners:clicks-increment' %}'
+    };
+</script>
+<script src="{% static 'banners/js/bnrs.js' %}"></script>
+{% endaddtoblock %}
+
+{% endif %}

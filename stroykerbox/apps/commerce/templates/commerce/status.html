@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% load utils_tags catalog_tags static i18n %}
+
+{% block body_main_top_content %}
+<div class="order-status-block">
+    <h2 class="order-status-block__title mb-30">
+        <p class="order-status-block__title-text mb-0">
+            {% blocktranslate with order_pk=order.pk order_created=order.created_at|date:"d b Y" %}
+            Заказ <span class="order-status-block__title-highlight">№{{ order_pk }}</span> от {{ order_created }} г
+            {% endblocktranslate %}
+        </p>
+        <span class="order-status-block__badge
+        {% if order.status == 'cancelled' %}
+        order-status-block__badge_red
+        {% elif order.status == 'completed' %}
+        order-status-block__badge_blue
+        {% else %}
+        order-status-block__badge_green
+        {% endif %}
+        ">{{ order.get_status_display }}</span>
+    </h2>
+    {% if delivery_text %}
+    <div class="order-status-block__info-block mb-30">
+        <p class="order-status-block__sub-title">{% trans "Информация о доставке:" %}</p>
+        <div class="order-status-block__grid">
+            <p class="order-status-block__grid-element">{% trans "Способ доставки:" %}</p>
+            <p class="order-status-block__grid-element">{{ delivery_text }}</p>
+        </div>
+        {% if order.address_text %}
+        <div class="order-status-block__grid">
+            <p class="order-status-block__grid-element">{% trans "Адрес доставки:" %}</p>
+            <p class="order-status-block__grid-element">{{ order.address_text }}</p>
+        </div>
+        {% endif %}
+    </div>
+    {% elif order.delivery %}
+    <div class="order-status-block__info-block mb-30">
+        <p class="order-status-block__sub-title">{% trans "Информация о доставке:" %}</p>
+        <div class="order-status-block__grid">
+            <p class="order-status-block__grid-element">{% trans "Способ доставки:" %}</p>
+            <p class="order-status-block__grid-element">{{ order.delivery }}</p>
+        </div>
+        {% if order.delivery %}
+        <div class="order-status-block__grid">
+            <p class="order-status-block__grid-element">{% trans "Адрес доставки:" %}</p>
+            <p class="order-status-block__grid-element">
+                {% if order.delivery.address %}
+                {{ order.delivery.address }}
+                {% elif order.delivery.point %}
+                {{ order.delivery.point.address }}
+                {% elif order.delivery.company %}
+                {{ order.delivery.company.address }}
+                {% endif %}
+            </p>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+    <div class="order-status-block__info-block mb-30">
+        <p class="order-status-block__sub-title">{% trans "Оплата заказа:" %}</p>
+        <div class="order-status-block__grid">
+            <p class="order-status-block__grid-element">{% trans "Сумма:" %}</p>
+            <p class="order-status-block__grid-element">{{ order.total_price|price_format }} {% trans "₽" %}</p>
+        </div>
+        {% if order.payment_method %}
+        <div class="order-status-block__grid">
+            <p class="order-status-block__grid-element">{% trans "Способ оплаты:" %}</p>
+            <p class="order-status-block__grid-element">{{ order.payment_method_name }}</p>
+        </div>
+        {% elif order.get_payment_method_display %}
+        <div class="order-status-block__grid">
+            <p class="order-status-block__grid-element">{% trans "Способ оплаты:" %}</p>
+            <p class="order-status-block__grid-element">{{ order.get_payment_method_display }}</p>
+        </div>
+        {% endif %}
+
+        <div class="order-status-block__grid">
+            <p class="order-status-block__grid-element">{% trans "Статус оплаты" %}</p>
+            <p class="order-status-block__grid-element order-status-block__grid-element_{% if order.is_paid %}green{% else %}red{% endif %}">
+                <img class="order-status-block__icon" src="{% if order.is_paid %}{% static 'images/payment.svg' %}{% else %}{% static 'images/error-modal.svg' %}{% endif %}" alt="">{% if order.is_paid %}{% trans "Оплачено" %}{% else %}{% trans "Не оплачено" %}{% endif %}
+            </p>
+        </div>
+
+    </div>
+    {% if order.comment %}
+    <div class="order-status-block__info-block mb-30">
+        <p class="order-status-block__sub-title">{% trans "Комментарий к заказу:" %}</p>
+        <div class="order-status-block__info-text">{{ order.comment }}</div>
+    </div>
+    {% endif %}
+    <p class="order-status-block__sub-title order-status-block__sub-title_table">
+        {% trans "Состав заказа:" %}
+    </p>
+    <div class="order-status-block__table">
+        <div class="order-status-block__table-row order-status-block__table-row_head">
+            <div class="order-status-block__table-cell">
+                <span class="order-status-block__table-title">{% trans "Артикул" %}</span>
+            </div>
+            <div class="order-status-block__table-cell">
+                <span class="order-status-block__table-title">{% trans "Наименование" %}</span>
+            </div>
+            <div class="order-status-block__table-cell">
+                <span class="order-status-block__table-title">{% trans "Кол-во" %}</span>
+            </div>
+            <div class="order-status-block__table-cell">
+                <span class="order-status-block__table-title">{% trans "Цена" %}</span>
+            </div>
+            <div class="order-status-block__table-cell">
+                <span class="order-status-block__table-title">{% trans "Сумма" %}</span>
+            </div>
+        </div>
+        {% for order_product in order.order_products.all %}
+        <div class="order-status-block__table-row">
+            <div class="order-status-block__table-cell">
+                <span class="order-status-block__table-text">{{ order_product.product.sku }}</span>
+            </div>
+            <div class="order-status-block__table-cell">
+                <span class="order-status-block__table-text">{{ order_product.product.name }}</span>
+            </div>
+            <div class="order-status-block__table-cell">
+                <span class="order-status-block__table-text">{{ order_product.quantity }}</span>
+            </div>
+            <div class="order-status-block__table-cell">
+                <span class="order-status-block__table-text">{{ order_product.personal_product_price|price_format }} {% trans "₽" %}</span>
+            </div>
+            <div class="order-status-block__table-cell">
+                <span class="order-status-block__table-text">{{ order_product.personal_product_price|multiplication:order_product.quantity|price_format }} {% trans "₽" %}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% if order.delivery_cost is not None %}
+    <div class="order-status-block__row order-status-block__row_top">
+        <p class="order-status-block__table-text">{% trans "Доставка" %}</p>
+        <p class="order-status-block__table-text">{{ order.delivery_cost }} {% trans "₽" %}</p>
+    </div>
+    {% endif %}
+    <div class="order-status-block__row">
+        <p class="order-status-block__table-title">{% trans "Итоговая сумма:" %}</p>
+        <p class="order-status-block__table-title">{{ order.final_price|price_format }} {% trans "₽" %}</p>
+    </div>
+</div>
+{% endblock body_main_top_content %}

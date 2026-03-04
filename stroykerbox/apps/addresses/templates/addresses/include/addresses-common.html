@@ -1,0 +1,21 @@
+{% load static sekizai_tags utils_tags %}
+
+{% addtoblock 'css' %}
+<style>
+#{{ map_container_id }} {
+    width: 100%;
+    height: 500px;
+}
+</style>
+
+{# файл ломает верстку, пока отключаем #}
+{# {% if use_glyph %} #}
+{# <link rel="stylesheet" type="text/css" href="https://yastatic.net/bootstrap/3.3.4/css/bootstrap.min.css"> #}
+{# {% endif %} #}
+
+{% endaddtoblock %}
+
+{% addtoblock 'js' %}
+<script src="https://api-maps.yandex.ru/2.1/?apikey={% settings_value 'YANDEX_API_KEY' %}&lang=ru_RU" type="text/javascript"></script>
+<script src="{% static 'js/addresses_yamap.js' %}"></script>
+{% endaddtoblock %}

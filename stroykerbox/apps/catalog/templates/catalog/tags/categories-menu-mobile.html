@@ -1,0 +1,76 @@
+{% load cache static %}
+{% if simple %}
+
+{% cache 3600 catalog_categories_menu_mobile_simple %}
+<ul class="catalog-menu-mobile">
+    <li class="catalog-opened mobile-show">
+        <a>
+            {{ config.CATALOG_MENU_TITLE }}
+            <svg class="icon">
+                <use xlink:href="#tab-arrow"></use>
+            </svg>
+        </a>
+        <ul class="submenu">
+            {% for category in categories %}
+            <li class="menu-item">
+                <a class="menu-item-link-mobile" href="{{ category.get_absolute_url }}">
+                    {% if config.CATEGORY_CATALOG_PAGE_SHOW_ICON and category.icon %}
+                    <div class="menu-item-mobile__image">
+                        <img src="{{ category.icon.url }}" alt="{{ category.name }}">
+                    </div>
+                    {% endif %}
+                    {{ category.name }}
+                    <svg class="icon">
+                        <use xlink:href="#tab-arrow"></use>
+                    </svg>
+                </a>
+            </li>
+            {% endfor %}
+
+        </ul>
+    </li>
+</ul>
+{% endcache %}
+
+{% else %}
+
+{% cache 3600 catalog_categories_menu_mobile %}
+<div class="catalog-side mobile-show">
+    <span class="catalog-side__title">
+        <span class="icon">
+            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0V2H16V0H0ZM0 8H16V6H0V8ZM0 14H16V12H0V14Z" fill="currentColor"></path>
+            </svg>
+        </span>
+        {{ config.CATALOG_MENU_TITLE }}
+    </span>
+
+    <!-- аккордеон вариант (классу catalog-side__content добавилось класс -accordeon чтобы css конфликты не были, в scripts.js добавилось одна строка - $('.catalog-side__content-accordeon').toggle(0); ) -->
+    <div class="catalog-side__content-accordeon">
+        <ul class="custom__accordion v-arrow mb-0">
+            {% for category in categories %}
+            <li>
+                {% if not category.published_children.exists %}
+                <a href="{{ category.get_absolute_url }}" class="acc__toggle not_toggle">
+                    {{ category.name }}
+                </a>
+                {% else %}
+                <a class="acc__toggle" href="javascript:void(0);">{{ category.name }}</a>
+                <ul class="inner">
+                    {% for child in category.published_children.all %}
+                    <li>
+                        <a href="{{ child.get_absolute_url }}" class="acc__toggle acc__toggle-inner not_toggle">
+                            {{ child.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endcache %}
+
+{% endif %}

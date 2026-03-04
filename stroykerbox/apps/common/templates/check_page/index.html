@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+    {% load static %}
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="format-detection" content="date=no">
+        <meta name="format-detection" content="address=no">
+        <meta name="format-detection" content="email=no">
+        <title>Качество заполнения сайта</title>
+
+        <link rel="stylesheet" href="{% static 'check_page/css/vendor.css' %}">
+        <link rel="stylesheet" href="{% static 'check_page/css/main.css' %}">
+
+        <style>
+{# https://redmine.nastroyker.ru/issues/16494 #}
+.table > thead th {
+    font-size: 11px;
+}
+        </style>
+
+        <script defer src="{% static 'check_page/js/main.js' %}"></script>
+    </head>
+
+    <body class="page-body">
+        <h1 class="visually-hidden{% if not summary_point_is_success %} text-danger{% endif %}">
+            Проверка качества заполнения сайта {{ project }}<br />
+            оценка: <strong>{{ summary_point }}</strong>
+        </h1>
+
+        <div class="site-container">
+            <main class="main">
+                <section class="my-80px">
+                    <div class="container">
+                        <h1 class="mb-40px{% if not summary_point_is_success %} text-danger{% endif %}">
+                            Проверка качества заполнения сайта {{ project }}<br />
+                            оценка: <strong>{{ summary_point }}</strong>
+                        </h1>
+
+                        <div class="d-flex flex-column gap-60px mb-lg-120px mb-80px">
+
+                            {% include 'check_page/include/frontpage-table.html' %}
+
+                            {% include 'check_page/include/ai-keywords-into-table.html' %}
+
+                            {% include 'check_page/include/common-settings-table.html' %}
+
+                            {% include 'check_page/include/categories-table.html' %}
+
+                            {% include 'check_page/include/product-table.html' with points=product_points products=products_published section_title="Товары опубликованные" collapsed_block_id="collapse_products_published" products_by_category=products_published_by_category download_heavy_picture_link=True %}
+
+                            {% include 'check_page/include/product-table.html' with products=products_unpublished section_title="Товары скрытые" collapsed_block_id="collapse_products_unpublished" products_by_category=products_unpublished_by_category %}
+
+                        </div>
+                </section>
+            </main>
+                    </div>
+    </body>
+
+</html>

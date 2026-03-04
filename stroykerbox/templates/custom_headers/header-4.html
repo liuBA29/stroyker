@@ -1,0 +1,100 @@
+{% load static location_tags catalog_tags utils_tags sekizai_tags i18n search_tags %}
+<!-- new header fat -->
+<section class="__header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="logo">
+                    <a href="/">
+                        <img
+                            src="{% if config.HEDER_LOGO_FILE %}{{ MEDIA_URL }}{{ config.HEDER_LOGO_FILE }}{% else %}{% static 'images/logo.svg' %}{% endif %}">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 pl--0">
+                <div class="custom-block">
+                    <button class="btn catalog-btn">
+                        <span></span>{{ config.CATALOG_MENU_TITLE }}
+                    </button>
+                    {% render_search_form box_class="fat-v2-width" %}
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="contact-box c-box-fat-v2">
+                    {% render_custom_header_phone %}
+
+                    <a href="#" data-fancybox="callme-modal" data-src="#callme-modal" href="javascript:;" class="order-call">
+                        {% trans "Запросить звонок" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- catalog  -->
+    <div class="catalog-box">
+        <div class="container">
+            {% render_catalog_dropdown_menu %}
+        </div>
+    </div>
+</section>
+
+<section class="__h-fat-v2-bottom">
+    <div class="container">
+        <div class="__fat-wrap">
+
+            <div class="__fat-v2-nav">
+                <ul>
+                    {% for menu_item in header_menu %}
+                    <li{% if menu_item.css_class %} class="{{ menu_item.css_class }}"{% endif %}>
+                        <a{% if menu_item.title %} title="{{ menu_item.title }}"{% endif %}
+                                                   href="{{ menu_item.url }}"{% if request.path == menu_item.url %}
+                                                   class="active"{% endif %}{% if menu_item.new_tab %} target="_blank"{% endif %}>
+                            {{ menu_item.anchor }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="__fat-v2-options">
+                <ul>
+                    <li>
+                        <a href="{% url 'cart:cart' %}">
+                            {% if config.HEADER_ICON_CART %}
+                            <img class="icon-svg" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART }}"/>
+                                {% if config.HEADER_ICON_CART_HOVER %}
+                                <img class="icon-svg hover" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART_HOVER }}"/>
+                                {% endif %}
+                            {% else %}
+                            <img src="{% static 'images/cart-icon-orange.svg' %}">
+                            {% endif %}
+                            <span class="cart-number">{{ cart|length }}</span>
+                        </a>
+                    </li>
+                    {% if config.WHITETHEME_SHOW_LK_LINKS %}
+                    <li>
+                        <a href="{% if request.user.is_authenticated %}{% url 'users:profile' %}{% else %}{% url 'login' %}{% endif %}">
+                            {% if config.HEADER_ICON_LK %}
+                            <img class="icon-svg" src="{% get_media_prefix %}{{ config.HEADER_ICON_LK }}"/>
+                                {% if config.HEADER_ICON_LK_HOVER %}
+                                <img class="icon-svg hover" src="{% get_media_prefix %}{{ config.HEADER_ICON_LK_HOVER }}"/>
+                                {% endif %}
+                            {% else %}
+                            <img src="{% static 'images/profile-icon-t1.svg' %}" alt="">
+                            {% endif %}
+                            {% if request.user.is_authenticated %}
+
+                            {{ request.user.display_name }}
+
+                            {% else %}
+                            {% trans "Вход" %}
+                            {% endif %}
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

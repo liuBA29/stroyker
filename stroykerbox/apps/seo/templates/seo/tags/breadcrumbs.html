@@ -1,0 +1,22 @@
+<div class="page-head">
+    <div class="breadcrumbs breadcrumbs--lk" itemscope itemtype="http://schema.org/BreadcrumbList">
+        {% for crumb in breadcrumbs %}
+        {% if forloop.last and 'catalog/product/' not in request.path and forloop.counter > 1 %}
+        {{ crumb.1 }}
+        {% else %}
+        <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemprop="item" title="{{ crumb.1 }}" href="{{ crumb.0 }}">
+                {{ crumb.1 }}
+                <meta itemprop="name" content="{{ crumb.1 }}"/>
+            </a>
+            <meta itemprop="position" content="{{ forloop.counter }}">
+        </span>
+        {% if not forloop.last %}
+        <svg class="breadcrumbs__sep">
+            <use xlink:href="#tab-arrow"></use>
+        </svg>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,14 @@
+{% load i18n %}
+{% if reviews %}
+
+<div class="reviews">
+    {% for review in reviews %}
+    {% include 'reviews/include/review.html' %}
+    {% endfor %}
+</div>
+
+{% else %}
+
+<p>{% trans "Отзывов для данного товара пока еще нет." %}</p>
+
+{% endif %}

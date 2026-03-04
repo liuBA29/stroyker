@@ -1,0 +1,12 @@
+{% load utils_tags %}
+<strong>Новое сообщение с формы {{ form_title|default:"обратной связи" }} на сайте {{ site.domain }}</strong>
+{% if object %}<a href="http://{{ site.domain }}{% url 'admin:crm_crmrequestbase_change' object.pk %}">Для управления запросом перейдите по ссылке</a>{% endif %}
+{% if location %}
+Регион: {{ location.name }}{% endif %}
+Имя: {{ object.name }}
+Телефон: <a href="tel:+{{ object.phone|clear_phone }}">+{{ object.phone|clear_phone }}</a>
+Email: <a href="mailto:{{ object.email }}">{{ object.email }}</a>
+{% if object.message %}{% if object.page_url %}
+URL страницы отправки: <a href="{{ object.page_url }}">{{ object.page_url }}</a>{% endif %}
+Сообщение: {{ object.message }}
+{% endif %}

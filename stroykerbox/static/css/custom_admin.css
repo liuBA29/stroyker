@@ -1,0 +1,83 @@
+#header:not(.login #header), .breadcrumbs {
+    z-index: 99;
+    position: fixed;
+    width: 100%;
+}
+#header:not(.login #header) {
+    top: 0;
+}
+#header #user-tools {
+    padding-right: 50px;
+}
+.breadcrumbs {
+    top: 45px;
+}
+.submit-row:not(.login .submit-row) {
+    position: fixed;
+    bottom: -20px;
+}
+#main:not(.login #main) {
+    margin-top: 100px;
+}
+.dashboard #main {
+    margin-top: 50px;
+}
+.change-list .object-tools {
+    margin-top: -80px;
+}
+.change-list h1, .dashboard h1 {
+    padding-top: 20px;
+}
+.constance #changelist-form {
+    width: 100%;
+}
+input.vTextField[name="name"] {
+    width: 99%;
+}
+input.vTextField[name="name"] + .help {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.multifilter h3 {
+    margin-bottom: 1rem;
+}
+.multifilter .show-all {
+    text-transform: uppercase;
+    margin-bottom: .5rem;
+}
+.multifilter a strong {
+    font-size: 18px;
+}
+.multifilter .show-all a strong {
+    font-size: inherit;
+}
+.multifilter li.selected{
+    font-weight: bold;
+}
+.object-tools-custom  {
+    display: grid;
+    margin: 0 0 1rem;
+}
+.object-tools-custom ul {
+    padding: 0;
+}
+.object-tools-custom li {
+    float: left;
+    margin: 3px;
+    list-style-type: none;
+}
+.object-tools-custom li  a{
+    padding: 3px 12px;
+    background: var(--object-tools-bg);
+    color: var(--object-tools-fg);
+    font-weight: 400;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 15px;
+    display: block;
+}
+#content.products-changelist {
+    padding-top: 5px;
+}

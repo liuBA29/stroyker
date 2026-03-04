@@ -1,0 +1,57 @@
+# flake8: noqa
+from .base import *
+
+BASE_URL = '{% if host_base_url is defined %}{{ host_base_url }}{% else %}https://{{ domain }}{% endif %}'
+
+SITE_ID = {{ django_site_id|default(1) }}
+
+DEBUG = {{ debug_mode|default(False) }}
+
+
+ALLOWED_HOSTS = [{% if domain %}'{{ domain }}', 'www.{{ domain }}'{% else %}'*'{% endif %}]
+
+{% if need_smartlombard|default(False) %}
+INSTALLED_APPS.append('stroykerbox.apps.smartlombard')
+{% endif %}
+
+{% if vk_market|default(False) %}
+INSTALLED_APPS.append('stroykerbox.apps.vk_market')
+SHELL_PLUS_IMPORTS.append('from stroykerbox.apps.vk_market.vk import VKMarket')
+
+RQ_QUEUES['default']['DEFAULT_TIMEOUT'] = 43200
+
+RQ_PERIODIC.append({
+        'task': 'stroykerbox.apps.vk_market.tasks.vk_market_sync',
+        'args': [],
+        'kwargs': {},
+        'timeout': -1,
+        'result_ttl': 86400,
+        })
+{% endif %}
+
+{% if booking_app|default(False) %}
+INSTALLED_APPS.append('stroykerbox.apps.booking')
+{% endif %}
+
+{% if not without_redirects|default(False) %}
+INSTALLED_APPS.append('django.contrib.redirects')
+MIDDLEWARE.append('stroykerbox.apps.utils.middleware.CustomRedirectFallbackMiddleware')
+{% endif %}
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'stroykerbox',
+        'USER': 'stroykerbox',
+        'PASSWORD': 'stroykerbox',
+        'HOST': 'db',  # db service name in the docker-compose.yml
+            'PORT': '5432',
+    }
+}
+
+THUMBNAIL_PREFIX = '{{ project_name }}_cache/'
+
+YML_EXPORT_FILE_PATH = path(MEDIA_ROOT, 'yml_export', '{{ project_name }}', 'catalog_export.yml')
+
+CACHE_NAMESPACE = '{{ project_name }}'

@@ -1,0 +1,52 @@
+{% load cache mptt_tags static i18n %}
+{% cache 3600 catalog_categories_menu_base request.path show_more %}
+<div class="catalog-side mobile-hide" id="catalog-menu" data-items-limit="9">
+    <span class="catalog-side__title">
+        <span class="icon">
+            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0V2H16V0H0ZM0 8H16V6H0V8ZM0 14H16V12H0V14Z" fill="currentColor"></path>
+            </svg>
+        </span>{{ config.CATALOG_MENU_TITLE }}
+    </span>
+    <div class="catalog-side__content">
+        <ul>
+            {% for category in categories %}
+            {% with category.get_absolute_url as node_url %}
+            <li class="menu-item{% if request.path == node_url %} current active{% endif %}">
+                <a href="{{ node_url }}" class="menu-item__link">
+                    {% if config.CATEGORY_CATALOG_PAGE_SHOW_ICON and category.icon %}
+                    <div class="menu-item__image">
+                        <img src="{{ category.icon.url }}" alt="{{ category.name }}">
+                    </div>
+                    {% endif %}
+                    {{ category.name }}
+                </a>
+
+                {% if category.published_children.exists %}
+                <ul class="submenu">
+                    {% for child in category.published_children %}
+                    <li class="menu-item">
+                        <a href="{{ child.get_absolute_url }}">
+                            {{ child.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+            </li>
+            {% endwith %}
+            {% endfor %}
+
+            {% if show_more %}
+            <li class="menu-item more">
+                <a class="btn-border" href="{% url 'catalog:index' %}">
+                    {% trans "Показать еще" %}
+                </a>
+            </li>
+            {% endif %}
+
+        </ul>
+    </div>
+</div>
+{% endcache %}

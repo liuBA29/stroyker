@@ -1,0 +1,17 @@
+{% if categories %}
+{% load static catalog_tags i18n %}
+<h2>{% trans "Разделы каталога" %}</h2>
+<div class="popular-content">
+    {% for category in categories %}
+    <a href="{{ category.get_absolute_url }}" class="popular-item">
+        <span class="popular-item__image">
+            {% render_category_image category %}
+        </span>
+
+        <span class="popular-item__title"><span>{{ category.name }}</span></span>
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
+
+

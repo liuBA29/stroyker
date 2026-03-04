@@ -1,0 +1,26 @@
+{% load utils_tags %}
+{% if rowsets %}
+{% if custom_block_title %}
+<h2 class="mb-25"{% if custom_block_title_color %} style="color: {{ custom_block_title_color }}"{% endif %}>
+    {{ custom_block_title }}
+</h2>
+{% endif %}
+{% for row in rowsets %}
+
+{% if banners_per_line == 5 %}
+<div class="b-multirows-row d-grid row-gap-25 column-gap-grid grid-columns-sm-2 grid-columns-md-3 grid-columns-lg-5">
+{% else %}
+<div class="b-multirows-row d-grid row-gap-25 column-gap-grid grid-columns-{% if banners_per_line < 6 %}md-{% endif %}2 grid-columns-lg-{{ banners_per_line }}">
+{% endif %}
+    {% for banner in row.rowset.rowset_items.all %}
+    {% if forloop.counter <= banners_per_line %}
+    {% if row.rowset.row_type == 1 %}
+    {% include 'banners/include/banner-img-as-bg.html' %}
+    {% else %}
+    {% include 'banners/include/banner-img-as-image.html' %}
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+</div>
+{% endfor %}
+{% endif %}

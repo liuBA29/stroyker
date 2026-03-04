@@ -1,0 +1,29 @@
+[
+{
+  "model": "catalog.stock",
+  "pk": 1,
+  "fields": {
+    "name": "New York",
+    "geo_latitude": "40.741895",
+    "geo_longitude": "-73.989308"
+  }
+},
+{
+  "model": "catalog.stock",
+  "pk": 2,
+  "fields": {
+    "name": "\u041c\u0448\u0438\u043d\u0441\u043a\u043e\u0435 \u0441\u0435\u043b\u044c\u0441\u043a\u043e\u0435 \u043f\u043e\u0441\u0435\u043b\u0435\u043d\u0438\u0435",
+    "geo_latitude": "59.068446",
+    "geo_longitude": "29.809520"
+  }
+},
+{
+  "model": "catalog.stock",
+  "pk": 3,
+  "fields": {
+    "name": "\u041c\u0430\u0433\u0438\u0441\u0442\u0440\u0430\u043b\u044c",
+    "geo_latitude": "51.525446",
+    "geo_longitude": "45.994268"
+  }
+}
+]

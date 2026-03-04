@@ -1,0 +1,10 @@
+{% load utils_tags i18n %}
+<strong>{% trans "Новое бронирование на сайте" %} {% config_value 'SITE_NAME' %}</strong>
+{% if object %}<a href="http://{{ site.domain }}{% url 'admin:booking_itemreserve_change' object.pk %}">{% trans "Для управления запросом перейдите по ссылке" %}</a>{% endif %}
+{% trans "Дата:" %} {{ object.date }}{% if object.hour %}
+{% trans "Время:" %} {{ object.hour|stringformat:"02d:00" }} - {{ object.hour|add:1|stringformat:"02d:00" }}{% endif %}
+{% trans "Имя:" %} {{ object.name }}
+{% trans "Телефон:" %} +{{ object.phone|clear_phone }}
+{% if object.comment %}
+{% trans "Сообщение:" %} {{ object.comment }}
+{% endif %}

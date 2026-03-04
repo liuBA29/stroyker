@@ -1,0 +1,109 @@
+<div class="d-flex flex-column gap-20px">
+    <h2 class="h4 mb-0px">
+        Главная страница
+    </h2>
+
+    <table class="table m-0px">
+        <thead>
+            <tr>
+                <th scope="col" class="w-25 p-0px border-0"></th>
+                <th scope="col" class="w-72px p-0px border-0"></th>
+                <th scope="col" class="p-0px border-0"></th>
+            </tr>
+        </thead>
+        {% if frontpage_info.parser_errors %}
+        <tbody>
+            <tr>
+                <td>
+                    <strong>Ошибки парсинга</strong>
+                    {% for err in frontpage_info.parser_errors %}
+                    <div style="color: red">{{ err }}</div>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% else %}
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        Тег H1
+                    </th>
+                    <td>
+                        <div class="form-check d-flex align-items-center pe-none p-0px m-0px">
+                            <input type="checkbox" class="form-check-input m-0px"{% if frontpage_info.h1 %} checked{% endif %} inert>
+                        </div>
+                    </td>
+                    <td>
+                         {{ frontpage_info.h1 }}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        Теги H2
+                    </th>
+                    <td>
+                        {{ frontpage_info.h2|length }} шт
+                    </td>
+                    <td>
+                        {% for h2 in frontpage_info.h2 %}
+                        {{ h2 }}
+                        {% if not forloop.last %}<br />{% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        Title
+                    </th>
+                    <td>
+                        <div class="form-check d-flex align-items-center pe-none p-0px m-0px">
+                            <input type="checkbox" class="form-check-input m-0px"{% if frontpage_info.title %} checked{% endif %} inert>
+                        </div>
+                    </td>
+                    <td>
+                        {{ frontpage_info.title }}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        Description
+                    </th>
+                    <td>
+                        <div class="form-check d-flex align-items-center pe-none p-0px m-0px">
+                            <input type="checkbox" class="form-check-input m-0px"{% if frontpage_info.description %} checked{% endif %} inert>
+                        </div>
+                    </td>
+                    <td>
+                        {{ frontpage_info.description }}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        Keywords
+                    </th>
+                    <td>
+                        <div class="form-check d-flex align-items-center pe-none p-0px m-0px">
+                            <input type="checkbox" class="form-check-input m-0px"{% if frontpage_info.keywords %} checked{% endif %} inert>
+                        </div>
+                    </td>
+                    <td>
+                        {{ frontpage_info.keywords }}
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        AI Keywords
+                    </th>
+                    <td>
+                        <div class="form-check d-flex align-items-center pe-none p-0px m-0px">
+                            <input type="checkbox" class="form-check-input m-0px"{% if frontpage_info.ai_keywords %} checked{% endif %} inert>
+                        </div>
+                    </td>
+                    <td>
+                        {{ frontpage_info.ai_keywords }}
+                    </td>
+                </tr>
+            </tbody>
+            {% endif %}
+
+    </table>
+</div>

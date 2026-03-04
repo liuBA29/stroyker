@@ -1,0 +1,48 @@
+{% load static %}
+{% if mobile %}
+<div class="search--box">
+    <!-- s-icon-left = кнопка submit было слево  -->
+    <!-- s-icon-right = кнопка submit было справо  -->
+    <form action="{% url 'search' %}" class="s-icon-{{ icon_position }}">
+        <input name="q" type="text" autocomplete="off"
+                                    class="search_input_mobile"
+                                    value="{{request.GET.q}}"
+                                    data-min-chars="{{ config.SEARCH__QUERY_MIN_CHARS }}"
+                                    data-search-url="{% url 'search' %}"
+                                    placeholder="{{ config.SEARCH_INPUT_PLACEHOLDER }}"
+                                    data-search-input="header-search-mobile">
+        <button class="btn submit" data-search-button="header-search-mobile">
+            <img
+                src="{% if config.SEARCH_INPUT_ICON %}{{ MEDIA_URL }}{{ config.SEARCH_INPUT_ICON }}{% else %}{% static 'images/s-icon-mob.svg' %}{% endif %}"
+                alt="">
+        </button>
+    </form>
+    <div id="search-result-mob" data-search-results="header-search-mobile"></div>
+</div>
+{% else %}
+<div class="search-box {{ box_class|default:'general--width' }}">
+    <form action="{% url 'search' %}">
+        {% if input_box_class %}
+        <div class="{{ input_box_class }}">
+            {% endif %}
+            <input name="q" type="text" autocomplete="off"
+                                        class="search_input"
+                                        value="{{request.GET.q}}"
+                                        data-min-chars="{{ config.SEARCH__QUERY_MIN_CHARS }}"
+                                        data-search-url="{% url 'search' %}"
+                                        placeholder="{{ config.SEARCH_INPUT_PLACEHOLDER }}"
+                                        data-search-input="search-box">
+                                        
+            {% if input_box_class %}
+        </div>
+        {% endif %}
+        <button class="btn submit" data-search-button="search-box">
+            <img
+                src="{% if config.SEARCH_INPUT_ICON %}{{ MEDIA_URL }}{{ config.SEARCH_INPUT_ICON }}{% else %}{% static 'images/search-icon.svg' %}{% endif %}"
+                alt="">
+        </button>
+    </form>
+    <div id="search-result" data-search-results="search-box" style="display: none;" class="header-search-results"></div>
+</div>
+
+{% endif %}

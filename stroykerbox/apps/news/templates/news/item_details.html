@@ -1,0 +1,47 @@
+{% extends item.wide_view|yesno:"base-article-wide.html,base-article-sidebar.html" %}
+{% load seo_tags utils_tags news_tags custom_form_tags i18n %}
+
+{% block article_content %}
+
+<h1>{% render_h1 %}</h1>
+{% if item.use_custom_form %}
+{{ item.text|custom_form_inside }}
+{% else %}
+{{ item.text|safe }}
+{% endif %}
+
+{% if files %}
+<h2 class="section-title">{% trans "Документы и сертификаты" %}</h2>
+<div class="documents">
+    {% for file in files %}
+    <div class="document-item">
+        <span class="document-item__text">{{ file }}</span>
+        <span class="document-item__format">{{ file.file|file_extension }}</span>
+        <span class="document-item__size">{{ file.file|file_size }}</span>
+        <span class="document-item__btn">
+            <a href="{{ file.file.url }}" download="" class="btn">
+                {% trans "Скачать" %}
+            </a>
+        </span>
+
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if images %}
+<h2 class="section-title">{% trans "Галерея" %}</h2>
+<div class="slider">
+    <div class="owl-carousel">
+        {% for image in images %}
+        <div class="item"><img src="{{ image.image.url }}" alt="{{ image.alt_text }}{% if not image.title %} ({% trans "фото" %} {{ forloop.counter }}){% endif %}"></div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% endblock article_content %}
+
+{% block article_sidebar %}
+{% render_related_news %}
+{% endblock article_sidebar %}

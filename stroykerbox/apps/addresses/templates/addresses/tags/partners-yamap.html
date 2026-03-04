@@ -1,0 +1,39 @@
+{% load static %}
+{% if partners %}
+<section class="conditional-section conditional-section_bg ya-map">
+    {% for partner in partners %}
+
+    {% for coord in partner.coordinates.all %}
+
+    <div class="address-data"
+         data-icon-preset="{{ partner.ymap_icon_color|default:"blue" }}{% if partner.ymap_glyph_icon %}Glyph{% else %}Dot{% endif %}Icon"
+         data-balloon-content="<h4>{{ partner.name }}</h4>{{ partner.address }}"
+         data-glyph-icon-name="{{ partner.ymap_glyph_icon }}"
+         data-glyph-icon-color="{{ partner.ymap_glyph_color|default:partner.ymap_icon_color|default:'blue' }}"
+         data-hint-content="{{ partner.address }}"
+         data-latitude="{{ coord.geo_latitude|stringformat:'f' }}"
+         data-longitude="{{ coord.geo_longitude|stringformat:'f' }}"></div>
+    {% endfor %}
+
+    {% endfor %}
+    <div class="wide-map" id="yamap_addresses"
+                          data-center-latitude="{{ center_latitude|stringformat:'f' }}"
+                          data-center-longitude="{{ center_longitude|stringformat:'f' }}"
+                          data-center-zoom="{{ center_zoom|stringformat:'f' }}"
+                          {% if use_main_store_address and main_store_latitude %}data-main-store-lat="{{ main_store_latitude|stringformat:'f' }}"
+                          data-main-store-lng="{{ main_store_longitude|stringformat:'f' }}"
+                          data-main-store-icon="{% static 'images/8.png' %}"{% endif %}></div>
+    {% include 'addresses/include/addresses-common.html' with map_container_id='yamap_addresses' %}
+</section>
+{% else %}
+<section class="conditional-section conditional-section_bg ya-map">
+    <div class="wide-map" id="yamap_addresses"
+         data-center-latitude="{{ center_latitude|stringformat:'f' }}"
+         data-center-longitude="{{ center_longitude|stringformat:'f' }}"
+         data-center-zoom="{{ center_zoom|stringformat:'f' }}"
+         {% if use_main_store_address and main_store_latitude %}data-main-store-lat="{{ main_store_latitude|stringformat:'f' }}"
+         data-main-store-lng="{{ main_store_longitude|stringformat:'f' }}"
+         data-main-store-icon="{% static 'images/8.png' %}"{% endif %}></div>
+    {% include 'addresses/include/addresses-common.html' with map_container_id='yamap_addresses' %}
+</section>
+{% endif %}

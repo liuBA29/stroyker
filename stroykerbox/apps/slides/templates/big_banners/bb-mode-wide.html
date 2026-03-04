@@ -1,0 +1,9 @@
+<!-- это в ширине контентной части  -->
+{% if big_banners %}
+<!-- обрезка влево -  cropped--left -->
+<!-- обрезка вправо - cropped--right -->
+<!-- без обрезки - убираем классы cropped--left и cropped--right -->
+<div class="home-banner nopad-mob cropped--{{ config.BB_CROP_MODE }}{% if has_content %} inner-block__active{% endif %}">
+    {% include 'big_banners/include/bb-baners-list.html' %}
+</div>
+{% endif %}

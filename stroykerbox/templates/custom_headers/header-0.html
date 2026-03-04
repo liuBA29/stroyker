@@ -1,0 +1,162 @@
+{% load static catalog_tags utils_tags menu_tags location_tags users_tags commerce_tags i18n %}
+<section class="header-default">
+    <div class="top-header">
+        <div class="container">
+
+            <div class="top-header__content">
+                <div class="top-header__content-left">{{ custom_logo }}
+                    <a href="/" class="logo">
+                        <img{% if config.HEDER_LOGO_FILE_MOBILE %} class="mobile-hide"{% endif %}
+                                                                   src="{% if config.HEDER_LOGO_FILE %}{{ MEDIA_URL }}{{ config.HEDER_LOGO_FILE }}{% else %}{% static 'images/logo.svg' %}{% endif %}"
+                                                                   alt="{{ config.SITE_NAME }}">
+                        {% if config.HEDER_LOGO_FILE_MOBILE %}
+                        <img class="mobile-show"
+                             src="{{ MEDIA_URL }}{{ config.HEDER_LOGO_FILE_MOBILE }}"
+                             alt="{{ config.SITE_NAME }}">
+                        {% endif %}
+                    </a>
+                    <div class="main-menu">
+                        {% render_menu 'header_menu' %}
+                    </div>
+                </div>
+                <div class="top-header__content-right">
+                    {% render_current_location_block %}
+                    {% render_header_contact_phone %}
+                    <a data-fancybox="callme-modal" data-src="#callme-modal" href="javascript:;" class="btn-border callme-button mobile-hide button-theme button-theme_callme">Заказать звонок</a>
+                </div>
+                <div class="burger-menu">
+                    <div class="burger"></div>
+                </div>
+                <div class="mobile-menu">
+                    {% if config.WHITETHEME_SHOW_LK_LINKS %}
+                    <div class="mobile-menu__item mobile-show">
+                        <div class="header-user">
+                            {% render_user_lk_link True %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="mobile-menu__item  mobile-show">
+                        {% render_current_location_block True %}
+                    </div>
+                    <div class="mobile-menu__item  mobile-show">
+                        <div class="header-search search--box">
+                            <form action="{% url 'search' %}">
+                                <input name="q" type="text"
+                                                autocomplete="off"
+                                                class="search_input_mobile"
+                                                value="{{request.GET.q}}"
+                                                placeholder="{{ config.SEARCH_INPUT_PLACEHOLDER }}"
+                                                data-search-input="header-search-mobile"
+                                                data-search-url="{% url 'search' %}"
+                                                data-min-chars="{{ config.SEARCH__QUERY_MIN_CHARS }}"
+                                                >
+                                                <button
+                                                    data-search-button="header-search-mobile">
+                                                    {% if config.SEARCH_INPUT_ICON %}
+                                                    <img  class="icon-svg" src="{{ MEDIA_URL }}{{ config.SEARCH_INPUT_ICON }}">{% else %}
+                                                    <svg class="icon-svg">
+                                                        <use xlink:href="#search-icon"></use>
+                                                    </svg>
+                                                    {% endif %}
+                                                </button>
+                                                <div class="header-search-results" id="search-result-mob" style="display: none"
+                                                                                                          data-search-results="header-search-mobile"></div>
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="mobile-ul">
+                        {% render_catalog_categories_menu_mobile %}
+                        {% render_menu 'header_mobile_menu' %}
+                    </div>
+
+                    {% location_contact_phones as location_phones %}
+                    {% if location_phones %}
+                    <div class="mobile-phone mobile-show">
+                        {% for phone in location_phones %}
+                        <a onclick="{% render_yandex_metrika_goal config.YANDEX_METRICA_PHONE_TARGET_NAME %}"
+                           href="tel:{{ phone.phone_raw }}">
+                            {{ phone.phone }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {% if not config.AMOCRM_CALLME_FORM %}
+                    <div class="mobile-btn mobile-show">
+                        <a class="btn btn--rubber button-theme button-theme_primary"
+                           data-fancybox="callme-modal-mobile"
+                           data-src="#callme-modal" href="javascript:;">
+                            {% trans "Заказать звонок" %}
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="header-body">
+        <div class="container">
+            <div class="header-body__content">
+                <a class="catalog-inner-btn">
+                    <div class="burger-catalog">
+                        <div class="burger"></div>
+                    </div>
+                    {{ config.CATALOG_MENU_TITLE }}
+                </a>
+                <div class="header-search mobile-hide header-search--inner">
+                    {% include 'catalog/include/product-search-form.html' %}
+                </div>
+                <div class="header-body__content-right">
+                    {% if config.WHITETHEME_SHOW_LK_LINKS %}
+                    <div class="header-user mobile-hide">
+                        {# {% render_user_lk_link %} #}
+                        <a href="{% if request.user.is_authenticated %}{% url 'users:profile' %}{% else %}{% url 'login' %}{% endif %}" class="header-user__link">
+                            <span class="icon">
+                                {% if config.HEADER_ICON_LK %}
+                                <img class="icon-svg" src="{% get_media_prefix %}{{ config.HEADER_ICON_LK }}"/>
+                                    {% if config.HEADER_ICON_LK_HOVER %}
+                                    <img class="icon-svg hover" src="{% get_media_prefix %}{{ config.HEADER_ICON_LK_HOVER }}"/>
+                                    {% endif %}
+                                {% else %}
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15.9987 13.3346C17.0535 13.3346 18.0847 13.0218 18.9617 12.4358C19.8388 11.8498 20.5224 11.0168 20.9261 10.0423C21.3297 9.06774 21.4353 7.99539 21.2296 6.96082C21.0238 5.92626 20.5158 4.97595 19.7699 4.23007C19.0241 3.48419 18.0737 2.97624 17.0392 2.77045C16.0046 2.56466 14.9323 2.67028 13.9577 3.07395C12.9832 3.47761 12.1502 4.1612 11.5642 5.03826C10.9782 5.91533 10.6654 6.94647 10.6654 8.0013C10.6654 9.41579 11.2273 10.7723 12.2275 11.7725C13.2277 12.7727 14.5842 13.3346 15.9987 13.3346ZM26.2787 21.6013C23.5494 18.8802 19.8527 17.3522 15.9987 17.3522C12.1447 17.3522 8.44796 18.8802 5.7187 21.6013L5.33203 22.0013V28.0013H26.6654V22.0013L26.2787 21.6013Z"/>
+                                </svg>
+                                {% endif %}
+                            </span>
+
+                            {% if request.user.is_authenticated %}
+
+                            {{ request.user.display_name }}
+
+                            {% else %}
+                            {% trans "Вход/Регистрация" %}
+                            {% endif %}
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% render_cart %}
+                </div>
+                <div class="header-fixed-content">
+                    {% render_header_contact_phone %}
+                    {% if not config.AMOCRM_CALLME_FORM %}
+                    <a class="btn-border callme-button mobile-hide button-theme button-theme_callme"
+                       data-fancybox="callme-modal-1" data-src="#callme-modal" href="javascript:;">
+                        {% trans "Заказать звонок" %}
+                    </a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+        <div class="catalog-header-content">
+            <div class="catalog-box">
+                <div class="container">
+                    {% render_catalog_dropdown_menu %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

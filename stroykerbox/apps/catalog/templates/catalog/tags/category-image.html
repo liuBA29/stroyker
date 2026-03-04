@@ -1,0 +1,11 @@
+{% load static %}
+
+{% if obj.image %}
+<img src="{{ obj.image.url }}" alt="{{ obj.name }}">
+{% elif obj.svg_image %}
+<img width="{{ img_width }}" height="{{ img_height }}" src="{{ obj.svg_image.url }}" alt="{{ obj.name }}">
+{% elif config.CATEGORY_DEFAULT_IMAGE %}
+<img src="{% get_media_prefix %}{{ config.CATEGORY_DEFAULT_IMAGE }}" alt="{{ obj.name }}">
+{% else %}
+<img src="{% static 'images/no-img.png' %}" alt="{{ obj.name }}">
+{% endif %}

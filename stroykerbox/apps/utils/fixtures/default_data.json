@@ -1,0 +1,5307 @@
+[
+  {
+    "model": "constance.constance",
+    "pk": 1,
+    "fields": {
+      "key": "PRODUCTS_COUNT_ON_PAGE",
+      "value": 10
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 2,
+    "fields": {
+      "key": "YML_URL",
+      "value": "gAJYEgAAAGNhdGFsb2dfZXhwb3J0LnltbHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 3,
+    "fields": {
+      "key": "PLATFORM_MODEL",
+      "value": "gAJYGAAAANCU0LjRgdGC0YDQuNCx0YzRjtGC0L7RgHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 4,
+    "fields": {
+      "key": "NEWS_PER_PAGE",
+      "value": 10
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 5,
+    "fields": {
+      "key": "PRODUCT_ALLOW_SALE_NOT_AVAIBLE",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 6,
+    "fields": {
+      "key": "CUSTOM_HEADER_ID",
+      "value": "gAJYAwAAADIuMXEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 7,
+    "fields": {
+      "key": "SITE_NAME",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 8,
+    "fields": {
+      "key": "FAVICON_FILE",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 9,
+    "fields": {
+      "key": "PAGE_HEAD_CUSTOM_CODE",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 10,
+    "fields": {
+      "key": "HEDER_LOGO_FILE_MOBILE",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 11,
+    "fields": {
+      "key": "HEDER_LOGO_FILE",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 12,
+    "fields": {
+      "key": "HIDE_PHONE_IN_HEADER",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 13,
+    "fields": {
+      "key": "WHITETHEME_SHOW_LK_LINKS",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 14,
+    "fields": {
+      "key": "HEADER_ICON_LK",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 15,
+    "fields": {
+      "key": "SEARCH__QUERY_MIN_CHARS",
+      "value": 3
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 16,
+    "fields": {
+      "key": "SEARCH_INPUT_PLACEHOLDER",
+      "value": "gAJYDQAAANCf0L7QuNGB0LouLi5xAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 17,
+    "fields": {
+      "key": "SEARCH_INPUT_ICON",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 18,
+    "fields": {
+      "key": "CATALOG_MENU_TITLE",
+      "value": "gAJYIQAAANCa0LDRgtCw0LvQvtCzINC/0YDQvtC00YPQutGG0LjQuHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 19,
+    "fields": {
+      "key": "HEADER_ICON_CART",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 20,
+    "fields": {
+      "key": "CATEGORY_MENU_HOVER_VARIANT",
+      "value": "gAJdcQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 21,
+    "fields": {
+      "key": "CATEGORY_MENU_ICON_POSITION",
+      "value": "gAJYBAAAAGxlZnRxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 22,
+    "fields": {
+      "key": "CATEGORY_MENU_UNDERLINE_WIDTH",
+      "value": 1
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 23,
+    "fields": {
+      "key": "CATEGORY_MENU_MAX_HEIGHT",
+      "value": 485
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 24,
+    "fields": {
+      "key": "CATEGORY_MENU_ITEMS_PER_COL",
+      "value": 6
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 25,
+    "fields": {
+      "key": "RECAPTCHA_PRIVATE_KEY",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 26,
+    "fields": {
+      "key": "RECAPTCHA_PUBLIC_KEY",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 27,
+    "fields": {
+      "key": "FEEDBACK_FORM_BG_IMG",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 28,
+    "fields": {
+      "key": "FEEDBACK_FORM_TITLE",
+      "value": "gAJYIAAAANCe0YHRgtCw0LvQuNGB0Ywg0LLQvtC/0YDQvtGB0Ys/cQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 29,
+    "fields": {
+      "key": "YMETRICA_GOAL_FORM_FEEDBACK",
+      "value": "gAJYDwAAAHNydC1mb290ZXItZm9ybXEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 30,
+    "fields": {
+      "key": "YANDEX_METRICA_COUNTER_ID",
+      "value": 0
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 31,
+    "fields": {
+      "key": "USE_AOS_JS",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 32,
+    "fields": {
+      "key": "RECENTLY_WATCHED_BLOCK_IS_ENABLED",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 33,
+    "fields": {
+      "key": "FOOTER_LOGO_FILE",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 34,
+    "fields": {
+      "key": "FOOTER_USE_BG_IMG",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 35,
+    "fields": {
+      "key": "FOOTER_BG_IMG",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 36,
+    "fields": {
+      "key": "MAIL__FOOTER_CONTACTS",
+      "value": "gAJYTAAAANCa0L7QvdGC0LDQutGC0L3Ri9C1INC00LDQvdC90YvQtSDRgdCw0LnRgtCwICjQvdGD0LbQvdC+INC90LDRgdGC0YDQvtC40YLRjClxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 37,
+    "fields": {
+      "key": "CATALOG_MENU_FOOTER_ITEMS_PER_COL",
+      "value": 10
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 38,
+    "fields": {
+      "key": "YMETRICA_GOAL_FORM_SUBSCRIBE",
+      "value": "gAJYDQAAAHN0ci1zdWJzY3JpYmVxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 39,
+    "fields": {
+      "key": "PLAYMARKET_LINK",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 40,
+    "fields": {
+      "key": "SOCIAL_LINKS_ENABLED",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 41,
+    "fields": {
+      "key": "SOCIAL_LINK_TELEGRAM",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 42,
+    "fields": {
+      "key": "SOCIAL_LINK_INSTAGRAM",
+      "value": "gAJYAQAAACNxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 43,
+    "fields": {
+      "key": "SOCIAL_LINK_TWITTER",
+      "value": "gAJYAQAAACNxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 44,
+    "fields": {
+      "key": "SOCIAL_LINK_YOUTUBE",
+      "value": "gAJYAQAAACNxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 45,
+    "fields": {
+      "key": "SOCIAL_LINK_VK",
+      "value": "gAJYAQAAACNxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 46,
+    "fields": {
+      "key": "SOCIAL_LINK_DZEN",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 47,
+    "fields": {
+      "key": "FLOAT_BUTTON_INFO_TEXT",
+      "value": "gAJY+AAAANCd0LDRiCDRgdCw0LnRgiDQuNGB0L/QvtC70YzQt9GD0LXRgiBjb29raWUsINC00LDQvdC90YvQtSDQvtCxIElQLdCw0LTRgNC10YHQtSwg0LzQtdGB0YLQvtC/0L7Qu9C+0LbQtdC90LjQuC4g0JXRgdC70Lgg0JLRiyDQvdC1INGF0L7RgtC40YLQtSwg0YfRgtC+0LHRiyDRjdGC0Lgg0LTQsNC90L3Ri9C1INC+0LHRgNCw0LHQsNGC0YvQstCw0LvQuNGB0YwsINGC0L4g0LTQvtC70LbQvdGLINC/0L7QutC40L3Rg9GC0Ywg0YHQsNC50YIucQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 48,
+    "fields": {
+      "key": "YMETRICA_GOAL_FORM_CALLME",
+      "value": "gAJYDAAAAHN0ci1jYWxsYmFja3EALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 49,
+    "fields": {
+      "key": "YANDEX_METRIKA_CODE",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 50,
+    "fields": {
+      "key": "SYNC_PRICES_ENABLED",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 51,
+    "fields": {
+      "key": "SYNC_STOCKS_ENABLED",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 52,
+    "fields": {
+      "key": "CATALOG_SHOW_CHILDS_IN_PARENT",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 53,
+    "fields": {
+      "key": "NOVOFON_KEY",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 54,
+    "fields": {
+      "key": "NOVOFON_SECRET",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 55,
+    "fields": {
+      "key": "NOVOFON_PHONES",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 56,
+    "fields": {
+      "key": "YML_UPDATE_INTERVAL",
+      "value": 12
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 57,
+    "fields": {
+      "key": "SYNC_PRICES_PERIOD",
+      "value": 4
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 58,
+    "fields": {
+      "key": "STROYKER_BANNERS_LIMIT_FOR_URL",
+      "value": 2
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 59,
+    "fields": {
+      "key": "IMPORT__SKIP_UNCHANGED",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 60,
+    "fields": {
+      "key": "IMPORT__SKIP_DIFF",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 61,
+    "fields": {
+      "key": "IMPORT__REPORT_SKIPPED",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 62,
+    "fields": {
+      "key": "ADMIN__PRODUCT_PER_PAGE",
+      "value": 100
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 63,
+    "fields": {
+      "key": "SYNC_STOCKS_PERIOD",
+      "value": 4
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 64,
+    "fields": {
+      "key": "NOVOFON_UPDATE_INTERVAL",
+      "value": 12
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 65,
+    "fields": {
+      "key": "CATALOG_PRODUCT_LIST_ON_INDEX_PAGE",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 66,
+    "fields": {
+      "key": "CATALOG_CHILDS_IN_PARENT_NAV",
+      "value": "gAJYCQAAAGFjY29yZGlvbnEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 67,
+    "fields": {
+      "key": "YAMAP_DEFAULT_CENTER_LATITUDE",
+      "value": 53.195538
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 68,
+    "fields": {
+      "key": "YAMAP_DEFAULT_CENTER_LONGITUDE",
+      "value": 50.101783
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 69,
+    "fields": {
+      "key": "DELIVERY_CALC_FULL_ACCESS",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 70,
+    "fields": {
+      "key": "DISPLAY_TAG_CONTAINERS",
+      "value": "gAJdcQBYBgAAAG1pZGRsZXEBYS4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 71,
+    "fields": {
+      "key": "BB_DISPLAY_MODE",
+      "value": "gAJYCQAAAGV4dHJhd2lkZXEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 72,
+    "fields": {
+      "key": "CATALOG_MENU_ITEMS_LIMIT",
+      "value": 9
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 73,
+    "fields": {
+      "key": "BB_CROP_MODE",
+      "value": "gAJYBgAAAG5vY3JvcHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 74,
+    "fields": {
+      "key": "SLIDES_BIG_SLIDES_TIMEOUT",
+      "value": 5
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 75,
+    "fields": {
+      "key": "BB_HTML_POSITION",
+      "value": "gAJYBQAAAHJpZ2h0cQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 76,
+    "fields": {
+      "key": "FRONTPAGE_SHOW_CATEGORY_SLIDER",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 77,
+    "fields": {
+      "key": "HEADER_ICON_COMPARE",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 78,
+    "fields": {
+      "key": "MANAGER_EMAILS",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 79,
+    "fields": {
+      "key": "ARTICLES_SECTION_NAME",
+      "value": "gAJYIgAAANCS0LjQutC4IOKAlCDQsdCw0LfQsCDQt9C90LDQvdC40LlxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 80,
+    "fields": {
+      "key": "PRICE_WITH_PENNIES",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 81,
+    "fields": {
+      "key": "SYNC_API_URL",
+      "value": "gAJYKAAAAGh0dHBzOi8vb25saW5lLm1veXNrbGFkLnJ1L2FwaS9yZW1hcC8xLjJxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 82,
+    "fields": {
+      "key": "SYNC_LOGIN",
+      "value": "gAJYCgAAAHlvdXIgbG9naW5xAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 83,
+    "fields": {
+      "key": "SYNC_PASSWORD",
+      "value": "gAJYDQAAAHlvdXIgcGFzc3dvcmRxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 84,
+    "fields": {
+      "key": "SYNC_PRODUCTS_SOURCE",
+      "value": "gAJYEAAAAC9lbnRpdHkvcHJvZHVjdC9xAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 85,
+    "fields": {
+      "key": "SYNC_PRICE_FIELDNAME",
+      "value": "gAJYFwAAANCm0LXQvdCwINC/0YDQvtC00LDQttC4cQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 86,
+    "fields": {
+      "key": "SYNC_STOCKS_SOURCE",
+      "value": "gAJYJgAAAC9yZXBvcnQvc3RvY2svYnlzdG9yZS8/Z3JvdXBCeT1wcm9kdWN0cQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 87,
+    "fields": {
+      "key": "BILLING_INFO__VAT",
+      "value": 20
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 88,
+    "fields": {
+      "key": "BILLING_INFO__BANK__NAME",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 89,
+    "fields": {
+      "key": "BILLING_INFO__BANK__BIK",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 90,
+    "fields": {
+      "key": "BILLING_INFO__BANK__ACC_NUM",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 91,
+    "fields": {
+      "key": "BILLING_INFO__NAME",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 92,
+    "fields": {
+      "key": "BILLING_INFO__INN",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 93,
+    "fields": {
+      "key": "BILLING_INFO__KPP",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 94,
+    "fields": {
+      "key": "BILLING_INFO__COMPANY_BANK_ACC_NUM",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 95,
+    "fields": {
+      "key": "BILLING_INFO__ADDRESS",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 96,
+    "fields": {
+      "key": "BILLING_INFO__FOOTER_CONTACTS",
+      "value": "gAJYOAAAANGC0LXQuy46ICs3IDAwMCAwMDAgMDAgMDAsIGUtbWFpbDogc29tZUBjb21lLWRvbWFpbi5tYWlscQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 97,
+    "fields": {
+      "key": "BILLING_INFO__CHIEF_SHURNAME",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 98,
+    "fields": {
+      "key": "BILLING_INFO__SIGNATURE_FILE",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 99,
+    "fields": {
+      "key": "RELATED_PRODUCTS_BLOCK_TITLE",
+      "value": "gAJYOAAAANChINGN0YLQuNC8INGC0L7QstCw0YDQvtC8INC+0LHRi9GH0L3QviDQv9C+0LrRg9C/0LDRjtGCcQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 100,
+    "fields": {
+      "key": "PRODUCT_ANON_SHOW_AVAIL_COUNT",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 101,
+    "fields": {
+      "key": "PRODUCT_SHOW_AVAIL_STOCKS",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 102,
+    "fields": {
+      "key": "PRODUCT_ONLY_AVAIL_BY_DEFAULT",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 103,
+    "fields": {
+      "key": "PRODUCT_NOT_AVAIBLE_STATUS_NAME",
+      "value": "gAJYGAAAANC90LXRgiDQsiDQvdCw0LvQuNGH0LjQuHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 105,
+    "fields": {
+      "key": "PRODUCT_DEFAULT_IMAGE",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 106,
+    "fields": {
+      "key": "PRODUCT_CODE_FIELD",
+      "value": "gAJYAwAAAHNrdXEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 107,
+    "fields": {
+      "key": "PRODUCT_SKU_PREFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 108,
+    "fields": {
+      "key": "CATEGORY_DEFAULT_IMAGE",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 109,
+    "fields": {
+      "key": "DELIVERY_METHODS",
+      "value": "gAJdcQAoWA4AAABQaWNrVXBEZWxpdmVyeXEBWBEAAABUb0FkZHJlc3NEZWxpdmVyeXECWAwAAABUb1RDRGVsaXZlcnlxA2Uu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 110,
+    "fields": {
+      "key": "PAYMENT_METHODS",
+      "value": "gAJdcQAoWAEAAAAwcQFYAQAAADFxAlgBAAAAMnEDWAEAAAAzcQRYAQAAADRxBWUu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 111,
+    "fields": {
+      "key": "DELIVERY_PICUP_PAYMENT_METHODS",
+      "value": "gAJdcQAoWAEAAAAwcQFYAQAAADFxAlgBAAAAMnEDWAEAAAAzcQRYAQAAADRxBWUu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 112,
+    "fields": {
+      "key": "DELIVERY_TOADDRESS_PAYMENT_METHODS",
+      "value": "gAJdcQAoWAEAAAAwcQFYAQAAADFxAlgBAAAAMnEDWAEAAAAzcQRYAQAAADRxBWUu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 113,
+    "fields": {
+      "key": "DELIVERY_TOTC_PAYMENT_METHODS",
+      "value": "gAJdcQAoWAEAAAAwcQFYAQAAADFxAlgBAAAAMnEDWAEAAAAzcQRYAQAAADRxBWUu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 114,
+    "fields": {
+      "key": "DELIVERY_PICUP_COST",
+      "value": 0
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 115,
+    "fields": {
+      "key": "DELIVERY_TOADDRESS_COST",
+      "value": 0
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 116,
+    "fields": {
+      "key": "DELIVERY_TOTC_COST",
+      "value": 0
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 117,
+    "fields": {
+      "key": "YAMAP_DEFAULT_CENTER_ZOOM",
+      "value": 12
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 118,
+    "fields": {
+      "key": "SLIDES_BIG_SLIDES_SECONDARY_TIMEOUT",
+      "value": 5
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 119,
+    "fields": {
+      "key": "SLIDES_ACTION_THUMBS_TIMEOUT",
+      "value": 5
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 120,
+    "fields": {
+      "key": "BANNERS_NOTIFY_DAYS_BEFORE_EXPIRE",
+      "value": 5
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 121,
+    "fields": {
+      "key": "BANNERS_NOTIFY_CONTACT_TEXT",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 122,
+    "fields": {
+      "key": "BANNERS_FOR_SIDEBAR_ON_CATALOG_ROOT_PAGE",
+      "value": 0
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 123,
+    "fields": {
+      "key": "WHITETHEME_BANNERS_FOR_CATALOG_SIDEBAR_FIRST",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 124,
+    "fields": {
+      "key": "WHITETHEME_BANNERS_FOR_CATALOG_SIDEBAR_FIRST_LIMIT",
+      "value": 2
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 125,
+    "fields": {
+      "key": "WHITETHEME_BANNERS_FOR_CATALOG_CONTENT_FIRST_LIMIT",
+      "value": 4
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 126,
+    "fields": {
+      "key": "WHITETHEME_PRODUCT_TEASER_VARIANT",
+      "value": "gAJYAQAAADBxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 127,
+    "fields": {
+      "key": "WHITETHEME_USE_CUSTOM_CART_ICON",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 128,
+    "fields": {
+      "key": "WHITETHEME_CUSTOM_CART_ICON",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 130,
+    "fields": {
+      "key": "SEO_CATEGORY_META_TITLE_PREFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 131,
+    "fields": {
+      "key": "SEO_CATEGORY_META_H1_PREFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 132,
+    "fields": {
+      "key": "SEO_CATEGORY_META_DESC_PREFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 133,
+    "fields": {
+      "key": "SEO_CATEGORY_META_TITLE_SUFFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 134,
+    "fields": {
+      "key": "SEO_CATEGORY_META_H1_SUFFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 135,
+    "fields": {
+      "key": "SEO_CATEGORY_META_DESC_SUFFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 136,
+    "fields": {
+      "key": "SEO_PRODUCT_META_TITLE_PREFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 137,
+    "fields": {
+      "key": "SEO_PRODUCT_META_H1_PREFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 138,
+    "fields": {
+      "key": "SEO_PRODUCT_META_DESC_PREFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 139,
+    "fields": {
+      "key": "SEO_PRODUCT_META_TITLE_SUFFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 140,
+    "fields": {
+      "key": "SEO_PRODUCT_META_H1_SUFFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 141,
+    "fields": {
+      "key": "SEO_PRODUCT_META_DESC_SUFFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 142,
+    "fields": {
+      "key": "SEO_CATEGORY_META_KEYWORDS_DEFAULT",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 143,
+    "fields": {
+      "key": "SEO_PRODUCT_META_KEYWORDS_DEFAULT",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 144,
+    "fields": {
+      "key": "SEO_PRODUCT_META_USE_SKU",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 145,
+    "fields": {
+      "key": "SEO_SEARCH_META_DESC_PREFIX",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 146,
+    "fields": {
+      "key": "SOCIAL_LINK_FACEBOOK",
+      "value": "gAJYAQAAACNxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 147,
+    "fields": {
+      "key": "DEFAULT_FROM_EMAIL",
+      "value": "gAJYEwAAAHNlbmRlckBzdHJveWtlci5wcm9xAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 148,
+    "fields": {
+      "key": "EMAIL_HOST",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 149,
+    "fields": {
+      "key": "EMAIL_PORT",
+      "value": 465
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 150,
+    "fields": {
+      "key": "EMAIL_HOST_USER",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 151,
+    "fields": {
+      "key": "EMAIL_HOST_PASSWORD",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 152,
+    "fields": {
+      "key": "EMAIL_USE_TLS",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 153,
+    "fields": {
+      "key": "EMAIL_USE_SSL",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 154,
+    "fields": {
+      "key": "SIMPLE_CART_MODE",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 155,
+    "fields": {
+      "key": "SHOW_PRODUCT_IMG_IN_CART",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 156,
+    "fields": {
+      "key": "PRODUCT_ONLINE_PRICE_DISCOUNT",
+      "value": 0
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 157,
+    "fields": {
+      "key": "SHOW_HIDDEN_PHONE_TEXT",
+      "value": "gAJYHwAAANCf0L7QutCw0LfQsNGC0Ywg0YLQtdC70LXRhNC+0L1xAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 158,
+    "fields": {
+      "key": "YANDEX_METRICA_PHONE_TARGET_NAME",
+      "value": "gAJYCwAAAHBob25lLWNsaWNrcQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 159,
+    "fields": {
+      "key": "GIFT_FOR_PHONE_BLOCK_ENABLED",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 160,
+    "fields": {
+      "key": "GIFT_FOR_PHONE_BLOCK_FILE",
+      "value": "gAJYHAAAAGJhbm5lci1jb250ZW50LTFfbmJETVU2bS5zdmdxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 161,
+    "fields": {
+      "key": "GIFT_FOR_PHONE_BLOCK_GIFT_LINK_TEXT",
+      "value": "gAJYIAAAANCh0YHRi9C70LrQsCDQvdCwINC/0L7QtNCw0YDQvtC6cQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 162,
+    "fields": {
+      "key": "GIFT_FOR_PHONE_BLOCK_IMAGE",
+      "value": "gAJYFAAAAGJhbm5lci1jb250ZW50LTEuc3ZncQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 163,
+    "fields": {
+      "key": "GIFT_FOR_PHONE_BLOCK_TITLE",
+      "value": "gAJYRAAAANCS0KvQkdCY0KDQkNCZ0KLQlSDQn9Ce0JTQkNCg0J7QmiDQntCiINCd0JDQqNCY0KUg0J/QkNCg0KLQndCB0KDQntCScQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 164,
+    "fields": {
+      "key": "GIFT_FOR_PHONE_BLOCK_TEXT_BEFORE",
+      "value": "gAJYCgAAANGC0LXQutGB0YJxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 165,
+    "fields": {
+      "key": "GIFT_FOR_PHONE_BLOCK_TEXT_AFTER",
+      "value": "gAJY4gAAANCd0LDQttC40LzQsNGPINC90LAg0LrQvdC+0L/QutGDLCDQstGLINC00LDQtdGC0LUg0YHQvtCz0LvQsNGB0LjQtSDQvdCwINC+0LHRgNCw0LHQvtGC0LrRgyDQv9C10YDRgdC+0L3QsNC70YzQvdGL0YUg0LTQsNC90L3Ri9GFINC4INGB0L7Qs9C70LDRiNCw0LXRgtC10YHRjCDRgSDQvdCw0YjQtdC5INC/0L7Qu9C40YLQuNC60L7QuSDQutC+0L3RhNC40LTQtdC90YbQuNCw0LvRjNC90L7RgdGC0LhxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 166,
+    "fields": {
+      "key": "AJAX_SEARCH_RESULT_WITH_IMG",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 167,
+    "fields": {
+      "key": "IMPORT__CREATE_IF_NOT_EXISTS",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 168,
+    "fields": {
+      "key": "SEARCH__USE_FULLTEXT",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 169,
+    "fields": {
+      "key": "SEARCH__FULLTEXT_TYPE",
+      "value": "gAJYBQAAAHBsYWlucQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 170,
+    "fields": {
+      "key": "SEARCH__USE_LAT2CYR",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 171,
+    "fields": {
+      "key": "SEARCH_STATICPAGE_TITLE",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 172,
+    "fields": {
+      "key": "SEARCH_STATICPAGE_TEXT",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 173,
+    "fields": {
+      "key": "SEARCH_SHOW_WAREHOUSE_FILTER",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 174,
+    "fields": {
+      "key": "SEARCH_WAREHOUSE_FILTER_TITLE",
+      "value": "gAJYMwAAANCk0LjQu9GM0YLRgCDQv9C+INGB0LrQu9Cw0LTQsNC8L9C80LDQs9Cw0LfQuNC90LDQvHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 175,
+    "fields": {
+      "key": "SEARCH__OUT_OF_STOCK",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 176,
+    "fields": {
+      "key": "ONLINE_PRICE_LABEL_TEXT",
+      "value": "gAJYFQAAANC+0L3Qu9Cw0LnQvSDRhtC10L3QsHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 177,
+    "fields": {
+      "key": "B24_ENABLED",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 178,
+    "fields": {
+      "key": "B24_WEBHOOK_URL",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 179,
+    "fields": {
+      "key": "SMARTLOMBARD_PROFILE_ID",
+      "value": 6045
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 180,
+    "fields": {
+      "key": "SMARTLOMBARD_ENABLED",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 181,
+    "fields": {
+      "key": "SMARTLOMBARD_SECRET_KEY",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 182,
+    "fields": {
+      "key": "CATALOG_CUSTOM_FORM_NAME",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 183,
+    "fields": {
+      "key": "CATALOG_PAGE_SHOW_SIDEBAR",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 184,
+    "fields": {
+      "key": "CATALOG_PAGE_SIDEBAR_POSITION",
+      "value": "gAJYBAAAAGxlZnRxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 185,
+    "fields": {
+      "key": "CATALOG_STOCK_FILTER",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 186,
+    "fields": {
+      "key": "CATALOG_STOCK_FILTER_LABEL",
+      "value": "gAJYJAAAANCd0LDQu9C40YfQuNC1INCyINC80LDQs9Cw0LfQuNC90LDRhXEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 187,
+    "fields": {
+      "key": "CATALOG_STOCK_FILTER_NAME_FIELD",
+      "value": "gAJYBAAAAG5hbWVxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 188,
+    "fields": {
+      "key": "CATALOG_LIST_VIEW_MODE",
+      "value": "gAJYAQAAADFxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 189,
+    "fields": {
+      "key": "CATALOG_LIST_VIEW_PROFIMODE_FOR_ANONYMOUS",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 190,
+    "fields": {
+      "key": "CATALOG_DOWNLOAD_PRICES_LINK",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 191,
+    "fields": {
+      "key": "CATALOG_MENU_ITEM_ACCENT",
+      "value": "gAJYBQAAAGFycm93cQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 192,
+    "fields": {
+      "key": "PRODUCT_REVIEW_ENABLED",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 193,
+    "fields": {
+      "key": "PRODUCT_SHOW_PRICE_CHART",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 194,
+    "fields": {
+      "key": "RECAPTCHA_FEEDBACK_FORM",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 195,
+    "fields": {
+      "key": "RECAPTCHA_CALLME_FORM",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 196,
+    "fields": {
+      "key": "RECAPTCHA_REGISTRATION_FORM",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 197,
+    "fields": {
+      "key": "RECAPTCHA_CART_FORM",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 198,
+    "fields": {
+      "key": "ADD_TO_CART_BTN_LABEL",
+      "value": "gAJYEQAAANCSINC60L7RgNC30LjQvdGDcQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 199,
+    "fields": {
+      "key": "TELEBOT_TOKEN",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 200,
+    "fields": {
+      "key": "TELEBOT_CHAT_ID",
+      "value": -4029974747
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 201,
+    "fields": {
+      "key": "TELEBOT_ORDER_FORM_ENABLED",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 202,
+    "fields": {
+      "key": "TELEBOT_CALLME_FORM_ENABLED",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 203,
+    "fields": {
+      "key": "TELEBOT_FEEDBACK_FORM_ENABLED",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 204,
+    "fields": {
+      "key": "TELEBOT_CUSTOM_FORM_ENABLED",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 205,
+    "fields": {
+      "key": "TELEBOT_SHOW_STOCKS_IN_MSG",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 206,
+    "fields": {
+      "key": "WATERMARK_PRODUCT_IMAGES",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 207,
+    "fields": {
+      "key": "WATERMARK_FILE",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 208,
+    "fields": {
+      "key": "CATEGORY_MENU_HOVER_ICON",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 209,
+    "fields": {
+      "key": "CATEGORY_PRODUCTS_PER_ROW",
+      "value": 4
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 210,
+    "fields": {
+      "key": "CUSTOM_MOBILE_HEADER_ID",
+      "value": "gAJYAQAAADJxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 211,
+    "fields": {
+      "key": "SHOW_FOUND_CHEAPER_PANEL",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 212,
+    "fields": {
+      "key": "PRODUCTS_IS_RESALE",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 213,
+    "fields": {
+      "key": "BB_HTML_ON",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 214,
+    "fields": {
+      "key": "INVOICE_PDF_AUTOGENERATION",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 215,
+    "fields": {
+      "key": "INVOICE_PDF_ANON_ALLOWED",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 216,
+    "fields": {
+      "key": "NOVOFON_SIP",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 217,
+    "fields": {
+      "key": "VK_MARKET_OWNER_ID",
+      "value": 0
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 218,
+    "fields": {
+      "key": "VK_MARKET_APP_ID",
+      "value": 0
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 219,
+    "fields": {
+      "key": "VK_MARKET_SECRET_KEY",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 220,
+    "fields": {
+      "key": "VK_MARKET_SERVICE_KEY",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 221,
+    "fields": {
+      "key": "VK_MARKET_API_VERSION",
+      "value": 5.131
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 222,
+    "fields": {
+      "key": "VK_MARKET_ACCESS_TOKEN",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 223,
+    "fields": {
+      "key": "VK_MARKET_UNLOAD_VARIANT",
+      "value": "gAJYAQAAADBxAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 224,
+    "fields": {
+      "key": "VK_MARKET_AVAIL_ONLY",
+      "value": true
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 225,
+    "fields": {
+      "key": "VK_MAKET_SYNC_PERIOD",
+      "value": 0
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 226,
+    "fields": {
+      "key": "PLAYMARKET_LINK_ICON",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 227,
+    "fields": {
+      "key": "PLAYMARKET_LINK_ICON_HOVER",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 228,
+    "fields": {
+      "key": "PLAYMARKET_APK",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 229,
+    "fields": {
+      "key": "PLAYMARKET_APK_ICON",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 230,
+    "fields": {
+      "key": "PLAYMARKET_APK_ICON_HOVER",
+      "value": "gAJYAAAAAHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 231,
+    "fields": {
+      "key": "YMETRICA_GOAL_FORM_GIFT",
+      "value": "gAJYCAAAAHN0ci1naWZ0cQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 232,
+    "fields": {
+      "key": "YMETRICA_GOAL_CUSTOMFORM_DEFAULT",
+      "value": "gAJYDgAAAHN0ci1jdXN0b21mb3JtcQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 233,
+    "fields": {
+      "key": "SLIDER_CONSTRUCTOR__DATA_SLIDES",
+      "value": 1
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 234,
+    "fields": {
+      "key": "SLIDER_CONSTRUCTOR__DATA_MD_SLIDES",
+      "value": 2
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 235,
+    "fields": {
+      "key": "SLIDER_CONSTRUCTOR__DATA_LG_SLIDES",
+      "value": 3
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 236,
+    "fields": {
+      "key": "SLIDER_CONSTRUCTOR__DATA_SM_SLIDES",
+      "value": 2
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 237,
+    "fields": {
+      "key": "SLIDER_CONSTRUCTOR__DATA_XL_SLIDES",
+      "value": 4
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 238,
+    "fields": {
+      "key": "PRODUCT_TEASER_VARIANT",
+      "value": 0
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 239,
+    "fields": {
+      "key": "INVOICING_DISPLAY_NAME",
+      "value": "gAJYIQAAANCy0YvRgdGC0LDQstC70LXQvdC40LUg0YHRh9C10YLQsHEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 240,
+    "fields": {
+      "key": "CARD_UPON_RECEIPT_DISPLAY_NAME",
+      "value": "gAJYJgAAANC60LDRgNGC0L7QuSDQv9GA0Lgg0L/QvtC70YPRh9C10L3QuNC4cQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 241,
+    "fields": {
+      "key": "CASH_UPON_RECEIPT_DISPLAY_NAME",
+      "value": "gAJYLAAAANC90LDQu9C40YfQvdGL0LzQuCDQv9GA0Lgg0L/QvtC70YPRh9C10L3QuNC4cQAu"
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 242,
+    "fields": {
+      "key": "ONLINE_ON_SITE_DISPLAY_NAME",
+      "value": "gAJYDQAAANC+0L0t0LvQsNC50L1xAC4="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 243,
+    "fields": {
+      "key": "CREDIT_DISPLAY_NAME",
+      "value": "gAJYDAAAANC60YDQtdC00LjRgnEALg=="
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 244,
+    "fields": {
+      "key": "FLOATPRICE_IS_ACTIVE",
+      "value": false
+    }
+  },
+  {
+    "model": "constance.constance",
+    "pk": 245,
+    "fields": {
+      "key": "FLOATPRICE_PERCENT",
+      "value": 0
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Категория 1",
+      "parent": null,
+      "image": "",
+      "svg_image": "",
+      "slug": "kategoriya-tovarov-1",
+      "published": true,
+      "icon": "",
+      "updated": "2023-09-06T11:33:09.758Z",
+      "seo_text": "",
+      "is_container": true,
+      "list_as_rows": false,
+      "highlight": false,
+      "maybeinterested_block": false,
+      "online_discount": null,
+      "sidebar_siblings": false,
+      "products_per_row": null,
+      "vk_group_id": 0,
+      "lft": 1,
+      "rght": 6,
+      "tree_id": 1,
+      "level": 0,
+      "related_categories": [
+        3,
+        4,
+        2,
+        6,
+        8
+      ]
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Категория 2",
+      "parent": null,
+      "image": "",
+      "svg_image": "",
+      "slug": "kategoriya-tovarov-2",
+      "published": true,
+      "icon": "",
+      "updated": "2023-09-06T11:34:02.399Z",
+      "seo_text": "",
+      "is_container": true,
+      "list_as_rows": false,
+      "highlight": false,
+      "maybeinterested_block": false,
+      "online_discount": null,
+      "sidebar_siblings": false,
+      "products_per_row": null,
+      "vk_group_id": 0,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 2,
+      "level": 0,
+      "related_categories": [
+        1,
+        3,
+        4,
+        6,
+        8
+      ]
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Категория 3",
+      "parent": 1,
+      "image": "",
+      "svg_image": "",
+      "slug": "podkategoriya-tovarov-1",
+      "published": true,
+      "icon": "",
+      "updated": "2023-09-06T11:33:26.984Z",
+      "seo_text": "",
+      "is_container": false,
+      "list_as_rows": false,
+      "highlight": false,
+      "maybeinterested_block": false,
+      "online_discount": null,
+      "sidebar_siblings": false,
+      "products_per_row": 4,
+      "vk_group_id": 0,
+      "lft": 2,
+      "rght": 3,
+      "tree_id": 1,
+      "level": 1,
+      "related_categories": [
+        1,
+        4,
+        2,
+        6,
+        8
+      ]
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name": "Категория 4",
+      "parent": 1,
+      "image": "",
+      "svg_image": "",
+      "slug": "podkategoriya-tovarov-2",
+      "published": true,
+      "icon": "",
+      "updated": "2023-09-06T11:33:37.297Z",
+      "seo_text": "",
+      "is_container": false,
+      "list_as_rows": false,
+      "highlight": false,
+      "maybeinterested_block": false,
+      "online_discount": null,
+      "sidebar_siblings": false,
+      "products_per_row": null,
+      "vk_group_id": 0,
+      "lft": 4,
+      "rght": 5,
+      "tree_id": 1,
+      "level": 1,
+      "related_categories": [
+        1,
+        3,
+        2,
+        6,
+        8
+      ]
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+      "name": "Категория 6",
+      "parent": 2,
+      "image": "",
+      "svg_image": "",
+      "slug": "podkategoriia-tovarov-1",
+      "published": true,
+      "icon": "",
+      "updated": "2023-09-06T11:33:46.430Z",
+      "seo_text": "",
+      "is_container": false,
+      "list_as_rows": false,
+      "highlight": false,
+      "maybeinterested_block": false,
+      "online_discount": null,
+      "sidebar_siblings": false,
+      "products_per_row": null,
+      "vk_group_id": 0,
+      "lft": 2,
+      "rght": 3,
+      "tree_id": 2,
+      "level": 1,
+      "related_categories": [
+        1,
+        3,
+        4,
+        2,
+        8
+      ]
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 8,
+    "fields": {
+      "name": "Категория 8",
+      "parent": 2,
+      "image": "",
+      "svg_image": "",
+      "slug": "podkategoriia-tovarov-2",
+      "published": true,
+      "icon": "",
+      "updated": "2023-09-06T11:33:55.285Z",
+      "seo_text": "",
+      "is_container": false,
+      "list_as_rows": false,
+      "highlight": false,
+      "maybeinterested_block": false,
+      "online_discount": null,
+      "sidebar_siblings": false,
+      "products_per_row": null,
+      "vk_group_id": 0,
+      "lft": 2,
+      "rght": 3,
+      "tree_id": 2,
+      "level": 1,
+      "related_categories": [
+        1,
+        3,
+        4,
+        2,
+        6
+      ]
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Товар 1",
+      "sku": "001",
+      "third_party_code": null,
+      "slug": "tovar-1",
+      "published": true,
+      "price": "1000.00",
+      "price_from": false,
+      "old_price": null,
+      "purchase_price": null,
+      "price_type": null,
+      "multiplicity": "1.00000",
+      "multiplicity_label": null,
+      "days_to_arrive": null,
+      "uom": null,
+      "is_hit": false,
+      "is_new": false,
+      "is_sale": false,
+      "discounted": false,
+      "description": "<div class=\"row\">\r\n<div class=\"col-lg-6 col-md-12\"><img alt=\"\" src=\"/media/uploads/2023/09/06/banner-content-1_Pq9WTc0.svg\" /></div>\r\n\r\n<div class=\"col-lg-6 col-md-12\">\r\n<h2 style=\"color: #1E1E1E\">Пример расположения контента</h2>\r\n</div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n<div class=\"col-lg-4 col-md-12\">\r\n<h2 style=\"color: #1E1E1E\">Пример расположения контента</h2>\r\n</div>\r\n\r\n<div class=\"col-lg-4 col-md-12\"><img alt=\"\" src=\"/media/uploads/2023/09/06/banner-content-1_Pq9WTc0.svg\" /></div>\r\n\r\n<div class=\"col-lg-4 col-md-12\"><img alt=\"\" src=\"/media/uploads/2023/09/06/banner-content-1_Pq9WTc0.svg\" /></div>\r\n</div>",
+      "short_description": null,
+      "weight": 0.0,
+      "volume": null,
+      "length": null,
+      "width": null,
+      "height": null,
+      "created_at": "2023-09-06T11:18:19.963Z",
+      "updated_at": "2023-09-06T11:21:19.344Z",
+      "position": 0,
+      "search_words": "",
+      "search_document": null,
+      "yml_export": false,
+      "modification_code": null,
+      "vk_market": false,
+      "price_in_compete": false,
+      "categories": [
+        3,
+        4,
+        6,
+        8
+      ]
+    }
+  },
+  {
+    "model": "catalog.productimage",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "image": "products/images/banner-content-1.png",
+      "position": 0,
+      "has_watermarked": false
+    }
+  },
+  {
+    "model": "catalog.parameter",
+    "pk": 1,
+    "fields": {
+      "name": "Размер",
+      "slug": "razmer",
+      "data_type": "decimal",
+      "widget": "range",
+      "position": 0,
+      "use_for_modes": false,
+      "mode_widget": "button"
+    }
+  },
+  {
+    "model": "catalog.parameter",
+    "pk": 2,
+    "fields": {
+      "name": "Материал",
+      "slug": "material",
+      "data_type": "str",
+      "widget": "checkbox",
+      "position": 0,
+      "use_for_modes": false,
+      "mode_widget": "button"
+    }
+  },
+  {
+    "model": "catalog.parametervalue",
+    "pk": 1,
+    "fields": {
+      "parameter": 1,
+      "value_str": "5",
+      "value_slug": "5",
+      "seo_str": null,
+      "position": 0
+    }
+  },
+  {
+    "model": "catalog.parametervalue",
+    "pk": 2,
+    "fields": {
+      "parameter": 1,
+      "value_str": "10",
+      "value_slug": "10",
+      "seo_str": null,
+      "position": 0
+    }
+  },
+  {
+    "model": "catalog.parametervalue",
+    "pk": 3,
+    "fields": {
+      "parameter": 2,
+      "value_str": "Дерево",
+      "value_slug": "derevo",
+      "seo_str": null,
+      "position": 0
+    }
+  },
+  {
+    "model": "catalog.parametervalue",
+    "pk": 4,
+    "fields": {
+      "parameter": 2,
+      "value_str": "Сталь",
+      "value_slug": "stal",
+      "seo_str": null,
+      "position": 0
+    }
+  },
+  {
+    "model": "catalog.productparametervaluemembership",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "parameter": 2,
+      "value_decimal": null,
+      "comment": "",
+      "position": 0,
+      "parameter_value": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "catalog.productparametervaluemembership",
+    "pk": 2,
+    "fields": {
+      "product": 1,
+      "parameter": 1,
+      "value_decimal": "5.00",
+      "comment": "",
+      "position": 1,
+      "parameter_value": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "catalog.categoryparametermembership",
+    "pk": 5,
+    "fields": {
+      "category": 3,
+      "parameter": 2,
+      "position": 0,
+      "display": true,
+      "expanded": true
+    }
+  },
+  {
+    "model": "catalog.categoryparametermembership",
+    "pk": 6,
+    "fields": {
+      "category": 3,
+      "parameter": 1,
+      "position": 1,
+      "display": true,
+      "expanded": true
+    }
+  },
+  {
+    "model": "catalog.categoryparametermembership",
+    "pk": 7,
+    "fields": {
+      "category": 4,
+      "parameter": 2,
+      "position": 0,
+      "display": true,
+      "expanded": true
+    }
+  },
+  {
+    "model": "catalog.categoryparametermembership",
+    "pk": 8,
+    "fields": {
+      "category": 4,
+      "parameter": 1,
+      "position": 1,
+      "display": true,
+      "expanded": true
+    }
+  },
+  {
+    "model": "catalog.categoryparametermembership",
+    "pk": 9,
+    "fields": {
+      "category": 6,
+      "parameter": 2,
+      "position": 0,
+      "display": true,
+      "expanded": true
+    }
+  },
+  {
+    "model": "catalog.categoryparametermembership",
+    "pk": 10,
+    "fields": {
+      "category": 6,
+      "parameter": 1,
+      "position": 1,
+      "display": true,
+      "expanded": true
+    }
+  },
+  {
+    "model": "catalog.categoryparametermembership",
+    "pk": 11,
+    "fields": {
+      "category": 8,
+      "parameter": 2,
+      "position": 0,
+      "display": true,
+      "expanded": true
+    }
+  },
+  {
+    "model": "catalog.categoryparametermembership",
+    "pk": 12,
+    "fields": {
+      "category": 8,
+      "parameter": 1,
+      "position": 1,
+      "display": true,
+      "expanded": true
+    }
+  },
+  {
+    "model": "catalog.uom",
+    "pk": 1,
+    "fields": {
+      "name": "м2",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.uom",
+    "pk": 2,
+    "fields": {
+      "name": "м",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.uom",
+    "pk": 3,
+    "fields": {
+      "name": "лист",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.uom",
+    "pk": 4,
+    "fields": {
+      "name": "коробка",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.uom",
+    "pk": 5,
+    "fields": {
+      "name": "кг",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.uom",
+    "pk": 6,
+    "fields": {
+      "name": "дюйм",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.uom",
+    "pk": 7,
+    "fields": {
+      "name": "куб",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.uom",
+    "pk": 8,
+    "fields": {
+      "name": "бухта",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.pricetype",
+    "pk": 1,
+    "fields": {
+      "name": "эконом",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.pricetype",
+    "pk": 2,
+    "fields": {
+      "name": "норма",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.pricetype",
+    "pk": 3,
+    "fields": {
+      "name": "премиум",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.productavailabilitystatus",
+    "pk": 1,
+    "fields": {
+      "name": "мало",
+      "range_from": 0,
+      "range_to": 10
+    }
+  },
+  {
+    "model": "catalog.productavailabilitystatus",
+    "pk": 2,
+    "fields": {
+      "name": "средне",
+      "range_from": 11,
+      "range_to": 100
+    }
+  },
+  {
+    "model": "catalog.productavailabilitystatus",
+    "pk": 3,
+    "fields": {
+      "name": "много",
+      "range_from": 101,
+      "range_to": 10000
+    }
+  },
+  {
+    "model": "catalog.productpricehistory",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "price": "1000.00",
+      "created": "2023-09-06",
+      "location": null
+    }
+  },
+  {
+    "model": "catalog.productset",
+    "pk": "set-one",
+    "fields": {
+      "title": "Set One",
+      "rows": 1,
+      "banners": false,
+      "data_sm_rows": 1,
+      "data_slides": 1,
+      "data_md_slides": 2,
+      "data_lg_slides": 3,
+      "data_xl_slides": 5
+    }
+  },
+  {
+    "model": "catalog.productset",
+    "pk": "set-two",
+    "fields": {
+      "title": "Set Two",
+      "rows": 1,
+      "banners": false,
+      "data_sm_rows": 1,
+      "data_slides": 1,
+      "data_md_slides": 2,
+      "data_lg_slides": 3,
+      "data_xl_slides": 5
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 1,
+    "fields": {
+      "key": "recipient_billing_details",
+      "text": "",
+      "comment": "Beneficiary billing details when invoicing an order.",
+      "use_editor": false,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 2,
+    "fields": {
+      "key": "call_for_registration",
+      "text": "Для использования функционала сайта в полной мере <a href=\"/account/register/\">необходима регистрация</a>",
+      "comment": "Text with calls to register on the site.",
+      "use_editor": false,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 3,
+    "fields": {
+      "key": "partner_listpage_header",
+      "text": "<h1>Партнерская сеть</h1><p>Продукцию вы можете купить у одного из наших партнеров.</p>",
+      "comment": "Text for the header of the page with the list of partners.",
+      "use_editor": false,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 4,
+    "fields": {
+      "key": "frontpage_seo_text",
+      "text": "<p><img alt=\"\" height=\"480\" src=\"/media/uploads/2023/09/06/banner-content-1_s0ALOQR.svg\" style=\"margin-left:auto;margin-right:auto;\" width=\"480\" /></p>\r\n\r\n<p style=\"text-align: center;\">&nbsp;сео-текст</p>",
+      "comment": "Нижняя часть страницы - СЕО",
+      "use_editor": true,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 5,
+    "fields": {
+      "key": "map_block",
+      "text": "<div class=\"map\"><img src=\"/static/images/map-exmple.jpg\" alt=\"\"></div>",
+      "comment": "Block with map (as image)",
+      "use_editor": false,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 6,
+    "fields": {
+      "key": "form_agreement_text",
+      "text": "<span class=\"form-text\">Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь с нашей политикой конфиденциальности</span>",
+      "comment": "The text of the agreement on the processing of personal data.",
+      "use_editor": false,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 7,
+    "fields": {
+      "key": "club_privileges_block",
+      "text": "\n<span class=\"content-title center\">Ваши привилегии клуба Дисториум</span>\n<div class=\"privilege-block\">\n    <div class=\"privilege-item\">\n        <span class=\"privilege-item__title\">Калькулятор доставки</span>\n        <p>Откройте для себя наш удобный инструмент для рассчета стоимости доставки</p>\n        <a href=\"/cart/delivery_calculator/\" class=\"btn-calculate\"><span class=\"icon\"><svg class=\"icon\">\n                    <use xlink:href=\"#delivery-white\"></use>\n                </svg></span>Рассчитать</a>\n    </div>\n    <div class=\"privilege-item\">\n        <span class=\"privilege-item__title\">Экономьте свое время</span>\n        <p>Выставите счет в корзине или отправьте запрос менеджеру в свободной форме</p>\n        <a href=\"/cart/\" class=\"btn-get-an-account\"><span class=\"icon\"><svg class=\"icon\">\n                    <use xlink:href=\"#check-btn\"></use>\n                </svg></span>Получить счёт</a>\n    </div>\n</div>\n",
+      "comment": "Text block  with privilege club information.",
+      "use_editor": false,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 8,
+    "fields": {
+      "key": "delivery_calc_page_text",
+      "text": "",
+      "comment": "Text for the delivery calculator page.",
+      "use_editor": false,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 9,
+    "fields": {
+      "key": "footer_text",
+      "text": "",
+      "comment": "Text for the site footer.",
+      "use_editor": false,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 10,
+    "fields": {
+      "key": "comparise_description",
+      "text": "",
+      "comment": "Text for product comparison page",
+      "use_editor": false,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 11,
+    "fields": {
+      "key": "text_about_payment_on_product_page",
+      "text": "",
+      "comment": "Текст блока с информацией об оплате на странице товара.",
+      "use_editor": false,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 12,
+    "fields": {
+      "key": "no_category_or_products_text",
+      "text": "<p>Раздел находится на стадии заполнения.</p>",
+      "comment": "Заглушка для страниц каталога с отсутсвующими категориями или товарами.",
+      "use_editor": false,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 13,
+    "fields": {
+      "key": "frontpage-textblock-offer",
+      "text": "<div>\r\n<p style=\"font-weight: 800; font-size: 30px; line-height: 100%;\">Оффер - произвольный блок</p>\r\n\r\n<p>Произвольный блок, который нет возможности решить с помощью готовых блоков, либо такая реализация проще и быстрее.</p>\r\n\r\n<p>В блоке можно уместить:</p>\r\n  <li>изображение</li>\r\n  <li>текст</li>\r\n  <li>кнопки</li>\r\n  <li>разделить контент на колонки</li>\r\n  <li>любые сочетания вышеперечисленного контента</li>\r\n  <li>колонки могут быть разной высоты</li>\r\n<br>\r\n<p>Вариант простых  элементов, которые можно реализовать статичным текстом:</p>\r\n  <li>кнопки под баннерами и слайдерами</li>\r\n  <li>изображения</li>\r\n  <li>один сплошной блок на 12 колонок</li>\r\n  <li>заголовки, которым нужен рядом контент или фон</li>\r\n<br>\r\n<br>\r\n<p>Сложные кастомные блоки:</p>\r\n  <li>в основном те блоки, которые не поддаются колоночному разделению - (например, занимают 7/12 колонок, 10/12 и расположен посередине)</li>\r\n  <li>сочетают в себе несколько перекрывающих друг друга блоков разной ширины и располагающиеся в разных частях контейнера</li>\r\n  <li>необычные формы и контент, который нужно анимировать или адаптировать иным образом под мобильный экран</li>\r\n<br>\r\n</div>",
+      "comment": "Оффер - произвольный блок",
+      "use_editor": false,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 14,
+    "fields": {
+      "key": "frontpage-textblock-hot-zone",
+      "text": "<p style=\"text-align:center\"><img alt=\"\" height=\"480\" src=\"/media/uploads/2023/09/06/banner-content-2.svg\" width=\"1280\" /></p>\r\n\r\n<p>&nbsp;</p>",
+      "comment": "Первая часть страницы - произвольный блок",
+      "use_editor": true,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 15,
+    "fields": {
+      "key": "frontpage-textblock-cold-zone",
+      "text": "<p><img alt=\"\" height=\"480\" src=\"/media/uploads/2023/09/06/banner-content-2_nInOs9U.svg\" width=\"1280\" /></p>",
+      "comment": "Вторая часть страницы - произвольный блок",
+      "use_editor": true,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "statictext.statictext",
+    "pk": 16,
+    "fields": {
+      "key": "product-card__extra-text",
+      "text": "",
+      "comment": "Текст после описания в карточке товара",
+      "use_editor": false,
+      "use_custom_form": false
+    }
+  },
+  {
+    "model": "menu.menu",
+    "pk": "article_sidebar_menu",
+    "fields": {
+      "title": "Menu for the sidebar on the article page displayed in a wide view"
+    }
+  },
+  {
+    "model": "menu.menu",
+    "pk": "footer_customer_menu",
+    "fields": {
+      "title": "Menu with information for customers (for footer)."
+    }
+  },
+  {
+    "model": "menu.menu",
+    "pk": "header_menu",
+    "fields": {
+      "title": "Menu for website header"
+    }
+  },
+  {
+    "model": "menu.menu",
+    "pk": "header_mobile_menu",
+    "fields": {
+      "title": "Menu for website header in mobile mode"
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 1,
+    "fields": {
+      "menu": "header_menu",
+      "parent": null,
+      "anchor": "Покупателям",
+      "title": "Покупателям",
+      "url": "/clients/",
+      "icon": "",
+      "download": false,
+      "position": 0,
+      "published": true,
+      "css_class": null,
+      "new_tab": false,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 1,
+      "level": 0
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 2,
+    "fields": {
+      "menu": "header_menu",
+      "parent": null,
+      "anchor": "Контакты",
+      "title": "Контакты",
+      "url": "/contacts/",
+      "icon": "",
+      "download": false,
+      "position": 1,
+      "published": true,
+      "css_class": null,
+      "new_tab": false,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 2,
+      "level": 0
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 3,
+    "fields": {
+      "menu": "footer_customer_menu",
+      "parent": null,
+      "anchor": "О компании",
+      "title": "О компании",
+      "url": "/about/",
+      "icon": "",
+      "download": false,
+      "position": 0,
+      "published": true,
+      "css_class": null,
+      "new_tab": false,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 3,
+      "level": 0
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 4,
+    "fields": {
+      "menu": "footer_customer_menu",
+      "parent": null,
+      "anchor": "Реквизиты",
+      "title": "Реквизиты",
+      "url": "/requisites/",
+      "icon": "",
+      "download": false,
+      "position": 1,
+      "published": true,
+      "css_class": null,
+      "new_tab": false,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 4,
+      "level": 0
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 5,
+    "fields": {
+      "menu": "footer_customer_menu",
+      "parent": null,
+      "anchor": "Портфолио 1",
+      "title": "Портфолио 1",
+      "url": "/portfolio/",
+      "icon": "",
+      "download": false,
+      "position": 2,
+      "published": true,
+      "css_class": null,
+      "new_tab": false,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 5,
+      "level": 0
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 6,
+    "fields": {
+      "menu": "footer_customer_menu",
+      "parent": null,
+      "anchor": "Акции и новости",
+      "title": "Акции и новости",
+      "url": "/events/",
+      "icon": "",
+      "download": false,
+      "position": 3,
+      "published": true,
+      "css_class": null,
+      "new_tab": false,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 6,
+      "level": 0
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 7,
+    "fields": {
+      "menu": "footer_customer_menu",
+      "parent": null,
+      "anchor": "Статьи",
+      "title": "Статьи",
+      "url": "/useful articles/",
+      "icon": "",
+      "download": false,
+      "position": 4,
+      "published": true,
+      "css_class": null,
+      "new_tab": false,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 7,
+      "level": 0
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 8,
+    "fields": {
+      "menu": "footer_customer_menu",
+      "parent": null,
+      "anchor": "Контакты",
+      "title": "Контакты",
+      "url": "/contacts/",
+      "icon": "",
+      "download": false,
+      "position": 5,
+      "published": true,
+      "css_class": null,
+      "new_tab": false,
+      "lft": 1,
+      "rght": 2,
+      "tree_id": 8,
+      "level": 0
+    }
+  },
+  {
+    "model": "menu.customnavigation",
+    "pk": 1,
+    "fields": {
+      "key": "frontpage_top_pages_nav",
+      "title": "ТОПовые страницы",
+      "comment": "Набор для блока кастомных ссылок на главной.",
+      "bg_color": null,
+      "bg_image": "",
+      "top_indent": null,
+      "bottom_indent": null,
+      "published": true
+    }
+  },
+  {
+    "model": "slides.bigslide",
+    "pk": 1,
+    "fields": {
+      "name": "Оффер",
+      "published": true,
+      "position": 0,
+      "image": "",
+      "svg": "slides/big_slides/svg/offer-img.svg",
+      "content": "<div>\r\n<p style=\"font-weight: 800; font-size: 30px;  line-height: 100%;\">Оффер - большой слайдер</p>\r\n\r\n  <li>можно выбрать варианты - широкий баннер, до 1180px, баннер с каталогом слева</li>\r\n  <li>высота настраивается в зависимости от контента</li>\r\n  <li>загружается фон (изображение, возможно, текст, который нет возможности внедрить в рамках админки)</li>\r\n   <br>\r\n  <li>можно выбрать расположение информации в левой или правой колонке</li>\r\n  <li>можно выбрать пагинацию кружками снизу или стрелками по сторонам</li>\r\n   <br>\r\n  <li>в блоке можно уместить: изображение; текст; кнопки; внутреннее разделение на колонки; любые сочетания вышеперечисленного контента</li>\r\n</div>",
+      "url": null
+    }
+  },
+  {
+    "model": "slides.sliderset",
+    "pk": 4,
+    "fields": {
+      "key": "sliderset-cols-2",
+      "name": "Оффер - 2 колонки",
+      "use_autoplay": false,
+      "autoplay_timeout": 5000,
+      "arrow_right": "",
+      "arrow_left": "",
+      "zoom_effect": false,
+      "arrows_type": "arrows"
+    }
+  },
+  {
+    "model": "slides.sliderset",
+    "pk": 5,
+    "fields": {
+      "key": "sliderset-cols-3",
+      "name": "Оффер - 3 колонки",
+      "use_autoplay": false,
+      "autoplay_timeout": 5000,
+      "arrow_right": "",
+      "arrow_left": "",
+      "zoom_effect": false,
+      "arrows_type": "arrows"
+    }
+  },
+  {
+    "model": "slides.sliderset",
+    "pk": 6,
+    "fields": {
+      "key": "sliderset-cols-2-1",
+      "name": "Первая часть страницы - 2 колонки",
+      "use_autoplay": false,
+      "autoplay_timeout": 5000,
+      "arrow_right": "",
+      "arrow_left": "",
+      "zoom_effect": false,
+      "arrows_type": "arrows"
+    }
+  },
+  {
+    "model": "slides.sliderset",
+    "pk": 7,
+    "fields": {
+      "key": "sliderset-cols-3-1",
+      "name": "Первая часть страницы - 3 колонки",
+      "use_autoplay": false,
+      "autoplay_timeout": 5000,
+      "arrow_right": "",
+      "arrow_left": "",
+      "zoom_effect": false,
+      "arrows_type": "arrows"
+    }
+  },
+  {
+    "model": "slides.sliderset",
+    "pk": 8,
+    "fields": {
+      "key": "sliderset-cols-4",
+      "name": "Первая часть страницы - 4 колонки",
+      "use_autoplay": false,
+      "autoplay_timeout": 5000,
+      "arrow_right": "",
+      "arrow_left": "",
+      "zoom_effect": false,
+      "arrows_type": "arrows"
+    }
+  },
+  {
+    "model": "slides.sliderset",
+    "pk": 9,
+    "fields": {
+      "key": "sliderset-cols-5",
+      "name": "Первая часть страницы - 5 колонок",
+      "use_autoplay": false,
+      "autoplay_timeout": 5000,
+      "arrow_right": "",
+      "arrow_left": "",
+      "zoom_effect": false,
+      "arrows_type": "arrows"
+    }
+  },
+  {
+    "model": "slides.sliderset",
+    "pk": 10,
+    "fields": {
+      "key": "sliderset-cols-2-2",
+      "name": "Вторая часть страницы - 2 колонки",
+      "use_autoplay": false,
+      "autoplay_timeout": 5000,
+      "arrow_right": "",
+      "arrow_left": "",
+      "zoom_effect": false,
+      "arrows_type": "arrows"
+    }
+  },
+  {
+    "model": "slides.sliderset",
+    "pk": 11,
+    "fields": {
+      "key": "sliderset-cols-3-2",
+      "name": "Вторая часть страницы - 3 колонки",
+      "use_autoplay": false,
+      "autoplay_timeout": 5000,
+      "arrow_right": "",
+      "arrow_left": "",
+      "zoom_effect": false,
+      "arrows_type": "arrows"
+    }
+  },
+  {
+    "model": "slides.sliderset",
+    "pk": 12,
+    "fields": {
+      "key": "sliderset-cols-4-1",
+      "name": "Вторая часть страницы - 4 колонки",
+      "use_autoplay": false,
+      "autoplay_timeout": 5000,
+      "arrow_right": "",
+      "arrow_left": "",
+      "zoom_effect": false,
+      "arrows_type": "arrows"
+    }
+  },
+  {
+    "model": "slides.sliderset",
+    "pk": 13,
+    "fields": {
+      "key": "sliderset-cols-6",
+      "name": "Вторая часть страницы - 6 колонок",
+      "use_autoplay": false,
+      "autoplay_timeout": 5000,
+      "arrow_right": "",
+      "arrow_left": "",
+      "zoom_effect": false,
+      "arrows_type": "arrows"
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 1,
+    "fields": {
+      "sliderset": 4,
+      "image": "",
+      "svg": "",
+      "url": null,
+      "text": "<div>\r\n<p style=\"font-weight: 800; font-size: 30px; line-height: 100%;\">Оффер - набор слайдов - 2 колонки</p>\r\n\r\n  <li>ширина колонки 580px</li>\r\n  <li>высота любая</li>\r\n<br>\r\n<p>в колонке можно уместить:</p>\r\n\r\n  <li>изображение</li>\r\n  <li>текст</li>\r\n  <li>кнопки</li>\r\n  <li>внутреннее разделение на колонки</li>\r\n  <li>оставить одну из колонок пустой</li>\r\n  <li>любые сочетания вышеперечисленного контента</li>\r\n  <li>колонки могут быть разной высоты</li>\r\n<br>\r\n  <li>загружается фон (изображение, возможно, текст, который нет возможности внедрить в рамках админки)</li>\r\n  <li>можно выбрать пагинацию кружками снизу или стрелками сверху</li>\r\n  <li>можно включить autoplay и настроить время, а также использовать зум на картинки</p></li>\r\n</div>",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 0
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 2,
+    "fields": {
+      "sliderset": 4,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_4H5OBJY.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 1
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 3,
+    "fields": {
+      "sliderset": 4,
+      "image": "",
+      "svg": "",
+      "url": null,
+      "text": "<div>\r\n<p style=\"font-weight: 800; font-size: 30px; line-height: 100%;\">Оффер - набор слайдов - 2 колонки</p>\r\n\r\n  <li>ширина колонки 580px</li>\r\n  <li>высота любая</li>\r\n<br>\r\n<p>в колонке можно уместить:</p>\r\n\r\n  <li>изображение</li>\r\n  <li>текст</li>\r\n  <li>кнопки</li>\r\n  <li>внутреннее разделение на колонки</li>\r\n  <li>оставить одну из колонок пустой</li>\r\n  <li>любые сочетания вышеперечисленного контента</li>\r\n  <li>колонки могут быть разной высоты</li>\r\n<br>\r\n  <li>загружается фон (изображение, возможно, текст, который нет возможности внедрить в рамках админки)</li>\r\n  <li>можно выбрать пагинацию кружками снизу или стрелками сверху</li>\r\n  <li>можно включить autoplay и настроить время, а также использовать зум на картинки</p></li>\r\n<br>\r\n<p>Изначально, если изображение загружается через админку, оно автоматически будет отображаться выше контента, прописываемого в поле “Текст”, на таких фото стоит зум, но есть проблемы с вставлением ссылок на фото\r\n<br><br>\r\nКодом можно поправить отображение текста, например, сделать его на фото снизу\r\n<br><br>\r\nЕсли положение фото должно быть другим - его внутри контента вставить ссылкой, предварительно добавив в менеджер файлов</p>\r\n\r\n</div>",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 2
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 4,
+    "fields": {
+      "sliderset": 4,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_0wfqBna.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 3
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 5,
+    "fields": {
+      "sliderset": 5,
+      "image": "",
+      "svg": "",
+      "url": null,
+      "text": "<div>\r\n<p style=\"font-weight: 800; font-size: 30px; line-height: 100%;\">Оффер - набор слайдов - 3 колонки</p>\r\n\r\n  <li>ширина колонки 380px</li>\r\n  <li>высота любая</li>\r\n<br>\r\n<p>в колонке можно уместить:</p>\r\n\r\n  <li>изображение</li>\r\n  <li>текст</li>\r\n  <li>кнопки</li>\r\n  <li>внутреннее разделение на колонки</li>\r\n  <li>оставить одну из колонок пустой</li>\r\n  <li>любые сочетания вышеперечисленного контента</li>\r\n  <li>колонки могут быть разной высоты</li>\r\n<br>\r\n  <li>загружается фон (изображение, возможно, текст, который нет возможности внедрить в рамках админки)</li>\r\n  <li>можно выбрать пагинацию кружками снизу или стрелками сверху</li>\r\n  <li>можно включить autoplay и настроить время, а также использовать зум на картинки</p></li>\r\n</div>",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 0
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 6,
+    "fields": {
+      "sliderset": 5,
+      "image": "",
+      "svg": "",
+      "url": null,
+      "text": "<div>\r\n<p>Изначально, если изображение загружается через админку, оно автоматически будет отображаться выше контента, прописываемого в поле “Текст”, на таких фото стоит зум, но есть проблемы с вставлением ссылок на фото\r\n<br><br>\r\nКодом можно поправить отображение текста, например, сделать его на фото снизу\r\n<br><br>\r\nЕсли положение фото должно быть другим - его внутри контента вставить ссылкой, предварительно добавив в менеджер файлов</p>\r\n</div>",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 1
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 7,
+    "fields": {
+      "sliderset": 5,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_MraERdl.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 2
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 8,
+    "fields": {
+      "sliderset": 5,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content_MYQ2Epk.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 3
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 9,
+    "fields": {
+      "sliderset": 5,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content_ytCSQS1.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 4
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 10,
+    "fields": {
+      "sliderset": 6,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 0
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 11,
+    "fields": {
+      "sliderset": 6,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_KoBlfkA.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 1
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 12,
+    "fields": {
+      "sliderset": 6,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content_ljVb5LN.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 2
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 13,
+    "fields": {
+      "sliderset": 7,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_FCYu3ce.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 0
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 14,
+    "fields": {
+      "sliderset": 7,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_tbHfYdS.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 1
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 15,
+    "fields": {
+      "sliderset": 7,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_At2S0dE.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 2
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 16,
+    "fields": {
+      "sliderset": 7,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_U3mOkwV.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 3
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 17,
+    "fields": {
+      "sliderset": 8,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_cpEsHL0.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 0
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 18,
+    "fields": {
+      "sliderset": 8,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_97xgSRS.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 1
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 19,
+    "fields": {
+      "sliderset": 8,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_utbxxbV.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 2
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 20,
+    "fields": {
+      "sliderset": 8,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_7hm4aES.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 3
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 21,
+    "fields": {
+      "sliderset": 8,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_kabJdPn.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 4
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 22,
+    "fields": {
+      "sliderset": 9,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_epsleLe.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 0
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 23,
+    "fields": {
+      "sliderset": 9,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_XRSsCLh.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 1
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 24,
+    "fields": {
+      "sliderset": 9,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_iIyLfrf.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 2
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 25,
+    "fields": {
+      "sliderset": 9,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_iI0SiTy.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 3
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 26,
+    "fields": {
+      "sliderset": 9,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_TssdGQs.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 4
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 27,
+    "fields": {
+      "sliderset": 9,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_ONA5kRK.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 5
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 28,
+    "fields": {
+      "sliderset": 10,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_mlBXeut.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 0
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 29,
+    "fields": {
+      "sliderset": 10,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_H9uxOPC.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 1
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 30,
+    "fields": {
+      "sliderset": 10,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_mjvjVrM.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 2
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 31,
+    "fields": {
+      "sliderset": 11,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_DzkiRSd.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 1
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 32,
+    "fields": {
+      "sliderset": 11,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_OnH9dbe.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 2
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 33,
+    "fields": {
+      "sliderset": 11,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_fHdieVK.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 3
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 34,
+    "fields": {
+      "sliderset": 11,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_F7KyWtj.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 4
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 35,
+    "fields": {
+      "sliderset": 12,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_Yi2YSUl.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 0
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 36,
+    "fields": {
+      "sliderset": 12,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_ndziuSz.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 1
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 37,
+    "fields": {
+      "sliderset": 12,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_jMhdxiU.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 2
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 38,
+    "fields": {
+      "sliderset": 12,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_CZGkJEt.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 3
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 39,
+    "fields": {
+      "sliderset": 12,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_6rlIEhP.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 4
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 40,
+    "fields": {
+      "sliderset": 13,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_kC3sAJ8.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 0
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 41,
+    "fields": {
+      "sliderset": 13,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_t4Cj1sJ.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 1
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 42,
+    "fields": {
+      "sliderset": 13,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_YERWJ08.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 2
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 43,
+    "fields": {
+      "sliderset": 13,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_AHkO3S8.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 3
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 44,
+    "fields": {
+      "sliderset": 13,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_IGLSNUU.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 4
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 45,
+    "fields": {
+      "sliderset": 13,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_PBIXksY.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 5
+    }
+  },
+  {
+    "model": "slides.slidersetitem",
+    "pk": 46,
+    "fields": {
+      "sliderset": 13,
+      "image": "",
+      "svg": "slides/big_slides/svg/banner-content-1_m5LPdQk.svg",
+      "url": null,
+      "text": "",
+      "img_open_full": false,
+      "hide_adaptive": false,
+      "position": 0
+    }
+  },
+  {
+    "model": "banners.bannerset",
+    "pk": 1,
+    "fields": {
+      "key": "frontpage_three_banner_block",
+      "title": "Блок с 3-ми баннерами на главной",
+      "row_type": 1,
+      "published": true,
+      "grid_columns": 1,
+      "grid_columns_sm": 2,
+      "grid_columns_md": 3,
+      "grid_columns_lg": 5
+    }
+  },
+  {
+    "model": "banners.bannermultirowset",
+    "pk": 3,
+    "fields": {
+      "key": "banner-multirowset-two-col",
+      "title": "Оффер - 2 колонки",
+      "banners_per_line": 2
+    }
+  },
+  {
+    "model": "banners.bannermultirowset",
+    "pk": 4,
+    "fields": {
+      "key": "banner-multirowset-two-col-1",
+      "title": "Первая часть страницы - 2 колонки",
+      "banners_per_line": 2
+    }
+  },
+  {
+    "model": "banners.bannermultirowset",
+    "pk": 5,
+    "fields": {
+      "key": "banner-multirowset-three-col",
+      "title": "Первая часть страницы - 3 колонки",
+      "banners_per_line": 3
+    }
+  },
+  {
+    "model": "banners.bannermultirowset",
+    "pk": 7,
+    "fields": {
+      "key": "banner-multirowset-four-col",
+      "title": "Первая часть страницы - 4 колонки",
+      "banners_per_line": 4
+    }
+  },
+  {
+    "model": "banners.bannermultirowset",
+    "pk": 8,
+    "fields": {
+      "key": "banner-multirowset-two-col-2",
+      "title": "Вторая часть страницы - 2 колонки",
+      "banners_per_line": 2
+    }
+  },
+  {
+    "model": "banners.bannermultirowset",
+    "pk": 9,
+    "fields": {
+      "key": "banner-multirowset-three-col-2",
+      "title": "Вторая часть страницы - 3 колонки",
+      "banners_per_line": 3
+    }
+  },
+  {
+    "model": "banners.bannermultirowset",
+    "pk": 10,
+    "fields": {
+      "key": "banner-multirowset-two-col-3",
+      "title": "Нижняя часть страницы - СЕО",
+      "banners_per_line": 2
+    }
+  },
+  {
+    "model": "banners.bannermultirowset",
+    "pk": 11,
+    "fields": {
+      "key": "banner-multirowset-two-col-4",
+      "title": "Нижняя часть страницы - форма обратной связи",
+      "banners_per_line": 2
+    }
+  },
+  {
+    "model": "banners.bannermultirowsetrows",
+    "pk": 1,
+    "fields": {
+      "multirowset": 3,
+      "rowset": 1,
+      "position": 0
+    }
+  },
+  {
+    "model": "banners.bannermultirowsetrows",
+    "pk": 2,
+    "fields": {
+      "multirowset": 4,
+      "rowset": 2,
+      "position": 0
+    }
+  },
+  {
+    "model": "banners.bannermultirowsetrows",
+    "pk": 3,
+    "fields": {
+      "multirowset": 5,
+      "rowset": 3,
+      "position": 0
+    }
+  },
+  {
+    "model": "banners.bannermultirowsetrows",
+    "pk": 5,
+    "fields": {
+      "multirowset": 7,
+      "rowset": 4,
+      "position": 0
+    }
+  },
+  {
+    "model": "banners.bannermultirowsetrows",
+    "pk": 6,
+    "fields": {
+      "multirowset": 8,
+      "rowset": 5,
+      "position": 0
+    }
+  },
+  {
+    "model": "banners.bannermultirowsetrows",
+    "pk": 7,
+    "fields": {
+      "multirowset": 9,
+      "rowset": 6,
+      "position": 0
+    }
+  },
+  {
+    "model": "banners.bannermultirowsetrows",
+    "pk": 8,
+    "fields": {
+      "multirowset": 10,
+      "rowset": 7,
+      "position": 0
+    }
+  },
+  {
+    "model": "banners.bannermultirowsetrows",
+    "pk": 9,
+    "fields": {
+      "multirowset": 11,
+      "rowset": 8,
+      "position": 0
+    }
+  },
+  {
+    "model": "banners.bannermultirowsetrows",
+    "pk": 10,
+    "fields": {
+      "multirowset": 5,
+      "rowset": 9,
+      "position": 1
+    }
+  },
+  {
+    "model": "banners.bannermultirowsetrows",
+    "pk": 11,
+    "fields": {
+      "multirowset": 8,
+      "rowset": 10,
+      "position": 1
+    }
+  },
+  {
+    "model": "banners.bannerrowset",
+    "pk": 1,
+    "fields": {
+      "name": "Оффер - 2 колонки",
+      "row_type": 2
+    }
+  },
+  {
+    "model": "banners.bannerrowset",
+    "pk": 2,
+    "fields": {
+      "name": "Первая часть страницы - 2 колонки",
+      "row_type": 1
+    }
+  },
+  {
+    "model": "banners.bannerrowset",
+    "pk": 3,
+    "fields": {
+      "name": "Первая часть страницы - 3 колонки",
+      "row_type": 1
+    }
+  },
+  {
+    "model": "banners.bannerrowset",
+    "pk": 4,
+    "fields": {
+      "name": "Первая часть страницы - 4 колонки",
+      "row_type": 1
+    }
+  },
+  {
+    "model": "banners.bannerrowset",
+    "pk": 5,
+    "fields": {
+      "name": "Вторая часть страницы - 2 колонки",
+      "row_type": 1
+    }
+  },
+  {
+    "model": "banners.bannerrowset",
+    "pk": 6,
+    "fields": {
+      "name": "Вторая часть страницы - 3 колонки",
+      "row_type": 1
+    }
+  },
+  {
+    "model": "banners.bannerrowset",
+    "pk": 7,
+    "fields": {
+      "name": "Нижняя часть страницы - СЕО",
+      "row_type": 1
+    }
+  },
+  {
+    "model": "banners.bannerrowset",
+    "pk": 8,
+    "fields": {
+      "name": "Нижняя часть страницы - форма обратной связи",
+      "row_type": 1
+    }
+  },
+  {
+    "model": "banners.bannerrowset",
+    "pk": 9,
+    "fields": {
+      "name": "Первая часть страницы - 3 колонки - 2 ряд",
+      "row_type": 1
+    }
+  },
+  {
+    "model": "banners.bannerrowset",
+    "pk": 10,
+    "fields": {
+      "name": "Вторая часть страницы - 2 колонки - 2 ряд",
+      "row_type": 1
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 1,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_RJSM84U.svg",
+      "image_url": null,
+      "position": 1,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 1
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 2,
+    "fields": {
+      "image": "",
+      "svg": "",
+      "image_url": null,
+      "position": 0,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "<div>\r\n<p style=\"font-weight: 800; font-size: 30px; line-height: 100%;\">Оффер - набор строк с баннерами - 2 колонки</p>\r\n\r\n  <li>ширина колонки 580px</li>\r\n  <li>высота любая</li>\r\n<br>\r\n<p>в колонке можно уместить:</p>\r\n\r\n  <li>изображение</li>\r\n  <li>текст</li>\r\n  <li>кнопки</li>\r\n  <li>внутреннее разделение на колонки</li>\r\n  <li>оставить одну из колонок пустой</li>\r\n  <li>любые сочетания вышеперечисленного контента</li>\r\n  <li>колонки могут быть разной высоты</li>\r\n<br>\r\n<p>Изначально, если изображение загружается через админку, оно автоматически будет отображаться выше контента, прописываемого в поле “Текст”, на таких фото стоит зум, но есть проблемы с вставлением ссылок на фото</p>\r\n\r\n<p>Кодом можно поправить отображение текста, например, сделать его на фото снизу</p>\r\n\r\n<p>Если положение фото должно быть другим - его внутри контента вставить ссылкой, предварительно добавив в менеджер файлов</p>\r\n\r\n</div>",
+      "img_open_full": false,
+      "rowset": 1
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 3,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1.svg",
+      "image_url": null,
+      "position": 0,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 2
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 4,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_EbkGyw4.svg",
+      "image_url": null,
+      "position": 1,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 2
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 5,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_jkkuwEp.svg",
+      "image_url": null,
+      "position": 0,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 3
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 6,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_SCOuUm9.svg",
+      "image_url": null,
+      "position": 1,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 3
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 7,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_aBURg4i.svg",
+      "image_url": null,
+      "position": 2,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 3
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 8,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_fO0c7C0.svg",
+      "image_url": null,
+      "position": 0,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 4
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 9,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_UrDNKV9.svg",
+      "image_url": null,
+      "position": 1,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 4
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 10,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_GUSFhzP.svg",
+      "image_url": null,
+      "position": 2,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 4
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 11,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_O2qFUpl.svg",
+      "image_url": null,
+      "position": 3,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 4
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 12,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_2gUbxYQ.svg",
+      "image_url": null,
+      "position": 0,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 5
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 13,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_iyqEuTL.svg",
+      "image_url": null,
+      "position": 1,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 5
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 14,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_KuvtQuw.svg",
+      "image_url": null,
+      "position": 0,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 6
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 15,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_U6IQkQD.svg",
+      "image_url": null,
+      "position": 1,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 6
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 16,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_yt1CXq3.svg",
+      "image_url": null,
+      "position": 2,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 6
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 17,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-2.svg",
+      "image_url": null,
+      "position": 0,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 7
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 18,
+    "fields": {
+      "image": "",
+      "svg": "",
+      "image_url": null,
+      "position": 1,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "Сео - текст",
+      "img_open_full": false,
+      "rowset": 7
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 19,
+    "fields": {
+      "image": "",
+      "svg": "",
+      "image_url": null,
+      "position": 0,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "Кастомная форма",
+      "img_open_full": false,
+      "rowset": 8
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 20,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_79Ptmbh.svg",
+      "image_url": null,
+      "position": 1,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 8
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 21,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_k4AIkyc.svg",
+      "image_url": null,
+      "position": 0,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 9
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 22,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_rHUllMN.svg",
+      "image_url": null,
+      "position": 1,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 9
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 23,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_YPpFHrI.svg",
+      "image_url": null,
+      "position": 2,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 9
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 24,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_nwQs5vo.svg",
+      "image_url": null,
+      "position": 0,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 10
+    }
+  },
+  {
+    "model": "banners.bannerrowitem",
+    "pk": 25,
+    "fields": {
+      "image": "",
+      "svg": "bnrs/images/svg/banner-content-1_udKJS2l.svg",
+      "image_url": null,
+      "position": 1,
+      "name": null,
+      "hide_adaptive": false,
+      "bg_color": null,
+      "text": "",
+      "img_open_full": false,
+      "rowset": 10
+    }
+  },
+  {
+    "model": "staticpages.page",
+    "pk": 1,
+    "fields": {
+      "parent": null,
+      "title": "Покупателям",
+      "key": "",
+      "url": "/clients/",
+      "text": "",
+      "published": true,
+      "meta_keywords": "",
+      "meta_description": "",
+      "position": 0,
+      "wide_view": true,
+      "container": true,
+      "icon": "",
+      "teaser_image": "",
+      "updated_at": "2023-09-06T11:23:48.850Z",
+      "no_wrapper": false,
+      "related_productset": null,
+      "search_document": null,
+      "lft": 1,
+      "rght": 20,
+      "tree_id": 1,
+      "level": 0
+    }
+  },
+  {
+    "model": "staticpages.page",
+    "pk": 2,
+    "fields": {
+      "parent": 1,
+      "title": "О компании",
+      "key": "",
+      "url": "/about/",
+      "text": "",
+      "published": true,
+      "meta_keywords": "",
+      "meta_description": "",
+      "position": 0,
+      "wide_view": true,
+      "container": false,
+      "icon": "",
+      "teaser_image": "",
+      "updated_at": "2023-09-06T11:23:39.942Z",
+      "no_wrapper": false,
+      "related_productset": null,
+      "search_document": null,
+      "lft": 2,
+      "rght": 3,
+      "tree_id": 1,
+      "level": 1
+    }
+  },
+  {
+    "model": "staticpages.page",
+    "pk": 3,
+    "fields": {
+      "parent": 1,
+      "title": "Портфолио 1",
+      "key": "",
+      "url": "/portfolio/",
+      "text": "",
+      "published": true,
+      "meta_keywords": "",
+      "meta_description": "",
+      "position": 1,
+      "wide_view": true,
+      "container": true,
+      "icon": "",
+      "teaser_image": "",
+      "updated_at": "2023-09-06T11:36:46.401Z",
+      "no_wrapper": false,
+      "related_productset": null,
+      "search_document": null,
+      "lft": 4,
+      "rght": 9,
+      "tree_id": 1,
+      "level": 1
+    }
+  },
+  {
+    "model": "staticpages.page",
+    "pk": 4,
+    "fields": {
+      "parent": 1,
+      "title": "Реквизиты",
+      "key": "",
+      "url": "/requisites/",
+      "text": "",
+      "published": true,
+      "meta_keywords": "",
+      "meta_description": "",
+      "position": 2,
+      "wide_view": true,
+      "container": false,
+      "icon": "",
+      "teaser_image": "",
+      "updated_at": "2023-09-06T11:24:46.089Z",
+      "no_wrapper": false,
+      "related_productset": null,
+      "search_document": null,
+      "lft": 10,
+      "rght": 11,
+      "tree_id": 1,
+      "level": 1
+    }
+  },
+  {
+    "model": "staticpages.page",
+    "pk": 5,
+    "fields": {
+      "parent": 1,
+      "title": "Акции и новости",
+      "key": "",
+      "url": "/events/",
+      "text": "",
+      "published": true,
+      "meta_keywords": "",
+      "meta_description": "",
+      "position": 3,
+      "wide_view": true,
+      "container": true,
+      "icon": "",
+      "teaser_image": "",
+      "updated_at": "2023-09-06T11:31:34.509Z",
+      "no_wrapper": false,
+      "related_productset": null,
+      "search_document": null,
+      "lft": 12,
+      "rght": 17,
+      "tree_id": 1,
+      "level": 1
+    }
+  },
+  {
+    "model": "staticpages.page",
+    "pk": 6,
+    "fields": {
+      "parent": 5,
+      "title": "Скидка за подписку в соц сетях",
+      "key": "",
+      "url": "/discount/",
+      "text": "",
+      "published": true,
+      "meta_keywords": "",
+      "meta_description": "",
+      "position": 0,
+      "wide_view": true,
+      "container": false,
+      "icon": "",
+      "teaser_image": "",
+      "updated_at": "2023-09-06T11:26:01.223Z",
+      "no_wrapper": false,
+      "related_productset": null,
+      "search_document": null,
+      "lft": 13,
+      "rght": 14,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "staticpages.page",
+    "pk": 7,
+    "fields": {
+      "parent": 5,
+      "title": "Бесплатный расчёт",
+      "key": "",
+      "url": "/free-calculation/",
+      "text": "",
+      "published": true,
+      "meta_keywords": "",
+      "meta_description": "",
+      "position": 1,
+      "wide_view": true,
+      "container": false,
+      "icon": "",
+      "teaser_image": "",
+      "updated_at": "2023-09-06T11:26:52.420Z",
+      "no_wrapper": false,
+      "related_productset": null,
+      "search_document": null,
+      "lft": 15,
+      "rght": 16,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "staticpages.page",
+    "pk": 8,
+    "fields": {
+      "parent": 1,
+      "title": "Статьи",
+      "key": "",
+      "url": "/useful articles/",
+      "text": "",
+      "published": true,
+      "meta_keywords": "",
+      "meta_description": "",
+      "position": 4,
+      "wide_view": true,
+      "container": false,
+      "icon": "",
+      "teaser_image": "",
+      "updated_at": "2023-09-06T11:31:19.232Z",
+      "no_wrapper": false,
+      "related_productset": null,
+      "search_document": null,
+      "lft": 18,
+      "rght": 19,
+      "tree_id": 1,
+      "level": 1
+    }
+  },
+  {
+    "model": "staticpages.page",
+    "pk": 9,
+    "fields": {
+      "parent": 3,
+      "title": "Страница 1",
+      "key": "",
+      "url": "/odnoehtazhnyj-dom-172-m2/",
+      "text": "",
+      "published": true,
+      "meta_keywords": "",
+      "meta_description": "",
+      "position": 0,
+      "wide_view": true,
+      "container": false,
+      "icon": "",
+      "teaser_image": "",
+      "updated_at": "2023-09-06T11:36:07.693Z",
+      "no_wrapper": false,
+      "related_productset": null,
+      "search_document": null,
+      "lft": 5,
+      "rght": 6,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "staticpages.page",
+    "pk": 10,
+    "fields": {
+      "parent": 3,
+      "title": "Страница 2",
+      "key": "",
+      "url": "/dvukhehtazhnyj-dom-250-m2/",
+      "text": "",
+      "published": true,
+      "meta_keywords": "",
+      "meta_description": "",
+      "position": 1,
+      "wide_view": true,
+      "container": false,
+      "icon": "",
+      "teaser_image": "",
+      "updated_at": "2023-09-06T11:36:51.066Z",
+      "no_wrapper": false,
+      "related_productset": null,
+      "search_document": null,
+      "lft": 7,
+      "rght": 8,
+      "tree_id": 1,
+      "level": 2
+    }
+  },
+  {
+    "model": "customization.slidertagcontainer",
+    "pk": "bottom",
+    "fields": {
+      "name": "Блоки нижней части страницы",
+      "cache": false,
+      "cache_timeout": null
+    }
+  },
+  {
+    "model": "customization.slidertagcontainer",
+    "pk": "middle",
+    "fields": {
+      "name": "Блоки главной страницы",
+      "cache": false,
+      "cache_timeout": null
+    }
+  },
+  {
+    "model": "customization.slidertagcontainer",
+    "pk": "staticpage_container",
+    "fields": {
+      "name": "Блоки для Staticpage (контейнера)",
+      "cache": false,
+      "cache_timeout": null
+    }
+  },
+  {
+    "model": "customization.slidertagcontainer",
+    "pk": "top",
+    "fields": {
+      "name": "Блоки верхней части страницы",
+      "cache": false,
+      "cache_timeout": null
+    }
+  },
+  {
+    "model": "customization.slidertagcontainer",
+    "pk": "top_extra",
+    "fields": {
+      "name": "Контейнер без враппера для верхней части страницы (goodera.ru)",
+      "cache": false,
+      "cache_timeout": null
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 1,
+    "fields": {
+      "tag_line": "statictext_tags:render_statictext",
+      "args": "club_privileges_block",
+      "wrapper_classes": null,
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 0,
+      "top_indent": null,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": null,
+      "title_color": null,
+      "container": "top"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 5,
+    "fields": {
+      "tag_line": "banner_tags:render_multirow_banner_set",
+      "args": "banner-multirowset-two-col",
+      "wrapper_classes": "offer-banner-two-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 1,
+      "top_indent": null,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": null,
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 7,
+    "fields": {
+      "tag_line": "slide_tags:render_sliderset",
+      "args": "sliderset-cols-2",
+      "wrapper_classes": "offer-slider-two-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 2,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": null,
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 8,
+    "fields": {
+      "tag_line": "slide_tags:render_sliderset",
+      "args": "sliderset-cols-3",
+      "wrapper_classes": "offer-slider-three-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 3,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": null,
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 11,
+    "fields": {
+      "tag_line": "crm_tags:render_feedback_form_section",
+      "args": null,
+      "wrapper_classes": null,
+      "without_wrapper": true,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 5,
+      "top_indent": null,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": null,
+      "title_color": null,
+      "container": "bottom"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 12,
+    "fields": {
+      "tag_line": "slide_tags:render_big_banners",
+      "args": null,
+      "wrapper_classes": "offer-big-slider",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 0,
+      "top_indent": null,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": true,
+      "block_title": null,
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 13,
+    "fields": {
+      "tag_line": "statictext_tags:render_statictext",
+      "args": "frontpage-textblock-offer",
+      "wrapper_classes": "offer-static-text",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 4,
+      "top_indent": null,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": null,
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 14,
+    "fields": {
+      "tag_line": "banner_tags:render_multirow_banner_set",
+      "args": "banner-multirowset-two-col-1",
+      "wrapper_classes": "hot-zone-banner-two-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 5,
+      "top_indent": null,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "HOT - набор баннеров 2 колонки",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 15,
+    "fields": {
+      "tag_line": "banner_tags:render_multirow_banner_set",
+      "args": "banner-multirowset-three-col",
+      "wrapper_classes": "hot-zone-banner-three-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 6,
+      "top_indent": null,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "HOT - набор баннеров 3 колонки - 2 ряда",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 16,
+    "fields": {
+      "tag_line": "banner_tags:render_multirow_banner_set",
+      "args": "banner-multirowset-four-col",
+      "wrapper_classes": "hot-zone-1-banner-four-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 11,
+      "top_indent": null,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "HOT - набор баннеров 4 колонки",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 17,
+    "fields": {
+      "tag_line": "slide_tags:render_sliderset",
+      "args": "sliderset-cols-2-1",
+      "wrapper_classes": "hot-zone-slider-two-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 7,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "HOT - набор слайдов 2 колонки",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 18,
+    "fields": {
+      "tag_line": "slide_tags:render_sliderset",
+      "args": "sliderset-cols-3-1",
+      "wrapper_classes": "hot-zone-slider-three-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 8,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "HOT - набор слайдов 3 колонки",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 19,
+    "fields": {
+      "tag_line": "slide_tags:render_sliderset",
+      "args": "sliderset-cols-4",
+      "wrapper_classes": "hot-zone-slider-four-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 9,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "HOT - набор слайдов 4 колонки",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 20,
+    "fields": {
+      "tag_line": "slide_tags:render_sliderset",
+      "args": "sliderset-cols-5",
+      "wrapper_classes": "hot-zone-slider-five-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 10,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "HOT - набор слайдов 5 колонки",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 21,
+    "fields": {
+      "tag_line": "statictext_tags:render_statictext",
+      "args": "frontpage-textblock-hot-zone",
+      "wrapper_classes": "hot-zone-static",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 11,
+      "top_indent": null,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": null,
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 22,
+    "fields": {
+      "tag_line": "banner_tags:render_multirow_banner_set",
+      "args": "banner-multirowset-two-col-2",
+      "wrapper_classes": "cold-zone-banner-two-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 12,
+      "top_indent": null,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "COLD - набор баннеров 2 колонки - 2 ряда",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 23,
+    "fields": {
+      "tag_line": "banner_tags:render_multirow_banner_set",
+      "args": "banner-multirowset-three-col-2",
+      "wrapper_classes": "cold-zone-banner-three-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 13,
+      "top_indent": null,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "COLD - набор баннеров 3 колонки",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 24,
+    "fields": {
+      "tag_line": "slide_tags:render_sliderset",
+      "args": "sliderset-cols-2-2",
+      "wrapper_classes": "cold-zone-slider-two-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 14,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "COLD - набор слайдов 2 колонки",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 25,
+    "fields": {
+      "tag_line": "slide_tags:render_sliderset",
+      "args": "sliderset-cols-3-2",
+      "wrapper_classes": "cold-zone-slider-three-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 15,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "COLD - набор слайдов 3 колонки",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 26,
+    "fields": {
+      "tag_line": "slide_tags:render_sliderset",
+      "args": "sliderset-cols-4-1",
+      "wrapper_classes": "cold-zone-slider-four-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 16,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "COLD - набор слайдов 4 колонки",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 27,
+    "fields": {
+      "tag_line": "slide_tags:render_sliderset",
+      "args": "sliderset-cols-6",
+      "wrapper_classes": "cold-zone-slider-six-col",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 17,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "COLD - набор слайдов 6 колонок",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 28,
+    "fields": {
+      "tag_line": "crm_tags:render_gift_for_phone_block",
+      "args": null,
+      "wrapper_classes": "cold-zone-gift",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 18,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": null,
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 29,
+    "fields": {
+      "tag_line": "statictext_tags:render_statictext",
+      "args": "frontpage-textblock-cold-zone",
+      "wrapper_classes": "cold-zone-static",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 19,
+      "top_indent": null,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": null,
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 30,
+    "fields": {
+      "tag_line": "statictext_tags:render_statictext",
+      "args": "frontpage_seo_text",
+      "wrapper_classes": "dark-zone-static-seo",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 20,
+      "top_indent": null,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": null,
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 31,
+    "fields": {
+      "tag_line": "banner_tags:render_multirow_banner_set",
+      "args": "banner-multirowset-two-col-3",
+      "wrapper_classes": "dark-zone-banner-two-col-seo",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 21,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "SEO - набор баннеров 2 колонки",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 32,
+    "fields": {
+      "tag_line": "faq_tags:render_faq_frontpage_block",
+      "args": null,
+      "wrapper_classes": "dark-zone-faq",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 22,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": null,
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.slidertagcontaineritem",
+    "pk": 33,
+    "fields": {
+      "tag_line": "banner_tags:render_multirow_banner_set",
+      "args": "banner-multirowset-two-col-4",
+      "wrapper_classes": "dark-zone-banner-two-col-form",
+      "without_wrapper": false,
+      "bg_color": null,
+      "bg_image": "",
+      "position": 23,
+      "top_indent": 80,
+      "bottom_indent": null,
+      "enabled": true,
+      "frontpage_only": false,
+      "block_title": "FORM - набор баннеров 2 колонки",
+      "title_color": null,
+      "container": "middle"
+    }
+  },
+  {
+    "model": "customization.customstyle",
+    "pk": 1,
+    "fields": {
+      "active": true,
+      "position": 0,
+      "inline_styles": "/* шрифты */\r\n\r\nli {\r\n font-size: 14px;\r\n}",
+      "file": ""
+    }
+  },
+  {
+    "model": "scraper.scraper",
+    "pk": 1,
+    "fields": {
+      "partner": null,
+      "category": null,
+      "category_source_url": "https://samara.kuvalda.ru/catalog/2023/",
+      "parameters_to_parse": null,
+      "filter_option_selector": "catalog-filter",
+      "filter_json_attr": "json-data",
+      "filter_option_title_selector": ".filter-option__title",
+      "filter_option_checkbox_selector": ".filter-checkbox__link, .filter-checkbox__label",
+      "filter_option_range_selector": ".filter-range",
+      "filter_parameter_names_to_walk": null,
+      "filter_product_to_walk_selector": null,
+      "pagination_selector": ".pagination__item",
+      "page_prefix": "page-",
+      "product_url_selector": ".catalog__list-item .link",
+      "product_code_selector": ".product-header__code-title",
+      "product_price_selector": ".product-buy__price-value span",
+      "product_name_selector": ".page-header__title",
+      "product_description_selector": ".product-specs__descr",
+      "product_inline_params_selector": ".product-specs__table",
+      "product_inline_params_map": "{\"Мощность двигателя\": [\"л.с.\"], \"Ширина захвата\": [\"см\"], \"Высота захвата\": [\"см\"], \"Дальность выброса снега\": [\"от\", \"до\", \"м\", \"мм\", \"см\"]}",
+      "product_image_selector": ".product-gallery__slider-image",
+      "product_image_src_attr": "data-src",
+      "product_old_images_delete": true,
+      "product_uom_name": "шт",
+      "product_published": false,
+      "product_parameters_to_join": null,
+      "product_parameter_values_to_join": null,
+      "product_params_clear": true
+    }
+  },
+  {
+    "model": "faq.question",
+    "pk": 1,
+    "fields": {
+      "question": "<p>Вопрос 1</p>",
+      "answer": "<p>Ответ 1</p>",
+      "position": 0,
+      "opened": true,
+      "published": true,
+      "frontpage": true
+    }
+  },
+  {
+    "model": "faq.question",
+    "pk": 2,
+    "fields": {
+      "question": "<p>Вопрос 2</p>",
+      "answer": "<p>Ответ 2</p>",
+      "position": 1,
+      "opened": false,
+      "published": true,
+      "frontpage": true
+    }
+  }
+]

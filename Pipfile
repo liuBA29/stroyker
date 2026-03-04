@@ -1,0 +1,54 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+django-debug-toolbar = "*"
+coverage = "*"
+model-mommy = "*"
+model-bakery = "*"
+django-mail-panel = "*"
+
+[packages]
+django = "==3.2.*"
+psycopg2-binary = "*"
+django-mptt = "*"
+django-ckeditor = "*"
+django-smart-selects = "*"
+django-uuslug = "*"
+pillow = "*"
+django-redis = "*"
+pytils = "*"
+pyquery = "*"
+simplejson = "*"
+django-sekizai = "*"
+django-widget-tweaks = "*"
+weasyprint = "*"
+django-rq = "*"
+rq-scheduler = "*"
+djangorestframework = "*"
+coreapi = "*"
+markdown = "*"
+num2words = "*"
+asgiref = "*"
+django-colorfield = "*"
+django-compressor = "*"
+requests = "*"
+django-unused-media = "*"
+django-extensions = "*"
+django-recaptcha = "*"
+rcssmin = {version = "*", pip_options = [ "--install-option=\"--without-c-extensions\"",]}
+rjsmin = {version = "*", pip_options = [ "--install-option=\"--without-c-extensions\"",]}
+pytelegrambotapi = "*"
+django-geoip = {git = "https://github.com/mandalay-rp/django-geoip", editable = true, ref = "dev"}
+django-filebrowser-no-grappelli = "*"
+django-drf-filepond = "*"
+django-import-export = "==3.*"
+yookassa = "*"
+qrcode = "*"
+sorl-thumbnail = "==12.10.*"
+django-constance = "==3.1."
+
+[requires]
+python_version = "3.10"

@@ -1,0 +1,284 @@
+{% extends 'base-dark.html' %}
+{% load static seo_tags utils_tags sekizai_tags widget_tweaks commerce_tags humanize catalog_tags i18n %}
+
+{% block title %}{% trans "Оформление заказа - Доставка" %}{% endblock %}
+
+{% block body_main_top_content %}
+
+
+<h1>{% render_h1 %}</h2>
+
+<a href="{% url 'cart:cart' %}" class="mobile-menu-item">
+    {% trans "Шаг 1. Корзина" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+
+<a href="" class="mobile-menu-item active">
+    {% trans "Шаг 2. Доставка" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+<div class="delivery-container">
+
+    <form class="form form-delivery delivery-content" action="{% url 'cart:delivery' %}" method="post"
+                                                                                         id="delivery_form">
+        {% csrf_token %}
+        {{ form.captcha }}
+
+        {% include 'include/form-non-field-errors.html' %}
+
+        <div class="delivery-block">
+            <h2>{% trans "Тип доставки" %}</h2>
+
+            <div class="delivery-selection">
+
+                {% for radio in form.delivery_type %}
+                <div class="radio">
+                    {{ radio.tag }}
+                    <label for="{{ radio.id_for_label }}"><span>{{ radio.choice_label }}</span></label>
+                    <div class="radio-content"></div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            {% for df in delivery_forms.values %}
+
+            {% include 'include/form-non-field-errors.html' with form=df %}
+
+            {% with form_class=df|klass df_pk=df.get_content_type.pk %}
+
+            <div id="delivery_form_{{ df_pk }}" class="delivery-choice delivery-type-{{ df_pk }} delivery__form"
+                                                style="display: none;">
+
+                {% for hidden_field in df.hidden_fields %}
+                {{ hidden_field }}
+                {% endfor %}
+
+                <div class="delivery-block common-data">
+                    <h2>{% trans "Контактные данные" %}</h2>
+
+                    <div class="delivery-contacts-data">
+                        <div class="form-group{% if df.name.errors %} form-group--error{% endif %}">
+                            {{ df.name|add_class:"form-control common-data" }}
+                            <label for="{{ df.name.id_for_label }}" class="label-name">
+                                <span class="content-name">{{ df.name.label }}</span>
+                            </label>
+                            {% if df.name.errors %}
+                            <span class="error-text">{{ df.name.errors }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group{% if df.phone.errors %} form-group--error{% endif %}">
+                            {{ df.phone|add_class:"form-control common-data" }}
+                            <label for="{{ df.phone.id_for_label }}" class="label-name">
+                                <span class="content-name">{{ df.phone.label }} </span>
+                            </label>
+                            {% if df.phone.errors %}
+                            <span class="error-text">{{ df.phone.errors }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group{% if df.email.errors %} form-group--error{% endif %}">
+                            {{ df.email|add_class:"form-control common-data" }}
+                            <label for="{{ df.email.id_for_label }}" class="label-name">
+                                <span class="content-name">{{ df.email.label }}</span>
+                            </label>
+                            {% if df.email.errors %}
+                            <span class="error-text">{{ df.email.errors }}</span>
+                            {% endif %}
+                        </div>
+                        {% if common_extra_fields %}
+                        {% for field in common_extra_fields %}
+                        {% include 'cart/extra_fields.html' with field=field %}
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="delivery-choice__container">
+
+                    {% if form_class == 'ToTCDeliveryForm' %}
+                    <div class="delivery-choice__content">
+                        <h2>Выберете транспортную компанию</h2>
+                        {% if df.company.errors %}
+                        <ul class="errors-block">
+
+                            {% for error in df.company.errors %}
+                            <li><span>ТК </span>{{ error|escape }}</li>
+                            {% endfor %}
+
+                        </ul>
+                        {% endif %}
+                        {% for radio in df.company %}
+                        <div class="radio">
+                            {{ radio.tag }}
+                            <label for="{{ radio.id_for_label }}"><span>{{ radio.choice_label }}</span>
+                            </label>
+                            <div class="radio-content"></div>
+                        </div>
+                        {% empty %}
+                        {{ config.DELIVERY_NOT_AVAIL_HTML|safe }}
+                        {% endfor %}
+
+
+                    </div>
+
+                    {% elif form_class == 'PickUpDeliveryForm' %}
+                    <div class="delivery-choice__content pickup-point-selection">
+                        <h2>{% trans "Выберете пункт самовывоза" %}</h2>
+                        {% if df.point.errors %}
+                        <ul class="errors-block">
+
+                            {% for error in df.point.errors %}
+                            <li><span>{% trans "Пункт самовывоза:" %} </span>{{ error|escape }}</li>
+                            {% endfor %}
+
+                        </ul>
+                        {% endif %}
+                        {% for radio in df.point %}
+                        <div class="radio">
+                            {{ radio.tag }}
+                            <label for="{{ radio.id_for_label }}"><span>{{ radio.choice_label }}</span>
+                            </label>
+                            <div class="radio-content"></div>
+                        </div>
+                        {% empty %}
+                        {{ config.DELIVERY_NOT_AVAIL_HTML|safe }}
+                        {% endfor %}
+
+                    </div>
+
+                    {% elif form_class == 'ToAddressDeliveryForm' %}
+
+                    <div id="yamap_delivery"
+                         class="delivery-choice__map"
+                         data-center-latitude="{{ map_center_latitude|stringformat:'f' }}"
+                         data-center-longitude="{{ map_center_longitude|stringformat:'f' }}"
+                         data-center-zoom="{{ config.YAMAP_DEFAULT_CENTER_ZOOM|stringformat:'f' }}"></div>
+
+                    <div class="delivery-choice__content calculate-delivery__form-delivery"
+                         data-delivery-cost-url="{% get_ajax_cost_url df %}">
+
+                        <span class="content-title content-title--small">{% trans "Выберите адрес доставки на карте" %}</span>
+
+                        <div class="form-group{% if df.address.errors %} form-group--error{% endif %}">
+                            {{ df.address }}
+                            <div class="dropdown-container">
+                                <ul class="dropdown-select-ul" id="addressTips"></ul>
+                            </div>
+                            {% if df.address.errors %}
+                            <span class="error-text">{{ df.address.errors }}</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group{% if df.stock.errors %} form-group--error{% endif %}">
+                            <label for="stock" class="label-lg">{% trans "Выбор склада:" %}</label>
+                            {{ df.stock|add_class:"custom-select"|attr:"autocomplete:off" }}
+                            {% if df.stock.errors %}
+                            <span class="error-text">{{ df.stock.errors }}</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group{% if df.car.errors %} form-group--error{% endif %}">
+                            <label for="car" class="label-lg">{% trans "Тип авто:" %}</label>
+                            {{ df.car|add_class:"custom-select"|attr:"autocomplete:off" }}
+                            {% if df.car.errors %}
+                            <span class="error-text">{{ df.car.errors }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% if delivery_extra_fields %}
+                {% for field in delivery_extra_fields %}
+                {% include 'cart/extra_fields.html' with field=field %}
+                {% endfor %}
+                {% endif %}
+
+                <div class="delivery-comment">
+                    <div class="form-group{% if form.comment.errors %} form-group--error{% endif %}">
+                        {{ form.comment }}
+                        <label for="{{ form.comment.id_for_label }}" class="label-name">
+                            <span class="content-name">{{ form.comment.label }}</span>
+                        </label>
+                        {% if form.comment.errors %}
+                        <span class="error-text">{{ form.comment.errors }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="delivery-total">
+                    <ul>
+                        <li>
+                            <span class="delivery-total__sm">{% trans "Общий вес, кг:" %}</span>
+                            <span class="delivery-total__sm">{{ cart.total_weight }}</span>
+                        </li>
+                        <li>
+                            <span class="delivery-total__sm">{% trans "Общий объём, м3:" %}</span>
+                            <span class="delivery-total__sm">{{ cart.total_volume }}</span>
+                        </li>
+                        <li>
+                            <span class="delivery-total__sm">{% trans "Стоимость доставки:" %}</span>
+                            <span class="delivery-total__sm form-delivery-cost-num">{{ cart.delivery_cost|floatformat }} {{ currency_symbol }}</span>
+                        </li>
+                        <li>
+                            <span class="delivery-total__lg">{% trans "Итого:" %}</span>
+                            <span class="delivery-total__lg whole_cost_num">
+                                {{ cart.total_price|price_format }} {{ currency_symbol }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            {% endwith %}
+
+            {% endfor %}
+
+            <button class="btn btn--main btn--fixed-width">{% trans "Далее" %}</button>
+        </div>
+    </form>
+
+    <div class="delivery-steps">
+        <div class="step-item done">
+            <span class="step-item__number">1</span><a href="{% url 'cart:cart' %}">{% trans "Корзина" %}</a>
+        </div>
+        <div class="step-item current">
+            <span class="step-item__number">2</span>{% trans "Доставка" %}
+        </div>
+        <div class="step-item">
+            <span class="step-item__number">3</span>{% trans "Оплата" %}
+        </div>
+        <div class="step-item">
+            <span class="step-item__number">4</span>{% trans "Завершение" %}
+        </div>
+    </div>
+</div>
+<a href="" class="mobile-menu-item  disabled">
+    {% trans "Шаг 3. Оплата" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+<a href="" class="mobile-menu-item disabled">
+    {% trans "Шаг 4. Завершение" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+</div>
+</section>
+
+{% endblock body_main_top_content %}
+
+{% block body_main_bottom %}
+{% addtoblock 'js' %}
+<script src="{% static 'commerce/js/cart_delivery.js' %}"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey={% settings_value 'YANDEX_API_KEY' %}&lang=ru_RU"
+        type="text/javascript"></script>
+<script src="{% static 'commerce/js/delivery_calculator.js' %}"></script>
+{% endaddtoblock %}
+{% endblock %}

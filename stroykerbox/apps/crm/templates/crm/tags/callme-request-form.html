@@ -1,0 +1,58 @@
+{% load sekizai_tags static utils_tags i18n common_tags %}
+<div id="callme-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="content-title content-title--min center h2">
+            {% trans "Заказать обратный звонок" %}
+        </span>
+        <form id="crm-callme-request-form"
+              class="card-body form-inline callme-request-form"
+              method="post"
+              action="{% url 'crm:callme-request' %}"
+              onsubmit="{% render_yandex_metrika_goal config.YMETRICA_GOAL_FORM_CALLME %}">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <input type="text"{% if request.user.is_authenticated and request.user.name %} value="{{ request.user.name }}"{% endif %} class="form-control" name="name" autocomplete="off" required>
+                <label for="name" class="label-name">
+                    <span class="content-name">
+                        {% trans "Ваше имя" %}
+                    </span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <input type="tel"{% if request.user.is_authenticated and request.user.phone %}
+                       value="{{ request.user.phone }}"{% endif %}
+                       class="form-control phone"
+                       name="phone" autocomplete="off" required>
+                <label for="phone" class="label-name">
+                    <span class="content-name">
+                        {% trans "Ваш Телефон" %}
+                    </span>
+                </label>
+            </div>
+
+
+            {% for f in callme_form.hidden_fields %}
+            {{ f }}
+            {% endfor %}
+
+            {% render_form_agreement callme_form %}
+
+            <div class="form-group-inline">
+                <button  type="submit" class="btn btn--main-min button-theme button-theme_primary">
+                    {% trans "Отправить" %}
+                </button>
+                <a class="form-close btn-close" data-fancybox-close>
+                    {% trans "Закрыть" %}
+                </a>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+{% addtoblock "js" %}
+{{ callme_form.media }}
+{% endaddtoblock %}

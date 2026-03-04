@@ -1,0 +1,34 @@
+{% load reviews_tags i18n %}
+<div class="reviews product-review">
+    <div class="review-item" itemprop="review" itemscope itemtype="https://schema.org/Review">
+        <div class="review-item__head">
+            <div class="review-item__head-info">
+                <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <span itemprop="name" class="review-item__name">
+                        {% if review.user.name %}{{ review.user.name }}{% else %}{{ review.user.email }}{% endif %}
+                    </span>
+                </span>
+                <span class="review-item__date" itemprop="datePublished">{{ review.created_at }}</span>
+                <span {% if review.rating_value %}itemprop="reviewRating"
+                    itemscope itemtype="http://schema.org/Rating"{% endif %}>
+                    {% render_rating_five_stars review.rating_value %}
+                </span>
+            </div>
+        </div>
+        <div itemprop="reviewBody">
+            {{ review.review_text|linebreaks }}
+        </div>
+        <div class="review-item__footer">
+            <div class="review-item__links">
+                <span>{% trans "Отзыв полезен?" %}</span>
+                <span class="review_advantage"
+                      class="{% if review.advantage < 0 %}red{% elif review.advantage == 0 %}grey{% else %}green{% endif %}">
+                    {{ review.advantage }}
+                </span>
+                <a href="#" class="review__footer__yes" data-url="{% url 'reviews:review_usefully' review.pk %}">Да</a>
+                /
+                <a href="#" class="review__footer__no" data-url="{% url 'reviews:review_useless' review.pk %}">Нет</a>
+            </div>
+        </div>
+    </div>
+</div>

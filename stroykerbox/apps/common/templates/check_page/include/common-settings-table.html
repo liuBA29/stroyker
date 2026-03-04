@@ -1,0 +1,143 @@
+<div class="d-flex flex-column gap-20px">
+    <h2 class="h4 mb-0px">
+        Общие настройки (оценка: <strong>{{ common_settings_points }}</strong>)
+    </h2>
+
+    <table class="table m-0px">
+        <thead>
+            <tr>
+                <th scope="col" class="w-25 p-0px border-0"></th>
+                <th scope="col" class="p-0px border-0"></th>
+                <th scope="col" class="p-0px border-0"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">
+                    Настройка "сайты"
+                </th>
+                <td>
+                    <div class="form-check d-flex align-items-center pe-none p-0px m-0px">
+                        <input type="checkbox" class="form-check-input m-0px"{% if common_settings.sites_check %} checked{% endif %} inert>
+                    </div>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Кол-во статичных страниц
+                </th>
+                <td>
+                    {{ common_settings.staticpage_count }}
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Кол-во новостей/акций
+                </th>
+                <td>
+                    {{ common_settings.news_actions_count }}
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    SITE_NAME
+                </th>
+                <td>
+                    {{ common_settings.site_name }}
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    MANAGER_EMAILS
+                </th>
+                <td>
+                    <div class="form-check d-flex align-items-center pe-none p-0px m-0px">
+                        <input type="checkbox" class="form-check-input m-0px"{% if common_settings.manager_emails %} checked{% endif %} inert>
+                    </div>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Минимум 1 запись в “контактах”
+                </th>
+                <td>
+                    <div class="form-check d-flex align-items-center pe-none p-0px m-0px">
+                        <input type="checkbox" class="form-check-input m-0px"{% if common_settings.contact_minimum %} checked{% endif %} inert>
+                    </div>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Favicon загружен
+                </th>
+                <td>
+                    <div class="form-check d-flex align-items-center pe-none p-0px m-0px">
+                        <input type="checkbox" class="form-check-input m-0px"{% if common_settings.has_favicon %} checked{% endif %} inert>
+                    </div>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Robots.txt
+                </th>
+                <td>
+                    <div class="form-check d-flex align-items-center pe-none p-0px m-0px">
+                        <input type="checkbox" class="form-check-input m-0px"{% if common_settings.has_robots_txt %} checked{% endif %} inert>
+                    </div>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Яндекс-метрика
+                </th>
+                <td>
+                    <div class="form-check d-flex align-items-center pe-none p-0px m-0px">
+                        <input type="checkbox" class="form-check-input m-0px"{% if common_settings.yandex_metrika %} checked{% endif %} inert>
+                    </div>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    Телеграм-бот
+                </th>
+                <td>
+                    <div class="form-check d-flex align-items-center pe-none p-0px m-0px">
+                        <input type="checkbox" class="form-check-input m-0px"{% if common_settings.telebot %} checked{% endif %} inert>
+                    </div>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+</div>

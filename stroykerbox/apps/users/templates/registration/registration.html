@@ -1,0 +1,36 @@
+{% extends config.GLOBAL_ACCESS_AUTHORIZED_ONLY|yesno:'base-empty.html,base-dark.html' %}
+{% load utils_tags i18n %}
+{% block body_main_top_content %}
+<div class="tabs-content tabs-content--authorizaion">
+    <ul class="tabs tabs--show">
+        <li><a href="{% url 'login' %}">{% trans "Вход" %}</a></li>
+        <li class="active tab_last"><a href="#">{% trans "Регистрация" %}</a></li>
+    </ul>
+    <div class="tabsgroup">
+        <div id="tab2" class="tab-content" style="display: block;">
+
+            {% if success %}
+            {% if config.USERS_AUTOACTIVATION %}
+            {% blocktranslate %}
+            <p>Аккаунт успешно создан.</p>
+            <p>На указанный Вами адрес электронной почты придет уведомление с подтверждением и ссылкой на активацию.</p>
+            {% endblocktranslate %}
+            {% else %}
+            {% blocktranslate %}
+            <p>Данные Вашей учетной записи переданы менеджеру для проверки. После активации на указанный Вами адрес электронной почты придет уведомление.</p>
+            {% endblocktranslate %}
+            {% endif %}
+
+
+            {% elif request.user.is_anonymous %}
+            <h2>{% trans "Добро пожаловать в клуб" %} {% config_value 'SITE_NAME' %}</h2>
+            {% include 'registration/registration_form.html' %}
+            {% else %}
+            <p>{% trans "Вы авторизированы на сайте как" %} <strong>{{ request.user.email }}</strong></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock body_main_top_content %}
+
+{% block body_main_bottom %}{% endblock %}

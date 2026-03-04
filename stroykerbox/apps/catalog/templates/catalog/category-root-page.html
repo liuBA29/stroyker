@@ -1,0 +1,48 @@
+{% extends 'catalog/category-base.html' %}
+{% load static catalog_tags banner_tags statictext_tags seo_tags %}
+
+{% block content %}
+<div class="welcome category-root-page">
+
+    {% with category.get_published_children as categories_list %}
+    <div class="welcome__side">
+        {% render_catalog_categories_menu %}
+        {% if categories_list %}
+        {% render_catalog_page_sidebar_banners %}
+        {% else %}
+        {% render_sidebar_banners %}
+        {% endif %}
+    </div>
+
+    {% schema_org_category %}
+
+
+    <div class="welcome__content">
+        {# https://redmine.fancymedia.ru/issues/13207 #}
+        {% render_statictext catalog_statictext_keys.CATALOG_PAGE_BLOCK_BEFORE_PREVIEW %}
+
+        <div class="catalog-menu">
+            {% for subcategory in categories_list %}
+            <a href="{% url 'catalog:subcategory' category.slug subcategory.slug %}" class="catalog-menu-item">
+                <span class="catalog-menu-item__image">
+                    {% render_category_image subcategory %}
+                </span>
+                <span class="catalog-menu-item__name">{{ subcategory.name }}</span>
+            </a>
+            {% empty %}
+            {% render_statictext 'no_category_or_products_text' %}
+            {% endfor %}
+        </div>
+
+        {# https://redmine.fancymedia.ru/issues/13207 #}
+        {% render_statictext catalog_statictext_keys.CATALOG_PAGE_BLOCK_AFTER_PREVIEW %}
+
+        {% if categories_list %}
+        {% render_catalog_page_banners_horizontal "Выгодные предложения" %}
+        {% endif %}
+        {% render_root_category_top_products categories_list %}
+    </div>
+    {% endwith %}
+
+</div>
+{% endblock content %}

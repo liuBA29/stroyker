@@ -1,0 +1,7 @@
+{% spaceless %}
+{% for widget in widget.subwidgets %}
+<div class="-inline">
+    {% include widget.template_name %}
+</div>
+{% endfor %}
+{% endspaceless %}

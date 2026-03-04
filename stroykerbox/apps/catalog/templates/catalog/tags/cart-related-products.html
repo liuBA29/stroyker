@@ -1,0 +1,11 @@
+{% if related_products %}
+{% load catalog_tags i18n %}
+<h1>{% trans "Сопутствующие товары" %}</h1>
+<div class="slick-slides card-group">
+    {% for product in related_products %}
+    <div class="related_product">
+        {% render_product_teaser_new product %}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

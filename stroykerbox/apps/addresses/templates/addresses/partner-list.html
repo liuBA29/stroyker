@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static seo_tags statictext_tags utils_tags i18n %}
+
+{% block body_main_top_content %}
+
+
+{% if addresses %}
+
+{% render_statictext 'partner_listpage_header' %}
+
+<div class="partner-wrapper">
+    {% if partner_cities %}
+    {% include 'addresses/include/partner-cities-select.html' %}
+    {% endif %}
+
+    {% if partner_categories %}
+    <div class="catalog__links-block catalog__links-block--portfolio">
+        <div class="catalog__links-item">
+            <a class="catalog-item__link{% if not request.GET.category %} active{% endif %}" href="{{ request.path }}">
+                Все
+            </a>
+        </div>
+        {% for cat in partner_categories %}
+        <div class="catalog__links-item">
+            <a class="catalog-item__link{% if request.GET.category == cat.slug %} active{% endif %}" href="{{ request.path }}?category={{ cat.slug }}">
+                {{ cat.name }}
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {# https://redmine.nastroyker.ru/issues/17193 #}
+    {% if new_partner_btn %}
+    <div class="partners-right-text">
+        {{ new_partner_btn|safe }}
+    </div>
+    {% endif %}
+
+</div>
+
+<div class="affiliate-network">
+    <div class="affiliate-network__head">
+        <span class="affiliate-network__title">
+            {% trans "Партнёров в регионе" %} {{ current_location.name }} — {{ addresses|length }}</span>
+        {% if locations|length > 1 %}
+        <div class="select-inline">
+            <span class="select-inline__title">{% trans "Выбрать регион:" %}</span>
+            <div class="form-group">
+                <select id="address-location-select" name="characters" class="custom-select" tabindex="-1">
+                    {% for location in locations %}
+                    <option value="{{ location.slug }}"
+                            {% if current_location == location %}selected="selected"{% endif %}>
+                    {{ location.name|capfirst }}
+                    </option>
+                    {% endfor %}
+
+                </select>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="map" id="yamap_addresses"
+                     data-center-latitude="{{ center_latitude|stringformat:'f' }}"
+                     data-center-longitude="{{ center_longitude|stringformat:'f' }}"
+                     data-center-zoom="{{ center_zoom|stringformat:'f' }}"></div>
+
+    <div class="partners">
+
+        {% for partner in addresses %}
+
+        <div class="partner-item" >
+
+            {% for coord in partner.coordinates.all %}
+            <div class="address-data d-none"
+                 data-icon-preset="{{ partner.ymap_icon_color|default:"blue" }}{% if partner.ymap_glyph_icon %}Glyph{% else %}Dot{% endif %}Icon"
+                 data-balloon-content="<h4>{{ partner.name }}</h4>{{ partner.address }}"
+                 data-glyph-icon-name="{{ partner.ymap_glyph_icon }}"
+                 data-glyph-icon-color="{{ partner.ymap_glyph_color|default:partner.ymap_icon_color|default:'blue' }}"
+                 data-hint-content="{{ partner.address }}"
+                 data-latitude="{{ coord.geo_latitude|stringformat:'f' }}"
+                 data-longitude="{{ coord.geo_longitude|stringformat:'f' }}"></div>
+            {% endfor %}
+
+            <div class="partner-item__bg">
+                <span class="partner-item__name">{{ partner.name }}</span>
+            </div>
+
+            <div class="partner-item__content">
+                <div class="partner-item__line">{{ partner.address }}
+                    <span class="icon">
+                        <img src="{% static 'images/partner-location.svg' %}" alt="">
+                    </span>
+                </div>
+                {% if partner.phone %}
+                <div class="partner-item__line">
+                    <span class="phone">{{ partner.phone }}</span>
+                    <span class="icon"><img src="{% static 'images/partner-call.svg' %}" alt=""></span>
+                </div>
+                {% endif %}
+                {% if partner.email %}
+                <div class="partner-item__line"><a href="mailto:{{ partner.email }}">{{ partner.email }}</a>
+                    <span class="icon"><img src="{% static 'images/partner-email.svg' %}" alt=""></span>
+                </div>
+                {% endif %}
+                {% if partner.website %}
+                <div class="partner-item__line"><a href="{{ partner.website }}">{{ partner.website_name }}</a>
+                    <span class="icon"><img src="{% static 'images/partner-site.svg' %}" alt=""></span>
+                </div>
+                {% endif %}
+                {% if partner.description %}
+                <div class="partner-item__line">
+                    {{ partner.description|safe }}
+                </div>
+                {% endif %}
+                {% if partner.page_url %}
+                <a href="{{ partner.page_url }}" class="partner-item__link"></a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% include 'addresses/include/addresses-common.html' with map_container_id='yamap_addresses' %}
+
+{% endif %}
+
+{% endblock body_main_top_content %}

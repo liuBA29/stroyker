@@ -1,0 +1,47 @@
+{% load static sekizai_tags utils_tags i18n common_tags %}
+{# Форма «Остались вопросы?» для футера 8 марта: 4 одинаковых поля с подписями Ваше имя, Номер телефона, e-mail, Ваш вопрос. #}
+<section class="feedback-form feedback-form--8march-footer" aria-labelledby="feedback-form-8march-title">
+    <div class="feedback-form--8march-footer__inner">
+        <form action="{% url 'crm:feedback-message-request' %}"
+              method="post"
+              id="feedback-message-request-form-8march"
+              class="feedback-form--8march-footer__form"
+              onsubmit="{% render_yandex_metrika_goal config.YMETRICA_GOAL_FORM_FEEDBACK %}">
+            {% csrf_token %}
+            {% for f in form.hidden_fields %}{{ f }}{% endfor %}
+
+            <div class="feedback-form--8march-footer__grid">
+                <label class="feedback-form--8march-footer__field">
+                    <span class="feedback-form--8march-footer__label" aria-hidden="true">Ваше имя</span>
+                    <input type="text" name="name" class="feedback-form--8march-footer__input" required autocomplete="name" placeholder="Ваше имя"{% if request.user.is_authenticated and request.user.name %} value="{{ request.user.name }}"{% endif %}>
+                </label>
+                <label class="feedback-form--8march-footer__field">
+                    <span class="feedback-form--8march-footer__label" aria-hidden="true">Номер телефона</span>
+                    <input type="tel" name="phone" class="feedback-form--8march-footer__input feedback-form--8march-footer__input--phone" required autocomplete="tel" placeholder="Номер телефона"{% if request.user.is_authenticated and request.user.phone %} value="{{ request.user.phone }}"{% endif %}>
+                </label>
+                <label class="feedback-form--8march-footer__field">
+                    <span class="feedback-form--8march-footer__label" aria-hidden="true">e-mail</span>
+                    <input type="email" name="email" class="feedback-form--8march-footer__input" required autocomplete="email" placeholder="e-mail"{% if request.user.is_authenticated %} value="{{ request.user.email }}"{% endif %}>
+                </label>
+                <label class="feedback-form--8march-footer__field">
+                    <span class="feedback-form--8march-footer__label" aria-hidden="true">Ваш вопрос</span>
+                    <textarea name="message" class="feedback-form--8march-footer__input feedback-form--8march-footer__textarea" required rows="3" placeholder="Ваш вопрос"></textarea>
+                </label>
+            </div>
+
+            <div class="feedback-form--8march-footer__row">
+                <button type="submit" class="feedback-form--8march-footer__submit black-button">ОТПРАВИТЬ</button>
+                <div class="form-group privacy-policy agree-one">
+                    <div class="checkbox">
+                        <input type="checkbox" name="privacy-policy" id="privacy-feedback-8march" required autocomplete="off" class="white-checkbox"/>
+                        <label for="privacy-feedback-8march">Вы даете согласие на публикацию отзывов</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% addtoblock "js" %}
+{{ form.media }}
+{% endaddtoblock %}

@@ -1,0 +1,44 @@
+{% extends 'catalog/category-base.html' %}
+{% load catalog_tags banner_tags statictext_tags %}
+
+{% block content %}
+<div class="catalog">
+    <div class="catalog-head">
+        {% render_products_list_header %}
+    </div>
+
+    <div class="catalog-container">
+
+
+        {% with category.get_published_children as categories_list %}
+        <div class="catalog-filter sidebar-position-{{ config.CATALOG_PAGE_SIDEBAR_POSITION }}">
+            {% if config.CATALOG_CHILDS_IN_PARENT_NAV == 'accordion' %}
+            {% render_catalog_categories_menu %}
+            {% endif %}
+            {% render_catalog_filter %}
+            {% if categories_list %}
+            {% render_catalog_page_sidebar_banners %}
+            {% else %}
+            {% render_sidebar_banners %}
+            {% endif %}
+        </div>
+
+
+        <div class="catalog-body{% if hide_sidebar %} no-sidebar{% endif %}">
+            {# https://redmine.fancymedia.ru/issues/13207 #}
+            {% render_statictext catalog_statictext_keys.CATALOG_PAGE_BLOCK_BEFORE_PREVIEW %}
+
+            {% render_teaser_list products category %}
+            {% include 'include/pagination.html' with page_obj=products %}
+
+            {# https://redmine.fancymedia.ru/issues/13207 #}
+            {% render_statictext catalog_statictext_keys.CATALOG_PAGE_BLOCK_AFTER_PREVIEW %}
+
+            {% render_root_category_top_products categories_list %}
+        </div>
+        {% endwith %}
+
+
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static seo_tags sekizai_tags widget_tweaks humanize %}
+
+{% block body_main_top %}
+
+<section class="section-dark">
+    <div class="container">
+        {% render_breadcrumbs %}
+        <div class="article-inner__content article-inner__content--wide">
+
+            <div class="text-page">
+
+                {% if ticket_info.debt %}
+
+                <div class="h2">
+                    Общая задолженность по залогому билету {{ ticket_info.ticket_number }}
+                    {% if ticket_info.client_surname %} ({{ ticket_info.client_surname }}){% endif %}  составляет
+                    <strong>{{ ticket_info.debt|intcomma }} руб.</strong>
+                </div>
+                {% if payment %}
+
+                <h3>Ссылка на оплату: <a href="{{ payment.payment_url }}">{{ payment.payment_url }}</a></h3>
+                <div>
+                    {{ payment.payment_url_qr|safe }}
+                </div>
+
+                {% else %}
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                    {% endfor %}
+
+                    <div>
+                        <button type="submit" class="btn button-theme button-theme_primary m-0 w-100">
+                            Получить ссылку на страницу оплаты
+                        </button>
+                    </div>
+
+                    {% if form.non_field_errors %}
+                    <div class="form-group--error">
+                        <span class="error-text">{{ form.non_field_errors }}</span>
+                    </div>
+                    {% endif %}
+
+                </form>
+                {% endif %}
+
+                {% else %}
+                <h1>Задолженность по залогому билету {{ ticket_number }} неизвестна или отсутствует.</h1>
+                <p>
+                    Перейдите на <a href="{% url "tbank:prepayment" %}">страницу проверки задолжности</a> для получения этой суммы.
+                </p>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock body_main_top %}
+

@@ -1,0 +1,53 @@
+{% extends 'booking/matrix-base.html' %}
+{% load booking %}
+
+{% block matrix_main %}
+<div class="booking-block">
+    {% if matrix.html_top %}{{ matrix.html_top|safe }}{% endif %}
+    <div class="booking-block__statuses booking-block__statuses_right">
+        {% include 'booking/include/statuses.html' %}
+
+    </div>
+    <div class="booking-block__content">
+        {% include 'booking/include/reserve-popup.html' %}
+
+        <div class="booking-table">
+            <div data-booking-scroll class="booking-table__scroll">
+                <div class="booking-table__content">
+                    {% for item in items %}
+                    <div id="booking-table-{{forloop.counter}}" class="booking-table__row booking-table__row_days">
+                        <p data-booking-title="{{ item.name }}"
+                           class="booking-table__title booking-table__title_days">
+                            {{ item.name }}
+                        </p>
+                        <div class="booking-table__items booking-table__items_days">
+                            {% for d in week_dates %}
+                            <button data-booking-tooltip
+                                    data-booking-time="{{ d }}"
+                                    {% if d < today %}
+                                    class="booking-table__item booking-table__item_day booking-table__item_past"
+                                    {% elif item|has_reserve:d %}
+                                    class="booking-table__item booking-table__item_day booking-table__item_busy"
+                                    {% else %}
+                                    class="booking-table__item booking-table__item_day booking-table__item_free"
+                                    data-submit-url="{% url 'booking:add_date_reserve' item.itemset.key item.id d %}"
+                                    {% endif %}>
+                                <span class="booking-block-week-day">{{ d|date:"D"|upper }}</span> {{ d|date:"d/m" }}
+                            </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div data-booking-mobile-titles
+                     class="d-md-none booking-table__mobile-titles booking-table__mobile-titles_shadow"></div>
+            </div>
+        </div>
+        {% if matrix.html_middle %}{{ matrix.html_middle|safe }}{% endif %}
+
+        {% render_booking_form %}
+
+    </div>
+    {% if matrix.html_bottom %}{{ matrix.html_bottom|safe }}{% endif %}
+</div>
+{% endblock matrix_main %}

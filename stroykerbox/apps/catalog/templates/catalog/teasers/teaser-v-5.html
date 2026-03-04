@@ -1,0 +1,8 @@
+{# V1 MAX HEIGHT #}
+{% extends 'catalog/teasers/teaser-v1-base.html' %}
+{% load catalog_tags %}
+{% block product_teaser_class %}product-item_max-heigth{% endblock %}
+
+{% block badge_area %}
+{% render_product_sale_badge product True badge_classes="product-card-sell-badge product-card-sell-badge_no-adaptive product-card-sell-badge_bottom" %}
+{% endblock %}

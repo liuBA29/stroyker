@@ -1,0 +1,159 @@
+{% load static catalog_tags reviews_tags thumbnail utils_tags %}
+
+{% product_location_price product as product_price %}
+{% product_location_old_price product as product_old_price %}
+{% personal_price product as product_personal_price %}
+
+<div class="product-item{% if category and list_view_mode_class %} {{ list_view_mode_class }}{% endif %}">
+    <a href="{{ product.get_absolute_url }}" class="product-item__link">
+        <div class="product-item__image">
+
+            {% if product.main_image %}
+
+            {% if config.BEHAVIOR_IMAGE == '3' %}
+            <div class="product-card-slideshow">
+                <div class="product-card-slideshow__images">
+                    {% with photos=product.images.all %}
+
+                    {% for photo in photos %}
+                    {% thumbnail photo.image config.PRODUCT_THUMB_DEFAULT_RATIO as im %}
+                    <img data-sector-image="{{photo.position}}" src="{{ im.url }}" class="product-card-slideshow__image" alt="{{photo.position}}">
+                    {% endthumbnail %}
+                    {% endfor %}
+                </div>
+                <div class="product-card-slideshow__sectors">
+                    {% for photo in photos %}
+                    <div data-sector="{{photo.position}}" class="product-card-slideshow__sector"></div>
+                    {% endfor %}
+                </div>
+                <div class="product-card-slideshow__dots">
+                    {% for photo in photos %}
+                    <div data-sector-dot="{{photo.position}}" class="product-card-slideshow__dot"></div>
+                    {% endfor %}
+                    {% endwith %}
+                </div>
+            </div>
+
+            {% elif config.BEHAVIOR_IMAGE == '2' %}
+            <div class="product-item__image-inner">
+                {% thumbnail product.main_image_second.image config.PRODUCT_THUMB_DEFAULT_RATIO as im2 %}
+                <img src="{{ im2.url }}" alt="{{ product.name }}">
+                {% endthumbnail %}
+            </div>
+
+            {% elif config.BEHAVIOR_IMAGE == '1' %}
+            {% thumbnail product.main_image.image config.PRODUCT_THUMB_DEFAULT_RATIO as im %}
+            <img src="{{ im.url }}" alt="{{ product.name }}">
+            {% endthumbnail %}
+
+            {% if config.BEHAVIOR_IMAGE_PRODUCT_TEASER %}
+            {% thumbnail product.main_image_second.image config.PRODUCT_THUMB_DEFAULT_RATIO as im2 %}
+            <img src="{{ im2.url }}" alt="{{ product.name }} (фото 2)">
+            {% endthumbnail %}
+            {% endif %}
+
+
+            {% elif config.PRODUCT_DEFAULT_IMAGE %}
+            {% get_media_prefix as MEDIA_URL %}
+            <img src="{{ MEDIA_URL }}{{ config.PRODUCT_DEFAULT_IMAGE }}" alt="{{ product.name }}">
+            {% endif %}
+
+            {% endif %}
+
+
+            {% render_product_flags %}
+        </div>
+        <span class="product-item__content-top">
+            <span class="product-item__head">
+                <span class="product-item__art">{{ product.code }}</span>
+                {% render_product_average_rating product.pk %}
+            </span>
+            <span class="product-item__name">{{ product.name }}</span>
+            {% render_product_availability_status %}
+
+
+            {% if product_price %}
+
+            {% product_online_price product as online_price %}
+            <span class="product-item__cost{% if online_price %} with-online-price{% endif %}">
+                <span class="product-item__cost-product">
+                    {{ product_personal_price|multiplicity_price:product|price_format }}
+                    <span> {{ currency_symbol }}{{ product.multiplicity_label_suffix }}</span>
+                </span>
+                {% if product_personal_price != product_price %}
+                <span class="product-item__cost-old"> {{ product_price|multiplicity_price:product|price_format }} {{ currency_symbol }}</span>
+                {% elif product_old_price %}
+                <span class="product-item__cost-old"> {{ product_old_price|multiplicity_price:product|price_format }} {{ currency_symbol }}</span>
+                {% endif %}
+            </span>
+            {% if online_price %}
+            <span class="product-item__cost product-item__online-cost">
+                <span class="product-item__cost-product">{{ online_price|multiplicity_price:product|price_format }}
+                    <span> {{ currency_symbol }}{{ product.multiplicity_label_suffix }}</span>
+                </span>
+                <span class="product-item__cost-label">{{ config.ONLINE_PRICE_LABEL_TEXT }}</span>
+            </span>
+            {% endif %}
+
+            {% endif %}
+
+
+            {% if request.user.is_authenticated %}
+            <span class="product-item__balance">{% product_available_qty %}</span>
+            {% if product_price %}
+            <span class="product-item__line-cost">{{ product_price|price_format }}</span>
+            <span class="product-item__line-cost">{{ personal_price|price_format }}</span>
+            {% endif %}
+            {% endif %}
+        </span>
+    </a>
+    <div class="product-item__content-bottom">
+        <div class="product-item__btns">
+            <div class="shopping-cart-product">
+                {% if product|is_available:request.location %}
+                <div class="input-number">
+                    <div class="order-down"></div>
+                    <input type="number"
+                           min="1"
+                           max="{% product_units_avail product %}"
+                           step="1"
+                           value="1" id="number" required="">
+                    <div class="order-up"></div>
+                </div>
+                {% if config.WHITETHEME_USE_CUSTOM_CART_ICON and config.WHITETHEME_CUSTOM_CART_ICON %}
+                <a href="{% url 'cart:add_to_cart' product.pk %}" class="shopping-cart-btn add-to-cart no-bg-image button-theme button-theme_cart">
+                    <img class="custom-icon" src="{% get_media_prefix %}{{ config.WHITETHEME_CUSTOM_CART_ICON }}">
+                        {% if config.WHITETHEME_CUSTOM_CART_ICON_HOVER %}
+                        <img class="custom-icon hover" src="{% get_media_prefix %}{{ config.WHITETHEME_CUSTOM_CART_ICON_HOVER }}"/>
+                        {% endif %}
+                    {% else %}
+                    <a href="{% url 'cart:add_to_cart' product.pk %}" class="shopping-cart-btn add-to-cart button-theme button-theme_cart">
+                        <svg class="icon">
+                            <use xlink:href="#shopping-cart"></use>
+                        </svg>
+                        {% endif %}
+                    </a>
+                    {% elif product_price %}
+                    <a href="#question-main"
+                       data-product-code="{{ product.code }}"
+                       data-product-name="{{ product.name }}"
+                       data-form-main-msg="{{ config.NOAVAILABLE_BTN_FORMTEXT }}"
+                       data-form-subject="{{ config.NOAVAILABLE_BTN_LABEL }}"
+                       class="btn-border not-for-sale not-available btn-small button-theme button-theme_secondary">
+                        {{ config.NOAVAILABLE_BTN_LABEL }}
+                    </a>
+
+                    {% else %}
+                    <a href="#question-main"
+                       data-product-code="{{ product.code }}"
+                       data-product-name="{{ product.name }}"
+                       data-form-main-msg="{{ config.NOPRICE_BTN_FORMTEXT }}"
+                       data-form-subject="{{ config.NOPRICE_BTN_LABEL }}"
+                       class="btn-border not-for-sale not-price btn-small button-theme button-theme_secondary">
+                        {{ config.NOPRICE_BTN_LABEL }}
+                    </a>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load seo_tags crm_tags statictext_tags static utils_tags sekizai_tags widget_tweaks commerce_tags i18n %}
+
+{% block title %}{% trans "Калькулятор доставки" %}{% endblock %}
+
+{% block body_main_top_content %}
+
+{% if not config.DELIVERY_CALC_FULL_ACCESS and not request.user.is_authenticated %}
+
+<p>{% render_statictext 'call_for_registration' %}</p>
+
+{% else %}
+
+<h1 class="content-title content-title--lg">{% trans "Калькулятор доставки" %}</h1>
+
+
+<div class="calculate-delivery">
+    <div class="calculate-delivery__form" method="post" id="delivery_form_{{ form.get_content_type.pk }}">
+        {% csrf_token %}
+        <input type="checkbox" name="delivery_type" value="{{ form.get_content_type.pk }}" style="display:none" checked="checked" />
+        {{ form.distance_km }}
+
+        <div class="form-group">
+            <span class="form-group-number">1</span>
+            {% if config.YAMAP_SUGGEST_API_KEY %}
+            <div style="padding: 1rem 0; font-size: 14px" class="point-on-map-label">
+                {% trans "Укажите точку на карте" %}
+            </div>
+            {{ form.address|add_class:"form-control" }}
+            <div class="dropdown-container">
+                <ul class="dropdown-select-ul" id="addressTips"></ul>
+            </div>
+            {% else %}
+            <div style="padding: 1rem 0; font-size: 14px" class="point-on-map-label">
+                {{ config.DELIVERY_CALC_POINT_ON_MAP_LABEL }}
+                {{ form.address.as_hidden }}
+            </div>
+            {% endif %}
+        </div>
+
+        {% if form.stock %}
+        <div class="form-group stock-select">
+            <span class="form-group-number">2</span>
+            <label for="stock" class="label-lg">{% trans "Выбор склада:" %}</label>
+            {{ form.stock|add_class:"custom-select"|attr:"autocomplete:off" }}
+        </div>
+        {% endif %}
+
+        {% if form.car %}
+        <div class="form-group car-select">
+            <span class="form-group-number">{% if form.stock %}3{% else %}2{% endif %}</span>
+            <label for="car" class="label-lg">{% trans "Тип авто:" %}</label>
+            {{ form.car|add_class:"custom-select"|attr:"autocomplete:off" }}
+        </div>
+        {% endif %}
+
+        <div class="form-group" style="text-align:right">
+            <button class="btn btn-primary" onclick="recalculateDeliveryCost(null, true);">
+                {% trans "Рассчитать" %}
+            </button>
+        </div>
+
+        <div class="calculate-delivery__form-delivery"
+             data-delivery-cost-url="{% get_ajax_cost_url form %}">
+            <span class="form-delivery-address"></span>
+            <span class="form-delivery-distance"></span>
+            <span class="form-delivery-cost"></span>
+        </div>
+    </div>
+    <div id="yamap_delivery" class="calculate-delivery__map"
+                             data-center-latitude="{{ map_center_latitude|stringformat:'f' }}"
+                             data-center-longitude="{{ map_center_longitude|stringformat:'f' }}"
+                             data-center-zoom="{{ config.YAMAP_DEFAULT_CENTER_ZOOM|stringformat:'f' }}">
+    </div>
+</div>
+
+<div class="text-page">
+    {% render_statictext 'delivery_calc_page_text' %}
+</div>
+
+{% addtoblock 'js' %}
+{% if config.YAMAP_SUGGEST_API_KEY %}
+<script src="https://api-maps.yandex.ru/2.1/?apikey={{ config.YAMAP_API_KEY }}&lang=ru_RU&suggest_apikey={{ config.YAMAP_SUGGEST_API_KEY }}" type="text/javascript"></script>
+{% else %}
+<script src="https://api-maps.yandex.ru/2.1/?apikey={{ config.YAMAP_API_KEY }}&lang=ru_RU type="text/javascript"></script>
+{% endif %}
+
+<script src="{% static 'commerce/js/delivery_calculator.js' %}"></script>
+{% endaddtoblock %}
+
+{% endif %}
+
+{% endblock body_main_top_content %}
+
+{% block body_main_bottom %}
+<section class="section-dark">
+    <div class="container">
+        <div class="question-main" id="question-main">
+            {% render_feedback_message_request_form %}
+        </div>
+    </div>
+</section>
+{% endblock body_main_bottom %}

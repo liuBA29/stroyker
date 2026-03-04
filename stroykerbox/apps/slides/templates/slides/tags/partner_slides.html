@@ -1,0 +1,29 @@
+{% load i18n %}
+{% if slides %}
+{% spaceless %}
+<div class="partners-slider">
+    <span class="content-title center h2"{% if custom_block_title_color %} style="color: {{ custom_block_title_color }}{% endif %}">
+        {% if custom_block_title %}
+        {{ custom_block_title }}
+        {% else %}
+        {% trans "Наши партнеры" %}
+        {% endif %}
+    </span>
+
+    <div class="owl-carousel">
+        {% for slide in slides %}
+        <div class="item">
+            {% if slide.url %}
+            <a href="{{ slide.url }}" title="{{ slide.name }}">
+                <img src="{{ slide.logo.url }}" alt="{{ slide.name }}">
+            </a>
+            {% else %}
+            <img src="{{ slide.logo.url }}" alt="{{ slide.name }}">
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endspaceless %}
+{% endif %}

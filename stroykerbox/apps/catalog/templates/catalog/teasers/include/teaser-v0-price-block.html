@@ -1,0 +1,68 @@
+{% load catalog_tags %}
+{% if product.has_price_from_to %}
+<span class="product-item__cost">
+    <span class="product-price-range">
+        <span class="product-price-range__text">
+            от
+            <span class="product-price-range__cost">
+                {{ product.price|price_format }}
+            </span>
+            {{ currency_symbol }}{{ product.uom_suffix }}
+        </span>
+        <span class="product-price-range__text">
+            до
+            <span class="product-price-range__cost">
+                {{ product.old_price|price_format }}
+            </span>
+            {{ currency_symbol }}{{ product.uom_suffix }}
+        </span>
+    </span>
+</span>
+
+{% else %}
+
+
+{% if product|is_available:request.location %}
+
+{% if product.old_price or prices.main < prices.product_price %}
+<span class="product-item__cost with-online-price">
+    <span class="product-item__cost-product">
+        {% if prices.main < prices.product_price %}
+        {% if product.price_from %}<span>от</span>{% endif %}
+        {{ prices.product_price|multiplicity_price:product|price_format }}
+        {% else %}
+        {{ product.old_price|multiplicity_price:product|price_format }}
+        {% endif %}<span>{{ currency_symbol }}{{ product.multiplicity_label_suffix }}</span>
+    </span>
+</span>
+{% endif %}
+
+<span class="product-item__cost product-item__online-cost">
+    <span class="product-item__cost-product">
+        {% if product.price_from %}<span>от</span>{% endif %}
+        {{ prices.main|multiplicity_price:product|price_format }}
+        <span>{{ currency_symbol }}{{ product.multiplicity_label_suffix }}</span>
+    </span>
+    {% if price_label %}
+    <span class="product-item__cost-label">
+        {{ price_label }}
+    </span>
+    {% endif %}
+</span>
+
+{% else %}
+<div class="product-price-range__text">Последний раз товар был продан по этой цене</div>
+<div class="product-card-v2__price text-color-light">
+    {% if product.price_from %}
+    <span>
+        от
+    </span>{% endif %}
+    {{ prices.main|multiplicity_price:product|price_format }}
+    <span>
+        {{ currency_symbol }}{{ product.multiplicity_label_suffix }}
+    </span>
+</div>
+
+{% endif %}
+
+{% endif %}

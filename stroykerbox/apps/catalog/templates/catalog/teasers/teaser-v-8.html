@@ -1,0 +1,10 @@
+{# V2 BASE #}
+{% extends 'catalog/teasers/teaser-v2-base.html' %}
+{% load catalog_tags %}
+{% block product_card_counter %}
+<div class="input-number">
+    <div class="order-down"></div>
+    <input type="number" step="1" min="1" max="{% product_units_avail product %}" value="1" id="number" required="">
+    <div class="order-up"></div>
+</div>
+{% endblock %}

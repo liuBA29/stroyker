@@ -1,0 +1,16 @@
+{% extends 'admin/change_form.html' %}
+{% load utils_tags %}
+
+{% block object-tools-items %}
+{{ block.super }}
+<li>
+    <a href="{% url 'admin:parameter_values_export' original.pk %}">
+        Экспорт значений
+    </a>
+</li>
+<li>
+    <a href="{% url 'admin:parameter_values_import' original.pk %}">
+        Импорт значений
+    </a>
+</li>
+{% endblock %}

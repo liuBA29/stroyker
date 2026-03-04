@@ -1,0 +1,30 @@
+{% extends "admin/base_site.html" %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">Главная</a>
+    &rsaquo; <a href="{% url 'admin:catalog_parameter_changelist'  %}">
+        Параметры товаров
+    </a>
+    &rsaquo; <a href="{% url 'admin:catalog_parameter_change' parameter.pk  %}">
+        Параметр "{{ parameter.name }}"
+    </a>
+    &rsaquo; Импорт значений
+</div>
+{% endblock %}
+
+{% block title %}
+Импорт значений для параметра "{{ parameter.name }}" {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <h1>Импорт значений для параметра "{{ parameter.name }}"</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p>Выберите файл для импорта</p>
+        <input type="submit">
+    </form>
+</div>
+{% endblock %}

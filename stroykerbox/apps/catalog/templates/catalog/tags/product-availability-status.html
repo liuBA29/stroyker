@@ -1,0 +1,36 @@
+{% load utils_tags static i18n %}
+
+{% if not count or config.PRODUCT_AVAIL_LABEL_VARIANT == '1' %}
+
+<div class="product-item__status product-item__status--many common-status">
+    {{ config.PRODUCT_NOT_AVAIBLE_STATUS_NAME }}
+</div>
+
+{% elif status %}
+
+<div class="product-item__status product-item__status--many">
+
+
+    {% if stocks %}
+    {% for stock in stocks %}
+    {{ stock.warehouse|getattr:config.CATALOG_STOCK_FILTER_NAME_FIELD }}: {{ stock.available|floatformat:0 }}
+    {% if not forloop.last %}<br />{% endif %}
+    {% endfor %}
+
+    {% else %}
+    {% trans "Кол-во:" %} {{ status }}
+    {% endif %}
+
+    {% if days_to_arrive %}
+    <span class="product-item__delivery">
+        <span class="icon">
+            {% trans "Предполагаемая дата доставки" as delivery_date_alt %}
+            <img src="{% static 'images/delivery-gray.svg' %}"
+                 alt="{{ delivery_date_alt }}"></span>
+        {{ days_to_arrive }} {% trans "дн." %}
+    </span>
+    {% endif %}
+
+</div>
+
+{% endif %}

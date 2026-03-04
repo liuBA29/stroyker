@@ -1,0 +1,24 @@
+{% extends 'catalog/category-base.html' %}
+{% load catalog_tags banner_tags statictext_tags %}
+
+{% block content %}
+<div class="welcome category-root-page">
+    <div class="welcome__side">
+        {% render_catalog_categories_menu %}
+        {% if categories_list %}
+        {% render_catalog_page_sidebar_banners %}
+        {% else %}
+        {% render_sidebar_banners %}
+        {% endif %}
+    </div>
+
+    <div class="welcome__content">
+        {% render_teaser_list products %}
+        {% if page_obj.paginator.num_pages > 1 %}
+        <div style="margin: 2rem auto">
+            {% include 'include/pagination.html' %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

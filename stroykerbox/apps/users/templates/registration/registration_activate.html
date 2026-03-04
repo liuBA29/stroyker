@@ -1,0 +1,13 @@
+{% extends config.GLOBAL_ACCESS_AUTHORIZED_ONLY|yesno:'base-empty.html,base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="content">
+    {% url 'registration' as reg_url %}
+    {% blocktranslate reg_url=reg_url %}
+    <p>Не удалось активировать Вашу учетную запись.</p>
+    <p>Проверьте корректность ссылки, которую Вы получили в письме при регистрации или
+        <a href="{{ reg_url }}">пройдите регистрацию повторно</a>.
+    </p>
+    {% endblocktranslate %}
+</div>
+{% endblock %}

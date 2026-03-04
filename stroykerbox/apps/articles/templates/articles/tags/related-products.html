@@ -1,0 +1,16 @@
+{% if article.related_products.exists %}
+<section class="conditional-section">
+    <div class="container">
+        <span class="content-title product-set-title h2">{{ article.related_products_title }}</span>
+        <div class="product-slider product-slider--4">
+            <div class="owl-carousel">
+                {% for product in article.related_products.all %}
+                <div class="item">
+                    {% include 'catalog/include/product-item.html' %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}

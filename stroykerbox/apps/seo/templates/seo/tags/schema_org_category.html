@@ -1,0 +1,5 @@
+<ul itemscope itemtype="https://schema.org/OfferCatalog" aria-hidden="true" class="hidden">
+   {% if so_category_name %}<span itemprop="name" aria-hidden="true" class="hidden">{{ so_category_name }}</span>{% endif %}
+   {% if so_category_description %}<span itemprop="description" aria-hidden="true" class="hidden">{{ so_category_description }}</span>{% endif %}
+   {% if so_category_image %}<img src="{{ so_category_image }}" itemprop="image" aria-hidden="true" class="hidden" alt="{% if so_category_name %}{{ so_category_name }}{% endif %}">{% endif %}
+</ul>

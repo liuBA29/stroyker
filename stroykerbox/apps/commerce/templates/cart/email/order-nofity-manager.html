@@ -1,0 +1,21 @@
+{% extends 'email/email-base.html' %}
+{% load utils_tags i18n %}
+
+{% block mail_content %}
+{% settings_value 'BASE_URL' as base_url %}
+{% url 'admin:commerce_order_change' order.pk as admin_url %}
+<strong style="margin-bottom:1rem;display:block;">
+    {% blocktranslate with base_url=base_url obj_url=admin_url %}
+    Перейдите по ссылке для <a href="{{ base_url }}{{ obj_url }}">управления заказом</a>.
+    {% endblocktranslate %}
+</strong>
+
+{% if config.SIMPLE_CART_MODE %}
+{% include 'cart/email/order-details-simple-mode.html' %}
+{% else %}
+{% include 'cart/email/order-details.html' %}
+{% endif %}
+
+{% endblock mail_content %}
+
+{% block mail_content_bottom %}{% endblock %}

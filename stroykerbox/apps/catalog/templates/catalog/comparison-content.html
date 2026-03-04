@@ -1,0 +1,158 @@
+{% load catalog_tags reviews_tags thumbnail utils_tags i18n %}
+<script>
+    var category_id = '{{ current_category.pk }}',
+        diff_only = '{{ diff_only|default:"" }}',
+        productsCount = {% if products|length < 3 %}{{ products|length }}{% else %}3{% endif %};
+</script>
+<div class="comparison">
+    <div class="comparison__side">
+        <div class="comparison-category">
+            <span class="comparison-category__title">{% trans "Категории" %} ({{ categories|length }})</span>
+
+            <div class="form-group form-group--margin-small">
+                <select name="characters" class="custom-select" tabindex="-1" id="select-name">
+                    {% for category in categories %}
+                    <option value="{{ category.pk }}"{% if category == current_category %} selected{% endif %}>
+                    {{ category.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="comparison__side-content">
+            <div class="comparison__side-radio">
+                <div class="radio">
+                    <input class="radio-f" type="radio" id="comparison1" name="diff_only" value=""{% if not diff_only %} checked{% endif %}>
+                    <label for="comparison1"><span>{% trans "Все параметры" %}</span></label>
+                </div>
+                <div class="radio">
+                    <input class="radio-f" type="radio" id="comparison2" name="diff_only" value="1"{% if diff_only %} checked{% endif %}>
+                    <label for="comparison2"><span>{% trans "Различающиеся" %}</span></label>
+                </div>
+            </div>
+
+            <div class="comparison-product__description">
+                {% for parameter_name, _ in parameters.items %}
+                <div class="dep-item">
+                    {{ parameter_name }}
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div>
+    <div class="comparison__content">
+
+        <div class="product-slider  product-slider--comparison">
+
+            <div class="owl-carousel">
+                {% for product in products %}
+                {% product_location_price product as product_price %}
+                {% product_location_old_price product as product_old_price %}
+                {% personal_price product as personal_price %}
+
+                <div class="item">
+                    <div class="product-item-comparison">
+
+                        <div class="product-item-comparison__top-mobile"></div>
+                        <a href="{{ product.get_absolute_url }}" class="product-item-comparison__link">
+                            <span class="product-item-comparison__image">
+                                {% thumbnail product.main_image.image '350x400' as im %}
+                                <img src="{{ im.url }}" alt="{{ product.name }}">
+                                {% endthumbnail %}
+                                {% render_product_flags %}
+                            </span>
+                            <span class="product-item-comparison__content-top">
+                                <span class="product-item-comparison__head">
+                                    <span class="product-item-comparison__art">{{ product.code }}</span>
+                                    {% render_product_average_rating product.pk %}
+                                </span>
+                                <span class="product-item-comparison__name">{{ product.name }}</span>
+                                {% if product_price %}
+                                <span class="product-item__cost">
+                                    <span class="product-item__cost-title">{% trans "Цена," %} {%if product.uom %}{{ product.uom }}{% else %}шт.{% endif %}:</span>{{ personal_price }} {{ currency_symbol }}
+                                    {% if personal_price != product_price %}
+                                    <span>{{ product_price }} {{ currency_symbol }}</span>
+                                    {% elif product_old_price %}
+                                    <span>{{ product_old_price }} {{ currency_symbol }}</span>
+                                    {% endif %}
+                                </span>
+                                {% endif %}
+                                {% render_product_availability_status %}
+                                {% if request.user.is_authenticated %}
+                                <span class="product-item__balance">{% product_available_qty %}</span>
+                                {% if product_price %}
+                                <span class="product-item__line-cost">{{ product_price }} {{ currency_symbol }}</span>
+                                <span class="product-item__line-cost">{{ personal_price }} {{ currency_symbol }}</span>
+                                {% endif %}
+                                {% endif %}
+                            </span>
+                        </a>
+
+                        <div class="product-item-comparison__content-bottom">
+                            <div class="product-item-comparison__btns">
+                                <div class="shopping-cart-product">
+                                    {% if product|is_available:request.location %}
+                                    <div class="input-number">
+                                        <div class="order-down"></div>
+                                        <input type="number" min="0" step="1" value="1" id="number" required="">
+                                        <div class="order-up"></div>
+                                    </div>
+                                    <a href="{% url 'cart:add_to_cart' product.pk %}" class="shopping-cart-btn add-to-cart"></a>
+                                    {% elif product_price %}
+                                    <a href="#question-main" data-product-code="{{ product.code }}" data-product-name="{{ product.name }}" class="btn btn--empty-main-min not-for-sale not-available btn-small">
+                                        {% trans "Узнать о наличии" %}
+                                    </a>
+
+                                    {% else %}
+                                    <a href="#question-main" data-product-code="{{ product.code }}" data-product-name="{{ product.name }}" class="btn btn--empty-main-min not-for-sale not-price btn-small">
+                                        {% trans "Узнать цену" %}
+                                    </a>
+
+                                    {% endif %}
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="product-item-comparison__bottom-mobile"></div>
+                        <div class="comparison-delete">
+
+                            <a class="btn-radius btn-radius--delete delete-from-comparison"
+                               href="{% url 'catalog:comparison_del' %}" data-product_id="{{ product.pk }}">
+                                <span class="icon">
+                                    <span class="icon-svg">
+                                        <svg class="icon">
+                                            <use xlink:href="#comparison-delete"></use>
+                                        </svg>
+                                    </span>
+                                </span>
+                                {% trans "Удалить" %}
+                            </a>
+                        </div>
+
+
+
+                        <div class="comparison-product">
+                            <div class="comparison-product__description">
+                                {% for parameter_name, parameter_info in parameters.items %}
+                                <div class="dep-item">
+                                    <span class="dep-item__mobile-title">{{ parameter_name }}</span>
+                                    {{ parameter_info|index:forloop.parentloop.counter0 }}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

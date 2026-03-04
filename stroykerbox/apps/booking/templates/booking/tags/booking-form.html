@@ -1,0 +1,49 @@
+{% if booking_form %}
+{% load utils_tags common_tags %}
+<div data-booking-form class="booking-form">
+    {% if matrix %}
+    <p class="content-title h2 booking-form__title">{{ matrix.form_title|default:"Оставить заявку на бронирование" }}</p>
+    <p class="form-text booking-form__text">
+        {{ matrix.form_text|safe|default:"Заполните форму, и мы свяжемся с вами для уточнения информации о брони по указанному номеру телефона:" }}
+    </p>
+    {% endif %}
+    <form id="booking-form"
+          method="POST"
+          class="booking-form__form"
+          onsubmit="{% render_yandex_metrika_goal config.YMETRICA_GOAL_BOOKING_FORM %}">
+        {% csrf_token %}
+
+        <input type="hidden" name="next" value="{{ request.path }}" />
+        <div class="form-group">
+            <input type="text" class="form-control" name="name" autocomplete="off" required="" disabled />
+            <label for="name" class="label-name">
+                <span class="content-name">Имя*</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <input type="phone"
+                   class="form-control phone"
+                   name="phone"
+                   autocomplete="off"
+                   required=""
+                   maxlength="18"
+                   disabled />
+            <label for="phone"
+                   class="label-name">
+                <span class="content-name">Телефон</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" name="message" autocomplete="off" required="" disabled></textarea>
+            <label for="message" class="label-name">
+                <span class="content-name">Комментарий</span>
+            </label>
+        </div>
+
+        {{ booking_form.captcha }}
+
+        <button type="submit" class="btn btn--main-min">Отправить</button>
+        {% render_form_agreement form %}
+    </form>
+</div>
+{% endif %}

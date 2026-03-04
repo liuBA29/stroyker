@@ -1,0 +1,72 @@
+{% if mode_params %}{% load static sekizai_tags utils_tags %}
+<div class="product-modification-container"
+     data-ajax-url="{% url 'catalog:ajax_get_mod_for_product' product.pk product.modification_code %}">
+
+    {% for param_name, data in mode_params.items %}
+    {% with active_values|getbydictkey:param_name as param_active_values %}
+
+    {% if data.type == 'select' %}
+    <div class="product-card__select-options product-modification-params">
+        <span>{{ param_name }}</span>
+        <select autocomplete="off">
+            {% if data.data_type == 'decimal' %}
+            {% for val in data.choices|list_sort %}
+            <option
+                data-param-id="{{ data.param_id }}"
+                data-param-value="{{ val }}"
+                data-param-data-type="{{ data.data_type }}"
+                {% if val in param_active_values %}
+                class="product-mod-param active" selected
+                {% else %}
+                class="product-mod-param"
+                {% endif %}
+                value="">{{ val }}</option>
+            {% endfor %}
+            {% else %}
+            {% for val in data.choices %}
+            <option
+                data-param-id="{{ data.param_id }}"
+                data-param-value="{{ val }}"
+                data-param-data-type="{{ data.data_type }}"
+                {% if val in param_active_values %}
+                class="product-mod-param active" selected
+                {% else %}
+                class="product-mod-param"
+                {% endif %}
+                value="">{{ val }}</option>
+            {% endfor %}
+            {% endif %}
+        </select>
+    </div>
+    {% elif data.type == 'button' %}
+    <div class="product-card__radio-options product-modification-params">
+        <span>{{ param_name }}</span>
+        {% if data.data_type == 'decimal' %}
+        {% for val in data.choices|list_sort %}
+        <a class="product-mod-param{% if val in param_active_values %} active{% endif %}"
+           data-param-id="{{ data.param_id }}"
+           data-param-value="{{ val }}"
+           data-param-data-type="{{ data.data_type }}"
+           href="javascript:void(0)">{{ val }}</a>
+        {% endfor %}
+        {% else %}
+        {% for val in data.choices %}
+        <a class="product-mod-param{% if val in param_active_values %} active{% endif %}"
+           data-param-id="{{ data.param_id }}"
+           data-param-value="{{ val }}"
+           data-param-data-type="{{ data.data_type }}"
+           href="javascript:void(0)">{{ val }}</a>
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% endwith %}
+    {% endfor %}
+
+    {% addtoblock "js" %}
+    <script src="{% static 'catalog/js/product_modifications.js' %}?{% project_version %}"></script>
+    {% endaddtoblock %}
+
+</div>
+{% endif %}

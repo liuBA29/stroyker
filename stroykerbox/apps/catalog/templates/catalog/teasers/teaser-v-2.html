@@ -1,0 +1,31 @@
+{# V2 HOVER #}
+{% extends 'catalog/teasers/teaser-v2-base.html' %}
+{% load catalog_tags %}
+
+{% block product_teaser_class %} product-card-v2_hover{% endblock %}
+
+{% block labels_badge_area %}
+<div class="product-card-v2__labels">
+    {% if product.is_new %}
+    <div class="card-label card-label_style-new product-card-v2__label">
+        Новинка
+    </div>
+    {% endif %}
+    {% if product.is_sale %}
+    <div class="card-label card-label_style-sale product-card-v2__label">
+        Распродажа
+    </div>
+    {% endif %}
+    {% if product.is_hit %}
+    <div class="card-label card-label_style-hit product-card-v2__label">
+        Хит
+    </div>
+    {% endif %}
+    {% if product.discounted %}
+    <div class="card-label card-label_style-stock product-card-v2__label">
+        Уценка
+    </div>
+    {% endif %}
+    {% render_product_sale_badge product True badge_classes="product-card-sell-badge" %}
+</div>
+{% endblock labels_badge_area %}

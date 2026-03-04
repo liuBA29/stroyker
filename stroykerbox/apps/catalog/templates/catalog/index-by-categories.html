@@ -1,0 +1,21 @@
+{% extends 'catalog/category-base.html' %}
+{% load static catalog_tags seo_tags%}
+
+{% block content %}
+
+<div class="catalog-menu catalog-categories-block">
+    {% for category in categories %}
+    {% schema_org_category %}
+    <a href="{% url 'catalog:category' category.slug %}"
+       title="Перейти в раздел '{{ category.name }}'" class="catalog-menu-item">
+        <span class="catalog-menu-item__image">
+            {% render_category_image category demensions=None %}
+        </span>
+        <span class="catalog-menu-item__name">{{ category.name }}</span>
+    </a>
+    {% endfor %}
+</div>
+
+{% render_product_set_slider 'set-one' %}
+
+{% endblock content %}

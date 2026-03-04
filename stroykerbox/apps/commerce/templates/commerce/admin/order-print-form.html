@@ -1,0 +1,129 @@
+<!DOCTYPE html>{% load static humanize utils_tags tz i18n %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% trans "Форма заказа" %}</title>
+        <link rel="stylesheet" href="{% static 'css/main.css' %}?{{ current_version }}" type="text/css">
+    </head>
+    <body>
+        <table class="table__print__wrapper">
+            <tbody>
+                <tr>
+                    <td width="50%">
+                        {% if region %}
+                        <h3>{% trans "Контакты" %}</h3>
+                        {% for phone in region.phones.all %}
+                        <p>{{ phone.phone }}</p>
+                        {% endfor %}
+                        {% if region.email %}
+                        <p>{{ region.email }}</p>
+                        {% endif %}
+                        <p>{{ host }}</p>
+                        {% endif %}
+                    </td>
+                    <td width="50%">
+                        <div class="print__quick_order_info">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>{% trans "Номер заказа:" %}</td>
+                                        <td>{{ order.pk }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{% trans "Дата заказа:" %}</td>
+                                        {% localtime off %}
+                                        <td>{{ order.created_at|date:"d.m.Y H:i" }}</td>
+                                        {% endlocaltime %}
+                                    </tr>
+
+                                    {% if order.payment_method is not None %}
+                                    <tr>
+                                        <td>{% trans "Способ оплаты:" %}</td>
+                                        <td>{{ order.get_payment_method_display }}</td>
+                                    </tr>
+                                    {% endif %}
+
+                                    {% if order.delivery_id or order.delivery_cart_simple_mode %}
+                                    <tr>
+                                        <td>{% trans "Способ доставки:" %}</td>
+                                        {% if order.delivery_id %}
+                                        <td>{{ order.delivery }}</td>
+                                        {% else %}
+                                        <td>{{ order.delivery_cart_simple_mode }}</td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endif %}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td width="50%">
+                        {% if order.comment %}
+                        <h3>{% trans "Комментарий" %}</h3>
+                        <div class="print__comment__wrapper">
+                            <p>{{ order.comment }}</p>
+                        </div>
+                        {% endif %}
+                    </td>
+                    <td width="50%">
+                        <h3>{% trans "Получатель:" %}</h3>
+                        <p>{{ order.order_user_name }}</div>
+                        <p>{{ order.order_user_phone }}</div>
+                        <p>{{ order.order_user_email }}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="print__order__elements" colspan="2" width="100%">
+                        <h1>{% trans "Заказ №" %}{{ order.pk }}</h1>
+                        <table class="print__table__header">
+                            <tbody>
+                                <tr>
+                                    <td><b>{% trans "Наименование <br> товара" %}</b></td>
+                                    <td><b>{% trans "Кол-во товара" %}</b></td>
+                                    <td><b>{% trans "Цена за ед., руб." %}</b></td>
+                                    <td><b>{% trans "Стоимость, руб." %}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <tbody>
+                                {% for item in products %}
+                                <tr>
+                                    <td>{{ item.product.name }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td>{{ item.personal_product_price|intcomma }} {{ currency_symbol }}</td>
+                                    <td>
+                                        {{ item.personal_product_price|multiplication:item.quantity|intcomma }} {{ currency_symbol }}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <table class="print__table__footer">
+                            <tbody>
+                                <tr>
+                                    <td>{% trans "Доставка:" %}</td>
+                                    <td>
+                                        {% if order.delivery_cost %}
+                                        {{ order.delivery_cost|intcomma }} {{ currency_symbol }}
+                                        {% else %}0
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>{% trans "Итоговая сумма:" %}</strong></td>
+                                    <td><strong>{{ order.final_price|intcomma }} {{ currency_symbol }}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,8 @@
+{% extends 'email/email-base.html' %}
+
+{% block mail_header %}Ваш заказ № {{ order.id }}{% endblock mail_header %}
+
+{% block mail_content %}
+  <h1>Ваш заказ на сайте {{ request.site.domain }}</h1>
+{% include 'cart/email/order-details.html' with hide_total_weight=True %}
+{% endblock mail_content %}

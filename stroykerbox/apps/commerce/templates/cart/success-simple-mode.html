@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static sekizai_tags seo_tags i18n %}
+
+{% block title %}{% trans "Оформление заказа - Завершение" %}{% endblock %}
+
+{% block body_main_top %}
+
+<section class="section simple-cart">
+    <div class="container">
+        {% render_breadcrumbs %}
+        <div class="content-block">
+            <span class="content-title content-title--lg">{% trans "Ваш заказ успешно оформлен" %}</span>
+            <div class="simple-cart-final">
+                <div class="simple-cart-final__order">{% trans "Заказ №" %} {{ order.id }}</div>
+                <div class="simple-cart-final__total">{% trans "Cумма заказа:" %} {{ order.final_price }} {{ currency_symbol }}</div>
+                {% if invoicing %}
+                <div class="simple-cart-final__total">
+                    <a href="{% url 'cart:order-invoice-pdf' order.id %}">{% trans "Счет на оплату" %}</a>
+                </div>
+                {% endif %}
+                {% if order.yookassa_status %}
+                    <div class="simple-cart-final__total">
+                        {% trans "Статус оплаты:" %}
+                        {% if order.yookassa_status == order.YOOKASSA_SUCCEEDED %}
+                            {% trans "оплачено" %}
+                        {% else %}
+                            {% trans "не оплачено" %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                {% if order.user and not order.user.is_active %}
+                <p style="margin: 1rem 0;">
+                    {% trans "Данные Вашей учетной записи и заказа переданы менеджеру для проверки. После активации аккаунта на указанный Вами адрес электронной почты придет уведомление." %}
+                </p>
+                {% endif %}
+
+                <div class="simple-cart-final__button">
+                    <a class="btn btn--main btn--fixed-width btn--size-md" href="/">{% trans "Вернуться в магазин" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% addtoblock 'js' %}
+<script src="{% static 'commerce/js/seccess-order.js' %}?{{ current_version }}"></script>
+{% endaddtoblock %}
+
+{% endblock body_main_top %}
+
+{% block body_main_bottom %}{% endblock %}

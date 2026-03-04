@@ -1,0 +1,64 @@
+<div class="comparison__side mobile-hide">
+    <!-- v-underline - аккордеон с полосками  -->
+    <!-- v-arrow - аккордеон с стрелками  -->
+    <ul class="custom__accordion v-arrow">
+        {% for category in categories %}
+        {% with category_url=category.get_absolute_url %}
+        <li>
+            {% if category.published_children.exists %}
+            <a class="acc__toggle{% if category_url == request.path %} active{% endif %}{% if config.CATEGORY_CATALOG_PAGE_SHOW_ICON and category.icon %} acc-link{% endif %}" href="javascript:void(0);">
+                {% if config.CATEGORY_CATALOG_PAGE_SHOW_ICON and category.icon %}
+                <div class="acc__image">
+                    <img src="{{ category.icon.url }}" alt="">
+                </div>
+                {% endif %}
+                {{ category.name }}
+            </a>
+            <ul class="inner{% if config.CATALOG_MENU_ITEM_ACCENT == 'underline' %} inner-underline{% endif %}{% if category_url == request.path %} show" style="display:block{% endif %}">
+                {% for child in category.published_children.all %}
+
+                <li>
+                    {% if child.published_children.exists %}
+                    <a href="javascript:void(0);" class="acc__toggle acc__toggle-inner acc__toggle-inner-{{ config.CATALOG_MENU_ITEM_ACCENT }}">
+                        {{ child.name }}
+                    </a>
+
+                    {% for subchild in category.published_children.all %}
+                    <ul class="inner show inner-padding" style="display:block">
+                        <li>
+                            <a style="margin-left: 5px"
+                               href="{{ subchild.get_absolute_url }}"
+                               class="acc__toggle not_toggle acc__toggle-inner acc__toggle-inner-{{ config.CATALOG_MENU_ITEM_ACCENT }}">
+                                {{ subchild.name }}
+                            </a>
+                        </li>
+
+                    </ul>
+                    {% endfor %}
+
+                    {% else %}
+                    <a href="{{ child.get_absolute_url }}"
+                       class="acc__toggle not_toggle acc__toggle-inner acc__toggle-inner-{{ config.CATALOG_MENU_ITEM_ACCENT }}">
+                        {{ child.name }}
+                    </a>
+                    {% endif %}
+
+                </li>
+                {% endfor %}
+
+            </ul>
+            {% else %}
+            <a href="{{ category_url }}" class="acc__toggle not_toggle{% if config.CATEGORY_CATALOG_PAGE_SHOW_ICON and category.icon %} acc-link{% endif %}">
+                {% if config.CATEGORY_CATALOG_PAGE_SHOW_ICON and category.icon %}
+                <div class="acc__image">
+                    <img src="{{ category.icon.url }}" alt="">
+                </div>
+                {% endif %}
+                {{ category.name }}
+            </a>
+            {% endif %}
+        </li>
+        {% endwith %}
+        {% endfor %}
+    </ul>
+</div>

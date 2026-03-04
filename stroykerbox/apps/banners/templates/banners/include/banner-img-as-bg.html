@@ -1,0 +1,26 @@
+{% if banner.image_url %}
+{% load custom_form_tags %}
+<a class="content-standard-box image-zoom{% if banner.hide_adaptive %} hide_adaptive{% endif %}"
+   href="{{ banner.image_url }}"
+   {% if banner.name %}title="{{ banner.name }}" {% endif %}>
+    {% else %}
+    <div class="content-background-box image-zoom{% if banner.hide_adaptive %} hide_adaptive{% endif %}">
+        {% endif %}
+        <div class="content-background-box__container">
+            {% if banner.bg_color %}
+            <div class="content-background-box__background" style="background-color:{{ banner.bg_color }};"></div>
+            {% elif banner.image_file %}
+            <div class="content-background-box__background-image">
+                <div class="image image_cover">
+                    <img src="{{ banner.image_file.url }}"{% if banner.name %} alt="{{ banner.name }}"{% endif %}>
+                </div>
+            </div>
+            {% endif %}
+            {% if banner.text %}
+            <div class="content-background-box__text-content">
+                {{ banner.text|custom_form_inside }}
+            </div>
+            {% endif %}
+        </div>
+        {% if banner.image_url %}
+</a>{% else %}</div>{% endif %}

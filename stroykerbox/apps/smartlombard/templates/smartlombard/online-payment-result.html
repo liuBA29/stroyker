@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static seo_tags sekizai_tags widget_tweaks %}
+
+{% block body_main_top %}
+
+<section class="section-dark">
+    <div class="container">
+        {% render_breadcrumbs %}
+        <div class="article-inner__content article-inner__content--wide">
+
+            <div class="text-page">
+
+                {% if is_closed %}
+                {{ msg_for_closed|safe|default:"Отделение закрыто." }}
+
+                {% else %}
+                <h1>Залоговый билет: {{ ticket_number }}</h1>
+                <p>
+                    <span>Проценты при продлении:</span> <span>{{ summ }}</span>
+                </p>
+                <p>
+                    <span>Дата окончания залога:</span> <span>{{ buyout_date }}</span>
+                </p>
+                <strong>Товары:</strong>
+                <ul>
+                    {% for good in goods %}
+                    <li>{{ good }}</li>
+                    {% endfor %}
+                </ul>
+                <p>
+                    <a class="btn" href="{{ online_prolongation_url }}" target="_blank">
+                        Продление залогового билета/договора
+                    </a>
+                </p>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock body_main_top %}
+

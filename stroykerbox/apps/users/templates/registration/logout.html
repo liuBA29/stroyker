@@ -1,0 +1,10 @@
+{% extends config.GLOBAL_ACCESS_AUTHORIZED_ONLY|yesno:'base-empty.html,base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="content">
+    {% url 'login' as login_url %}
+    {% blocktranslate with login_url=login_url %}
+    <p>Вы вышли из системы, чтобы авторизироваться заново <a href="{{ login_url }}">пройдите на страницу авторизации.</a></p>
+    {% endblocktranslate %}
+</div>
+{% endblock %}

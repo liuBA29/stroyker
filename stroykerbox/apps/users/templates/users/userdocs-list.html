@@ -1,0 +1,65 @@
+{% extends 'users/users-base.html' %}
+{% load utils_tags i18n %}
+
+
+{% block lk_content %}
+
+{% now "Y" as current_year %}
+
+<span class="lk-title">{% trans "Документооборот" %}</span>
+{% if docs %}
+<div class="select-mobile">
+
+    <div class="styled-select tabs-lk-mobile" data-tabgroup="first-tab-group">
+        <select class="mobile-doc-year-select">
+            {% for doc_year in years %}
+            <option value="year{{ doc_year }}"{% if doc_year == current_year or years|length == 1 %} 
+                    selected=""{% endif %}>{{ doc_year }}</option>
+            {% endfor %}
+        </select>
+        <span class="fa fa-sort-desc"></span>
+    </div>
+</div>
+{% endif %}
+
+
+<div class="tabs-lk-content">
+    {% if docs %}
+    <ul class="tabs-lk clearfix" data-tabgroup="first-tab-group">
+        {% for doc_year in years %}
+        <li><a href="#year{{ doc_year }}"{% if doc_year == current_year or years|length == 1 %} class="active"{% endif %}>{{ doc_year }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <div id="first-tab-group" class="tabgroup">
+        {% regroup docs by doc_date.year as docs_by_year %}
+        {% for year in docs_by_year %}
+        <div id="year{{ year.grouper }}" class="tab-lk">
+            <ul class="accordion-lk">
+                {% regroup year.list by doc_date.month as docs_by_month %}
+                {% for month in docs_by_month %}
+                <li class="active"><a href="#" class="opener"><span>{{ month.grouper|month_name }} {{ year.grouper }}</span></a>
+                    <ul class="submenu" style="display:block">
+                        <li>
+                            {% for doc in month.list %}
+                            <div class="lk-doc-line">
+                                <span class="lk-doc-line__name">{{ doc.name }} от {{ doc.doc_date|date:"d.m.Y" }}</span>
+                                <span class="lk-doc-line__format">{{ doc.file|file_extension }}, {{ doc.file|file_size }}<span class="lk-doc-line__download">
+                                        <a href="{{ doc.file.url }}">{% trans "Скачать" %}</a></span></span>
+                            </div>
+                            {% endfor %}
+                        </li>
+                    </ul>
+
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>{% trans "Документов не найдено." %}</p>
+    {% endif %}
+</div>
+
+{% endblock lk_content %}

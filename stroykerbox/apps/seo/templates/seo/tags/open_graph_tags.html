@@ -1,0 +1,7 @@
+{% load seo_tags %}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ og_site_name }}">
+<meta property="og:image" content="{{ og_image }}">
+<meta property="og:title" content="{% render_title %}">
+<meta property="og:url" content="{{ og_url }}">
+<meta property="og:description" content="{% get_meta_tag 'description' %}">

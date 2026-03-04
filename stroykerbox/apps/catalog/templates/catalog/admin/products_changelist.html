@@ -1,0 +1,80 @@
+{# ImportMixin is used to create the list of categories #}
+{% extends 'admin/change_list.html' %}
+{% load utils_tags %}
+
+{% block coltype %}products-changelist{% endblock %}
+
+{% block pretitle %}
+<div class="object-tools-custom">
+    <ul>
+        {% if watermarks_allowed %}
+        <li>
+            <a href="{% url 'admin:apply_watermarks' %}">
+                Наложить водные знаки на изображения товаров
+            </a>
+        </li>
+        {% endif %}
+        {% if config.SEARCH__USE_FULLTEXT %}
+        <li>
+            <a href="{% url 'admin:update_search_index' %}">
+                Обновить поисковый индекс
+            </a>
+        </li>
+        {% endif %}
+        <li>
+            <a href="{% url 'admin:product_images_import' %}">
+                Импорт изображений
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'admin:product_props_import' %}">
+                Импорт свойств
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'admin:product_props_export' %}{{cl.get_query_string}}">
+                Экспорт свойств
+            </a>
+        </li>
+        {% settings_value 'INSTALLED_APPS' as installed_apps %}
+        {% if 'stroykerbox.apps.vk_market' in installed_apps %}
+        <li>
+            <a href="{% url 'admin:vk_sync_all' %}">
+                Синхронизировать с VK-Market
+            </a>
+        </li>
+        {% endif %}
+        <li>
+            <a href="{% url 'admin:product_doc_import' %}">
+                Импорт документов
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'admin:product_doc_export' %}">
+                Экспорт документов
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'admin:product_related_export' %}{{cl.get_query_string}}">
+                Экспорт связанных товаров (XLS)
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'admin:product_related_import' %}">
+                Импорт связанных товаров (XLS)
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'admin:price_update_from_feed' %}">
+                Обновление цен из yml/xml фида
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'admin:replace_sku' %}">
+                Замена артикулов
+            </a>
+        </li>
+    </ul>
+</div>
+{{ block.super }}
+{% endblock %}

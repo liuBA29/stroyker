@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "404 - Страница не найдена" %}{% endblock %}
+{% block body_main_top %}
+
+<section class="error">
+    <div class="container">
+
+        <div class="error__content">
+            {% block error_message %}
+            {% blocktranslate %}
+            <h1>Произошла ошибка!</h1>
+            <p>К сожалению, такой страницы нет. Возможно, вы перешли по старой ссылке или ввели неправильный адрес.</p>
+            <p>Код ошибки: 404</p>
+            {% endblocktranslate %}
+            {% endblock error_message %}
+            <a href="/" class="btn btn--main">{% trans "На главную" %}</a>
+        </div>
+    </div>
+
+</section>
+
+{% endblock body_main_top %}
+
+{% block body_main_bottom %}{% endblock %}

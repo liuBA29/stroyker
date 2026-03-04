@@ -1,0 +1,14 @@
+{# ImportMixin is used to create the list of categories #}
+{% extends 'admin/mptt_change_list.html' %}
+{% load i18n %}
+
+{% block object-tools-items %}
+{{ block.super }}
+{% if config.SEARCH__USE_FULLTEXT and config.SEARCH_STATICPAGE_TITLE or config.SEARCH_STATICPAGE_TEXT %}
+<li>
+    <a href="{% url 'admin:update_pages_search_index' %}" class="grp-state-focus import_link">
+        {% trans "Обновить поисковый индекс" %}
+    </a>
+</li>
+{% endif %}
+{% endblock %}

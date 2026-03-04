@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load seo_tags commerce_tags catalog_tags widget_tweaks common_tags static i18n %}
+
+{% block other_js %}
+{{ form.delivery_payment_mapping|json_script:"delivery_payment_mapping" }}
+<script src="{% static 'commerce/js/cart-simple.js' %}"></script>
+{% endblock %}
+
+{% block body_main_top %}
+
+<section class="section simple-cart">
+    <div class="container">
+        {% render_breadcrumbs %}
+        <div class="content-block">
+            <h1 class="content-title content-title--lg">{% render_h1 %}</h1>
+            <div class="simple-cart__content">
+                <div class="shopping-cart">
+                    {% render_cart_products cart %}
+
+                    <div class="delivery-cart">
+                        <div class="delivery-total delivery-total--cart">
+                            <ul>
+                                <li><span class="delivery-total__sm">{% trans "Общий вес, кг:" %}</span>
+                                    <span class="delivery-total__sm cart-total-weight">{{ cart.total_weight }}</span>
+                                </li>
+                                <li><span class="delivery-total__sm">{% trans "Общий объём, м3:" %} </span>
+                                    <span class="delivery-total__sm cart-total-volume">{{ cart.total_volume }}</span>
+                                </li>
+                                <li><span class="delivery-total__lg">{% trans "Итого:" %}</span>
+                                    <span class="delivery-total__lg cart-total-price">
+                                        {{ cart.total_price|price_format }} {{ currency_symbol }}
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="simple-cart__form">
+                <form class="simple-order-form" method="post">
+                    {% csrf_token %}
+                    {{ form.captcha }}
+
+                    <div class="d-gridgrid-columns-1 gap-10">
+                        {% if form.delivery_variant|length > 0 %}
+                        <div class="simple-order-form__group simple-order-form__column">
+                            <h3 class="simple-order-form__title">{% trans "Предпочтительный вариант доставки:" %}</h3>
+                            <ul id="id_delivery_variant">
+                                {% for radio in form.delivery_variant %}
+                                <li>
+                                    <div class="new-radio">
+                                        {{ radio.tag }}
+                                        <label class="new-radio__label" for="{{ radio.id_for_label }}">
+                                            {{ radio.choice_label }}
+                                        </label>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+
+
+                        {% if form.delivery_variant.value == "самовывоз" %}
+                        <div class="simple-order-form__group simple-order-form__column" id="pickup-section">
+                            <h3 class="simple-order-form__title mb-0">{% trans "Выберите пункт самовывоза" %}</h3>
+                            <div class="simple-order-form__column d-grid grid-columns-sm-2 grid-columns-md-2 grid-columns-xl-2 grid-columns-lg-2 gap-10">
+                                {% for stock in stocks %}
+                                <div class="d-flex flex-row gap-10">
+                                    <input class="cart-radio mt-3" name="pickup_point"
+                                                                   id="pickup-point-{{ stock.id }}"
+                                                                   type="radio" value="{{ stock.id }}"/>
+                                    <label for="pickup-point-{{ stock.id }}" class="d-flex flex-column gap-2">
+                                        <p class="text size-16 color-gray-700">{{ stock.name }}</p>
+                                        <p class="text size-12 color-gray-550">{{ stock.address }}</p>
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if form.payment_variant|length > 0 %}
+                        <div class="simple-order-form__group simple-order-form__column" id="payment-section">
+                            <h3 class="simple-order-form__title">{% trans "Предпочтительный вариант оплаты:" %}</h3>
+                            <ul id="id_payment_variant">
+                                {% for radio in form.payment_variant %}
+                                <li>
+                                    <div class="new-radio">
+                                        {{ radio.tag }}
+                                        <label class="new-radio__label" for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+
+                        {% if form.payment_variant.errors %}
+                        <div class="form-group form-group--error">
+                            <span class="error-text">{{ form.payment_variant.errors }}</span>
+                        </div>
+                        {% endif %}
+
+                        <div class="simple-order-form__group simple-order-form__inputs">
+                            <div class="form-group{% if form.name.errors %} form-group--error{% endif %}">
+                                {{ form.name|add_class:"form-control" }}
+                                <label for="{{ form.name.id_for_label }}" class="label-name">
+                                    <span class="content-name">
+                                        {% trans "Имя*" %}
+                                    </span>
+                                </label>
+                                {% if form.name.errors %}
+                                <span class="error-text">{{ form.name.errors }}</span>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group{% if form.phone.errors %} form-group--error{% endif %}">
+                                {{ form.phone|add_class:"form-control phone"|attr:"autocomplete:off" }}
+                                <label for="{{ form.phone.id_for_label }}" class="label-name">
+                                    <span class="content-name">
+                                        {% trans "Телефон*" %}
+                                    </span>
+                                </label>
+                                {% if form.phone.errors %}
+                                <span class="error-text">{{ form.phone.errors }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="form-group{% if form.email.errors %} form-group--error{% endif %}">
+                                {{ form.email|add_class:"form-control" }}
+                                <label for="{{ form.email.id_for_label }}" class="label-name">
+                                    <span class="content-name">
+                                        {% trans "Email*" %}
+                                    </span>
+                                </label>
+                                {% if form.email.errors %}
+                                <span class="error-text">{{ form.email.errors }}</span>
+                                {% endif %}
+                            </div>
+
+                            {% if extra_fields %}
+                            {% for field in extra_fields %}
+                            {% include 'cart/extra_fields.html' with field=field %}
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group{% if form.comment.errors %} form-group--error{% endif %} comment">
+                            {{ form.comment|add_class:"form-control" }}
+                            <label for="{{ form.comment.id_for_label }}" class="label-name">
+                                <span class="content-name">
+                                    {% trans "Комментарий к заказу" %}
+                                </span>
+                            </label>
+                            {% if form.comment.errors %}
+                            <span class="error-text">{{ form.comment.errors }}</span>
+                            {% endif %}
+                        </div>
+
+                        {% render_form_agreement form %}
+
+                        <div class="simple-order-form__group simple-order-form__submit"
+                             style="margin-top: 10px; width: 100%;">
+                            <button class="btn btn--main-min button-theme button-theme_primary" type="submit">
+                                {% trans "Отправить" %}
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+</section>
+
+{% render_recently_watched %}
+{% endblock body_main_top %}
+
+{% block body_main_bottom %}{% endblock %}

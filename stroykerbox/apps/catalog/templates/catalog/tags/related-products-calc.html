@@ -1,0 +1,87 @@
+{% load static catalog_tags sekizai_tags utils_tags i18n %}
+
+{% if calc_related_products %}
+<div class="g-content_inner g-content_frameless g-content mb-10 additional-products-block-wrapper">
+    {% if calc_show_title and config.RELATED_PRODUCTS_CALCULATOR_BLOCK_TITLE %}
+    <span class="h2">{{ config.RELATED_PRODUCTS_CALCULATOR_BLOCK_TITLE }}</span>
+    {% endif %}
+    <div class="additional-products-block">
+        <div class="additional-products">
+
+            {% for product in calc_related_products %}
+            <div class="additional-product">
+                {% if product.main_image %}
+                <a href="{{ product.get_absolute_url }}" class="additional-product__image-wrapper">
+                    <img class="additional-product__image" src="{{ product.main_image.image.url }}" alt="">
+                </a>
+                {% endif %}
+                <div class="additional-product__content">
+                    <div class="additional-product__description">
+                        <p class="g-text g-text_small additional-product__articul">{{ product.code }}</p>
+                        <p class="g-text additional-product__title">{{ product.name }}</p>
+                        {# <p class="g-text g-text_green additional-product__status">Много</p> #}
+                    </div>
+                    <div class="additional-product__info">
+                        <p class="g-text g-text_grey additional-product__price-title d-none d-md-block">
+                            {% trans "Цена:" %}
+                        </p>
+                        <div class="additional-product__price-block">
+                            {% product_final_price product as final_price %}
+                            <p class="g-text additional-product__price">{{ final_price|price_format }} {{ currency_symbol }}/{{ product.uom|default:"шт." }}</p>
+                        </div>
+                        <div class="additional-product__counter-wrapper">
+                            <p class="g-text g-text_grey additional-product__counter-text">
+                                {% trans "Добавить к заказу:" %}
+                            </p>
+                            {% with product|is_available:request.location as is_avail %}
+                            <div class="product-counter{% if not is_avail %} product-counter_disabled{% elif product.pk in cart.products %} product-counter_active{% endif %}">
+                                <div class="order-down product-counter__order-down{% if not is_avail %} disabled{% endif %}"></div>
+                                <input
+                                    data-product-pk="{{ product.pk }}"
+                                    data-related-product-price="{{ final_price|stringformat:"f" }}"
+                                    class="product-counter__input"
+                                    type="number"
+                                    min="0"
+                                    max="{% product_units_avail product %}"
+                                    step="1"
+                                    value="{{ cart.products|getbydictkey:product.pk|default:0 }}"
+                                    id="number" required="" autocomplete="off">
+                                <div class="order-up product-counter__order-up{% if not is_avail %} disabled{% endif %}"></div>
+                            </div>
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <div class="additional-products-block__bottom final-price-block">
+            <div class="additional-products-block__price">
+                <p class="additional-products-block__price-text">{% trans "Итого:" %}</p>
+                <p class="additional-products-block__price-text">
+                    <span class="products-calc-final-price"></span> {{ currency_symbol }}
+                </p>
+            </div>
+            <a class="g-button g-button_fill additional-products-block__button related-products-add-to-cart d-none "
+               href="#"
+               data-ajax-url="{% url 'cart:ajax_add_to_cart_related' %}">
+                {% if config.WHITETHEME_USE_CUSTOM_CART_ICON and config.WHITETHEME_CUSTOM_CART_ICON %}
+                <img class="cart-icon custom-cart-icon" src="{% get_media_prefix %}{{ config.WHITETHEME_CUSTOM_CART_ICON }}">
+                {% if config.WHITETHEME_CUSTOM_CART_ICON_HOVER %}
+                <img class="custom-icon hover" src="{% get_media_prefix %}{{ config.WHITETHEME_CUSTOM_CART_ICON_HOVER }}"/>
+                {% endif %}
+                {% else %}
+                <img class="cart-icon" src="{% static 'images/shopping-cart.svg' %}">
+                {% endif %}
+                {{ config.ADD_TO_CART_BTN_LABEL }}
+            </a>
+        </div>
+    </div>
+</div>
+
+{% addtoblock "js" %}
+<script src="{% static 'catalog/js/related_products_calc.js' %}?{% project_version %}"></script>
+{% endaddtoblock %}
+
+{% endif %}

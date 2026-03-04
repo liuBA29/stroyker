@@ -1,0 +1,40 @@
+{% load static catalog_tags location_tags utils_tags customization_tags i18n search_tags %}
+<section class="header--mob">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="logo">{{ custom_logo }}
+                    <a href="/">
+                        {% render_logo_image mobile=True %}
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 pr--0">
+                {% render_search_form mobile=True icon_position=left %}
+            </div>
+            <div class="col-3 pl--0">
+                <div class="burger-box">
+                    <a class="cart-mob" href="{% url 'cart:cart' %}">
+                        {% if config.HEADER_ICON_CART %}
+                        <img class="icon-svg" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART }}"/>
+                            {% if config.HEADER_ICON_CART_HOVER %}
+                            <img class="icon-svg hover" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART_HOVER }}"/>
+                            {% endif %}
+                        {% else %}
+                        <img src="{% static 'images/cart-icon-mob.svg' %}" alt="">
+                        {% endif %}
+                        <span class="cart--counter cart-number">{{ cart|length }}</span>
+                    </a>
+                    <button class="btn" id="my-button">
+                        <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="17" height="2" rx="1" fill="currentColor"/>
+                            <rect y="6" width="17" height="2" rx="1" fill="currentColor"/>
+                            <rect y="12" width="17" height="2" rx="1" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% render_mmenujs %}
+</section>

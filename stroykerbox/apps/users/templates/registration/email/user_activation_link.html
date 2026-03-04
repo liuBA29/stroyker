@@ -1,0 +1,10 @@
+{% extends 'email/email-base.html' %}
+{% load utils_tags i18n %}
+
+{% block mail_header %}{% trans "Завершение регистрации" %}{% endblock mail_header %}
+
+{% block mail_content %}
+{% blocktranslate with site_name=config.SITE_NAME link=link|safe %}
+<p>Для завершения регистрации на сайте {{ site_name }}, пожалуйста, перейдите по этой ссылке: {{ link }}</p>
+{% endblocktranslate %}
+{% endblock mail_content %}

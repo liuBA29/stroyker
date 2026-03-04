@@ -1,0 +1,327 @@
+{% if scheme %}
+{% load cache utils_tags customization_tags %}
+{% cache None customization_colors_css %}
+{% spaceless %}
+{% if scheme.custom_font %}
+@font-face {
+font-family: {{ scheme.custom_font.name }};
+src: url({{ scheme.custom_font.file.url }});
+}
+{% if scheme.custom_font_elements %}
+{{ scheme.custom_font_elements }} {
+font-family: {{ scheme.custom_font.name }} !important;
+}
+{% endif %}
+{% endif %}
+:root {
+{% if scheme.custom_font %}
+--custom-font-family: {{ scheme.custom_font.name }};
+{% endif %}
+
+{% if scheme.category_preview_height %}
+--category-preview-height: {{ scheme.category_preview_height }}px;
+{% endif %}
+{% if scheme.color_main_dropdown_menu_bg %}
+--color-main-dropdown-menu-bg: {{ scheme.color_main_dropdown_menu_bg }};
+{% endif %}
+{% if scheme.color_main_dropdown_menu_text %}
+--color-main-dropdown-menu-text: {{ scheme.color_main_dropdown_menu_text }};
+{% endif %}
+{% if scheme.inner_page_bg %}
+--inner-page-bg: {{ scheme.inner_page_bg }};
+{% endif %}
+
+
+{# Main buttons set #}
+{% render_main_buttons_css_vars scheme %}
+
+{% if scheme.main_elements_color %}
+--main-elements-color: {{ scheme.main_elements_color }};
+{% endif %}
+{% if scheme.main_elements_hover_color %}
+--main-elements-hover-color: {{ scheme.main_elements_hover_color }};
+{% endif %}
+{% if scheme.colorless_buttons_border_color %}
+--colorless-buttons-border-color: {{ scheme.colorless_buttons_border_color }};
+{% endif %}
+{% if scheme.colorless_buttons_font_color %}
+--colorless-buttons-font-color: {{ scheme.colorless_buttons_font_color }};
+{% endif %}
+{% if scheme.colorless_buttons_hover_bg %}
+--colorless-buttons-hover-bg: {{ scheme.colorless_buttons_hover_bg }};
+{% endif %}
+{% if scheme.checkout_button_color %}
+--checkout-button-color : {{ scheme.checkout_button_color  }};
+{% endif %}
+{% if scheme.invoice_button_color %}
+--invoice-button-color : {{ scheme.invoice_button_color  }};
+{% endif %}
+{% if scheme.header_bg_color %}
+--header-bg-color: {{ scheme.header_bg_color }};
+{% endif %}
+{% if scheme.frontpage_first_screen_bg_color %}
+--frontpage-first-screen-bg-color: {{ scheme.frontpage_first_screen_bg_color }};
+{% endif %}
+{% if scheme.preview_bg_color %}
+--preview-bg-color: {{ scheme.preview_bg_color }};
+{% endif %}
+{% if scheme.preview_font_color %}
+--preview-font-color: {{ scheme.preview_font_color }};
+{% endif %}
+{% if scheme.preview_bg_hover_color %}
+--preview-bg-hover-color : {{ scheme.preview_bg_hover_color }};
+{% endif %}
+{% if scheme.hit_tag_bg_color %}
+--hit-tag-bg-color: {{ scheme.hit_tag_bg_color }};
+{% endif %}
+{% if scheme.sale_tag_bg_color %}
+--sale-tag-bg-color: {{ scheme.sale_tag_bg_color }};
+{% endif %}
+{% if scheme.new_tag_bg_color %}
+--new-tag-bg-color: {{ scheme.new_tag_bg_color  }};
+{% endif %}
+{% if scheme.discount_tag_bg_color %}
+--discount-tag-bg-color: {{ scheme.discount_tag_bg_color }};
+{% endif %}
+{% if scheme.news_label_bg_color %}
+--news-label-bg-color: {{ scheme.news_label_bg_color  }};
+{% endif %}
+{% if scheme.news_label_font_color %}
+--news-label-font-color: {{ scheme.news_label_font_color  }};
+{% endif %}
+{% if scheme.action_label_bg_color %}
+--action-label-bg-color: {{ scheme.action_label_bg_color  }};
+{% endif %}
+{% if scheme.article_label_bg_color %}
+--article-label-bg-color: {{ scheme.article_label_bg_color  }};
+{% endif %}
+
+{% if scheme.header_buttons_font_color %}
+--header-buttons-font-color: {{ scheme.header_buttons_font_color  }};
+{% endif %}
+{% if scheme.search_field_btn_color %}
+--search-field-btn-color: {{ scheme.search_field_btn_color }};
+{% endif %}
+{% if scheme.search_field_bg_color %}
+--search-field-bg-color: {{ scheme.search_field_bg_color }};
+{% endif %}
+{% if scheme.search_field_border_color %}
+--search-field-border-color: {{ scheme.search_field_border_color }};
+{% endif %}
+{% if scheme.search_field_font_color %}
+--search-field-font-color: {{ scheme.search_field_font_color }};
+{% endif %}
+{% if scheme.search_field_placeholder_font_color %}
+--search-field-placeholder-font-color: {{ scheme.search_field_placeholder_font_color }};
+{% endif %}
+{% if scheme.catalog_menu_button_bg %}
+--catalog-menu-button_bg: {{ scheme.catalog_menu_button_bg }};
+{% endif %}
+{% if scheme.catalog_menu_bg_color %}
+--catalog-menu-bg-color: {{ scheme.catalog_menu_bg_color }};
+{% endif %}
+{% if scheme.catalog_menu_hover_bg_color %}
+--catalog-menu-hover-bg-color: {{ scheme.catalog_menu_hover_bg_color }};
+{% endif %}
+{% if scheme.catalog_menu_border_color %}
+--catalog-menu-border-color: {{ scheme.catalog_menu_border_color }};
+{% endif %}
+{% if scheme.catalog_menu_font_color %}
+--catalog-menu-font-color: {{ scheme.catalog_menu_font_color }};
+{% endif %}
+{% if scheme.catalog_menu_font_hover_color %}
+--catalog-menu-font-hover-color: {{ scheme.catalog_menu_font_hover_color }};
+{% endif %}
+{% if scheme.catalog_menu_burger_color %}
+--catalog-menu-burger-color: {{ scheme.catalog_menu_burger_color }};
+{% endif %}
+{% if scheme.catalog_menu_link_hover %}
+--catalog-menu-link-hover: {{ scheme.catalog_menu_link_hover }};
+{% endif %}
+{% if scheme.checkout_button_font_color %}
+--checkout-button-font-color: {{ scheme.checkout_button_font_color }};
+{% endif %}
+{% if scheme.invoice_button_font_color %}
+--invoice-button-font-color: {{ scheme.invoice_button_font_color }};
+{% endif %}
+{% if scheme.hit_tag_font_color %}
+--hit-tag-font-color: {{ scheme.hit_tag_font_color }};
+{% endif %}
+{% if scheme.sale_tag_font_color %}
+--sale-tag-font-color: {{ scheme.sale_tag_font_color }};
+{% endif %}
+{% if scheme.discount_tag_font_color %}
+--discount-tag-font-color: {{ scheme.discount_tag_font_color }};
+{% endif %}
+{% if scheme.new_tag_font_color %}
+--new-tag-font-color: {{ scheme.new_tag_font_color }};
+{% endif %}
+{% if scheme.action_label_font_color %}
+--action-label-font-color: {{ scheme.action_label_font_color }};
+{% endif %}
+{% if scheme.article_label_font_color %}
+--article-label-font-color: {{ scheme.article_label_font_color }};
+{% endif %}
+{% if scheme.product_preview_bg_color %}
+--product-preview-bg-color: {{ scheme.product_preview_bg_color }};
+{% endif %}
+{% if scheme.header_top_icon_color %}
+--header-top-icon-color: {{ scheme.header_top_icon_color }};
+{% endif %}
+{% if scheme.header_top_bg_color %}
+--header-top-bg-color: {{ scheme.header_top_bg_color }};
+{% endif %}
+{% if scheme.header_top_phone_font_color %}
+--header-top-phone-font-color: {{ scheme.header_top_phone_font_color }};
+{% endif %}
+{% if scheme.header_top_menu_font_color %}
+--header-top-menu-font-color: {{ scheme.header_top_menu_font_color }};
+{% endif %}
+{% if scheme.header_top_menu_font_hover_color %}
+--header-top-menu-font-hover-color: {{ scheme.header_top_menu_font_hover_color }};
+{% endif %}
+{% if scheme.catalog_menu_arrow_color %}
+--catalog-menu-arrow-color: {{ scheme.catalog_menu_arrow_color }};
+{% endif %}
+
+
+{% if scheme.category_menu_font_highlight_color %}
+--category-menu-font-highlight-color: {{ scheme.category_menu_font_highlight_color }};
+{% endif %}
+{% if scheme.category_menu_underline_highlight_color %}
+--category-menu-underline-highlight-color: {{ scheme.category_menu_underline_highlight_color }};
+{% endif %}
+
+
+{% if scheme.feedback_form_section_bg_color %}
+--feedback-form-section-bg-color: {{ scheme.feedback_form_section_bg_color }};
+{% endif %}
+{% if scheme.feedback_form_bg %}
+--feedback-form-bg: {{ scheme.feedback_form_bg }};
+{% endif %}
+{% if scheme.feedback_form_title %}
+--feedback-form-title: {{ scheme.feedback_form_title }};
+{% endif %}
+{% if scheme.feedback_form_text %}
+--feedback-form-text: {{ scheme.feedback_form_text }};
+{% endif %}
+{% if scheme.feedback_form_border %}
+--feedback-form-border: {{ scheme.feedback_form_border }};
+{% endif %}
+{% if scheme.feedback_form_input_border %}
+--feedback-form-input-border: {{ scheme.feedback_form_input_border }};
+{% endif %}
+
+{% if scheme.breadcrumb_item_color %}
+--breadcrumb-item-color: {{ scheme.breadcrumb_item_color }};
+{% endif %}
+{% if scheme.breadcrumb_item_hover_color %}
+--breadcrumb-item-hover-color: {{ scheme.breadcrumb_item_hover_color }};
+{% endif %}
+
+
+{% if scheme.product_list_header_link_color %}
+--product-list-header-link-color: {{ scheme.product_list_header_link_color }};
+{% endif %}
+{% if scheme.product_list_header_link_hover_color %}
+--product-list-header-link-hover-color: {{ scheme.product_list_header_link_hover_color }};
+{% endif %}
+
+{% if scheme.product_tab_link_color %}
+--product-tab-link-color: {{ scheme.product_tab_link_color }};
+{% endif %}
+{% if scheme.product_tab_link_hover_color %}
+--product-tab-link-hover-color: {{ scheme.product_tab_link_hover_color }};
+{% endif %}
+{% if scheme.color_card_border %}
+--color-card-border: {{ scheme.color_card_border }};
+{% endif %}
+{% if scheme.product_preview_border_hover_color %}
+--product-preview-border-hover-color: {{ scheme.product_preview_border_hover_color }};
+{% endif %}
+{% if scheme.callme_button_color %}
+--callme-button-color: {{ scheme.callme_button_color }};
+{% endif %}
+{% if scheme.callme_button_hover_color %}
+--callme-button-hover-color: {{ scheme.callme_button_hover_color }};
+{% endif %}
+
+{% if scheme.callme_button_fill_color %}
+--callme-button-fill-color: {{ scheme.callme_button_fill_color }};
+{% endif %}
+{% if scheme.callme_button_fill_hover_color %}
+--callme-button-fill-hover-color: {{ scheme.callme_button_fill_hover_color }};
+{% endif %}
+
+{% if scheme.staticpage_box_fill_color %}
+--staticpage-box-fill-color: {{ scheme.staticpage_box_fill_color }};
+{% endif %}
+{% if scheme.staticpage_box_border_color %}
+--staticpage-box-border-color: {{ scheme.staticpage_box_border_color }};
+{% endif %}
+
+
+{% if scheme.color_lk_accent_items %}
+--color-lk-accent-items: {{ scheme.color_lk_accent_items }};
+{% endif %}
+
+{% if scheme.color_lk_items_bg %}
+--color-lk-items-bg: {{ scheme.color_lk_items_bg }};
+{% endif %}
+{% if scheme.color_lk_items_border %}
+--color-lk-items-border: {{ scheme.color_lk_items_border }};
+{% endif %}
+{% if scheme.color_lk_items_hover_bg  %}
+--color-lk-items-hover-bg: {{ scheme.color_lk_items_hover_bg }};
+{% endif %}
+
+
+{% if scheme.color_fixedbtn %}
+--color-fixedbtn: {{ scheme.color_fixedbtn }};
+{% endif %}
+{% if scheme.color_bg_fixedbtn %}
+--color-bg-fixedbtn: {{ scheme.color_bg_fixedbtn }};
+{% endif %}
+
+{% if scheme.color_product_online_price %}
+--color-product-online-price: {{ scheme.color_product_online_price }};
+{% endif %}
+
+{# Footer #}
+{% if scheme.footer_bg_color %}
+--footer-bg-color: {{ scheme.footer_bg_color }};
+{% endif %}
+{% if scheme.footer_links %}
+--color-footer-links: {{ scheme.footer_links }};
+{% endif %}
+{% if scheme.footer_links_hover %}
+--color-footer-links-hover: {{ scheme.footer_links_hover }};
+{% endif %}
+{% if scheme.footer_title %}
+--color-footer-title: {{ scheme.footer_title }};
+{% endif %}
+
+}
+
+
+{% if scheme.breadcrumb_sep_color %}
+.breadcrumbs .sep {
+background-image: url('data:image/svg+xml;utf8,<svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.48438 17.9707L16.9697 9.48542L8.48438 1.00014" stroke="{{ scheme.breadcrumb_sep_color|hex_to_rgb }}"/></svg>') !important;
+}
+{% endif %}
+{% if scheme.catalog_menu_arrow_color %}
+.catalog-side__content ul li a:before {
+background-image: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.1875 14.375L13.9757 7.58678L7.1875 0.798551" stroke="{{ scheme.catalog_menu_arrow_color|hex_to_rgb }}" stroke-width="2" /> </svg>') !important;
+}
+.catalog-side__content ul li.more a {
+background-image: url('data:image/svg+xml;utf8,<svg width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 0.704624L0.618693 0L4.5 3.49265L8.38131 0L9 0.704624L4.5 4.75401L0 0.704624Z" fill="{{ scheme.catalog_menu_arrow_color|hex_to_rgb }}" /></svg>') !important;
+}
+{% endif %}
+{% if scheme.preview_font_color %}
+.catalog-menu-item:before {
+background-image: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.1875 14.375L13.9757 7.58678L7.1875 0.798551" stroke="{{ scheme.preview_font_color|hex_to_rgb }}" stroke-width="2" /></svg>') !important;
+}
+{% endif %}
+{% endspaceless %}
+{% endcache %}
+{% endif %}

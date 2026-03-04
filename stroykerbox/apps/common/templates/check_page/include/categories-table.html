@@ -1,0 +1,269 @@
+<div class="d-flex flex-column gap-60px mb-lg-120px mb-80px">
+    <div class="d-flex flex-column gap-20px">
+        <h2 class="h4 mb-0px">
+            Категории опубликованные (оценка <strong>{{ categories_points }}</strong>)
+        </h2>
+
+        <div class="table-responsive">
+            <table class="table table-category table-layout-fixed m-0px">
+                <colgroup>
+                    <col class="w-20">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-15">
+                    <col class="w-15">
+                </colgroup>
+                <thead class="table-light">
+                    <tr>
+                        <th></th>
+                        <th>Картинка категории</th>
+                        <th>SEO-текст</th>
+                        <th>ТОП-товары категории</th>
+                        <th>Связанные категории</th>
+                        <th>Параметры</th>
+                        <th>Сформированный H1</th>
+                        <th>Сформированный title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            <button class="accordion-button collapsed" type="button"
+                                                                       data-bs-toggle="collapse"
+                                                                       data-bs-target="#collapse_category_published"
+                                                                       aria-expanded="false"
+                                                                       aria-controls="collapse_category">
+                                Все категории
+                            </button>
+                        </th>
+                        <td>
+                            <div class="text-center">
+                                {{ categories_published.summary.has_image }}/{{ categories_published.summary.count }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ categories_published.summary.has_seo_text }}/{{ categories_published.summary.count }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ categories_published.summary.has_top_products }}/{{ categories_published.summary.count }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ categories_published.summary.has_related }}/{{ categories_published.summary.count }}
+                            </div>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" class="p-0px">
+                            <div id="collapse_category_published" class="collapse">
+                                <table class="table table-layout-fixed m-0px">
+                                    <colgroup>
+                                        <col class="w-20">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-15">
+                                        <col class="w-15">
+                                    </colgroup>
+                                    <tbody>
+                                        {% for cat in categories_published.items %}
+                                        <tr>
+                                            <th scope="row">
+                                                {{ cat.name }}
+                                            </th>
+                                            <td>
+                                                <div class="form-check d-flex justify-content-center align-items-center pe-none p-0px m-0px">
+                                                    <input type="checkbox" class="form-check-input m-0px"{% if cat.has_image %} checked{% endif %} inert>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check d-flex justify-content-center align-items-center pe-none p-0px m-0px">
+                                                    <input type="checkbox" class="form-check-input m-0px"{% if cat.has_seo_text %} checked{% endif %} inert>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check d-flex justify-content-center align-items-center pe-none p-0px m-0px">
+                                                    <input type="checkbox" class="form-check-input m-0px"{% if cat.has_top_products %} checked{% endif %} inert>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check d-flex justify-content-center align-items-center pe-none p-0px m-0px">
+                                                    <input type="checkbox" class="form-check-input m-0px"{% if cat.has_related %} checked{% endif %} inert>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-center">
+                                                    {{ cat.params_count }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {{ cat.h1 }}
+                                            </td>
+                                            <td>
+                                                {{ cat.meta_title }}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <div class="d-flex flex-column gap-20px">
+        <h2 class="h4 mb-0px">
+            Категории неопубликованные
+        </h2>
+
+        <div class="table-responsive">
+            <table class="table table-category table-layout-fixed m-0px">
+                <colgroup>
+                    <col class="w-20">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-15">
+                    <col class="w-15">
+                </colgroup>
+                <thead class="table-light">
+                    <tr>
+                        <th></th>
+                        <th>Картинка категории</th>
+                        <th>SEO-текст</th>
+                        <th>ТОП-товары категории</th>
+                        <th>Связанные категории</th>
+                        <th>Параметры</th>
+                        <th>Сформированный H1</th>
+                        <th>Сформированный title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            <button class="accordion-button collapsed" type="button"
+                                                                       data-bs-toggle="collapse"
+                                                                       data-bs-target="#collapse_category_unpublished"
+                                                                       aria-expanded="false"
+                                                                       aria-controls="collapse_category">
+                                Все категории
+                            </button>
+                        </th>
+                        <td>
+                            <div class="text-center">
+                                {{ categories_unpublished.summary.has_image }}/{{ categories_unpublished.summary.count }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ categories_unpublished.summary.has_seo_text }}/{{ categories_unpublished.summary.count }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ categories_unpublished.summary.has_top_products }}/{{ categories_unpublished.summary.count }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ categories_unpublished.summary.has_related }}/{{ categories_unpublished.summary.count }}
+                            </div>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" class="p-0px">
+                            <div id="collapse_category_unpublished" class="collapse">
+                                <table class="table table-layout-fixed m-0px">
+                                    <colgroup>
+                                        <col class="w-20">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-15">
+                                        <col class="w-15">
+                                    </colgroup>
+                                    <tbody>
+                                        {% for cat in categories_unpublished.items %}
+                                        <tr>
+                                            <th scope="row">
+                                                {{ cat.name }}
+                                            </th>
+                                            <td>
+                                                <div class="form-check d-flex justify-content-center align-items-center pe-none p-0px m-0px">
+                                                    <input type="checkbox" class="form-check-input m-0px"{% if cat.has_image %} checked{% endif %} inert>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check d-flex justify-content-center align-items-center pe-none p-0px m-0px">
+                                                    <input type="checkbox" class="form-check-input m-0px"{% if cat.has_seo_text %} checked{% endif %} inert>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check d-flex justify-content-center align-items-center pe-none p-0px m-0px">
+                                                    <input type="checkbox" class="form-check-input m-0px"{% if cat.has_top_products %} checked{% endif %} inert>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check d-flex justify-content-center align-items-center pe-none p-0px m-0px">
+                                                    <input type="checkbox" class="form-check-input m-0px"{% if cat.has_related %} checked{% endif %} inert>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-center">
+                                                    {{ cat.params_count }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {{ cat.h1 }}
+                                            </td>
+                                            <td>
+                                                {{ cat.meta_title }}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{% load utils_tags %}
+{% config_value 'SIMPLE_CART_MODE' as simple_mode %}
+<strong>Новый заказ в корзине на сайте {{ site.domain }}</strong>
+{% if object %}<a href="http://{{ site.domain }}{% url 'admin:commerce_order_change' object.pk %}">Для управления заказом перейдите по ссылке</a>{% endif %}
+{% if location %}
+Регион: {{ location.name }}{% endif %}
+Заказ: {{ object.pk }}{% if object.payment_method %}
+Метод оплаты: {{ object.get_payment_method_display }}{% endif %}
+{% if object.yookassa_status%}Статус оплаты: {% if object.yookassa_status == object.YOOKASSA_SUCCEEDED %}оплачено{% else %}не оплачено{% endif %}{% endif %}
+Доставка: {{ object.delivery_cart_simple_mode }}
+{% if object.delivery.point %}Адрес пункта самовывоза — {{ object.delivery.point.address }}
+{% elif object.delivery.stock %}Склад — {{ object.delivery.stock }}
+Адрес доставки — {{ object.delivery.address }}{% endif %}
+Имя: {{ object.ordercontactdata.name }}{% if object.ordercontactdata.phone %}
+Телефон: <a href="tel:+{{ object.ordercontactdata.phone|clear_phone }}">+{{ object.ordercontactdata.phone|clear_phone }}</a>{% endif %}
+Email: <a href="mailto:{{ object.ordercontactdata.email }}">{{ object.ordercontactdata.email }}</a>
+{% if object.comment %}
+Комментарий к заказу:
+{{ object.comment|striptags }}{% endif %}
+Товары: {% for order_product in object.order_products.all %}
+<a href="http://{{ site.domain }}{{ order_product.product.get_absolute_url }}">{{ order_product.product.name }}</a>, артикул: <code>{{ order_product.product.code }}</code>, количество: <strong>{{ order_product.quantity }}</strong>{% if config.TELEBOT_SHOW_STOCKS_IN_MSG %}{% for stock in order_product.product.available_stocks_list %}
+{{ stock.address }}{% if not forloop.last %}, {% elif forloop.parentloop.last %}
+{% endif %}{% endfor %}{% endif %}{% endfor %}
+На сумму: {{ object.final_price }} {{ currency_symbol|default:"руб." }}
+
+<strong>Дополнительные поля:</strong>
+{% for extra_field in object.extra_field_values.all %}
+- <strong>{{ extra_field.field.name }}:</strong> {{ extra_field.value }}
+{% endfor %}

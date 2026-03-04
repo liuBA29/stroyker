@@ -1,0 +1,15 @@
+{% extends 'email/email-base.html' %}
+{% load utils_tags i18n %}
+
+{% block mail_header %}{% trans "Новая регистрация на сайте" %} {% config_value 'SITE_NAME' %}{% endblock mail_header %}
+
+{% block mail_content %}
+<ul>
+    <li><strong>{% trans "Email:" %} </strong>{{ account.email }}</li>
+    <li><strong>{% trans "Имя:" %} </strong>{{ account.name }}</li>
+    <li><strong>{% trans "Телефон:" %} </strong>{{ account.phone }}</li>
+</ul>
+{% blocktranslate with link=admin_link %}
+<p>Проверить и активировать новый аккаунт можно по <a href="{{ link }}">данной ссылке</a>.</p>
+{% endblocktranslate %}
+{% endblock mail_content %}

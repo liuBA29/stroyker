@@ -1,0 +1,11 @@
+{% load cache %}
+{% cache None customization_custom_scripts %}
+{% if custom_scripts %}
+{% if has_files %}
+{% for script in custom_scripts %}{% if script.file %}<script src="{{ script.file.url }}"></script>{% endif %}{% endfor %}
+{% endif %}{% if has_inline %}
+<script type="text/javascript">{% for script in custom_scripts %}
+{% if script.inline_scripts %}{{ script.inline_scripts|safe }}{% endif %}
+{% endfor %}</script>
+{% endif %}{% endif %}
+{% endcache %}

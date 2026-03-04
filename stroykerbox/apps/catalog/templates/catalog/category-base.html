@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static crm_tags seo_tags catalog_tags sekizai_tags %}
+
+{% block body_main_top_content %}
+<h1>{% render_h1 %}</h1>
+
+{{ config.CATALOG_H1_AFTER_HTML|safe }}
+
+{% if config.CATALOG_CHILDS_IN_PARENT_NAV != 'accordion' %}
+{% render_subcategories_top_nav category %}
+{% endif %}
+{% block content %}{% endblock content %}
+{% render_recently_watched %}
+
+{% endblock body_main_top_content %}
+
+{% block body_main_bottom %}
+{% block seo_text %}
+{% if seo_text %}
+<section class="section">
+    <div class="container container--small">
+        <div class="text-page">
+            {{ seo_text|safe }}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock seo_text %}
+{{ block.super }}
+
+{% addtoblock "css" %}
+<link rel="stylesheet" href="{% static 'catalog/css/catalog-custom.css' %}?{{ current_version }}" type="text/css">
+{% endaddtoblock %}
+{% endblock body_main_bottom %}
+

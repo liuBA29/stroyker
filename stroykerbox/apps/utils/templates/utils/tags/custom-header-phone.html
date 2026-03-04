@@ -1,0 +1,56 @@
+{% load utils_tags i18n %}
+{% if phones or location_email %}
+
+{% if mobile_mode %}
+<ul class="mm-other-options">
+    {% if phones %}
+    {% for phone in phones %}
+    <li>
+        <a href="tel:{{ phone.phone_raw }}">
+            <img src="https://luzhetskiy.github.io/stroyker-k1-html-dev/images/header-icons/tel-mob-icon.svg" alt="">
+            {{ phone.phone }}
+        </a>
+    </li>
+    {% endfor %}
+    {% endif %}
+    {% if location_email %}
+    <li>
+        <a href="mailto:{{ location_email }}">
+            {{ location_email }}
+        </a>
+    </li>
+    {% endif %}
+</ul>
+
+{% else %}
+<p onclick="{% render_yandex_metrika_goal config.YANDEX_METRICA_PHONE_TARGET_NAME %}"
+   {% if not is_hidden %} class="toggled"{% endif %}>
+    {% if is_hidden %}
+    <span class="circle"></span>
+    <span class="show-number">
+        {% if config.SHOW_HIDDEN_PHONE_TEXT %}
+        {{ config.SHOW_HIDDEN_PHONE_TEXT }}
+        {% else %}
+        {% trans "Показать .. 10-53-28" %}
+        {% endif %}
+    </span>
+    {% endif %}
+
+    {% if phones %}
+    {% for phone in phones %}
+    <a href="tel:{{ phone.phone_raw }}">
+        {{ phone.phone }}
+    </a>
+    {% endfor %}
+    {% endif %}
+
+    {% if location_email %}
+    <a href="mailto:{{ location_email }}">
+        {{ location_email }}
+    </a>
+    {% endif %}
+</p>
+{% endif %}
+
+
+{% endif %}

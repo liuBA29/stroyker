@@ -1,0 +1,36 @@
+{% load static catalog_tags i18n %}
+{# логика с ценами - https://redmine.fancymedia.ru/issues/10356 #}
+
+<div class="product-card__personal-cost orig-price" itemprop="offers" itemtype="http://schema.org/Offer" itemscope>
+
+    <span>
+        {{ config.PRICE_DEFAULT_LABEL }}:
+    </span>
+    <meta itemprop="price" content="{{ product.price|floatformat }}">
+    <meta itemprop="priceCurrency" content="RUB">
+
+
+
+    <strong style="color: grey">
+        {% trans "от" %} {{ product.price|price_format }}
+        {{ currency_symbol }}{{ product.uom_suffix }}
+    </strong>
+    <strong style="color: grey">
+        {% trans "до" %} {{ product.old_price|price_format }}
+        {{ currency_symbol }}{{ product.uom_suffix }}
+    </strong>
+
+</div>
+
+{% render_product_modifications product %}
+
+<div class="shopping-cart-product{% if not availability.is_avail %} not-available{% endif %}">
+    <a href="#question-main"
+       data-product-code="{{ product.code }}"
+       data-product-name="{{ product.name }}"
+       class="btn-border btn--empty-main-min not-for-sale not-price button-theme button-theme_secondary">
+        {# Узнать цену #}
+        {{ config.NOPRICE_BTN_LABEL }}
+    </a>
+
+</div>

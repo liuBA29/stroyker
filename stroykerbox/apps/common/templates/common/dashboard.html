@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body_post_header %}
+{{ block.super }}
+<script>
+    const jsonSummary = {{ json_summary|safe }};
+</script>
+{% endblock body_post_header %}
+
+{% block body_main %}
+{# Внутри данного блока ожидается html и js, оперирующий json-данными, предоставленными выше по коду js-константой json_summary. #}
+{% endblock body_main %}

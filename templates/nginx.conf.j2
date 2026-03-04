@@ -1,0 +1,31 @@
+upstream django_{{ project_name }} {
+    server 127.0.0.1:{{ uwsgi_port }};
+}
+
+server {
+    listen 80;
+    server_name {{ domain }};
+    client_max_body_size 75M;
+    access_log /var/log/nginx/{{ project_name }}_access.log;
+    error_log /var/log/nginx/{{ project_name }}_error.log debug;
+
+    location /media {
+        alias {{ media_path }}/{{ project_name }};
+        expires 30d;
+    }
+
+    location /static {
+        alias {{ static_root_path }};
+        expires 30d;
+    }
+
+    location / {
+        if ($http_user_agent ~ (SemrushBot|AhrefsBot|java|spider|crawl) ) {
+            return 403;
+        }
+        uwsgi_pass django_{{ project_name }};
+        include uwsgi_params;
+        client_body_timeout 300s;
+        uwsgi_read_timeout 300s;
+    }
+}

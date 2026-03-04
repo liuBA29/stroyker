@@ -1,0 +1,10 @@
+{% extends 'admin/change_form.html' %}
+
+{% block object-tools-items %}
+{{ block.super }}
+{% if original.status not in yookassa_not_check_statuses  %}
+<li>
+    <a href="{% url 'admin:update_payment_status' original.pk %}">Обновить статус платежа</a>
+</li>
+{% endif %}
+{% endblock %}

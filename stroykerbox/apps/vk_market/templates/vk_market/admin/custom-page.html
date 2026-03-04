@@ -1,0 +1,38 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans "Главная" %}</a>
+    &rsaquo; <a href="/admin/vk_market/">{% trans "VK Market" %}</a>
+</div>
+{% endblock %}
+
+{% block title %}
+{% trans "Импорт изображений товаров" %} {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    {% if success %}
+    <p>{% trans "Новый токен успешно получен и задан в настройках." %}</p>
+    {% else %}
+    <p>{% trans "Ошибка получения токена." %}</p>
+    {{ token_json }}
+    {% endif %}
+
+    <h3>{% trans "Чек-лист настроек, необходимых для успешной работы с API VK" %}</h3>
+    <p style="color:{% if config.VK_MARKET_OWNER_ID %}green{% else %}red{% endif %}">
+        <strong>{% trans "ID группы VK:" %}</strong> {{ config.VK_MARKET_OWNER_ID }}</p>
+    <p style="color:{% if config.VK_MARKET_APP_ID %}green{% else %}red{% endif %}">
+        <strong>{% trans "ID приложения VK:" %}</strong> {{ config.VK_MARKET_APP_ID }}</p>
+    <p style="color:{% if config.VK_MARKET_SERVICE_KEY %}green{% else %}red{% endif %}">
+        <strong>{% trans "Секретный ключ:" %}</strong> {{ config.VK_MARKET_SERVICE_KEY }}</p>
+    <p style="color:{% if config.VK_MARKET_API_VERSION %}green{% else %}red{% endif %}">
+        <strong>{% trans "Версия VK API:" %}</strong> {{ config.VK_MARKET_API_VERSION }}</p>
+    <p style="color:{% if config.VK_MARKET_ACCESS_TOKEN %}green{% else %}red{% endif %}">
+        <strong>{% trans "Токен доступа VK API:" %}</strong> {{ config.VK_MARKET_ACCESS_TOKEN }}</p>
+    <p style="color:{% if expires is not None %}green{% else %}red{% endif %}">
+        <strong>{% trans "Время жизни токена:" %}</strong> {% if expires == 0 %}{% trans '"бесконечный"' %}{% else %}{{ expires }}{% endif %}</p>
+</div>
+{% endblock %}

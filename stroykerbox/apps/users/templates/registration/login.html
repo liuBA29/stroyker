@@ -1,0 +1,26 @@
+{% extends config.GLOBAL_ACCESS_AUTHORIZED_ONLY|yesno:'base-empty.html,base-dark.html' %}
+{% load utils_tags i18n %}
+
+{% block body_main_top_content %}
+<div class="tabs-content tabs-content--authorizaion">
+    <ul class="tabs tabs--show">
+        <li class="active"><a href="#">{% trans "Вход" %}</a></li>
+        <li class="tab_last"><a href="{% url 'registration' %}">{% trans "Регистрация" %}</a></li>
+    </ul>
+    <div class="tabsgroup">
+        <div class="tab-content" style="display: block;">
+            {% if request.user.is_anonymous %}
+            <h2>{% trans "Только для членов клуба" %} {% config_value 'SITE_NAME' %}</h2>
+            {% include 'registration/login_form.html' %}
+            {% else %}
+            <p>{% trans "Вы уже авторизированы на сайте как" %} <strong>{{ request.user.email }}</strong></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock body_main_top_content %}
+
+{% block body_main_bottom %}{% endblock %}
+
+
+

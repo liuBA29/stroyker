@@ -1,0 +1,49 @@
+{% extends 'email/email-base.html' %}
+{% load utils_tags i18n %}
+
+{% block mail_content %}
+{% if object %}
+<p>
+    <a href="http://{{ site.domain }}{% url 'admin:custom_forms_customformresult_change' object.pk %}">
+        {% trans "Для просмотра в панели администратора перейдите по ссылке" %}
+    </a>
+</p>
+{% endif %}
+
+<table  style="margin-top: 2rem;" border="0">
+    {% if object.page_url %}
+    <tr>
+        <th align="left">{% trans "URL страницы отправки:" %}</th>
+        <td>
+            <a href="{{ object.page_url }}">{{ object.page_url }}</a>
+        </td>
+    </tr>
+    {% endif %}
+    {% if location %}
+    <tr>
+        <th align="left">{% trans "Регион:" %}</th>
+        <td>{{ location.city }}</td>
+    </tr>
+    {% endif %}
+    {% for k, v in object.result_strings_dict.items %}
+    <tr>
+        <th align="left">{{ k }}:</th>
+        <td>{{ v }}</td>
+    </tr>
+    {% endfor %}
+    {% for k, v in object.result_files_dict.items %}
+    <tr>
+        <th align="left">{{ k }}:</th>
+        <td>
+            {% if v|islist %}
+            {% for i in v %}
+            <a href="{{ i }}">{{ i }}</a>{% if not forloop.last %}<br />{% endif %}
+            {% endfor %}
+            {% else %}
+            <a href="{{ v }}">{{ v }}</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock mail_content %}

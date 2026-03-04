@@ -1,0 +1,12 @@
+{% extends 'base-article-sidebar.html' %}
+
+{% block article_content_wrapper %}
+<div class="article-inner__content article-inner__content--wide">
+    <div class="text-page">
+        {% block article_content %}{% endblock article_content %}
+    </div>
+    {% include 'articles/include/article-share.html' %}
+</div>
+{% endblock article_content_wrapper %}
+
+{% block article_sidebar_wrapper %}{% endblock %}

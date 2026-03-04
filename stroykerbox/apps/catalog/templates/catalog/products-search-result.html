@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static seo_tags catalog_tags i18n %}
+
+{% block title %}
+{% if keywords and keywords != 'None' %}
+{% trans "Результаты поиска по запросу" %} "{{ keywords }}"
+{% else %}
+{% trans "Результаты поиска" %}
+{% endif %}
+{% endblock title %}
+
+{% block body_main_top_content %}
+
+<div class="search-mobile-block mobile-show">
+    <span class="content-title ">{% trans "Поиск" %}</span>
+    <form class="mobile-search">
+        {% trans 'Введите название, артикул, бренд...' as input_placeholder %}
+        <input name="q" type="text"
+                        autocomplete="off"
+                        value="{{request.GET.q}}"
+                        placeholder="{{ input_placeholder }}">
+        <button>
+            <svg class="icon-svg">
+                <use xlink:href="#search-icon"></use>
+            </svg>
+        </button>
+    </form>
+</div>
+<div class="catalog-block">
+    {% if keywords and keywords != 'None' %}
+    <span class="content-title">
+        {% blocktranslate with keywords=keywords num_results=num_results %}
+        По запросу <span>{{ keywords }}</span> найдено товаров: {{ num_results }}
+        {% endblocktranslate %}
+    </span>
+    {% else %}
+    <span class="content-title">{% trans "Не задан поисковый запрос!" %}</span>
+    {% endif %}
+    {% if num_results %}
+    <div class="catalog">
+        <div class="catalog-head mobile-hide">
+            {% render_products_list_header False %}
+        </div>
+        <div class="catalog-container">
+            <div class="catalog-body catalog-body--wide">
+                <div class="catalog-content catalog-content--search-results">
+                    {% for product in products %}
+                    {% include 'catalog/include/product-item.html' %}
+                    {% endfor %}
+                </div>
+                {% include 'include/pagination.html' %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% render_recently_watched %}
+
+{% endblock body_main_top_content %}

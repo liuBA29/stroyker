@@ -1,0 +1,32 @@
+{% load i18n utils_tags staticpages_tags %}
+
+{% if field.name == 'i_agree' %}
+    <div class="modal-form__policy">
+        <label for="id_i_agree" class="i_agree">
+            {{ form.i_agree }} {{ form.i_agree.label }} <br> <a href="{% get_staticpage_url 'privacy' %}">Политика конфиденциальности</a>
+        </label>
+    </div>
+{% elif field.name == 'birthday' %}
+    <div class="date">
+        {{ field }}
+    </div>
+{% elif field.name == 'captcha' %}
+    <p class="title-captcha">{% trans "Input numbers from captcha" %}</p>
+    <div class="wrapper_captch-registration clearfix">
+      {{ field }}
+    </div>
+{% elif field.field.widget|klass == 'CheckboxInput' and field.name != 'i_agree' %}
+    <div class="clearfix">
+        {{ field }}
+        <label for="id_{{ field.name }}" class="label-registration">{{ field.help_text }}</label>
+    </div>
+{% else %}
+    {{ field }}
+    {% if field.errors %}
+        <ul class="errorlist">
+            {% for e in field.errors %}
+                <li>{{ e }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endif %}

@@ -1,0 +1,29 @@
+<script src="https://{{ recaptcha_domain }}/recaptcha/api.js?onload=recaptchaCallback_{{widget_uuid}}&render=explicit{% if api_params %}&{{ api_params }}{% endif %}"></script>
+
+<script type="text/javascript">
+    var recaptchaCallback_{{ widget_uuid }} = function() {
+        var el = document.querySelector('.g-recaptcha[data-widget-uuid="{{ widget_uuid }}"]');
+        var form_{{widget_uuid }} = el.closest('form');
+
+
+        var recaptcha_{{widget_uuid }} = grecaptcha.render(el, {
+            sitekey: el.dataset.sitekey,
+            callback: el.dataset.callback
+        });
+
+        var verifyCaptcha_{{ widget_uuid}} = function(e) {
+            e.preventDefault();
+            grecaptcha.execute(recaptcha_{{widget_uuid }});
+        };
+
+        form_{{widget_uuid }}.addEventListener('submit', verifyCaptcha_{{ widget_uuid}});
+
+    }
+    // Submit function to be called, after reCAPTCHA was successful.
+    var onSubmit_{{ widget_uuid }} = function(token) {
+        console.log("reCAPTCHA validated for 'data-widget-uuid=\"{{ widget_uuid }}\"'. Submitting form...")
+        document.querySelector('.g-recaptcha[data-widget-uuid="{{ widget_uuid }}"]').closest('form').submit();
+    };
+
+</script>
+

@@ -1,0 +1,21 @@
+{% load utils_tags %}
+
+{% for phones in phone_boxes %}
+<div class="header-phones top-header__phones">
+    {% if is_hidden and config.SHOW_HIDDEN_PHONE_TEXT and forloop.first %}
+    <button class="header-phones__toggle" onclick="document.querySelectorAll('.header-phones__toggle').forEach($this=>{$this.remove()});{% render_yandex_metrika_goal config.YANDEX_METRICA_PHONE_TARGET_NAME %}" type="button">
+        {{ config.SHOW_HIDDEN_PHONE_TEXT }}
+    </button>
+
+    {% endif %}
+    <div class="header-phones__inner"{% if is_hidden and config.SHOW_HIDDEN_PHONE_TEXT %} style="display:none"{% endif %}>
+        {% for phone in phones %}
+        <a onclick="{% render_yandex_metrika_goal config.YANDEX_METRICA_PHONE_TARGET_NAME %}" class="header-phones__phone" href="tel:{{ phone.phone_raw }}">{{ phone.phone }}</a>
+        {% endfor %}
+
+        {% if location_email %}
+        <a class="header-phones__phone" href="mailto:{{ location_email }}">{{ location_email }}</a>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}

@@ -1,0 +1,29 @@
+{% load static utils_tags thumbnail %}
+
+<span class="content-title h2">{% config_value 'ARTICLES_SECTION_NAME' %}</span>
+
+<div class="news-slider">
+    <div class="owl-carousel">
+
+        {% for article in articles %}
+        <div class="item">
+            <a href="{{ article.get_absolute_url }}" class="new-slide-item new-slide-item--bg-{% cycle 1 2 3 %}">
+                <span class="new-slide-item__image new-slide-item__image--picture">
+                    {% if article.image %}
+                    {% thumbnail article.image '350x400' as im %}
+                    <img src="{{ im.url }}" alt="{{ article.teaser|striptags }}">
+                    {% endthumbnail %}
+                    {% else %}
+                    <img src="{% static 'images/no-img.png' %}" alt="{{ article.teaser|striptags }}">
+                    {% endif %}
+                </span>
+                <span class="new-slide-item__content">
+                    <span class="new-slide-item__title">{{ article.label }}</span>
+                    <span class="new-slide-item__name">{{ article.title }}</span>
+                </span>
+            </a>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>

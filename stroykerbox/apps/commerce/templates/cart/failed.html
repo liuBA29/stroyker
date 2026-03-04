@@ -1,0 +1,26 @@
+{% extends 'base-dark.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Заказ не оформлен" %}{% endblock %}
+
+{% block body_main_top %}
+
+<section class="section simple-cart">
+    <div class="container">
+        <div class="content-block">
+            <span class="content-title content-title--lg">{% trans "Заказ не оформлен" %}</span>
+            <div class="simple-cart-final">
+                {% for message in messages %}
+                    <div class="simple-cart-final__total">{{ message }}</div>
+                {% endfor %}
+            </div>
+            <div class="simple-cart-final__button">
+                <a class="btn btn--main btn--fixed-width btn--size-md" href="/">{% trans "Вернуться в магазин" %}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock body_main_top %}
+
+{% block body_main_bottom %}{% endblock %}

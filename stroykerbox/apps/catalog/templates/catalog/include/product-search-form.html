@@ -1,0 +1,18 @@
+{% load static %}
+
+<input name="q" type="text" autocomplete="off" class="search_input" value="{{request.GET.q}}"
+    data-search-input="header-search"
+    data-min-chars="{{ config.SEARCH__QUERY_MIN_CHARS }}"
+    data-search-url="{% url 'search' %}"
+    placeholder="{{ config.SEARCH_INPUT_PLACEHOLDER }}"
+>
+<button
+    data-search-button="header-search">
+    {% if config.SEARCH_INPUT_ICON %}<img  class="icon-svg" src="{{ MEDIA_URL }}{{ config.SEARCH_INPUT_ICON }}">{% else %}
+    <svg class="icon-svg">
+        <use xlink:href="#search-icon"></use>
+    </svg>
+    {% endif %}
+</button>
+<div id="search-result-container" style="display: none;" class="header-search-results"
+    data-search-results="header-search"></div>

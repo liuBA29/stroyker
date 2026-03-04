@@ -1,0 +1,48 @@
+{% load static catalog_tags humanize commerce_tags utils_tags thumbnail %}
+<div class="shopping-cart-list">
+    {% for product, quantity in cart %}
+    {% product_cart_price product as product_price %}
+    <div class="shopping-cart-item">
+        <span data-cart-delete-url="{% url 'cart:remove_from_cart' product.pk %}" class="shopping-cart-item__delete">
+            <a>
+                <svg class="icon-svg">
+                    <use xlink:href="#delete"></use>
+                </svg>
+            </a>
+        </span>
+
+        {% if config.SHOW_PRODUCT_IMG_IN_CART and product.main_image %}
+        <span class="shopping-cart-item__img">
+        {% thumbnail product.main_image.image '280x210' as im %}
+        <img src="{{ im.url }}" alt="{{ product.name }}">
+        {% endthumbnail %}
+        </span>
+        {% endif %}
+
+        <span class="shopping-cart-item__name">
+            <span>{{ product.code }}</span>{{ product.name }}
+        </span>
+        <span class="shopping-cart-item__cost">{{ product_price|price_format }} {{ currency_symbol }}</span>
+        <span class="shopping-cart-item__numbers">
+            <div class="input-number">
+                <div class="cart-qty-control order-down"
+                     data-qty-update-url="{% url 'cart:update_product_quantity' product.pk %}?q=down"></div>
+                <input class="cart-qty-control-input"
+                       data-qty-update-url="{% url 'cart:update_product_quantity' product.pk %}"
+                       type="number"
+                       min="1"
+                       max="{% product_units_avail product %}"
+                       step="1"
+                       value="{{ quantity }}" id="number" required="">
+                <div class="cart-qty-control order-up"
+                     data-qty-update-url="{% url 'cart:update_product_quantity' product.pk %}?q=up"></div>
+                {% if product.uom %}
+                <span class="shopping-cart-item__uom">{{ product.uom.name }}</span>
+                {% endif %}
+            </div>
+        </span>
+        <span class="shopping-cart-item__total-cost">
+            {{ product_price|multiplication:quantity|price_format }} {{ currency_symbol }}</span>
+    </div>
+    {% endfor %}
+</div>

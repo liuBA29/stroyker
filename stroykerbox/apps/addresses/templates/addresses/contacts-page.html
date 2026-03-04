@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load seo_tags crm_tags custom_form_tags i18n %}
+
+{% block body_main_top_content %}
+
+<h1>{% render_h1 %}</h1>
+
+{% if locations %}
+<div class="affiliate-network">
+    <div class="affiliate-network__head">
+        <div class="form-group">
+            <label class="select-label">{% trans "Выбрать регион:" %}</label>
+            <select name="characters" class="custom-select" tabindex="-1" id="address-location-select">
+
+                {% for location in locations %}
+                <option value="{{ location.slug }}"
+                        {% if current_location == location %}selected="selected"{% endif %}>
+                {{ location.name|capfirst }}
+                </option>
+                {% endfor %}
+
+            </select>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+<div class="contacts-section">
+    <div class="contacts-block">
+        {% include 'addresses/include/location-addresses.html' %}
+    </div>
+</div>
+
+{% endblock body_main_top_content %}

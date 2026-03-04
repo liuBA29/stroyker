@@ -1,0 +1,23 @@
+<div class="portfolio-content{% if listing_class %} {{ listing_class }}{% endif %}">
+    {% for item in items %}
+    <article class="portfolio-card">
+        <a href="{{ item.get_absolute_url }}" class="stretched-link"></a>
+        <span class="portfolio-card-bg" style="background-image: url({{ item.teaser_image.url }});"></span>
+
+        <div class="portfolio-card-info">
+            {% if item.category %}
+            <span class="portfolio-card-type">{{ item.category.name }}</span>
+            {% endif %}
+            <h2 class="portfolio-card-title">{{ item.name }}</h2>
+            <span class="portfolio-card-placeholder">
+                Подробнее
+                <span class="svg-icon">
+                    <svg>
+                        <use xlink:href="#arrow-client"></use>
+                    </svg>
+                </span>
+            </span>
+        </div>
+    </article>
+    {% endfor %}
+</div>

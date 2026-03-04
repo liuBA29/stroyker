@@ -1,0 +1,57 @@
+{% extends 'catalog/category-base.html' %}
+{% load catalog_tags banner_tags statictext_tags i18n seo_tags %}
+
+{% block content %}
+<div class="catalog">
+    <div class="catalog-head">
+        {% render_products_list_header %}
+    </div>
+
+    <div class="catalog-container">
+        {% if not hide_sidebar %}
+        <div class="catalog-filter sidebar-position-{{ config.CATALOG_PAGE_SIDEBAR_POSITION }}">
+            {% if category.sidebar_siblings %}
+            {% render_category_siblings category %}
+            {% elif config.CATALOG_PAGE_SHOW_SIDEBAR %}
+            {% render_catalog_filter %}
+            {% endif %}
+            {% render_sidebar_banners %}
+        </div>
+        {% schema_org_category %}
+        {% endif %}
+
+        <div class="catalog-body{% if hide_sidebar %} no-sidebar{% endif %}">
+            {# https://redmine.fancymedia.ru/issues/13207 #}
+            {% render_statictext catalog_statictext_keys.CATALOG_PAGE_BLOCK_BEFORE_PRODUCTS %}
+
+            {% if request.user.is_authenticated %}
+            <div class="product-items-header">
+                <span>{% trans "Арт." %}</span>
+                <span>{% trans "Наименование" %}</span>
+                <span>{% trans "Остаток" %}</span>
+                <span>{% trans "Цена" %}</span>
+                <span>{% trans "Ваша цена" %}</span>
+                <span>{% trans "Кол-во" %}</span>
+                <span>{% trans "Купить" %}</span>
+            </div>
+            {% endif %}
+
+            {% if products %}
+            {% render_teaser_list products category %}
+            {% include 'include/pagination.html' with page_obj=products %}
+            {% else %}
+            {% render_statictext 'no_category_or_products_text' %}
+            {% endif %}
+
+            {# https://redmine.fancymedia.ru/issues/13207 #}
+            {% render_statictext catalog_statictext_keys.CATALOG_PAGE_BLOCK_AFTER_PRODUCTS %}
+
+            {% if category.maybeinterested_block %}
+            {% render_category_maybeinterested_block category %}
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

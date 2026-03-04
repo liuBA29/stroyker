@@ -1,0 +1,31 @@
+{% load catalog_tags i18n %}
+<span class="product-item__flag-content">
+    {% if product.is_new %}
+    <span class="product-item__flag product-item__flag--new">
+        {% trans "новинка" %}
+    </span>
+    {% endif %}
+    {% if product.is_sale %}
+    <span class="product-item__flag product-item__flag--sale">
+        {% trans "распродажа" %}
+    </span>
+    {% endif %}
+    {% if product.is_hit %}
+    <span class="product-item__flag product-item__flag--hit">
+        {% trans "хит" %}
+    </span>
+    {% endif %}
+    {% if product.discounted %}
+    <span class="product-item__flag product-item__flag--discounted">
+        {% trans "уценка" %}
+    </span>
+    {% endif %}
+    {% if product.is_action %}
+    <span class="product-item__flag product-item__flag--offer">
+        {% trans "акция" %}
+    </span>
+    {% endif %}
+</span>
+{% if product.price_type %}
+<span class="product-item__img-text">{{ product.price_type }}</span>
+{% endif %}

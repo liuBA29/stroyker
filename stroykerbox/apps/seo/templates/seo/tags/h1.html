@@ -1,0 +1,10 @@
+{% if h1 %}
+{{ h1 }}
+{% elif 'catalog/product/' in request.path and product %}
+{{ product.name }}
+{% else %}
+{% with breadcrumbs|last as l %}
+{{ l.1 }}
+{% endwith %}
+{% endif %}
+

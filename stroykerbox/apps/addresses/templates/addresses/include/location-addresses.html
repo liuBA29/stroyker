@@ -1,0 +1,70 @@
+{% load static utils_tags %}
+<div class="contacts-block__info">
+
+    <span class="contacts-block__title">{{ current_location.name }}</span>
+
+    {% for address in addresses %}
+
+    <div itemscope itemtype="http://schema.org/Organization">
+        <span class="contacts-block__title-red address-data"
+              itemprop="name"
+              data-icon-preset="{{ address.ymap_icon_color|default:" blue" }}{% if address.ymap_glyph_icon %}Glyph{% else
+              %}Dot{% endif %}Icon"
+              data-balloon-content="<h4>{{ address.name }}</h4>{{ address.address }}"
+              data-glyph-icon-name="{{ address.ymap_glyph_icon }}"
+              data-glyph-icon-color="{{ address.ymap_glyph_color|default:address.ymap_icon_color|default:'blue' }}"
+              data-hint-content="{{ address.address }}"
+              data-latitude="{{ address.geo_latitude|stringformat:'f' }}"
+              data-longitude="{{ address.geo_longitude|stringformat:'f' }}">
+              {{ address.name }}</span>
+        <div class="contacts-list">
+            <div class="contact-line" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                <span class="icon">
+                    {% if config.CONTACT_ICON_ADDRESS %}
+                    <img src="{% get_media_prefix %}{{ config.CONTACT_ICON_ADDRESS }}" alt="">
+                    {% else %}
+                    <img src="{% static 'images/partner-location.svg' %}" alt="">
+                    {% endif %}
+                </span>
+                <span itemprop="streetAddress">{{ address.address }}</span>
+            </div>
+            <div class="contact-line">
+                <span class="icon">
+                    {% if config.CONTACT_ICON_PHONE %}
+                    <img src="{% get_media_prefix %}{{ config.CONTACT_ICON_PHONE }}" alt="">
+                    {% else %}
+                    <img src="{% static 'images/partner-call.svg' %}" alt="">
+                    {% endif %}
+                </span>
+                <a class="phone" itemprop="telephone" href="tel:+{{ address.phone|clear_phone }}">
+                    {{ address.phone|clear_phone }}
+                </a>
+            </div>
+            {% if address.email %}
+            <div class="contact-line">
+                <span class="icon">
+                    {% if config.CONTACT_ICON_EMAIL %}
+                    <img src="{% get_media_prefix %}{{ config.CONTACT_ICON_EMAIL }}" alt="">
+                    {% else %}
+                    <img src="{% static 'images/partner-email.svg' %}" alt="">
+                    {% endif %}
+                </span>
+                <a href="mailto:{{ address.email }}" itemprop="email">{{ address.email }}</a>
+            </div>
+            {% endif %}
+            {% if address.extra %}
+            <div class="contact-text-line">
+                {{ address.extra|safe }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% endfor %}
+
+
+</div>
+<div id="yamap_addresses" class="contacts-block__map" data-center-latitude="{{ center_latitude|stringformat:'f' }}"
+                                                      data-center-longitude="{{ center_longitude|stringformat:'f' }}"
+                                                      data-center-zoom="{{ center_zoom|stringformat:'f' }}"></div>
+{% include 'addresses/include/addresses-common.html' with map_container_id=yamap_addresses %}

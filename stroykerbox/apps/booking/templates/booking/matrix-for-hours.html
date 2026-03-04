@@ -1,0 +1,79 @@
+{% extends 'booking/matrix-base.html' %}
+{% load booking %}
+
+{% block matrix_main %}
+<div class="booking-block">
+    {% if matrix.html_top %}{{ matrix.html_top|safe }}{% endif %}
+
+    <div class="booking-block__slider">
+        <button id="prev-button" class="days-slider-prev">
+            <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M7.3075 1.25662L6.275 0.224122L0.499999 5.99912L6.275 11.7741L7.3075 10.7416L2.565 5.99912L7.3075 1.25662Z"
+                    fill="currentColor" />
+            </svg>
+        </button>
+        <button id="next-button" class="days-slider-next">
+            <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M0.6925 1.25662L1.725 0.224122L7.5 5.99912L1.725 11.7741L0.692501 10.7416L5.435 5.99912L0.6925 1.25662Z"
+                    fill="currentColor" />
+            </svg>
+        </button>
+        <div class="slider-constructor days-slider" data-prev-button-id="prev-button" data-next-button-id="next-button"
+                                                                                      data-no-infinite data-md-slides="5" data-slides="4" data-no-dots>
+            {% for hd in header_dates %}
+            <a  class="booking-block-day-slide{% if hd == current_date %} booking-block-day-slide_current{% endif %}"
+                href="{% if hd == current_date %}#{% else %}{% url 'booking:matrix_page_custom_date' matrix.key hd %}{% endif %}">
+                <p class="booking-block-week-day">{{ hd|date:"D"|upper }}</p>
+                <p class="booking-block-date">{{ hd|date:"d/m" }}</p>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="booking-block__statuses">
+        {% include 'booking/include/statuses.html' %}
+
+    </div>
+    <div class="booking-block__content">
+        {% include 'booking/include/reserve-popup.html' %}
+
+        <div class="booking-table">
+            <div data-booking-scroll class="booking-table__scroll">
+                <div data-booking-mobile-titles
+                     class="d-md-none booking-table__mobile-titles booking-table__mobile-titles_shadow">
+                </div>
+                <div class="booking-table__content">
+                    {% for item in items %}
+                    <div id="booking-table-{{forloop.counter}}" class="booking-table__row booking-table__row_hours">
+                        <p data-booking-title="{{ item.name }}" class="booking-table__title">
+                            {{ item.name }}
+                        </p>
+                        <div class="booking-table__items booking-table__items_hours">
+                            {% for d in hours_dates %}
+                            <button data-booking-tooltip
+                                    data-booking-time="{{ d|date:"H:00" }} - {{ d.hour|add:1|stringformat:"02d:00" }}"
+                                    {% if d < now %}
+                                    class="booking-table__item booking-table__item_hour  booking-table__item_past"
+                                    {% elif item|has_reserve:d %}
+                                    class="booking-table__item booking-table__item_hour  booking-table__item_busy"
+                                    {% else %}
+                                    class="booking-table__item booking-table__item_hour  booking-table__item_free"
+                                    data-submit-url="{% url 'booking:add_hour_reserve' item.itemset.key item.id d.date d.hour %}"
+                                    {% endif %}>
+                                {{ d|date:"H:00" }}
+                            </button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% if matrix.html_middle %}{{ matrix.html_middle|safe }}{% endif %}
+
+        {% render_booking_form %}
+    </div>
+    {% if matrix.html_bottom %}{{ matrix.html_bottom|safe }}{% endif %}
+</div>
+{% endblock matrix_main %}

@@ -1,0 +1,7 @@
+<div class="portfolio-widget-pictures{% if widget_class %} {{ widget_class }}{% endif %}">
+    {% for img in item.images.all %}
+    <a href="{{ img.image.url }}" data-fancybox="images" class="portfolio-widget-picture">
+        <img src="{{ img.image.url }}" loading="lazy" class="portfolio-widget-image" width="258" height="186" alt="{{ item.name }} (фото {{ forloop.counter }})">
+    </a>
+    {% endfor %}
+</div>

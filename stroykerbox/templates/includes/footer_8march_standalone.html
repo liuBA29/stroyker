@@ -1,0 +1,85 @@
+{% load static statictext_tags utils_tags seo_tags crm_tags common_tags %}
+{# 8march_design: футер по эталону — блок «Остались вопросы?» + телефон/ПЕРЕЗВОНИТЕ МНЕ, колонки ссылок, копирайт справа. #}
+<footer class="footer--8march">
+    {% schema_org_organization %}
+    <div class="container">
+        <div class="footer-8march-questions-row">
+            <div class="footer-8march-questions-col">
+                <h2 class="footer-8march-questions__title" id="feedback-form-8march-title">ОСТАЛИСЬ ВОПРОСЫ?</h2>
+                {% render_feedback_form_section_8march %}
+            </div>
+            <div class="footer-8march-call-col">
+                <p class="footer-8march-call__phone pretty_numbers"><a href="tel:+79179500606">+7 (917) 950-06-06</a></p>
+                <a href="tel:+79179500606" class="footer-8march-call__btn black-button">ПЕРЕЗВОНИТЕ МНЕ</a>
+            </div>
+        </div>
+        {% render_statictext_var 'cookie-modal__text' as cookie_modal_text %}
+        <div id="cookie-modal" class="cookie-modal" style="display: none;">
+            <div class="cookie-modal__content">
+                {% if cookie_modal_text %}
+                {{ cookie_modal_text|safe }}
+                {% else %}
+                <h4>Собираем cookie-файлы</h4>
+                <p>Наш сайт использует cookie. Хотите продолжить?</p>
+                <button>Ок</button>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="footer-content footer-8march-content">
+            <div class="footer-content__menu footer-8march-menu">
+                <div class="footer-content__column footer-content__column--lg">
+                    <span class="footer-content__title">КАТАЛОГ</span>
+                    <div class="footer-content__ul-content">
+                        <ul>
+                            <li><a href="{% url 'catalog:category' '8-marta' %}">Букет на 8 марта</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Готовая витрина</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Авторские букеты</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Моно/дуо букеты</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Wow букеты</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="{% url 'catalog:index' %}">Fresh букеты</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Цветочные композиции</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Подарки</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Сезонные цветы</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-content__column footer-content__column--lg">
+                    <span class="footer-content__title">ПОКУПАТЕЛЯМ</span>
+                    <div class="footer-content__ul-content">
+                        <ul>
+                            <li><a href="{% url 'catalog:index' %}">О студии</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Услуги</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Совет по уходу</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Отзывы</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Реквизиты</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-content__column footer-content__column--lg">
+                    <div class="footer-content__ul-content">
+                        <ul>
+                            <li><a href="{% url 'catalog:index' %}">Доставка</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Политика конфиденциальности</a></li>
+                            <li><a href="{% url 'catalog:index' %}">Публичная оферта</a></li>
+                            <li><a href="{% url 'contacts-page' %}">Контакты</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-right footer-8march-copyright">
+                <p class="footer-copyright">© «LUCIANO», {% now "Y" %}</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom__left">
+                <span class="copy version">8march test</span>
+            </div>
+            {% render_footer_social_links %}
+            {% render_recaptcha_terms_text %}
+            {% render_lang_switcher %}
+        </div>
+    </div>
+</footer>

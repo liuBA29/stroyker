@@ -1,0 +1,257 @@
+{% extends 'base-dark.html' %}
+{% load static humanize catalog_tags seo_tags banner_tags reviews_tags statictext_tags utils_tags custom_form_tags %}
+
+{% block body_main_top_content %}
+
+<div itemscope itemtype="http://schema.org/Product">
+    <div class="product-card">
+        <div class="product-card__navigation">
+            {% if prev_product_url %}
+            <a href="{{ prev_product_url }}" class="product-card__nav-prev{% if not next_product_url %} single{% endif %}">
+                <span class="icon">
+                    <svg class="icon-svg">
+                        <use xlink:href="#product-nav-arrow"></use>
+                    </svg>
+                </span>
+                Предыдущий товар
+            </a>
+            {% endif %}
+            {% if next_product_url %}
+            <a href="{{ next_product_url }}" class="product-card__nav-next{% if not prev_product_url %} single{% endif %}">
+                Следующий товар
+                <span class="icon">
+                    <svg class="icon-svg">
+                        <use xlink:href="#product-nav-arrow"></use>
+                    </svg>
+                </span>
+            </a>
+            {% endif %}
+        </div>
+
+        <div class="product-card__head">
+            <h1 class="product-card__title" itemprop="name">{% render_h1 %}</h1>
+            <span class="product-card__artikul" itemprop="sku">{% if config.PRODUCT_SKU_PREFIX %}{{ config.PRODUCT_SKU_PREFIX }} {% endif %}{{ product.code }}</span>
+        </div>
+        <div class="product-card__container">
+            <div class="product-card__slideshow">
+                {% render_product_images_slider %}
+            </div>
+            <div class="product-card__content">
+                <div class="product-card__left">
+                    {% if product.short_description %}
+                    <div class="product-sidebar__static-text-wrapper mb-20">
+                        {{ product.short_description|custom_form_inside }}
+                    </div>
+                    {% endif %}
+
+                    {% render_product_price_block product %}
+
+                    {% if config.PRODUCT_SHOW_PRICE_CHART %}
+                    <div class="product-card-schedule">
+                        <div class="product-card-schedule__image">
+                            <img src="{% static 'images/schedule.svg' %}" alt="">
+                        </div>
+                        <div class="schedule-btn">
+                            <a rel="tab4">
+                                <span class="icon">
+                                    <svg class="icon-svg">
+                                        <use xlink:href="#schedule-icon"></use>
+                                    </svg>
+                                </span>Показать график цен
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="product-card__btns ya-share-block">
+                        <a class="btn-radius share-btn">
+                            <span class="icon-svg">
+                                <svg class="icon">
+                                    <use xlink:href="#share-icon"></use>
+                                </svg>
+
+                            </span>Поделиться</a>
+                            <div class="share-block__show">
+                                <p>Чтобы поделиться ссылкой, нажмите на иконку вашей соцсети</p>
+                                {% include 'include/ya-share.html' %}
+                            </div>
+                    </div>
+
+                    {% product_votes_counter product.pk as votes_count %}
+                    <div class="product-card__rating"{% if votes_count %}
+                         itemprop="aggregateRating"
+                         itemscope itemtype="http://schema.org/AggregateRating"{% endif %}>
+
+                        {% render_product_average_rating product.pk %}
+                        {% if votes_count %}
+                        <meta itemprop="ratingCount" content="{{ votes_count }}"/>
+                        {% endif %}
+
+                        {% if config.PRODUCT_REVIEW_ENABLED %}
+                        <span class="product-card__review-link">
+                            <a rel="tab3">Отзывы ({% product_reviews_counter product.pk %})</a>
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="product-card__right">
+                    {% if show_availability_status %}
+                    <div class="product-card__discription">
+                        <span class="product-card__discription-title">Наличие:</span>
+                        <ul>
+                            <li>
+                                <span class="green-color">
+                                    {% render_product_availability_status detail_mode=True %}
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    {% render_statictext 'text_about_payment_on_product_page' %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="product-card-container">
+        <div class="product-card-content">
+
+            {% render_related_products_calc product %}
+
+            <div class="product-content product-content_frameless d-flex flex-column gap-60 mb-40">
+                {% if product.description %}
+                <div class="d-flex flex-column gap-15 gap-md-20">
+                    <p class="g-title">Описание</p>
+                    <div class="d-flex flex-column gap-10">
+                        <div data-collapse="1" class="text-page">
+                            {{ product.description|custom_form_inside }}
+                        </div>
+                        <button class="d-md-none d-none g-text-button"
+                                data-collapse-open="1"
+                                data-collapse-hiding-open="1"
+                                type="button">
+                            Раскрыть
+                        </button>
+                        <button class="d-md-none d-none g-text-button"
+                                data-collapse-close="1"
+                                data-collapse-hiding-close="1"
+                                type="button">
+                            Закрыть
+                        </button>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if delivery_props or product.params.all or product.props.all %}
+                <div class="d-flex flex-column gap-15 gap-md-20">
+                    <p class="g-title">Характеристики</p>
+                    <div data-collapse="2">
+                        {% render_product_properties %}
+                    </div>
+                    <button class="d-md-none d-none g-text-button"
+                            data-collapse-open="2"
+                            data-collapse-hiding-open="2"
+                            type="button">
+                        Раскрыть
+                    </button>
+                    <button class="d-md-none d-none g-text-button"
+                            data-collapse-close="2"
+                            data-collapse-hiding-close="2"
+                            type="button">
+                        Закрыть
+                    </button>
+                </div>
+                {% endif %}
+
+                {% if product.description2 %}
+                <div class="d-flex flex-column gap-15 gap-md-20">
+                    <p class="g-title">
+                        {{ config.PRODUCT_DESCR2_LABEL }}
+                    </p>
+                    <div class="d-flex flex-column gap-10">
+                        <div data-collapse="3">
+                            {{ product.description2|custom_form_inside }}
+                        </div>
+                        <button class="d-md-none d-none g-text-button"
+                                data-collapse-open="3"
+                                data-collapse-hiding-open="3"
+                                type="button">
+                            Раскрыть
+                        </button>
+                        <button class="d-md-none d-none g-text-button"
+                                data-collapse-close="3"
+                                data-collapse-hiding-close="3"
+                                type="button">
+                            Закрыть
+                        </button>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if product.certificates.all %}
+                <div class="d-flex flex-column gap-15 gap-md-20">
+                    <p class="g-title">Приложенные файлы</p>
+                    {% render_product_documents %}
+                </div>
+                {% endif %}
+
+                {% if config.PRODUCT_REVIEW_ENABLED %}
+                <div class="d-flex flex-column gap-0">
+                    <h2>Отзывы на товар</h2>
+                    {% render_product_reviews product %}
+                    {% render_review_form product %}
+                </div>
+                {% endif %}
+
+                {% if config.PRODUCT_SHOW_PRICE_CHART %}
+                <div class="d-flex flex-column gap-0">
+                    <h2>График цен на товар</h2>
+                    {% render_product_price_chart %}
+                </div>
+                {% endif %}
+
+                {% render_statictext 'product-card__extra-text' %}
+            </div>
+
+            {% render_related_products product %}
+            {% render_category_related_products product %}
+
+        </div>
+        <div class="product-card-side">
+            {% render_banners %}
+        </div>
+    </div>
+
+    {% if prev_product_url or next_product_url %}
+    <div class="product-card-bottom">
+        <span class="product-card-bottom__artikul">{{ product.code }}</span>
+        <div class="product-card__navigation">
+            {% if prev_product_url %}
+            <a class="product-card__nav-prev{% if not next_product_url %} single{% endif %}" href="{{ prev_product_url }}">
+                <span class="icon">
+                    <svg class="icon-svg">
+                        <use xlink:href="#product-nav-arrow"></use>
+                    </svg>
+                </span>Предыдущий товар
+            </a>
+            {% endif %}
+            {% if next_product_url %}
+            <a class="product-card__nav-next{% if not prev_product_url %} single{% endif %}"
+               href="{{ next_product_url }}">
+                Следующий товар
+                <span class="icon">
+                    <svg class="icon-svg">
+                        <use xlink:href="#product-nav-arrow"></use>
+                    </svg>
+                </span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% render_recently_watched %}
+
+{% endblock body_main_top_content %}

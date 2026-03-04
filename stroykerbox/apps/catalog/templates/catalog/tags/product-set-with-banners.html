@@ -1,0 +1,69 @@
+{% load static sekizai_tags catalog_tags %}
+{% if title %}
+<div class="d-md-grid grid-columns-md-3 grid-columns-lg-4 grid-columns-xl-5 column-gap-grid">
+    <div class="grid-span-1"></div>
+    <div class="grid-span-md-2 grid-span-lg-3 grid-span-xl-4">
+        <h2 class="mb-20 mb-sm-25"{% if custom_block_title_color %} style="color: {{ custom_block_title_color }}"{% endif %}>{{ title }}</h2>
+    </div>
+</div>
+{% endif %}
+<div class="d-md-grid grid-columns-md-3 grid-columns-lg-4 grid-columns-xl-5 column-gap-grid">
+    <div class="grid-span-md-2 grid-span-lg-3 grid-span-xl-4 order-md-2">
+
+        <!--слайдер товаров-->
+        <div class="slider-constructor"
+             data-rows="{{ rows }}"
+             data-sm-rows="{{ product_set.data_sm_rows }}"
+             data-slides="{{ product_set.data_slides }}"
+             data-md-slides="{{ product_set.data_md_slides }}"
+             data-lg-slides="{{ product_set.data_lg_slides }}"
+             data-xl-slides="{{ product_set.data_xl_slides }}">
+            {% for item in items %}
+                {% render_product_teaser_new item.product %}
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+    <div class="grid-span-1 mt-40 mt-md-0">
+        <!--слайдер баннеров-->
+        <div class="slider-constructor banners-slider flex-md-column gap-md-20" data-slides="2" data-no-arrows="" data-md-mounted="false">
+            {% for banner in banners %}
+            <div class="content-standard-box">
+                <div class="content-standard-box__container">
+                    <div class="content-image image-zoom">
+                        {% if banner.image_url %}
+                        <a class="image" href="{{ banner.image_url }}" title="{{ banner.name }}">
+                            <img data-bnr-pk="{{ banner.pk }}" class="bnr-image-for-page" src="{{ banner.image_file.url }}" alt="{{ banner.name }}">
+                        </a>
+                        {% else %}
+                        <div class="image">
+                            <img data-bnr-pk="{{ banner.pk }}" class="bnr-image-for-page" src="{{ banner.image_file.url }}" alt="{{ banner.name }}">
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% if items %}
+
+
+{% endif %}
+
+
+{% addtoblock 'js' %}
+<script>
+    var BNR_URLS = {
+        'inc_views': '{% url 'banners:views-increment' %}',
+        'inc_clicks': '{% url 'banners:clicks-increment' %}'
+    };
+</script>
+<script src="{% static 'banners/js/bnrs.js' %}"></script>
+{% endaddtoblock %}

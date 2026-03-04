@@ -1,0 +1,37 @@
+{% load static thumbnail i18n %}
+
+<span class="content-title h2">{% trans "Новости и акции" %}</span>
+
+<div class="action-slider">
+    <div class="owl-carousel">
+
+        {% for item in news %}
+        <div class="item">
+            <a href="{{ item.get_absolute_url }}" title="{{ item.teaser|striptags }}" class="action-item">
+                <span class="action-item__image">
+                    {% if item.image %}
+                    {% thumbnail item.image '350x300' as im %}
+                    <img src="{{ im.url }}" alt="{{ item.image.alt_text }}">
+                    {% endthumbnail %}
+                    {% else %}
+                    <img src="{% static 'images/no-img.png' %}" alt="{{ item.title }}">
+                    {% endif %}
+                </span>
+                <span class="action-item__content">
+                    {% if item.post_type == 'news' %}
+                    <span class="action-item__type action-item__type--new">
+                        <span>{% trans "Новость" %}</span>
+                    </span>
+                    {% else %}
+                    <span class="action-item__type action-item__type--action">
+                        <span>{% trans "Акция" %}</span>
+                    </span>
+                    {% endif %}
+                    <span class="action-item__title">{{ item.title }}</span>
+                </span>
+            </a>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>

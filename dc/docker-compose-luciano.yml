@@ -1,0 +1,53 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:11-alpine
+    environment:
+      - LANG=ru_RU.utf8 
+      - POSTGRES_USER=stroykerbox 
+      - POSTGRES_PASSWORD=stroykerbox
+      - POSTGRES_DB=stroykerbox
+      - PGDATA=/var/lib/postgresql/data
+    volumes:
+      - /home/stroyker/stroykerbox/docker_data/luciano/psql:/var/lib/postgresql/data
+    restart: always
+
+  redis:
+    image: redis:alpine
+    command: redis-server
+    volumes:
+      - /home/stroyker/stroykerbox/docker_data/luciano/redis/data:/data
+    restart: always
+
+  migrations:
+    build:
+      context: /home/stroyker/stroykerbox
+      dockerfile: Dockerfile-django-new
+    image: stroykerbox-django:latest
+    working_dir: /code
+    volumes:
+      - /home/stroyker/stroykerbox:/code
+    command: ./wait-for-it.sh db:5432 -- python manage.py migrate -v2
+    environment:
+      - DJANGO_SETTINGS_MODULE=stroykerbox.settings.luciano
+    depends_on:
+      - db
+    restart: "no"
+
+  django:
+    image: stroykerbox-django:latest
+    working_dir: /code
+    volumes:
+      - /home/stroyker/stroykerbox:/code
+      - /home/stroyker/media/luciano:/code/stroykerbox/media
+    environment:
+      - DJANGO_SETTINGS_MODULE=stroykerbox.settings.luciano
+    command: ./wait-for-it.sh db:5432 -- bash ./app_entrypoint.sh
+    ports:
+      - 8003:9090
+    stdin_open: true
+    tty: true
+    depends_on:
+      - migrations
+    restart: always

@@ -1,0 +1,35 @@
+<html>{% load i18n %}
+    <body>
+        <h2>
+            {% blocktranslate with product_name=review.product.name site_name=site.name %}
+            Отзыв о товаре {{ product_name }} в магазине {{ site_name }}
+            {% endblocktranslate %}
+        </h2>
+
+        <p>{% trans "Отзыв не будет опубликован на сайте пока не пройдет модерацию." %}</p>
+
+        <p>
+            {% url 'admin:reviews_productreview_change' review.pk as admin_url %}
+            {% blocktranslate with domain=site.domain admin_url=admin_url %}
+            Чтобы опубликовать отзыв, <a href="http://{{ domain }}{{ admin_url }}">
+                отредактируйте его в панели администрирования</a>.
+            {% endblocktranslate %}
+        </p>
+
+        <table border="0" width="50%">
+            <tr>
+                <th align="left">{% trans "Имя (email):" %}</th>
+                <td>{{ review.user.email }}</td>
+            </tr>
+            <tr>
+                <th align="left" valign="top">{% trans "Отзыв:" %}</th>
+                <td>{{ review.review_text|linebreaksbr }}</td>
+            </tr>
+            <tr>
+                <th align="left" valign="top">{% trans "Оценка:" %}</th>
+                <td>{{ review.rating_value }} {% trans "из" %} 5</td>
+            </tr>
+        </table>
+
+    </body>
+</html>

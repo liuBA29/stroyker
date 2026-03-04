@@ -1,0 +1,71 @@
+{# <div class="home-banner owl-carousel" data-autoplay-timeout="{{ config.SLIDES_BIG_SLIDES_TIMEOUT }}"> #}
+{#     {% for slide in slides %} #}
+{#     {% if slide.url %} #}
+{#     <a href="{{ slide.url }}" title="{{ slide.name }}" class="home-banner__slide image image_cover"> #}
+{#         <img src="{{ slide.image_file.url }}" alt="{{ slide.content }}"> #}
+{#     </a> #}
+{#     {% else %} #}
+{#     <div class="home-banner__slide image image_cover"> #}
+{#         <img src="{{ slide.image_file.url }}" alt="{{ slide.content }}"> #}
+{#     </div> #}
+{#     {% endif %} #}
+{#     {% endfor %} #}
+{# </div> #}
+
+
+<section class="home-banner-wrapper">
+        <!--banner-->
+        <div class="home-banner swiper swiper_home-banner">
+          <div class="swiper-wrapper">
+            <!--slide-->
+            <!--image_left-crop/image_right-crop добавить класс для обрезки 2/3-->
+            <div class="swiper-slide home-banner__slide">
+              <div class="image image_cover image_left-crop"><img src="https://luzhetskiy.github.io/stroyker-box-html/build/img/dd.jpg" alt="image"></div>
+            </div>
+            <!--slide-->
+            <div class="swiper-slide home-banner__slide">
+              <div class="image image_cover image_right-crop"><img src="https://luzhetskiy.github.io/stroyker-box-html/build/img/dd.jpg" alt="image"></div>
+            </div>
+          </div>
+          <div class="swiper-pagination swiper-pagination-big-bottom"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"> </div>
+        </div>
+        <!--categories-->
+        <section class="home-categories">
+          <div class="container">
+            <!-- для 5+ элементов добавить класс grid_6items-->
+            <div class="row grid">
+                            <div class="category-card grid__block home-categories__block"><a class="category-card__container" href="service.html">
+                                <div class="image image_cover"><img src="https://luzhetskiy.github.io/stroyker-box-html/build/img/56dcc810efa71925168c0d36d5c3fbf7.png" alt="image"></div>
+                                <h3 class="category-card__title">Деревянные дома
+                                  <svg class="icon" viewBox="0 0 10.5 18.1">
+                                    <path d="M1.4,18.1L0,16.7l7.6-7.6L0,1.5L1.4,0l9,9.1C10.4,9.1,1.3,18.1,1.4,18.1z"></path>
+                                  </svg>
+                                </h3></a></div>
+                            <div class="category-card grid__block home-categories__block"><a class="category-card__container" href="service.html">
+                                <div class="image image_cover"><img src="https://luzhetskiy.github.io/stroyker-box-html/build/img/7eaf93e9c47993e5b22277de3a30b89e.png" alt="image"></div>
+                                <h3 class="category-card__title">Кровельные работы
+                                  <svg class="icon" viewBox="0 0 10.5 18.1">
+                                    <path d="M1.4,18.1L0,16.7l7.6-7.6L0,1.5L1.4,0l9,9.1C10.4,9.1,1.3,18.1,1.4,18.1z"></path>
+                                  </svg>
+                                </h3></a></div>
+                            <div class="category-card grid__block home-categories__block"><a class="category-card__container" href="service.html">
+                                <div class="image image_cover"><img src="https://luzhetskiy.github.io/stroyker-box-html/build/img/767773b7699f15e02052b250d92c0c7f.png" alt="image"></div>
+                                <h3 class="category-card__title">Пропитки для бревен
+                                  <svg class="icon" viewBox="0 0 10.5 18.1">
+                                    <path d="M1.4,18.1L0,16.7l7.6-7.6L0,1.5L1.4,0l9,9.1C10.4,9.1,1.3,18.1,1.4,18.1z"></path>
+                                  </svg>
+                                </h3></a></div>
+                            <div class="category-card grid__block home-categories__block"><a class="category-card__container" href="service.html">
+                                <div class="image image_cover"><img src="https://luzhetskiy.github.io/stroyker-box-html/build/img/e79cec4f0a120d2e96a1701cf4ef8db3.png" alt="image"></div>
+                                <h3 class="category-card__title">Проектирование
+                                  <svg class="icon" viewBox="0 0 10.5 18.1">
+                                    <path d="M1.4,18.1L0,16.7l7.6-7.6L0,1.5L1.4,0l9,9.1C10.4,9.1,1.3,18.1,1.4,18.1z"></path>
+                                  </svg>
+                                </h3></a>
+                            </div>
+            </div>
+          </div>
+        </section>
+      </section>

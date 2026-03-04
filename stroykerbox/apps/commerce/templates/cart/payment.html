@@ -1,0 +1,188 @@
+{% extends 'base-dark.html' %}
+{% load static seo_tags sekizai_tags catalog_tags i18n common_tags %}
+
+{% block title %}{% trans "Оформление заказа - Оплата" %}{% endblock %}
+
+<h1>{% render_h1 %}</h1>
+
+{% block body_main_top_content %}
+
+<a href="{% url 'cart:cart' %}" class="mobile-menu-item">
+    {% trans "Шаг 1. Корзина" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+
+<a href="{% url 'cart:delivery' %}" class="mobile-menu-item">
+    {% trans "Шаг 2. Доставка" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+
+<a href="" class="mobile-menu-item  active">
+    {% trans "Шаг 3. Оплата" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+
+
+<div class="delivery-container">
+    <div class="delivery-content">
+        <div class="delivery-block">
+            <span class="content-title content-title--min">{% trans "Проверка заказа" %}</span>
+
+            <div class="delivery-total">
+                {% if order.delivery %}
+                <ul>
+                    <li>
+                        <span class="delivery-total__sm">{% trans "Имя:" %} </span>
+                        <span class="delivery-total__sm">{{ order.delivery.name }}</span>
+                    </li>
+                    <li>
+                        <span class="delivery-total__sm">{% trans "Контактный телефон:" %} </span>
+                        <span class="delivery-total__sm">{{ order.delivery.phone }}</span>
+                    </li>
+                    <li>
+                        <span class="delivery-total__sm">{% trans "Контактный e-mail:" %} </span>
+                        <span class="delivery-total__sm">{{ order.delivery.email }}</span>
+                    </li>
+                    <li>
+                        <span class="delivery-total__sm">{% trans "Метод доставки:" %} </span>
+                        <span class="delivery-total__sm">{{ order.delivery }}</span>
+                    </li>
+                    {% if order.delivery.point %}
+                    <li>
+                        <span class="delivery-total__sm">{% trans "Пункт самовывоза:" %} </span>
+                        <span class="delivery-total__sm">{{ order.delivery.point.address }}</span>
+                    </li>
+                    {% endif %}
+                    {% if order.delivery.stock %}
+                    <li>
+                        <span class="delivery-total__sm">{% trans "Склад:" %} </span>
+                        <span class="delivery-total__sm">{{ order.delivery.stock }}</span>
+                    </li>
+                    <li>
+                        <span class="delivery-total__sm">{% trans "Адрес доставки:" %} </span>
+                        <span class="delivery-total__sm">{{ order.delivery.address }}</span>
+                    </li>
+                    {% endif %}
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <ul>
+                    <li>
+                        <span class="delivery-total__sm">{% trans "Стоимость товаров:" %} </span>
+                        <span class="delivery-total__sm">{{ cart.total_price|price_format }} {{ currency_symbol }}</span>
+                    </li>
+                    <li>
+                        <span class="delivery-total__sm">{% trans "Стоимость доставки:" %}</span>
+                        <span class="delivery-total__sm">{{ cart.delivery_cost|price_format }} {{ currency_symbol }}</span>
+                    </li>
+                    <li>
+                        <span class="delivery-total__lg">{% trans "Итого:" %}</span>
+                        <span class="delivery-total__lg">{{ cart.final_price|price_format }} {{ currency_symbol }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <form method="POST" class="delivery-block">
+            <h2>{% trans "Способы оплаты" %}</h2>
+            {% csrf_token %}
+
+            {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+            {% endfor %}
+
+            <div class="delivery-selection">
+                {% if form.payment_method.errors %}
+
+                <ul class="errors-block">
+                    {% for error in form.payment_method.errors %}
+                    <li><span>{% trans "Метод оплаты заказа:" %} </span>{{ error|escape }}</li>
+                    {% endfor %}
+                </ul>
+
+                {% endif %}
+
+                {% for radio in form.payment_method %}
+                <div class="radio">
+                    {{ radio.tag }}
+                    <label for="{{ radio.id_for_label }}"><span>{{ radio.choice_label }}</span></label>
+                    <div class="radio-content"></div>
+                </div>
+                {% endfor %}
+
+                {% if extra_fields %}
+                {% for field in extra_fields %}
+                {% include 'cart/extra_fields.html' with field=field %}
+                {% endfor %}
+                {% endif %}
+
+            </div>
+
+            {% if form.invoicing_with_vat %}
+
+            <div id="invoicing-with-vat-input" class="form-group agree-checkbox">
+                <div class="form-group">
+                    <div class="checkbox">
+                        {{ form.invoicing_with_vat }}
+
+                        <label for="{{ form.invoicing_with_vat.id_for_label }}">
+                            {% trans "Включать НДС в выставляемый счет" %}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            {% addtoblock 'js' %}
+            <script src="{% static 'commerce/js/cart_payment.js' %}"></script>
+            {% endaddtoblock %}
+
+            {% endif %}
+
+
+            {% render_form_agreement form %}
+
+            <button class="btn btn--main btn--fixed-width ">{% trans "Далее" %}</button>
+
+
+            <div class="delivery-text">
+                {% trans "Нажимая на кнопку «Оформить заказ», вы подтверждаете согласие с правилами продажи товаров на сайте" %}
+            </div>
+        </form>
+
+    </div>
+    <div class="delivery-steps">
+        <div class="step-item done">
+            <span class="step-item__number">1</span>
+            <a href="{% url 'cart:cart' %}">{% trans "Корзина" %}</a>
+        </div>
+        <div class="step-item done">
+            <span class="step-item__number">2</span>
+            <a href="{% url 'cart:delivery' %}">{% trans "Доставка" %}</a>
+        </div>
+        <div class="step-item current">
+            <span class="step-item__number">3</span>{% trans "Оплата" %}
+        </div>
+        <div class="step-item">
+            <span class="step-item__number">4</span>{% trans "Завершение" %}
+        </div>
+    </div>
+</div>
+<a href="" class="mobile-menu-item disabled">
+    {% trans "Шаг 4. Завершение" %}
+    <span class="icon">
+        <svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg>
+    </span>
+</a>
+
+{% endblock body_main_top_content %}
+
+
+{% block body_main_bottom %}{% endblock %}

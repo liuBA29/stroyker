@@ -1,0 +1,19 @@
+{% load catalog_tags i18n %}
+{% if maybeinterested_products %}
+
+<div class="top-products-block">
+    <h2 class="mb-25">{% trans "Вас могут заинтересовать" %}</h2>
+    <div class="slider-constructor"
+         data-rows="{{ config.MAYBEINTERESTERD_BLOCK_ROWS }}"
+         data-sm-rows="{{ config.MAYBEINTERESTERD_BLOCK_ROWS }}"
+         data-slides="{{ config.SLIDER_CONSTRUCTOR__DATA_SLIDES }}"
+         data-sm-slides="{{ config.SLIDER_CONSTRUCTOR__DATA_SM_SLIDES }}"
+         data-md-slides="{{ config.SLIDER_CONSTRUCTOR__DATA_MD_SLIDES }}"
+         data-lg-slides="{{ cols|default:config.SLIDER_CONSTRUCTOR__DATA_LG_SLIDES }}">
+        {% for product in maybeinterested_products %}
+        {% render_product_teaser_new product %}
+        {% endfor %}
+    </div>
+
+</div>
+{% endif %}

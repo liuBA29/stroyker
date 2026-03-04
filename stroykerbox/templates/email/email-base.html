@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    {% load static utils_tags i18n %}
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:700i&display=swap&subset=cyrillic" rel="stylesheet">
+        <style>
+* {
+    margin: 0;
+    padding: 0;
+}
+
+        </style>
+    </head>
+
+    <body>
+
+
+        <table style="border-collapse: collapse;margin: 0 auto;" border="0" width="600" cellspacing="0" cellpadding="0" align="center">
+            <tr>
+                <td style="padding: 40px 0 30px 0">
+                    <a href="{% settings_value 'BASE_URL' %}" class="logo" target="_blank">
+                        <img src="{{ EMAIL_LOGO_URL }}" alt="">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td style="font-family: Arial,sans-serif;font-size: 22px;padding-bottom: 30px;font-weight: bold;">
+                    {% block mail_header %}{{ mail_header|default:"" }}{% endblock mail_header %}
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 20px 0">
+                    {% block mail_content %}{% endblock mail_content %}
+                </td>
+            </tr>
+
+            {% block mail_content_bottom %}
+            {% config_value "ORDER_NOFITY_ADD_TITLE" as content_bottom_title %}
+            {% config_value "ORDER_NOFITY_ADD_TEXT" as content_bottom_text %}
+            {% if content_bottom_text %}
+            <tr>
+                <td style="padding: 20px 0">
+                    {% if content_bottom_title %}
+                    <div style="font-family: 'Montserrat',sans-serif;font-style: italic; font-size: 18px;line-height: 28px;font-weight: bold;padding-bottom: 5px;">
+                        {{ content_bottom_title }}
+                    </div>
+                    {% endif %}
+
+                    <div style="font-family: Arial,sans-serif;font-size: 14px;line-height: 20px;">
+                        {{ content_bottom_text|safe }}
+                    </div>
+                </td>
+            </tr>
+            {% endif %}
+            {% endblock mail_content_bottom %}
+
+            <tr>
+                <td align="center" style="padding: 30px 0 0 0; border-top: 1px solid #E5E5EA">
+                    {% block mail_footer_top %}
+                    {% config_value 'MAIL__FOOTER_CONTACTS' safe=True %}
+                    {% endblock mail_footer_top %}
+                </td>
+            </tr>
+
+        </table>
+
+    </body>
+
+</html>

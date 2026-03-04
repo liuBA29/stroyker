@@ -1,0 +1,19 @@
+{% load catalog_tags %}
+{% if items %}
+{% if title %}
+<h2 class="mb-25{% if custom_block_title_color %} style="color: {{ custom_block_title_color }}"{% endif %}">{{ title }}</h2>
+{% endif %}
+
+<div class="slider-constructor"
+     data-rows="{{ rows }}"
+     data-sm-rows="{{ product_set.data_sm_rows }}"
+     data-slides="{{ product_set.data_slides }}"
+     data-sm-slides="{{ product_set.data_sm_slides }}"
+     data-md-slides="{{ product_set.data_md_slides }}"
+     data-lg-slides="{{ product_set.data_lg_slides }}"
+     data-xl-slides="{{ product_set.data_xl_slides }}">
+    {% for item in items %}
+        {% render_product_teaser_new item.product %}
+    {% endfor %}
+</div>
+{% endif %}

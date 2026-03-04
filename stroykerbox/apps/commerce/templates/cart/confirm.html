@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static utils_tags sekizai_tags  widget_tweaks commerce_tags %}
+
+{% addtoblock 'js' %}
+{% endaddtoblock %}
+
+<ul>
+    {% for item, data in order.items %}
+    <li>{{ item }}: {{ data }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

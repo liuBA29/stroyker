@@ -1,0 +1,78 @@
+{% load catalog_tags %}
+
+<div class="product-card-v2__pricing">
+    {% if product.has_price_from_to %}
+    <span class="product-price-range">
+        <span class="product-price-range__text">
+            от
+            <span class="product-price-range__cost">
+                {{ product.price|multiplicity_price:product|price_format }}
+            </span>
+            {{ currency_symbol }}{{ product.multiplicity_label_suffix }}
+        </span>
+        <span class="product-price-range__text">
+            до
+            <span class="product-price-range__cost">
+                {{ product.old_price|multiplicity_price:product|price_format }}
+            </span>
+            {{ currency_symbol }}{{ product.multiplicity_label_suffix }}
+        </span>
+    </span>
+
+    {% else %}
+
+    {% if product|is_available:request.location %}
+
+    {% if product.old_price or prices.main < prices.product_price %}
+
+    {% if prices.main < prices.product_price %}
+    <div class="product-card-v2__price text-color-accent">
+        {% if product.price_from %}
+        <span>
+            от
+        </span>{% endif %}
+        {{ prices.product_price|multiplicity_price:product|price_format }}
+        <span>{{ currency_symbol }}{{ product.multiplicity_label_suffix }}</span>
+    </div>
+    {% else %}
+    <div class="product-card-v2__old-price">
+        {{ product.old_price|multiplicity_price:product|price_format }}
+        <span>{{ currency_symbol }}{{ product.multiplicity_label_suffix }}</span>
+    </div>
+    {% endif %}
+
+    {% endif %}
+
+
+    {% if price_label %}
+    <div class="product-card-v2__pricing-txt">
+        {{ price_label }}
+    </div>
+    {% endif %}
+    <div class="product-card-v2__price">
+        {% if product.price_from %}
+        <span>
+            от
+        </span>{% endif %}
+        {{ prices.main|multiplicity_price:product|price_format }}
+        <span>{{ currency_symbol }}{{ product.multiplicity_label_suffix }}</span>
+    </div>
+
+    {% else %}
+
+    <div class="product-card-v2__pricing-txt">Последний раз товар был продан по этой цене</div>
+    <div class="product-card-v2__price text-color-light">
+        {% if product.price_from %}
+        <span>
+            от
+        </span>{% endif %}
+        {{ prices.main|multiplicity_price:product|price_format }}
+        <span>
+            {{ currency_symbol }}{{ product.multiplicity_label_suffix }}
+        </span>
+    </div>
+    {% endif %}
+
+    {% endif %}
+
+</div>

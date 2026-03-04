@@ -1,0 +1,19 @@
+{# ImportMixin is used to create the list of categories #}
+{% extends 'admin/change_list.html' %}
+{% load utils_tags %}
+
+
+{% block pretitle %}
+<div class="object-tools-custom">
+    <ul>
+        {% if config.CRM_CF_JSON_NOTIFY_URL %}
+        <li>
+            <a href="{% url 'admin:crm-cf-notify-log' %}">
+                Логи отправок уведомлений на {{ config.CRM_CF_JSON_NOTIFY_URL }}
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+{{ block.super }}
+{% endblock %}

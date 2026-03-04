@@ -1,0 +1,52 @@
+version: '3.1'
+services:
+  db:
+    image: postgres:11-alpine
+    environment:
+      - LANG=ru_RU.utf8
+      - POSTGRES_USER=stroykerbox
+      - POSTGRES_PASSWORD=stroykerbox
+      - POSTGRES_DB=stroykerbox
+      - PGDATA=/var/lib/postgresql/data
+    volumes:
+      - {{ project_path }}/docker_data/psql:/var/lib/postgresql/data
+    restart: always
+
+  redis:
+    image: redis:alpine
+    command: redis-server
+    volumes:
+      - {{ project_path }}/docker_data/redis/data:/data
+    restart: always
+
+  migrations:
+    build:
+      context: {{ project_path }}
+      dockerfile: Dockerfile-django-new
+    image: stroykerbox-django:latest
+    working_dir: /code
+    volumes:
+      - {{ project_path }}:/code
+    command: ./wait-for-it.sh db:5432 -- python manage.py migrate -v2
+    environment:
+      - DJANGO_SETTINGS_MODULE=stroykerbox.settings.{{ project_name }}
+    depends_on:
+      - db
+    restart: "no"
+
+  django:
+    image: stroykerbox-django:latest
+    working_dir: /code
+    volumes:
+      - {{ project_path }}:/code
+      - {{ media_path }}:/code/stroykerbox/media        # ← ИСПРАВЛЕНО!
+    environment:
+      - DJANGO_SETTINGS_MODULE=stroykerbox.settings.{{ project_name }}
+    command: ./wait-for-it.sh db:5432 -- bash ./app_entrypoint.sh
+    ports:
+      - {{ uwsgi_port }}:9090
+    stdin_open: true
+    tty: true
+    depends_on:
+      - migrations
+    restart: always

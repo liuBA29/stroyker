@@ -1,0 +1,17 @@
+{% load catalog_tags i18n %}
+{% if products %}
+
+<h2 class="mb-25">{% trans "ТОП-товары:" %} {{ category.name }}</h2>
+<div class="slider-constructor"
+     data-rows="2"
+     data-sm-rows="2"
+     data-slides="{{ config.SLIDER_CONSTRUCTOR__DATA_SLIDES }}"
+     data-sm-slides="{{ config.SLIDER_CONSTRUCTOR__DATA_SM_SLIDES }}"
+     data-md-slides="{{ config.SLIDER_CONSTRUCTOR__DATA_MD_SLIDES }}"
+     data-lg-slides="{{ cols|default:config.SLIDER_CONSTRUCTOR__DATA_LG_SLIDES }}">
+    {% for product in products %}
+    {% render_product_teaser_new product %}
+    {% endfor %}
+</div>
+
+{% endif %}

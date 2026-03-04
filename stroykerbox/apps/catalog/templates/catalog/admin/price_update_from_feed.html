@@ -1,0 +1,20 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans "Главная" %}</a>
+    &rsaquo; <a href="{% url 'admin:catalog_product_changelist'  %}">{% trans "Товары" %}</a>
+    &rsaquo; Обновление цен из фидов
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+</div>
+{% endblock %}

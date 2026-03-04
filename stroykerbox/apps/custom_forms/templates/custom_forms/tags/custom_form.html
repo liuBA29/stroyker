@@ -1,0 +1,40 @@
+{% if form %}
+{% load static widget_tweaks utils_tags common_tags %}
+<form enctype="multipart/form-data"
+      autocomplete="off"
+      class="card-body custom-form-instance hidden"
+      method="post"
+      action="{% url 'custom_forms:action' form.custom_form_obj.key %}"{% if metrika_goal_name %}
+      onsubmit="{% render_yandex_metrika_goal metrika_goal_name %}"{% endif %}>
+    {% csrf_token %}
+    <input type="hidden" name="form_page_url" value="{{ current_path }}"/>
+    {% if current_location_city %}
+    <input type="hidden" name="current_location_city" value="{{ current_location_city }}"/>
+    {% endif %}
+
+    {% for field in form.visible_fields %}
+    <div class="form-group{% if field.errors %} form-group--error{% endif %}">
+        {{ field|add_class:"form-control" }}
+        {% if field.label %}
+        <label class="label-name" for="{{ field.id_for_label }}">
+            <span class="content-name">{{ field.label }}{% if field.field.required %}*{% endif %}</span>
+        </label>
+        {% endif %}
+        {% if field.errors %}
+        <span class="error-text">{{ field.errors }}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    {% for field in form.hidden_fields %}
+    {{ field }}
+    {% endfor %}
+
+    {% render_form_agreement form %}
+
+    <div class="form-group-inline">
+        <button class="btn btn--main-min button-theme button-theme_primary">Отправить</button>
+    </div>
+
+</form>
+{% endif %}

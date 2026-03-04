@@ -1,0 +1,4 @@
+[submodule "stroyker-k1-html-dev"]
+	path = stroyker-k1-html-dev
+	url = https://github.com/luzhetskiy/stroyker-k1-html-dev
+	branch = build

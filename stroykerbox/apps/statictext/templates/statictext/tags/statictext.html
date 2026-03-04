@@ -1,0 +1,13 @@
+{% if object %}
+{% if use_cache %}
+
+{% load cache %}
+{% cache cache_timeout statictext object.key %}
+{{ object.text|safe }}
+{% endcache %}
+
+{% else %}
+{{ object.text|safe }}
+{% endif %}
+
+{% endif %}

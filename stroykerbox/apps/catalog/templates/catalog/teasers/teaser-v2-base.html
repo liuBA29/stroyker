@@ -1,0 +1,174 @@
+{% load static catalog_tags reviews_tags thumbnail utils_tags %}
+{% block teaser_html %}
+<div class="{% block teaser_class_global %}product-card-v2 product-card-v2_type-1{% block product_teaser_class %}{% endblock %}{% endblock %}" data-custom-interaction="data-custom-interaction">
+
+
+    <a class="product-card-v2__link" href="{{ product.get_absolute_url }}"></a>
+    <div class="product-card-v2__image">
+        <div class="image image_contain">
+
+            {% if product.main_image %}
+
+            {% if config.BEHAVIOR_IMAGE == '3' %}
+            <a href="{{ product.get_absolute_url }}" class="product-card-slideshow">
+                <div class="product-card-slideshow__images">
+                    {% with photos=product.images.all %}
+                    {% for photo in photos %}
+                    {% thumbnail photo.image config.PRODUCT_THUMB_DEFAULT_RATIO as im %}
+                    <img data-sector-image="{{photo.position}}" src="{{ im.url }}" class="product-card-slideshow__image" alt="{{photo.position}}">
+                    {% endthumbnail %}
+                    {% endfor %}
+                </div>
+                <div class="product-card-slideshow__sectors">
+                    {% for photo in photos %}
+                    <div data-sector="{{photo.position}}" class="product-card-slideshow__sector"></div>
+                    {% endfor %}
+                </div>
+                <div class="product-card-slideshow__dots">
+                    {% for photo in photos %}
+                    <div data-sector-dot="{{photo.position}}" class="product-card-slideshow__dot"></div>
+                    {% endfor %}
+                    {% endwith %}
+                </div>
+            </a>
+
+            {% elif config.BEHAVIOR_IMAGE == '2' %}
+            <div class="image image_contain">
+                {% thumbnail product.main_image.image config.PRODUCT_THUMB_DEFAULT_RATIO as im %}
+                <img src="{{ im.url }}" alt="{{ product.name }}">
+                {% endthumbnail %}
+                {% thumbnail product.main_image_second.image config.PRODUCT_THUMB_DEFAULT_RATIO as im2 %}
+                <img src="{{ im2.url }}" alt="{{ product.name }}">
+                {% endthumbnail %}
+            </div>
+            {% elif config.BEHAVIOR_IMAGE == '1' %}
+            {% thumbnail product.main_image.image config.PRODUCT_THUMB_DEFAULT_RATIO as im %}
+            <img src="{{ im.url }}" alt="{{ product.name }}">
+            {% endthumbnail %}
+            {% endif %}
+
+            {% elif config.PRODUCT_DEFAULT_IMAGE %}
+            {% get_media_prefix as MEDIA_URL %}
+            <img src="{{ MEDIA_URL }}{{ config.PRODUCT_DEFAULT_IMAGE }}" alt="{{ product.name }}">
+            {% endif %}
+
+        </div>
+        <div class="product-card-v2__rating">
+            {% render_product_average_rating product.pk %}
+        </div>
+
+        {% block labels_badge_area %}
+        <div class="product-card-v2__labels">
+            {% if product.is_new %}
+            <div class="card-label card-label_style-new product-card-v2__label">
+                новинка
+            </div>
+            {% endif %}
+            {% if product.is_sale %}
+            <div class="card-label card-label_style-sale product-card-v2__label">
+                распродажа
+            </div>
+            {% endif %}
+            {% if product.is_hit %}
+            <div class="card-label card-label_style-hit product-card-v2__label">
+                хит
+            </div>
+            {% endif %}
+            {% if product.discounted %}
+            <div class="card-label card-label_style-stock product-card-v2__label">
+                уценка
+            </div>
+            {% endif %}
+            {% if product.is_action %}
+            <div class="card-label card-label_style-offer product-card-v2__label">
+                акция
+            </div>
+            {% endif %}
+        </div>
+        {% render_product_sale_badge product True badge_classes="product-card-sell-badge product-card-sell-badge_no-adaptive product-card-sell-badge_top" %}
+        {% endblock labels_badge_area %}
+    </div>
+
+    <div class="product-card-v2__content">
+
+        <div class="product-card-v2__title">{{ product.name }}</div>
+
+        <div class="product-card-v2__content-bottom">
+            {% if prices.main %}
+            {% include 'catalog/teasers/include/teaser-v2-price-block.html' %}
+            {% endif %}
+
+            <div class="product-card-v2__buttons">
+
+                {% if product.has_price_from_to or product.price_from %}
+                <a  href="#question-main" data-product-code="{{ product.code }}"
+                                          data-product-name="{{ product.name }}"
+                                          data-form-main-msg="{{ config.NOPRICE_BTN_FORMTEXT }}"
+                                          data-form-subject="{{ config.NOPRICE_BTN_LABEL }}"
+                                          class="st-button st-button_muted st-button_not-availbe not-price">
+                    <p class="st-button__text">
+                        <span class="st-button__title">{{ config.NOPRICE_BTN_LABEL }}</span>
+                    </p>
+                </a>
+
+                {% elif product|is_available:request.location %}
+                {% block product_card_counter %}{% endblock %}
+                <a href="{% url 'cart:add_to_cart' product.pk %}"
+                   class="st-button st-button_primary st-button_add-to-cart add-to-cart">
+                    {% if config.WHITETHEME_USE_CUSTOM_CART_ICON and config.WHITETHEME_CUSTOM_CART_ICON %}
+                    <img class="st-button__icon st-button__icon_cart" src="{% get_media_prefix %}{{ config.WHITETHEME_CUSTOM_CART_ICON }}">
+                    {% if config.WHITETHEME_CUSTOM_CART_ICON_HOVER %}
+                    <img class="st-button__icon st-button__icon_cart hover" src="{% get_media_prefix %}{{ config.WHITETHEME_CUSTOM_CART_ICON_HOVER }}">
+                    {% endif %}
+                    {% else %}
+                    <svg class="st-button__icon st-button__icon_cart" width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.97738 18.6555C6.6956 18.6555 6.42014 18.7391 6.18584 18.8956C5.95155 19.0522 5.76894 19.2747 5.6611 19.535C5.55327 19.7954 5.52505 20.0818 5.58003 20.3582C5.635 20.6346 5.77069 20.8884 5.96994 21.0877C6.1692 21.2869 6.42306 21.4226 6.69943 21.4776C6.9758 21.5326 7.26227 21.5044 7.5226 21.3965C7.78294 21.2887 8.00545 21.1061 8.162 20.8718C8.31855 20.6375 8.40211 20.362 8.40211 20.0802C8.40211 19.7024 8.25201 19.34 7.98482 19.0728C7.71763 18.8056 7.35524 18.6555 6.97738 18.6555ZM19.515 18.6555C19.2332 18.6555 18.9578 18.7391 18.7235 18.8956C18.4892 19.0522 18.3066 19.2747 18.1987 19.535C18.0909 19.7954 18.0627 20.0818 18.1177 20.3582C18.1726 20.6346 18.3083 20.8884 18.5076 21.0877C18.7068 21.2869 18.9607 21.4226 19.2371 21.4776C19.5134 21.5326 19.7999 21.5044 20.0602 21.3965C20.3206 21.2887 20.5431 21.1061 20.6996 20.8718C20.8562 20.6375 20.9397 20.362 20.9397 20.0802C20.9397 19.7024 20.7896 19.34 20.5225 19.0728C20.2553 18.8056 19.8929 18.6555 19.515 18.6555ZM20.6548 17.5157V15.2361H8.41351L8.04878 13.7544L22.9344 11.0873V2.69852H5.3019L4.69781 0.418945H0.138672V2.69852H2.95394L6.63545 17.5157H20.6548Z"></path>
+                    </svg>
+                    {% endif %}
+                    <p class="st-button__text">
+                        <span class="st-button__sub-title">{{ avail_status_text }}</span>
+                        <span class="st-button__title">{{ config.ADD_TO_CART_BTN_LABEL }}</span>
+                    </p>
+                </a>
+                {% elif prices.main %}
+
+                <a href="#question-main" data-product-code="{{ product.code }}"
+                                         data-product-name="{{ product.name }}"
+                                         data-form-main-msg="{{ config.NOAVAILABLE_BTN_FORMTEXT }}"
+                                         data-form-subject="{{ config.NOAVAILABLE_BTN_LABEL }}"
+                                         class="st-button st-button_muted st-button_not-availbe not-available">
+                    <p class="st-button__text">
+                        <span class="st-button__sub-title">{{ avail_status_text }}</span>
+                        <span class="st-button__title">{{ config.NOAVAILABLE_BTN_LABEL }}</span>
+                    </p>
+                </a>
+                {% else %}
+                <a  href="#question-main" data-product-code="{{ product.code }}"
+                                          data-product-name="{{ product.name }}"
+                                          data-form-main-msg="{{ config.NOPRICE_BTN_FORMTEXT }}"
+                                          data-form-subject="{{ config.NOPRICE_BTN_LABEL }}"
+                                          class="st-button st-button_muted st-button_not-availbe not-price">
+                    <p class="st-button__text">
+                        <span class="st-button__sub-title">{{ avail_status_text }}</span>
+                        <span class="st-button__title">{{ config.NOPRICE_BTN_LABEL }}</span>
+                    </p>
+                </a>
+                {% endif %}
+            </div>
+
+        </div>
+
+        {# Блок для тестирования значений сортировки #}
+        {# https://redmine.nastroyker.ru/issues/16909#change-90362 #}
+        {# <div> #}
+            {#     <ul style="font-weight: bold;"> #}
+                {# <li>Позиция товара: {{ product.position }}</li> #}
+                {# <li>В наличии: {{ product.available }}</li> #}
+                {# <li>Индекс соответствия поисковому запросу: {{ product.rank }}</li> #}
+                {# <li>Значение цены: {{ product.price_value_asc }}</li> #}
+                {# </ul> #}
+            {# </div> #}
+
+    </div>
+</div>
+{% endblock teaser_html %}

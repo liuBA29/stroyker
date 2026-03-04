@@ -1,0 +1,30 @@
+{% extends article.wide_view|yesno:"base-article-wide.html,base-article-sidebar.html" %}
+{% load seo_tags article_tags custom_form_tags %}
+
+{% block article_content %}
+
+<h1>{% render_h1 %}</h1>
+<span class="new-slide-item__title">{{ article.label }}</span>
+{% if article.use_custom_form %}
+{{ article.body|custom_form_inside }}
+{% else %}
+{{ article.body|safe }}
+{% endif %}
+{% endblock article_content %}
+
+{% block article_bottom %}
+{% if config.ARTICLES_RELATED_PRODUCTS_SLIDER or config.ARTICLES_OTHER_SLIDER %}
+<section class="conditional-section conditional-section_bg">
+    {% if config.ARTICLES_RELATED_PRODUCTS_SLIDER %}
+    {% render_article_related_products article %}
+    {% endif %}
+    {% if config.ARTICLES_OTHER_SLIDER %}
+    {% render_other_articles_slider article %}
+    {% endif %}
+</section>
+{% endif %}
+{% endblock article_bottom %}
+
+{% block article_sidebar %}
+{% render_related_articles %}
+{% endblock article_sidebar %}

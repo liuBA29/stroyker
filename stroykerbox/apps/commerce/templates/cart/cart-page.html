@@ -1,0 +1,120 @@
+{% extends 'base-dark.html' %}
+{% load seo_tags catalog_tags humanize utils_tags commerce_tags i18n %}
+
+{% block body_main_top_content %}
+
+<h1>{% render_h1 %}</h1>
+
+{% if cart %}
+
+<a href="" class="mobile-menu-item active">
+    {% trans "Шаг 1. Корзина" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+<div class="delivery-container">
+    <div class="delivery-content">
+        <div class="shopping-cart">
+            {% render_cart_products cart %}
+
+            <div class="delivery-cart">
+                <div class="delivery-total delivery-total--cart">
+                    <ul>
+                        <li><span class="delivery-total__sm">{% trans "Общий вес, кг:" %}</span>
+                            <span class="delivery-total__sm cart-total-weight">{{ cart.total_weight }}</span>
+                        </li>
+                        <li><span class="delivery-total__sm">{% trans "Общий объём, м3:" %}</span>
+                            <span class="delivery-total__sm cart-total-volume">{{ cart.total_volume }}</span>
+                        </li>
+                        <li><span class="delivery-total__lg">{% trans "Итого:" %}</span>
+                            <span class="delivery-total__lg cart-total-price">{{ cart.total_price|price_format }} {{ currency_symbol }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {% url 'cart:delivery' as delivery_page_url %}
+
+            {% if request.user.is_anonymous %}
+
+            <div class="account-radio">
+                <div class="delivery-selection">
+
+                    <div class="radio">
+                        <input type="radio" id="shopping-cart-radio-1" name="shopping-cart-acc">
+                        <label for="shopping-cart-radio-1"><span>{% trans "У меня нет аккаунта" %}</span></label>
+                        <div class="radio-content radio-content--sm"> </div>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" id="shopping-cart-radio-2" name="shopping-cart-acc">
+                        <label for="shopping-cart-radio-2"><span>{% trans "Есть аккаунт" %}</span></label>
+                        <div class="radio-content radio-content--sm"> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="delivery-choice shopping-cart-radio-1 authorization-cart" style="display: none;">
+                <a href="{{ delivery_page_url }}" class="btn btn--main btn--fixed-width button-theme button-theme_primary">
+                    {% trans "Далее" %}
+                </a>
+
+            </div>
+            <div class="delivery-choice shopping-cart-radio-2 authorization-cart" style="display: none;">
+                <a href="{% url 'login' %}?next={{ delivery_page_url }}" class="btn btn--main btn--fixed-width button-theme button-theme_primary">
+                    {% trans "Далее" %}
+                </a>
+            </div>
+            {% else %}
+            <div class="delivery-choice shopping-cart-radio-1 authorization-cart">
+                <a href="{{ delivery_page_url }}" class="btn btn--main btn--fixed-width button-theme button-theme_primary">
+                    {% trans "Далее" %}
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+    <div class="delivery-steps">
+        <div class="step-item  current">
+            <span class="step-item__number">1</span>{% trans "Корзина" %}
+        </div>
+        <div class="step-item">
+            <span class="step-item__number">2</span>{% trans "Доставка" %}
+        </div>
+        <div class="step-item">
+            <span class="step-item__number">3</span>{% trans "Оплата" %}
+        </div>
+        <div class="step-item">
+            <span class="step-item__number">4</span>{% trans "Завершение" %}
+        </div>
+    </div>
+</div>
+
+<a href="" class="mobile-menu-item   disabled">
+    {% trans "Шаг 2. Доставка" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+<a href="" class="mobile-menu-item  disabled">
+    {% trans "Шаг 3. Оплата" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+<a href="" class="mobile-menu-item disabled">
+    {% trans "Шаг 4. Завершение" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+
+{% else %}
+<p>{% trans "В Вашей корзине нет товаров." %}</p>
+{% endif %}
+
+{% render_recently_watched %}
+
+{% endblock body_main_top_content %}
+
+{% block body_main_bottom %}{% endblock %}

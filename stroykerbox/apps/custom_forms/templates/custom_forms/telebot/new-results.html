@@ -1,0 +1,10 @@
+{% load utils_tags custom_form_tags %}
+<strong>Новое сообщение с формы "{{ object.form.title }}" на сайте {{ site.domain }}</strong>
+{% if object %}<a href="http://{{ site.domain }}{% url 'admin:custom_forms_customformresult_change' object.pk %}">Для просмотра в панели администратора перейдите по ссылке</a>{% endif %}
+{% for k, v in object.result_strings_dict.items %}
+{{ k }}: {{ v|safe }}{% endfor %}
+{% if object.has_files %}
+<strong>Файлы:</strong>{% for k, v in object.result_files_dict.items %}
+{{ k }}: {% if v|is_list %}{% for file_url in v %}<a href="{{ file_url }}">{{ file_url }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}{% else %}<a href="{{ v }}">{{ v }}</a>{% endif %}{% endfor %}{% endif %}{% if location.city %}
+<strong>Регион: </strong>{{ location.city }}{% endif %}{% if object.page_url %}
+<strong>URL страницы отправки: </strong><a href="{{ object.page_url }}">{{ object.page_url }}</a>{% endif %}

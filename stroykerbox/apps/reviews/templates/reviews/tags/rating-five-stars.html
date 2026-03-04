@@ -1,0 +1,14 @@
+<span class="product-item__rating">
+    {% if rating > 0 %}
+    <meta itemprop="bestRating" content="5"/>
+    <meta itemprop="worstRating" content="1"/>
+    <meta itemprop="ratingValue" content="{{ rating }}"/>
+    {% endif %}
+    {% for s in rating_range %}
+    {% if s <= rating %}
+    <span class="star star--full"></span>
+    {% else %}
+    <span class="star star--empty"></span>
+    {% endif %}
+    {% endfor %}
+</span>

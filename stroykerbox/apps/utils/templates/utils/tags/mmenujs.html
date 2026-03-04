@@ -1,0 +1,173 @@
+<!-- mmenujs (mobile menu)  -->
+{% load static mptt_tags location_tags utils_tags menu_tags i18n %}
+{% get_media_prefix as MEDIA_URL %}
+<nav data-position="{{ config.MMENU_POSITION }}-front" id="menu">
+    <ul>
+        <li class="menu-list__item">
+            <a href="#" class="menu-list__link">{{ config.CATALOG_MENU_TITLE }}</a>
+            <ul class="menu-list__inner-list">
+                {% recursetree mmenu_categories %}
+                <li class="menu-list__item">
+                    <a class="menu-list__link" href="{{ node.get_absolute_url }}">
+                        {% if config.CATEGORY_CATALOG_PAGE_SHOW_ICON and node.icon %}
+                        <img class="menu-list__icon"
+                             src="{{ node.icon.url }}"
+                             alt="{{ node.name }}">
+                        {% endif %}
+                        {{ node.name }}
+                    </a>
+                    {% if not node.is_leaf_node %}
+                    <ul>
+                        {{ children }}
+                    </ul>
+                    {% endif %}
+                </li>
+                {% endrecursetree %}
+            </ul>
+        </li>
+        {% render_menu 'header_mobile_menu' mmenu_mode=True %}
+
+        {% if show_locations and current_location %}
+        <li class="menu-list__item menu-list__item_bottom">
+            <a class="g-link mobile-side-menu-footer__link" href="#">
+                <svg width="13" height="18" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M6.24701 0C2.80237 0 0 2.80246 0 6.2468C0 9.56227 5.66802 17.3084 5.90936 17.6364L6.13459 17.943C6.16094 17.9789 6.20288 18 6.24701 18C6.29182 18 6.33349 17.9789 6.36011 17.943L6.5852 17.6364C6.82669 17.3084 12.4945 9.56227 12.4945 6.2468C12.4945 2.80246 9.69175 0 6.24701 0ZM6.24701 4.00921C7.48124 4.00921 8.48486 5.01276 8.48486 6.2468C8.48486 7.4802 7.48119 8.48439 6.24701 8.48439C5.01351 8.48439 4.00916 7.4802 4.00916 6.2468C4.00916 5.01276 5.01346 4.00921 6.24701 4.00921Z"
+                        fill="currentColor" />
+                </svg>
+                {{ current_location.name }}
+            </a>
+            <ul>
+                {% for l in active_locations %}
+                {% if l.pk != current_location.pk %}
+                <li class="menu-list__item">
+                    <a class="menu-list__link" href="{% url 'locations:set-location' location_id=l.id %}">
+                        {{ l.name }}
+                    </a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+
+        {% endif %}
+
+        <div class="mobile-side-menu-footer">
+
+            <div class="phone-block mb-20">
+
+                {% if phones %}
+                {% for phone in phones %}
+                <a class="g-link phone-block__primary-link" href="tel:{{ phone.phone_raw }}">
+                    {{ phone.phone }}
+                </a>
+                {% endfor %}
+                {% endif %}
+
+                {% if not config.AMOCRM_CALLME_FORM %}
+                <a class="g-link phone-block__secondary-link" href="#" data-fancybox="callme-modal-mob-menu" data-src="#callme-modal">
+                    {% trans "Заказать звонок" %}
+                </a>
+                {% endif %}
+            </div>
+
+            {% if config.WHITETHEME_SHOW_LK_LINKS %}
+            <div class="g-row mobile-side-menu-footer__row mb-20">
+                <a class="g-link mobile-side-menu-footer__link" href="{% if request.user.is_authenticated %}{% url 'users:profile' %}{% else %}{% url 'login' %}{% endif %}">
+                    {% if config.HEADER_ICON_LK %}
+                    <img class="icon-svg" src="{% get_media_prefix %}{{ config.HEADER_ICON_LK }}"/>
+                        {% if config.HEADER_ICON_LK_HOVER %}
+                        <img class="icon-svg hover" src="{% get_media_prefix %}{{ config.HEADER_ICON_LK_HOVER }}"/>
+                        {% endif %}
+                    {% else %}
+                    <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.76938 7.84653C8.49965 7.84653 9.21352 7.62998 9.82072 7.22427C10.4279 6.81855 10.9012 6.24189 11.1806 5.56721C11.4601 4.89253 11.5332 4.15013 11.3907 3.43389C11.2483 2.71765 10.8966 2.05975 10.3802 1.54337C9.86386 1.02699 9.20595 0.675331 8.48971 0.532862C7.77348 0.390394 7.03108 0.463514 6.3564 0.742976C5.68171 1.02244 5.10506 1.49569 4.69934 2.10289C4.29362 2.71008 4.07707 3.42395 4.07707 4.15422C4.07707 5.13348 4.46608 6.07264 5.15852 6.76508C5.85097 7.45752 6.79012 7.84653 7.76938 7.84653ZM14.8863 13.5696C12.9968 11.6858 10.4375 10.6279 7.76938 10.6279C5.10124 10.6279 2.54195 11.6858 0.652458 13.5696L0.384766 13.8465V18.0004H15.154V13.8465L14.8863 13.5696Z" fill="currentColor"></path>
+                    </svg>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+
+                    {{ request.user.display_name }}
+
+                    {% else %}
+                    {% trans "Авторизация" %}
+                    {% endif %}
+                </a>
+            </div>
+            {% endif %}
+
+            <div class="g-row mobile-side-menu-footer__row">
+                {# хз, что это за ссылки - были в примере #}
+                {# https://luzhetskiy.github.io/stroyker-k1-html-dev/mobile-menus/variant-1.html #}
+
+                {# <a class="g-link mobile-side-menu-footer__link" href="#"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"> #}
+                        {#         <path d="M17.5 9H14.5V18H17.5V9Z" fill="currentColor"></path> #}
+                        {#         <path d="M3.5 4.5H0.5V18H3.5V4.5Z" fill="currentColor"></path> #}
+                        {#         <path d="M10.5 0H7.5V18H10.5V0Z" fill="currentColor"></path> #}
+                        {#     </svg> #}
+                    {#     555</a> #}
+                {# <a class="g-link mobile-side-menu-footer__link" href="#"><svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg"> #}
+                        {#         <path d="M10.6721 1.48886C12.9595 -0.564802 16.4942 -0.496639 18.6978 1.71088C20.9005 3.91938 20.9764 7.43661 18.9276 9.7308L10.6702 18L2.41468 9.7308C0.3659 7.43661 0.442827 3.91354 2.64449 1.71088C4.85004 -0.493718 8.37796 -0.567724 10.6721 1.48886Z" fill="currentColor"></path> #}
+                        {#     </svg> #}
+                    {#     555</a> #}
+                {% if cart is not None %}
+                <a class="g-link mobile-side-menu-footer__link" href="{% url 'cart:cart' %}">
+                    {% if config.HEADER_ICON_CART %}
+                    <img class="icon-svg" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART }}"/>
+                        {% if config.HEADER_ICON_CART_HOVER %}
+                        <img class="icon-svg hover" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART_HOVER }}"/>
+                        {% endif %}
+                    {% else %}
+                    <svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.59005 15.5879C6.35151 15.5879 6.11832 15.6586 5.91998 15.7911C5.72164 15.9237 5.56705 16.112 5.47576 16.3324C5.38447 16.5528 5.36059 16.7953 5.40713 17.0292C5.45367 17.2632 5.56853 17.4781 5.73721 17.6468C5.90589 17.8154 6.12079 17.9303 6.35475 17.9768C6.58871 18.0234 6.83122 17.9995 7.0516 17.9082C7.27199 17.8169 7.46036 17.6623 7.59288 17.464C7.72541 17.2657 7.79615 17.0325 7.79615 16.7939C7.79615 16.4741 7.66908 16.1673 7.44289 15.9411C7.2167 15.715 6.90993 15.5879 6.59005 15.5879ZM17.2037 15.5879C16.9652 15.5879 16.732 15.6586 16.5336 15.7911C16.3353 15.9237 16.1807 16.112 16.0894 16.3324C15.9981 16.5528 15.9743 16.7953 16.0208 17.0292C16.0673 17.2632 16.1822 17.4781 16.3509 17.6468C16.5195 17.8154 16.7345 17.9303 16.9684 17.9768C17.2024 18.0234 17.4449 17.9995 17.6653 17.9082C17.8856 17.8169 18.074 17.6623 18.2065 17.464C18.3391 17.2657 18.4098 17.0325 18.4098 16.7939C18.4098 16.4741 18.2827 16.1673 18.0566 15.9411C17.8304 15.715 17.5236 15.5879 17.2037 15.5879ZM18.1686 14.623V12.6934H7.8058L7.49704 11.4391L20.0983 9.18133V2.08008H5.17168L4.66029 0.150391H0.800781V2.08008H3.18403L6.30059 14.623H18.1686Z" fill="currentColor"></path>
+                    </svg>
+                    {% endif %}
+                    <span class="cart-number">{{ cart|length }}</span>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </ul>
+</nav>
+
+<nav class="d-none" id="menu-navbar">
+    <div class="menu-navbar">
+        <div class="mobile-side-menu-content__header mb-10">
+            <div class="g-row g-row_space-between mobile-side-menu-content__row">
+                <a class="logo-link" href="#">
+                    <img  class="logo-link__image" {% if config.HEDER_LOGO_FILE_MOBILE %}
+                          src="{{ MEDIA_URL }}{{ config.HEDER_LOGO_FILE_MOBILE }}"{% else %}
+                          src="{% if config.HEDER_LOGO_FILE %}{{ MEDIA_URL }}{{ config.HEDER_LOGO_FILE }}{% else %}{% static 'images/logo.svg' %}{% endif %}"{% endif %}
+                          alt="{{ config.SITE_NAME }}">
+                </a>
+                <button data-close-menu class="cross-button"></button>
+            </div>
+        </div>
+
+        {% if not config.HIDE_SEARCH_IN_MMENU %}
+        <div class="search-input-group mb-10">
+            <div class="search-input-group__row">
+                <input name="q" type="text" autocomplete="off"
+                                            class="search-input-group__input"
+                                            value="{{request.GET.q}}"
+                                            data-clear-input="search-menu"
+                                            data-search-input="search-menu"
+                                            data-min-chars="{{ config.SEARCH__QUERY_MIN_CHARS }}"
+                                            data-search-url="{% url 'search' %}"
+                                            placeholder="{{ config.SEARCH_INPUT_PLACEHOLDER }}">
+
+                <button data-search-button="search-menu" class="search-input-group__button">
+                    <svg width="17" height="17"
+                                    viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M1.26564 6.42777C1.26564 9.29027 3.5638 11.5925 6.37631 11.5925C9.18882 11.5925 11.487 9.29027 11.487 6.42777C11.487 3.56527 9.18882 1.26301 6.37631 1.26301C3.5638 1.26301 1.26564 3.56527 1.26564 6.42777Z"
+                            stroke-width="2.52602" />
+                        <line y1="-1.26301" x2="7.5559" y2="-1.26301"
+                                                        transform="matrix(0.749811 0.661652 0.655349 -0.755326 11.3359 10.001)" stroke-width="2.52602" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</nav>

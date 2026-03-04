@@ -1,0 +1,5 @@
+{% load static utils_tags %}
+{% get_media_prefix as MEDIA_URL %}
+<a class="btn btn--main-min fancybox-close" href="{{ MEDIA_URL }}{% config_value 'GIFT_FOR_PHONE_BLOCK_FILE' %}" download>
+    {% config_value 'GIFT_FOR_PHONE_BLOCK_GIFT_LINK_TEXT' %}
+</a>

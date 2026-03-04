@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static seo_tags sekizai_tags widget_tweaks statictext_tags %}
+
+
+{% block body_main_top %}
+
+<section class="section-dark">
+    <div class="container">
+        {% render_breadcrumbs %}
+        <div class="article-inner">
+            <div class="article-inner__content article-inner__content--wide">
+                <div class="text-page">
+                    <h1>Оплата через Т-Банк</h1>
+                    <p>Перед созданием платежа необходимо получить и проверить данные по залоговому билету.</p>
+
+                    <form method="POST" autocomplete="off" id="check-lombard-ticket">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-4{% if form.client_surname.errors %} form-group--error{% endif %}">
+                                {% render_field form.client_surname class+="form-control" placeholder="Фамилия клиента" %}
+                                {% if form.client_surname.errors %}
+                                <span class="error-text">{{ form.client_surname.errors }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4{% if form.ticket_number.errors %} form-group--error{% endif %}">
+                                {% render_field form.ticket_number class+="form-control" placeholder="Серия и номер залогового билета" %}
+                                {% if form.ticket_number.errors %}
+                                <span class="error-text">{{ form.ticket_number.errors }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn button-theme button-theme_primary m-0 w-100">
+                                    Получить данные
+                                </button>
+                            </div>
+                        </div>
+                        {% if form.non_field_errors %}
+                        <div class="form-group--error">
+                            <span class="error-text">{{ form.non_field_errors }}</span>
+                        </div>
+                        {% endif %}
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock body_main_top %}
+

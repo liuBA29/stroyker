@@ -1,0 +1,53 @@
+{% if form %}
+{% load static utils_tags i18n common_tags %}
+<div class="personal-form">
+    <div class="personal-form__content">
+        {% if config.GIFT_FOR_PHONE_BLOCK_TITLE %}
+        <span class="h1">{{ config.GIFT_FOR_PHONE_BLOCK_TITLE|safe }}</span>
+        {% endif %}
+        <form class="personal-form__element git-for-phone-form"
+              method="post"
+              action="{% url 'crm:gift-for-phone-request' %}"
+              autocomplete="off"
+              onsubmit="{% render_yandex_metrika_goal config.YMETRICA_GOAL_FORM_GIFT %}">
+            {% csrf_token %}
+            {% if config.GIFT_FOR_PHONE_BLOCK_TEXT_BEFORE %}
+            <div class="personal-form__element-top">
+                {{ config.GIFT_FOR_PHONE_BLOCK_TEXT_BEFORE|safe }}
+            </div>
+            {% endif %}
+            <div class="personal-form__element-bottom">
+                <div class="personal-form__element-item">
+                    <div class="form-group">
+                        {{ form.phone }}
+                        <label class="label-name" for="phone">
+                            <span class="content-name">{% trans "Телефон" %}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="personal-form__element-item">
+                    <button class="btn btn--main-min not-available button-theme button-theme_primary" type="submit">
+                        {% trans "Отправить" %}
+                    </button>
+                </div>
+            </div>
+
+            {% for f in form.hidden_fields %}
+            {{ f }}
+            {% endfor %}
+
+            {% render_form_agreement form %}
+
+            {% if config.GIFT_FOR_PHONE_BLOCK_TEXT_AFTER %}
+            <div class="personal-form__post-text">{{ config.GIFT_FOR_PHONE_BLOCK_TEXT_AFTER|safe }}</div>
+            {% endif %}
+        </form>
+    </div>
+    {% if config.GIFT_FOR_PHONE_BLOCK_IMAGE %}
+    {% get_media_prefix as MEDIA_URL %}
+    <div class="personal-form__image image image_cover">
+        <img src="{{ MEDIA_URL }}{{ config.GIFT_FOR_PHONE_BLOCK_IMAGE }}">
+    </div>
+    {% endif %}
+</div>
+{% endif %}

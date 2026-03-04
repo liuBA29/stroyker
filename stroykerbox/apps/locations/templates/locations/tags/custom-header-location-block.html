@@ -1,0 +1,55 @@
+{% load static i18n %}
+{% if locations %}
+
+{% if mobile_mode %}
+<ul class="mm-other-options">
+    <li>
+        <a href="javascript:;"{% if link_class %} class="{{ link_class }}"{% endif %} data-fancybox="city-selection-mob-menu" data-src="#city-selection">
+            <img src="{% static 'images/location-mob-icon.svg' %}" alt="">
+            {% if current_location %}
+            {{ current_location.name }}
+            {% else %}
+            {% trans "Выберите свой город" %}
+            {% endif %}
+        </a>
+        {% if show_arrow %}
+        <span class="caret"></span>
+        {% endif %}
+    </li>
+</ul>
+{% else %}
+<li>
+    <a href="javascript:;"{% if link_class %} class="{{ link_class }}"{% endif %} data-fancybox="city-selection" data-src="#city-selection">
+        {% if current_location %}
+        {{ current_location.name }}
+        {% else %}
+        {% trans "Выберите свой город" %}
+        {% endif %}
+    </a>
+    {% if show_arrow %}
+    <span class="caret"></span>
+    {% endif %}
+</li>
+{% endif %}
+
+<!-- modal  Выберите свой город -->
+<div id="city-selection" class="modal modal--wide" style="display: none;">
+    <div class="modal-content">
+        <span class="h2">{% trans "Выберите свой город" %}</span>
+
+        <ul class="city-list">
+
+            {% for location in locations %}
+            <li>
+                <a{% if location.id == current_location.id %} class="active"{% endif %} href="{% url 'locations:set-location' location_id=location.id %}">
+                    {{ location.name }}
+                </a>
+            </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>
+<!-- ---  -->
+
+{% endif %}

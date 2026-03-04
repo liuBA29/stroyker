@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static seo_tags catalog_tags utils_tags i18n %}
+
+{% block title %}
+{% if keywords and keywords != 'None' %}
+{% trans "Результаты поиска по запросу" %} "{{ keywords }}"
+{% else %}
+{% trans "Результаты поиска" %}
+{% endif %}
+{% endblock title %}
+{% block body_main_top_content %}
+
+<div class="search-mobile-block mobile-show">
+    <span class="content-title ">{% trans "Поиск" %}</span>
+    <form class="mobile-search">
+        {% trans "Введите название, артикул, бренд..." as mobile_search_placeholder %}
+        <input name="q" type="text" autocomplete="off"
+                                    value="{{request.GET.q}}"
+                                    placeholder="{{ mobile_search_placeholder }}">
+        <button>
+            <svg class="icon-svg">
+                <use xlink:href="#search-icon"></use>
+            </svg>
+        </button>
+    </form>
+</div>
+<div class="catalog-block">
+    {% if not product_num_results and not staticpages %}
+    <span class="content-title">
+        {% blocktranslate with keywords=keywords %}
+        По запросу <span>{{ keywords }}</span> ничего не найдено.
+        {% endblocktranslate %}
+    </span>
+    {% elif keywords and keywords != 'None' %}
+    <span class="content-title">{% trans "Результаты по запросу" %} <span>{{ keywords }}</span></span>
+    {% if product_num_results %}
+    <span class="content-title">{% trans "Найдено товаров:" %} {{ product_num_results }}</span>
+    {% endif %}
+    {% else %}
+    <span class="content-title">{% trans "Не задан поисковый запрос!" %}</span>
+    {% endif %}
+
+    {% if product_num_results %}
+    <div class="catalog">
+        <div class="catalog-head mobile-hide">
+            {% render_products_list_header False %}
+        </div>
+        <div class="catalog-container">
+
+            {% if use_stock_filter %}
+            {% render_search_by_stock_filter result_product_ids %}
+            {% endif %}
+
+            <div class="catalog-body{% if not use_stock_filter %} catalog-body--wide{% endif %}">
+
+                <div class="{% teaser_list_grid_classes %}">
+                    {% for product in products %}
+                    {% render_product_teaser_new product %}
+                    {% endfor %}
+                </div>
+                {% include 'include/pagination.html' %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if staticpages %}
+    <span class="content-title">{% trans "Найденные страницы" %}</span>
+    <div class="catalog">
+        <div class="catalog-container">
+            <div class="catalog-body catalog-body--wide">
+                <div class="catalog-content catalog-content--search-results">
+                    {% for page in staticpages %}
+                    {% include 'staticpages/include/staticpage-search-result-item.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if not product_num_results %}
+    <span class="content-title">{% trans "Найдено товаров:" %} {{ product_num_results }}</span>
+    {% endif %}
+    {% endif %}
+</div>
+
+{% render_recently_watched %}
+
+{% endblock body_main_top_content %}

@@ -1,0 +1,27 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans "Главная" %}</a>
+    &rsaquo; <a href="{% url 'admin:catalog_productparametervaluemembership_changelist'  %}">
+        {% trans "Значения параметров товаров" %}
+    </a>
+    &rsaquo; {% trans "Экспорт значений параметров товаров" %}
+</div>
+{% endblock %}
+
+{% block title %}
+{% trans "Экспорт значений параметров товаров" %} {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+<div id="content-main">
+    <h1>{% trans "Экспорт значений параметров товаров" %}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static seo_tags banner_tags menu_tags %}
+
+{% block body_main_top %}
+
+<section class="section-dark">
+    <div class="container">
+        {% render_breadcrumbs %}
+        <div class="article-inner">
+
+            {% block article_content_wrapper %}
+            <div class="article-inner__content">
+                <div class="text-page">
+                    {% block article_content %}{% endblock article_content %}
+                </div>
+                {% include 'articles/include/article-share.html' %}
+            </div>
+            {% endblock article_content_wrapper %}
+
+
+            {% block article_sidebar_wrapper %}
+            <div class="article-inner__side">
+                <div class="side-menu">
+                    {% block article_sidebar %}
+
+                    {% render_menu 'article_sidebar_menu' %}
+
+                    {% endblock article_sidebar %}
+                </div>
+                {% render_sidebar_banners %}
+            </div>
+            {% endblock article_sidebar_wrapper %}
+        </div>
+    </div>
+</section>
+{% block article_bottom %}{% endblock article_bottom %}
+
+{% endblock body_main_top %}

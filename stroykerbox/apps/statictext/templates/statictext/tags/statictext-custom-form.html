@@ -1,0 +1,4 @@
+{% if object %}
+{% load custom_form_tags %}
+{{ object.text|custom_form_inside }}
+{% endif %}

@@ -1,0 +1,110 @@
+{% load static location_tags catalog_tags utils_tags sekizai_tags i18n search_tags %}
+<!-- new header  v3-->
+<section class="__header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="logo">
+                    <a href="/">
+                        <img
+                            src="{% if config.HEDER_LOGO_FILE %}{{ MEDIA_URL }}{{ config.HEDER_LOGO_FILE }}{% else %}{% static 'images/logo.svg' %}{% endif %}">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 pl--0">
+                <div class="custom-block">
+                    <button class="btn catalog-btn">
+                        <span></span>{{ config.CATALOG_MENU_TITLE }}
+                    </button>
+                    {% render_search_form %}
+
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="options-box">
+
+                    <!-- --v3--  -->
+
+                    <div class="v3-variant">
+                        <button class="btn menu-btn" onclick="menuToggle(event)">
+                            <img src="{% static 'images/profile-icon-t2.svg' %}" alt="">
+                            <img src="{% static 'images/close-icon.svg' %}" alt="">
+                            {% trans "Меню" %}
+                        </button>
+
+                        {% block icon_links %}
+                        <div class="col-block a-center">
+                            <ul class="option-items v-white">
+                                <li>
+                                    <a href="{% url 'cart:cart' %}">
+                                        {% if config.HEADER_ICON_CART %}
+                                        <img class="icon-svg" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART }}"/>
+                                            {% if config.HEADER_ICON_CART_HOVER %}
+                                            <img class="icon-svg hover" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART_HOVER }}"/>
+                                            {% endif %}
+                                        {% else %}
+                                        <img src="{% static 'images/cart-icon-orange.svg' %}" alt="">
+                                        {% endif %}
+                                        <span class="cart-number">{{ cart|length }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endblock icon_links %}
+
+                        <!-- Образец выделения активного пункта 1 (цвет) = hover--color   -->
+                        <!-- Образец выделения активного пункта 2 (подчеркивание) = hover--underline   -->
+                        <!-- Образец выделения активного пункта 3 (стрелка) = hover--arrow   -->
+
+                        <!-- Пример, когда иконка слева от текста = link--arrow-left-->
+                        <!-- Пример, когда иконка справа от текста = link--arrow-right-->
+
+                        <!-- все класси для 1ого варианта ховера = hover--color link--arrow-right -->
+                        <!-- все класси для 2ого варианта ховера = hover--color hover--underline link--arrow-right -->
+                        <!-- все класси для 3ого варианта ховера = hover--color link--arrow-right hover--arrow -->
+
+                        <div class="menu-box">
+                            <ul class="{% if 'color' in config.CATEGORY_MENU_HOVER_VARIANT %}hover--color{% endif %}
+                            {% if 'underline' in config.CATEGORY_MENU_HOVER_VARIANT %}hover--underline{% endif %}
+                            {% if 'icon' in config.CATEGORY_MENU_HOVER_VARIANT %}hover--arrow link--arrow-{{ config.CATEGORY_MENU_ICON_POSITION }}{% endif %}">
+                                {% for menu_item in header_menu %}
+                                <li{% if menu_item.css_class %} class="{{ menu_item.css_class }}"{% endif %}>
+                                    {% if menu_item.icon %}
+                                    <span>
+                                        <img src="{{ menu_item.icon.url }}" alt="{{ menu_item.title }}">
+                                    </span>
+                                    {% endif %}
+                                    <a{% if menu_item.title %} title="{{ menu_item.title }}"{% endif %}
+                                                               href="{{ menu_item.url }}"{% if request.path == menu_item.url %}
+                                                               class="active"{% endif %}{% if menu_item.new_tab %} target="_blank"{% endif %}>
+                                        {{ menu_item.anchor }}
+                                    </a>
+                                </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="contact-box">
+                    {% render_custom_header_phone %}
+
+                    <a data-fancybox="callme-modal" data-src="#callme-modal" href="javascript:;">
+                        <img src="{% static 'images/order-call-arrow.svg' %}"/>
+                        {% trans "Запросить звонок" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- catalog  -->
+    <div class="catalog-box">
+        <div class="container">
+            {% render_catalog_dropdown_menu %}
+
+        </div>
+    </div>
+</section>

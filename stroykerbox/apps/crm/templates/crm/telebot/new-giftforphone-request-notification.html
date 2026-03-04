@@ -1,0 +1,10 @@
+{% load utils_tags %}
+<strong>Запрос подарка за номер телефона на сайте {{ site.domain }}</strong>
+{% if object %}<a href="http://{{ site.domain }}{% url 'admin:crm_crmrequestbase_change' object.pk %}">Для управления запросом перейдите по ссылке</a>{% endif %}
+<pre>{% if location %}
+Регион: {{ location.name }}{% endif %}{% if object.name %}
+Имя: {{ object.name }}{% endif %}
+Телефон: <a href="tel:+{{ object.phone|clear_phone }}">{{ object.phone }}</a>
+{% if object.message %}
+Сообщение: {{ object.message }}
+{% endif %}</pre>

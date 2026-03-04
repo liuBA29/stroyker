@@ -1,0 +1,9 @@
+{% if form.non_field_errors %}
+<ul class="errors-block">
+
+    {% for error in form.non_field_errors %}
+    <li>{{ error|escape }}</li>
+    {% endfor %}
+
+</ul>
+{% endif %}

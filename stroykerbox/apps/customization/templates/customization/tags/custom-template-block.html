@@ -1,0 +1,6 @@
+{% if custom_block_title %}
+<h2 class="mb-25{% if custom_block_title_color %} style="color: {{ custom_block_title_color }}"{% endif %}">
+    {{ custom_block_title }}
+</h2>
+{% endif %}
+{{ template_code|safe }}

@@ -1,0 +1,150 @@
+{% load catalog_tags reviews_tags statictext_tags banner_tags custom_form_tags %}
+<div class="product-card-container">
+    <div class="product-card-content">
+
+        <div class="tabs-content">
+            <ul class="tabs">
+                {% if product.has_calc_related_products %}
+                <li class="active" rel="tab-calc">{{ config.RELATED_PRODUCTS_CALCULATOR_BLOCK_TITLE|default:'Покупайте вместе' }}</li>
+                {% endif %}
+
+                {% if product.description %}
+                <li {% if not product.has_calc_related_products %}class="active"{% endif %}rel="tab1">Описание</li>
+                {% endif %}
+
+                <li {% if not product.has_calc_related_products and not product.description and not product.description2 %}
+                    class="active" {% endif %}rel="tab2">Характеристики</li>
+
+                {% if product.description2 %}
+                <li rel="tab-descr2">
+                    {{ config.PRODUCT_DESCR2_LABEL }}
+                </li>
+                {% endif %}
+
+                {% if config.PRODUCT_REVIEW_ENABLED %}
+                <li rel="tab3" class="review-tab-link">Отзывы</li>
+                {% endif %}
+                {% if config.PRODUCT_SHOW_PRICE_CHART %}
+                <li rel="tab4" class="schedule-link">График цен</li>
+                {% endif %}
+
+                {% if has_documents %}
+                <li rel="tab5" class="tab_last">Документы</li>
+                {% endif %}
+            </ul>
+            <div class="tabsgroup">
+                <!-- #tab-calc -->
+                {% if product.has_calc_related_products %}
+                <span class="d_active tab_drawer_heading" rel="tab-calc">
+                    <span class="icon"><svg class="icon-svg">
+                            <use xlink:href="#tab-arrow"></use>
+                        </svg></span>
+                        {{ config.RELATED_PRODUCTS_CALCULATOR_BLOCK_TITLE|default:'Покупайте вместе' }}
+                </span>
+                <div id="tab-calc" class="tab-content" style="display: block;">
+                    <div class="text-page" itemprop="description">
+                        {% render_related_products_calc product %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if product.description %}
+                <!-- #tab1 -->
+                <span class="{% if not product.has_calc_related_products %}d_active {% endif %}tab_drawer_heading" rel="tab1">
+                    <span class="icon"><svg class="icon-svg">
+                            <use xlink:href="#tab-arrow"></use>
+                        </svg></span>
+                        Описание
+                </span>
+                <div id="tab1" class="tab-content" style="display: {% if product.has_calc_related_products %}none{% else %}block{% endif %};">
+                    <div class="text-page" itemprop="description">
+                        {{ product.description|custom_form_inside }}
+                    </div>
+                </div>
+                {% endif %}
+
+
+                <!-- #tab2 -->
+                <span class="tab_drawer_heading" rel="tab2">
+                    <span class="icon"><svg class="icon-svg">
+                            <use xlink:href="#tab-arrow"></use>
+                        </svg></span>
+                        Характеристики
+                </span>
+                <div id="tab2" class="tab-content" style="display: none;">
+                    {% render_product_properties %}
+                </div>
+
+                {% if product.description2 %}
+                <!-- #tab-descr2 -->
+                <span class="tab_drawer_heading" rel="tab-descr2">
+                    <span class="icon"><svg class="icon-svg">
+                            <use xlink:href="#tab-arrow"></use>
+                        </svg></span>
+                        {{ config.PRODUCT_DESCR2_LABEL }}
+                </span>
+                <div id="tab-descr2" class="tab-content" style="display: none;">
+                    <div class="text-page" itemprop="description">
+                        {{ product.description2|custom_form_inside }}
+                    </div>
+                </div>
+                {% endif %}
+
+
+                <!-- #tab2 -->
+                {% if config.PRODUCT_REVIEW_ENABLED %}
+                <span class="tab_drawer_heading" rel="tab3">
+                    <span class="icon"><svg class="icon-svg">
+                            <use xlink:href="#tab-arrow"></use>
+                        </svg></span>
+                        Отзывы
+                </span>
+                <div id="tab3" class="tab-content" style="display: none;">
+
+                    {% render_review_form product %}
+
+                    <h2>Отзывы на товар</h2>
+
+                    {% render_product_reviews product %}
+
+                </div>
+                {% endif %}
+                <!-- #tab3 -->
+                {% if config.PRODUCT_SHOW_PRICE_CHART %}
+                <span class="tab_drawer_heading" rel="tab4">
+                    <span class="icon"><svg class="icon-svg">
+                            <use xlink:href="#tab-arrow"></use>
+                        </svg></span>
+                        График цен
+                </span>
+                <div id="tab4" class="tab-content" style="display: none;">
+                    <h2>График цен на товар</h2>
+                    {% render_product_price_chart %}
+                </div>
+                {% endif %}
+
+                {% if has_documents %}
+                <span class="tab_drawer_heading" rel="tab5">
+                    <span class="icon"><svg class="icon-svg">
+                            <use xlink:href="#tab-arrow"></use>
+                        </svg></span>
+                        Документы
+                </span>
+                <div id="tab5" class="tab-content" style="display: none;">
+                    <h2>Документы и сертификаты</h2>
+                    {% render_product_documents %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="product-card__extra-text">
+            {% render_statictext 'product-card__extra-text' %}
+        </div>
+
+
+    </div>
+    <div class="product-card-side">
+        {% render_banners %}
+    </div>
+</div>

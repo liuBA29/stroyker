@@ -1,0 +1,20 @@
+{% if subcategories %}
+<div class="catalog__links-block">
+    {% for sub in subcategories %}
+    {% if config.CATEGORY_CATALOG_PAGE_SHOW_ICON %}
+    <div class="catalog__links-item">
+        <a class="catalog-item__link" href="{{ sub.get_absolute_url }}">
+            {% if sub.icon %}
+            <div class="catalog__links-item_image">
+                <img src="{{ sub.icon.url }}" alt="{{ sub.name }}">
+            </div>
+            {% endif %}
+            {{ sub.name }}
+        </a>
+    </div>
+    {% else %}
+    <a href="{{ sub.get_absolute_url }}">{{ sub.name }}</a>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endif %}

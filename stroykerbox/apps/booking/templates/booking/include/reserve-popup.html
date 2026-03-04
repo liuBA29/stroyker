@@ -1,0 +1,13 @@
+{% load i18n %}
+<div data-booking-tooltip-content class="d-none">
+    <div class="booking-tooltip">
+        <p class="booking-tooltip__text">
+            {% trans "Нажмите, чтобы забронировать" %}
+            <span data-booking-tooltip-title class="booking-tooltip__text-accent"></span> {% trans "на время" %}
+            <span data-booking-tooltip-time class="booking-tooltip__text-accent"></span>
+        </p>
+        <button class="g-button g-button_fill booking-tooltip__button" data-booking-tooltip-button>
+            {% trans "Забронировать" %}
+        </button>
+    </div>
+</div>

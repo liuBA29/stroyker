@@ -1,0 +1,19 @@
+{% load statictext_tags %}
+<div class="form-group privacy-policy agree-one">
+    <div class="checkbox">
+        <input type="checkbox" name="privacy-policy" id="privacy-{{ input_id }}" required autocomplete="off"/>
+        <label for="privacy-{{ input_id }}">
+            {% render_statictext 'form_agreement_text' %}
+        </label>
+    </div>
+</div>
+{% if agreement2 %}
+<div class="form-group privacy-policy agree-two">
+    <div class="checkbox">
+        <input type="checkbox" name="privacy-policy-2" id="privacy-{{ input_id }}-2" required autocomplete="off"/>
+        <label for="privacy-{{ input_id }}-2">
+            {% render_statictext 'form_agreement_text2' %}
+        </label>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,18 @@
+{% load static catalog_tags i18n %}
+{% if products %}
+<span class="content-title h2">{% trans "Распродажа" %}</span>
+<div class="product-slider product-slider--4">
+    <div class="slider-constructor" {% slider_constructor_dataset %}>
+        {% for product in products %}
+        {% render_product_teaser_new product %}
+        {% endfor %}
+    </div>
+    <div class="btn-center mobile-show">
+        <a class="btn btn-download btn-download-2">
+            <span class="icon">
+                <img src="{% static 'images/download-productions.svg' %}" alt="">
+            </span>{% trans "Ещё" %}
+        </a>
+    </div>
+</div>
+{% endif %}

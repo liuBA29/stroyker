@@ -1,0 +1,16 @@
+{% load thumbnail %}
+<div class="product-item">
+    <a href="{{ page.get_absolute_url }}" class="product-item__link">
+        <div class="product-item__image">
+            <div class="product-item__image-inner">
+                {% thumbnail page.teaser_image '350x400' as im %}
+                <img src="{{ im.url }}" alt="{{ page.title }}">
+                {% endthumbnail %}
+
+            </div>
+        </div>
+        <span class="product-item__content-top">
+            <span class="product-item__name">{{ page.title }}</span>
+        </span>
+    </a>
+</div>

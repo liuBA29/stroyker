@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load seo_tags %}
+
+{% block body_main_top_content_with_sections %}
+<section class="section-dark">
+    <div class="container">
+        {% render_breadcrumbs %}
+        <div class="content-block">
+            {% block portfolio_main_content %}{% endblock portfolio_main_content %}
+        </div>
+    </div>
+</section>
+{% endblock body_main_top_content_with_sections %}
+
+{% block body_main_bottom %}{% endblock %}
+

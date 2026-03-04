@@ -1,0 +1,15 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content %}
+<form action="" method="post" style="margin-bottom: 2rem">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="action" value="set_categories" />
+    {% trans "Сохранить" as save_value %}
+    <input type="submit" name="apply" value="{{ save_value }}" />
+</form>
+<hr style="margin-bottom: 2rem"/>
+    <h3>{% trans "Выбранные категории будут назначены для следующих товаров:" %}</h3>
+    <ul>{{ items|unordered_list }}</ul>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% load sekizai_tags %}
+
+<ul class="{% if 'color' in config.CATEGORY_MENU_HOVER_VARIANT %}hover--color{% endif %}
+{% if 'underline' in config.CATEGORY_MENU_HOVER_VARIANT %}hover--underline{% endif %}
+{% if 'icon' in config.CATEGORY_MENU_HOVER_VARIANT %}hover--arrow{% endif %} link--arrow-{{ config.CATEGORY_MENU_ICON_POSITION }}">
+    {% for category in categories %}
+    <li>
+        {% if config.CATEGORY_DROPDOWN_MENU_SHOW_ICON and category.icon %}
+        <span>
+            <img src="{{ category.icon.url }}" alt="{{ category.name }}">
+        </span>
+        {% endif %}
+        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{# {% block styles %} #}
+{% addtoblock "css" %}
+<style>
+{% if 'icon' in config.CATEGORY_MENU_HOVER_VARIANT and config.CATEGORY_MENU_HOVER_ICON %}
+
+header ul.hover--arrow li::before {
+    background-image: url('{{ MEDIA_URL }}{{ config.CATEGORY_MENU_HOVER_ICON }}') !important;
+}
+{% endif %}
+header ul.hover--underline li::after {
+    border-color: var(--category-menu-underline-highlight-color, #FF5F00) !important;
+    border-width: {{ config.CATEGORY_MENU_UNDERLINE_WIDTH|default:1 }}px !important;
+}
+header ul.hover--arrow li::before {
+    color: var(--category-menu-font-highlight-color, #FF5F00) !important;
+    fill: var(--category-menu-font-highlight-color, #FF5F00) !important;
+}
+header ul.hover--underline a:hover {
+    color: var(--category-menu-font-highlight-color, #FFF) !important;
+}
+.catalog-box ul {
+    max-height: {{ config.CATEGORY_MENU_MAX_HEIGHT|default:485 }}px !important;
+    grid-template-rows: repeat({{ config.CATEGORY_MENU_ITEMS_PER_COL|default:6 }}, auto) !important;
+}
+</style>
+{% endaddtoblock %}
+{# {% endblock styles %} #}

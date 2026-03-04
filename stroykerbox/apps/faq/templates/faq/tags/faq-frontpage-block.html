@@ -1,0 +1,27 @@
+{% load static i18n %}
+{% if questions %}
+<span class="content-title h2"{% if custom_block_title_color %} style="color: {{ custom_block_title_color }}{% endif %}">
+    {% if custom_block_title %}
+    {{ custom_block_title }}
+    {% else %}
+    {% trans "Вопрос - ответ" %}
+    {% endif %}
+</span>
+<div class="faq-section__elements{% if question.opened %} active{% endif %}">
+    {% for question in questions %}
+    <div class="faq-element toggle-section{% if question.opened %} active{% endif %}" data-slide="">
+        <div class="faq-element__head toggle-section__trigger js-touch-hover">
+            <h4 class="faq-element__head-title">{{ question.question|safe }}</h4>
+            <span class="faq-element__trigger">
+                <svg class="icon">
+                    <use xlink:href="#tab-arrow"></use>
+                </svg>
+            </span>
+        </div>
+        <div class="faq-element__content toggle-section__content{% if question.opened %} active{% endif %}" style="display: none;">
+            {{ question.answer|safe }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

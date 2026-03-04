@@ -1,0 +1,70 @@
+{% if config %}
+{% load static i18n %}
+<div class="footer-social">
+    {% if config.SOCIAL_LINK_TELEGRAM %}
+    <span>
+        {% trans "Наш аккаунт в Телеграм" as tg_title %}
+        <a href="{{ config.SOCIAL_LINK_TELEGRAM }}" title="{{ tg_title }}" class="svg">
+            <svg class="icon">
+                <use xlink:href="{% static 'images/socials-sprite.svg' %}#telegram"></use>
+            </svg>
+        </a>
+    </span>
+    {% endif %}
+    {% if config.SOCIAL_LINK_INSTAGRAM %}
+    <span>
+        <a href="{{ config.SOCIAL_LINK_INSTAGRAM }}">
+            {% trans "Мы в Instagram" as insta_alt %}
+            <img src="{% static 'images/instagram-icon.svg' %}" alt="{{ insta_alt }}">
+        </a>
+    </span>
+    {% endif %}
+    {% if config.SOCIAL_LINK_TWITTER %}
+    <span>
+        <a href="{{ config.SOCIAL_LINK_TWITTER }}">
+            {% trans "Мы в Twitter" as tw_alt %}
+            <img src="{% static 'images/twitter-icon.svg' %}" alt="{{ tw_alt }}">
+        </a>
+    </span>
+    {% endif %}
+    {% if config.SOCIAL_LINK_YOUTUBE %}
+    <span>
+        <a href="{{ config.SOCIAL_LINK_YOUTUBE }}">
+            {% trans "Мы на YouTube" as yt_alt %}
+            <img src="{% static 'images/youtube-icon.svg' %}" alt="{{ yt_alt }}">
+        </a>
+    </span>
+    {% endif %}
+    {% if config.SOCIAL_LINK_VK %}
+    <span>
+        <a href="{{ config.SOCIAL_LINK_VK }}">
+            {% trans "Наша страница ВКонтакте" as vk_alt %}
+            <img src="{% static 'images/vk-icon.svg' %}" alt="{{ vk_alt }}">
+        </a>
+    </span>
+    {% endif %}
+    {% if config.SOCIAL_LINK_DZEN %}
+    <span>
+        <a href="{{ config.SOCIAL_LINK_DZEN }}">
+            {% trans "Наша страница Yandex-Dzen" as dzen_alt %}
+            <img src="{% static 'images/dzen-icon.svg' %}" alt="{{ dzen_alt }}">
+        </a>
+    </span>
+    {% endif %}
+    {% if config.SOCIAL_LINK_ODNOKLASSNIKI %}
+    <span>
+        <a href="{{ config.SOCIAL_LINK_ODNOKLASSNIKI }}">
+            {% trans "Наша страница Одноклассники" as ok_alt %}
+            <img src="{% static 'images/odnoklassniki.svg' %}" alt="{{ ok_alt }}">
+        </a>
+    </span>
+    {% endif %}
+    {% if config.SOCIAL_LINK_RUTUBE %}
+    <span>
+        <a href="{{ config.SOCIAL_LINK_RUTUBE }}" title="Наш канал на Rutube">
+            <img src="{% static 'images/rutube-icon.svg' %}" alt="Наш канал на Rutube">
+        </a>
+    </span>
+    {% endif %}
+</div>
+{% endif %}

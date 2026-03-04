@@ -1,0 +1,60 @@
+{% extends 'users/users-base.html' %}
+{% load widget_tweaks utils_tags i18n %}
+
+{% block lk_content %}
+
+
+<span class="lk-title">{% trans "Личные данные" %}</span>
+
+<div class="personal-data">
+    <form  class="personal-data__item" method="POST">
+        {% csrf_token %}
+        <span class="personal-data__title">{% trans "Аккаунт" %}</span>
+
+        {% for field in form %}
+        <div class="form-group{% if field.errors %} form-group--error{% endif %}">
+            {% if field.name == 'phone' %}
+            {{ field|add_class:"form-control phone"|attr:"autocomplette:off" }}
+            {% else %}
+            {{ field|add_class:"form-control" }}
+            {% endif %}
+            <label for="{{ field.id_for_label }}" class="label-name">
+                <span class="content-name">
+                    {{ field.label }}{% if field.field.required %}*{% endif %}
+                </span>
+            </label>
+            {% if field.errors %}
+            <span class="error-text">{{ field.errors }}</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn--main-min button-theme button-theme_primary">
+            {% trans "Сохранить" %}
+        </button>
+    </form>
+
+
+    <form  class="personal-data__item" method="POST">
+        {% csrf_token %}
+        <span class="personal-data__title">{% trans "Пароль" %}</span>
+        {% for field in pass_form %}
+        <div class="form-group{% if field.errors %} form-group--error{% endif %}">
+            {{ field|add_class:"form-control" }}
+            <label for="{{ field.id_for_label }}" class="label-name">
+                <span class="content-name">
+                    {{ field.label }}{% if field.field.required %}*{% endif %}
+                </span>
+            </label>
+            {% if field.errors %}
+            <span class="error-text">{{ field.errors }}</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn--main-min button-theme button-theme_primary">{% trans "Сохранить" %}</button>
+    </form>
+
+</div>
+
+{% endblock lk_content %}

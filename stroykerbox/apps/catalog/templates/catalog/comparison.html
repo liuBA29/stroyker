@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load catalog_tags seo_tags static statictext_tags sekizai_tags i18n %}
+
+{% block meta_tags %}
+{{ block.super }}
+{# show link only when page has filters #}
+{% if request.GET %}
+<link rel="canonical" href="{{ category.get_absolute_url|canonical_link }}">
+{% endif %}
+{% endblock meta_tags %}
+
+
+
+{% block body_main_top %}
+
+<section class="news_and_actions section-second-content">
+    <div class="container">
+        {% render_breadcrumbs %}
+        <h1 class="content-title content-title--lg">{% trans "Сравнение товаров" %}</h1>
+        <div class="comparise_description">{% render_statictext 'comparise_description' %}</div>
+        <div class="content-comparison">
+            {% include 'catalog/comparison-content.html' %}
+        </div>
+    </div>
+</section>
+
+
+
+{% addtoblock 'js' %}
+<script src="{% static 'catalog/js/comparison-page.js' %}"></script>
+{% endaddtoblock %}
+
+{% addtoblock 'svg' %}
+<svg width="0" height="0" class="hidden">
+    <symbol viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" id="comparison-delete">
+    <path d="M6.344 6.343l11.314 11.314m-11.313 0L17.658 6.343" stroke="currentColor" stroke-width="2"></path>
+    </symbol>
+</svg>
+{% endaddtoblock %}
+
+
+
+{% endblock body_main_top %}

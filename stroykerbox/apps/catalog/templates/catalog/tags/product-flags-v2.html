@@ -1,0 +1,26 @@
+{% load i18n %}
+{% if product.is_new %}
+<div class="card-label card-label_style-new product-card-v2__label">
+    {% trans "новинка" %}
+</div>
+{% endif %}
+{% if product.is_sale %}
+<div class="card-label card-label_style-sale product-card-v2__label">
+    {% trans "распродажа" %}
+</div>
+{% endif %}
+{% if product.is_hit %}
+<div class="card-label card-label_style-hit product-card-v2__label">
+    {% trans "хит" %}
+</div>
+{% endif %}
+{% if product.discounted %}
+<div class="card-label card-label_style-stock product-card-v2__label">
+    {% trans "уценка" %}
+</div>
+{% endif %}
+{% if product.is_action %}
+<div class="card-label card-label_style-offer product-card-v2__label">
+    {% trans "акция" %}
+</div>
+{% endif %}

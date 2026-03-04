@@ -1,0 +1,34 @@
+{% if menu %}
+
+{% if show_title %}
+<span class="title">{{ menu.title }}</span>
+{% endif %}
+
+{% if mmenu_mode %}
+{% for item in menu.get_published_items %}
+<li class="menu-list__item">
+    <a {% if item.title %}
+        title="{{ item.title }}"{% endif %}
+        class="menu-list__link{% if request.path == item.url %} active{% endif %}{% if item.css_class %} {{ item.css_class }}{% endif %}"
+        href="{{ item.url }}"{% if item.download %} download{% endif %}>
+        {{ item.anchor }}
+    </a>
+</li>
+{% endfor %}
+
+{% else %}
+
+<ul>
+    {% for item in menu.get_published_items %}
+    <li{% if item.css_class %} class="{{ item.css_class }}"{% endif %}>
+        <a{% if item.title %} title="{{ item.title }}"{% endif %}{% if item.new_tab %}
+                              target="_blank"{% endif %}
+                              href="{{ item.url }}"{% if item.download %} download{% endif %}>
+            {{ item.anchor }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% endif %}

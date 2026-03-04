@@ -1,0 +1,30 @@
+<div class="owl-carousel"{% if show_dots %}
+     data-show-dots=""{% endif %}
+     data-autoplay-timeout="{{ config.SLIDES_BIG_SLIDES_TIMEOUT }}">
+    <!--slide-->
+
+    {% for banner in big_banners %}
+    <div class="home-banner__slide">
+
+        <!--image-->
+
+        {% if banner.url %}
+        <a class="image image_cover" href="{{ banner.url }}" title="{{ banner.name }}">
+            <img src="{{ banner.image_file.url }}" alt="{{ banner.name }}">
+        </a>
+        {% else %}
+        <div class="image image_cover" title="{{ banner.name }}">
+            <img src="{{ banner.image_file.url }}" alt="{{ banner.name }}">
+        </div>
+        {% endif %}
+        {% if banner.content %}
+        <div class="container content-container">
+            <div class="slide-content align--{{ config.BB_HTML_POSITION }}">
+                {{ banner.content|safe }}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+    {% endfor %}
+</div>

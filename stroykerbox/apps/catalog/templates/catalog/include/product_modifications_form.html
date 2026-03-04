@@ -1,0 +1,35 @@
+<!-- <div class="product-card__radio-options"> -->
+<!--     <span>Размер</span> -->
+<!--     <a href="#">25 мм</a> -->
+<!--     <a href="#">20 мм</a> -->
+<!--     <a href="#">18 мм</a> -->
+<!-- </div> -->
+
+<!-- <div class="product-card__select-options"> -->
+<!--     <span>Цвет</span> -->
+<!--     <select name="" id=""> -->
+<!--         <option value="">Красный</option> -->
+<!--         <option value="">Синий</option> -->
+<!--         <option value="">Зеленый</option> -->
+<!--         <option value="">Белый</option> -->
+<!--     </select> -->
+<!-- </div> -->
+
+{% for field in form.visible_fields %}
+<div class="product-card__{{ field.field.widget.input_type }}-options">
+    <span>{{ field.label_tag }}</span>
+    {% if field.field.widget.input_type == 'radio' %}
+    {% for choice in field %}
+    {# {{ choice.choice_label }} #}
+    {# <span class="radio">{{ choice.tag }}</span> #}
+    <a href="#">{{ choice.tag }}</a>
+    {% endfor %}
+    {% else %}
+    {{ field }}
+    {% endif %}
+
+    {# <a href="#">25 мм</a> #}
+    {# <a href="#">20 мм</a> #}
+    {# <a href="#">18 мм</a> #}
+</div>
+{% endfor %}

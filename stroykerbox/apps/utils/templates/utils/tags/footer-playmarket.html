@@ -1,0 +1,34 @@
+{% if config.PLAYMARKET_LINK and config.PLAYMARKET_APK %}
+{% load static %}
+{% get_media_prefix as MEDIA_URL %}
+
+<div class="social-links">
+    <a href="{{ config.PLAYMARKET_LINK }}">
+        {% if config.PLAYMARKET_LINK_ICON %}
+        <img src="{{ MEDIA_URL }}{{ config.PLAYMARKET_LINK_ICON }}" alt="">
+        {% else %}
+        <img src="{% static '/images/icons/googlePlay-white.svg' %}" alt="">
+        {% endif %}
+
+        {% if config.PLAYMARKET_LINK_ICON_HOVER %}
+        <img src="{{ MEDIA_URL }}{{ config.PLAYMARKET_LINK_ICON_HOVER }}" alt="">
+        {% else %}
+        <img src="{% static '/images/icons/googlePlay.svg' %}" alt="">
+        {% endif %}
+    </a>
+
+    <a href="{{ MEDIA_URL }}{{ config.PLAYMARKET_APK }}" download>
+        {% if config.PLAYMARKET_APK_ICON %}
+        <img src="{{ MEDIA_URL }}{{ config.PLAYMARKET_APK_ICON }}" alt="">
+        {% else %}
+        <img src="{% static '/images/icons/loadApk-white.svg' %}" alt="">
+        {% endif %}
+
+        {% if config.PLAYMARKET_APK_ICON_HOVER %}
+        <img src="{{ MEDIA_URL }}{{ config.PLAYMARKET_APK_ICON_HOVER }}" alt="">
+        {% else %}
+        <img src="{% static '/images/icons/loadApk.svg' %}" alt="">
+        {% endif %}
+    </a>
+</div>
+{% endif %}

@@ -1,0 +1,33 @@
+{% load static thumbnail utils_tags i18n %}
+
+<div class="card mr-2 box-shadow">
+
+    <div class="card-header">
+        <a href="{{ product.get_absolute_url }}">
+            <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
+        </a>
+    </div>
+
+    <a href="{{ product.get_absolute_url }}">
+        {% thumbnail product.main_image.image config.PRODUCT_THUMB_DEFAULT_RATIO as im %}
+        <img class="card-img-top" src="{{ im.url }}" alt="{{ product.name }}">
+        {% empty %}
+        {% get_media_prefix as MEDIA_URL %}
+        {% config_value 'PRODUCT_DEFAULT_IMAGE' as default_image %}
+        {% trans "Фото товара временно отсутствует" as no_photo_alt %}
+        <img class="card-img-top" src="{% if default_image %}{{ MEDIA_URL }}{{ default_image }}{% else %}{% static 'images/noimage.png' %}{% endif %}" width="130" height="130" alt="{{ no_photo_alt }}">
+        {% endthumbnail %}
+    </a>
+
+    <div class="card-body">
+        <h1 class="card-title pricing-card-title">{{ product.currency_price }}
+            <small class="text-muted">{{ currency_symbol }}{{ product.uom_suffix }}</small>
+        </h1>
+        {{ product.get_short_description|safe }}
+
+        <a class="btn btn-success add-to-cart" href="{% url 'cart:add_to_cart' product.pk %}">
+            {% trans "Добавить в корзину" %}
+        </a>
+
+    </div>
+</div>

@@ -1,0 +1,45 @@
+{% extends page.wide_view|yesno:"base-article-wide.html,base-article-sidebar.html" %}
+
+{% load seo_tags utils_tags custom_form_tags sekizai_tags i18n %}
+
+{% block article_content %}
+<h1>{% render_h1 %}</h1>
+{{ page.text|custom_form_inside }}
+
+{% if files %}
+<h2 class="section-title">{% trans "Документы и сертификаты" %}</h2>
+<div class="documents">
+    {% for file in files %}
+    <div class="document-item">
+        <span class="document-item__text">{{ file.name }}</span>
+        <span class="document-item__format">{{ file.file|file_extension }}</span>
+        <span class="document-item__size">{{ file.file|file_size }}</span>
+        <span class="document-item__btn">
+            <a href="{{ file.file.url }}" download="" class="btn">
+                {% trans "Скачать" %}
+            </a>
+        </span>
+
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if images %}
+<h2 class="section-title">{% trans "Галерея" %}</h2>
+<div class="slider">
+    <div class="owl-carousel">
+        {% for image in images %}
+        <div class="item"><img src="{{ image.image.url }}" alt="{{ image.title }}"></div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% endblock article_content %}
+
+{% block body_main_center %}
+
+{% include 'staticpages/include/custom-staticfiles.html' %}
+
+{% endblock body_main_center %}

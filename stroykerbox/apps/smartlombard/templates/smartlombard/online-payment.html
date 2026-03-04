@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static seo_tags sekizai_tags widget_tweaks statictext_tags i18n %}
+
+
+{% block body_main_top %}
+
+<section class="section-dark">
+    <div class="container">
+        {% render_breadcrumbs %}
+        <div class="article-inner">
+            <div class="article-inner__content article-inner__content--wide">
+                <div class="text-page">
+
+                    {% if request.user.is_staff %}
+                    <a href="{% url 'tbank:prepayment' %}">Получить ссылку для оплаты через Т-Банк</a>
+                    {% endif %}
+
+                    {% render_statictext 'lombard_oplata_text_top' %}
+
+                    <form method="POST" autocomplete="off" id="check-lombard-ticket">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-4{% if form.client_surname.errors %} form-group--error{% endif %}">
+                                {% trans "Фамилия клиента" as surname_placeholder %}
+                                {% render_field form.client_surname class+="form-control" placeholder=surname_placeholder %}
+                                {% if form.client_surname.errors %}
+                                <span class="error-text">{{ form.client_surname.errors }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4{% if form.ticket_number.errors %} form-group--error{% endif %}">
+                                {% trans "Серия и номер залогового билета" as ticket_num_placeholder %}
+                                {% render_field form.ticket_number class+="form-control" placeholder=ticket_num_placeholder %}
+                                {% if form.ticket_number.errors %}
+                                <span class="error-text">{{ form.ticket_number.errors }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn button-theme button-theme_primary m-0 w-100">
+                                    {% trans "Проверить" %}
+                                </button>
+                            </div>
+                        </div>
+                        {% if form.non_field_errors %}
+                            <div class="form-group--error">
+                                <span class="error-text">{{ form.non_field_errors }}</span>
+                            </div>
+                        {% endif %}
+                    </form>
+
+                    {# {% render_statictext 'lombard_oplata_text_bottom' %} #}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock body_main_top %}

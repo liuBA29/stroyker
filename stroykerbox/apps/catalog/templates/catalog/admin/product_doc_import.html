@@ -1,0 +1,79 @@
+{% extends "admin/base_site.html" %}
+{% load %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">Главная</a>
+    &rsaquo; <a href="{% url 'admin:catalog_product_changelist'  %}">Товары</a>
+    &rsaquo; Импорт документов для товаров
+</div>
+{% endblock %}
+
+{% block title %}
+Импорт документов товаров {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <h1>Импорт документов для товаров каталога</h1>
+    <form method="POST" enctype="multipart/form-data" style="margin: 2rem 0">
+        {% csrf_token %}
+        {# {{ form.as_p }} #}
+        {% for field in form %}
+        <div style="margin-top: 1rem">
+            {% if field.label %}
+            <div>
+                {{ field.label }}
+            </div>
+            {% endif %}
+            {{ field }}
+            {% if field.help_text %}
+            {% if field.field.widget.input_type == 'checkbox' %}
+            <span>{{ field.help_text }}</span>
+            {% else %}
+            <div>{{ field.help_text }}</div>
+            {% endif %}
+            {% endif %}
+        </div>
+        {% endfor %}
+        <input type="submit" style="margin-top: 2rem">
+    </form>
+
+</div>
+
+<hr />
+
+<p style="margin-top: 2rem">
+    <ol>
+        <li>Путь должен быть указан относительно каталога <strong>МЕДИА</strong></li>
+        <li>Если файл загружается через файловый менеджер в админке, то надо иметь в виду, что загрузка будет
+            производиться в каталог <strong>uploads</strong> внутри каталога с <strong>МЕДИА</strong>. Т.е. относительный путь будет начинаться с <strong>uploads/</strong>.
+        </li>
+        <li>Все загружаемые файлы, особенно, если таковые "позаимствованы" на сторонних сайтах, должны предварительно быть пропущены через программу-антивирус.</li>
+        <li>Вся ответственность за такие файлы и вред (серверу, данным сайта и пользователям, скачивающим эти файлы), который может нанести потенциально содержащийся в оных вредоносный код, целиком и полностью ложится на того, кто будет использовать данный функционал импорта.</li>
+    </ol>
+</p>
+
+<h2 style="margin-top: 2rem">Примеры ожидаемой структуры данных в файле для импорта</h2>
+<table>
+    <tbody>
+        <tr>
+            <td>артикул-1</td>
+            <td>название файла 1</td>
+            <td>/путь/к/картинке/относительно/каталога/с/медиа/фото1.png</td>
+            <td>название файла 2</td>
+            <td>/путь/к/картинке/относительно/каталога/с/медиа/фото2.xml</td>
+            <td>..</td>
+        </tr>
+        <tr>
+            <td>артикул-2</td>
+            <td>название файла 1</td>
+            <td>/путь/к/картинке/относительно/каталога/с/медиа/фото1.png</td>
+            <td>название файла 2</td>
+            <td>/путь/к/картинке/относительно/каталога/с/медиа/фото2.xml</td>
+            <td>..</td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}

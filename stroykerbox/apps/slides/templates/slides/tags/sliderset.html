@@ -1,0 +1,62 @@
+{% load custom_form_tags i18n %}
+{% if slides %}
+{% if custom_block_title %}
+<h2 class="mb-25"{% if custom_block_title_color %} style="color: {{ custom_block_title_color }}"{% endif %}>
+    {{ custom_block_title }}
+</h2>
+{% endif %}
+
+<div {% include 'slides/include/sliderset_attrs.html' %}>
+    {% if sliderset.arrows_type == 'arrows' %}
+    {# Custom slider arrows #}
+    {% if sliderset.arrow_right %}
+    <img class="custom-icon-left" src="{{ sliderset.arrow_right.url }}" alt="icon">
+    {% endif %}
+    {% if sliderset.arrow_left %}
+    <img class="custom-icon-right" src="{{ sliderset.arrow_left.url }}" alt="icon">
+    {% endif %}
+    {% endif %}
+
+    {% for slide in slides %}
+    {% if slide.image_file or slide.text %}
+
+    {% if slide.url %}
+    <a class="content-standard-box" href="{{ slide.url }}"{% if slide.hide_adaptive %} data-slide-mobile-hidden{% endif %}>
+        {% else %}
+        <div class="content-standard-box"{% if slide.hide_adaptive %} data-slide-mobile-hidden{% endif %}>
+            {% endif %}
+            <div class="content-standard-box__container">
+                {% if slide.image_file %}
+
+                {% if slide.img_open_full and not slide.url %}
+                <a class="content-image image-zoom" href="{{ slide.image_file.url }}" data-fancybox="data-fancybox">
+                    <div class="image">
+                        <img src="{{ slide.image_file.url }}" alt="{{ sliderset.name }} ({% trans 'фото' %} {{ forloop.counter }})">
+                    </div>
+                </a>
+                {% else %}
+                <div class="content-image image-zoom" data-custom-interaction>
+                    <div class="image">
+                        <img src="{{ slide.image_file.url }}" alt="{{ sliderset.name }} (фото {{ forloop.counter }})">
+                    </div>
+                </div>
+                {% endif %}
+
+                {% endif %}
+
+                {% if slide.text %}
+                <div class="content-background-box__text-content">
+                    {{ slide.text|custom_form_inside }}
+                </div>
+                {% endif %}
+
+            </div>
+            {% if slide.url %}
+    </a>
+    {% else %}
+        </div>{% endif %}
+        {% endif %}
+        {% endfor %}
+</div>
+
+{% endif %}

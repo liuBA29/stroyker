@@ -1,0 +1,68 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans "Главная" %}</a>
+    &rsaquo; <a href="{% url 'admin:catalog_product_changelist'  %}">{% trans "Товары" %}</a>
+    &rsaquo; {% trans "Импорт свойств для товаров" %}
+</div>
+{% endblock %}
+
+{% block title %}
+{% trans "Импорт свойств товаров" %} {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <h1>{% trans "Импорт свойств для товаров каталога" %}</h1>
+    <form method="POST" enctype="multipart/form-data" style="margin: 2rem 0">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% blocktranslate %}
+        <p>Выберите файл для импорта.</p>
+        <p>
+            <strong>
+                Если отмечена опция перезаписи - все текущие свойства обрабатываемого товара будут удалены и замещены
+                импортируемыми данными.
+            </strong>
+        </p>
+        {% endblocktranslate %}
+        <input type="submit">
+    </form>
+
+    <hr />
+
+    {% blocktranslate %}
+    <p>
+        Первая колонка-столбец должна содержать артикул нужного товара.<br />
+        Вторая (четвертая, шестая... и другие четные) - название свойства.<br />
+        Третья (пятая, седьмая... и другие нечетные) - значение свойства.<br />
+    </p>
+    <h2 style="margin-top: 2rem">Примеры ожидаемой структуры данных в файле для импорта</h2>
+    <h3>С заголовками:</h3>
+    <table width="100%">
+        <tbody>
+            <tr>
+                <th>любой заголоков для колонки с артикулом</th>
+                <th>любой заголовок для названия свойства</th>
+                <th>любой заголовок для значения свойства</th>
+                <th>любой заголовок для названия свойства</th>
+                <th>любой заголовок для значения свойства</th>
+                <th>любой заголовок для названия свойства</th>
+                <th>любой заголовок для значения свойства</th>
+            </tr>
+            <tr>
+                <td>артикул-1</td>
+                <td>бла-бла</td>
+                <td>777</td>
+                <td>бла-бла1</td>
+                <td>7779</td>
+                <td>бла-бла2</td>
+                <td>7773</td>
+            </tr>
+        </tbody>
+    </table>
+    {% endblocktranslate %}
+</div>
+{% endblock %}

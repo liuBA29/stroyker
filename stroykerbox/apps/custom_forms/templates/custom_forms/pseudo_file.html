@@ -1,0 +1,91 @@
+{% include "django/forms/widgets/multiwidget.html" %}
+
+<input type="file" name="{{ widget.name }}" id="{{ widget.attrs.id }}" multiple class="filepond">
+
+{% load static %}
+
+<link href="{% static 'custom_forms/css/unpkg.com_filepond@4.30.4_dist_filepond.css' %}" rel="stylesheet">
+<link href="{% static 'custom_forms/css/unpkg.com_filepond-plugin-image-preview@4.6.11_dist_filepond-plugin-image-preview.css' %}" rel="stylesheet">
+<script src="{% static 'custom_forms/js/unpkg.com_filepond@4.30.4_dist_filepond.js' %}"></script>
+<script src="{% static 'custom_forms/js/ru-ru.js' %}"></script>
+<script src="{% static 'custom_forms/js/unpkg.com_filepond-plugin-image-preview@4.6.11_dist_filepond-plugin-image-preview.min.js' %}"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    FilePond.registerPlugin(FilePondPluginImagePreview);
+    var inputElement = document.getElementById('{{ widget.attrs.id }}');
+    var current_pond = FilePond.create(inputElement);
+    filePods.push(current_pond)
+
+    current_pond.setOptions({
+      allowMultiple: true,
+      labelIdle: 'Перетащите файлы или <span class="filepond--label-action"> выберите </span>',
+      server: {
+        process: {
+          headers: function(file, metadata) {
+            return {
+              'X-CSRFTOKEN': getCookie('csrftoken')
+            }
+          },
+          url: '{% url 'custom_forms:process' %}',
+          withCredentials: true,
+          ondata: (formData) => {
+              formData.append('fp_upload_field', '{{ widget.name }}');
+              return formData;
+          }
+        },
+        revert: {
+          headers: {'X-CSRFTOKEN': getCookie('csrftoken')},
+          url: '{% url 'custom_forms:revert' %}',
+          withCredentials: true,
+          ondata: (formData) => {
+              formData.append('fp_upload_field', '{{ widget.name }}');
+              return formData;
+          }
+        },
+        restore: {
+          headers: {'X-CSRFTOKEN': getCookie('csrftoken')},
+          url: '{% url 'custom_forms:restore' %}',
+          withCredentials: true,
+          ondata: (formData) => {
+              formData.append('fp_upload_field', '{{ widget.name }}');
+              return formData;
+          }
+        },
+        load: {
+          headers: {'X-CSRFTOKEN': getCookie('csrftoken')},
+          url: '{% url 'custom_forms:load' %}?target=',
+          withCredentials: true,
+          ondata: (formData) => {
+              formData.append('fp_upload_field', '{{ widget.name }}');
+              return formData;
+          }
+        },
+        fetch: {
+          headers: {'X-CSRFTOKEN': getCookie('csrftoken')},
+          url: '{% url 'custom_forms:fetch' %}?target=',
+          withCredentials: true,
+          ondata: (formData) => {
+              formData.append('fp_upload_field', '{{ widget.name }}');
+              return formData;
+          }
+        }
+      },
+    });
+  })
+</script>

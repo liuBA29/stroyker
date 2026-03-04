@@ -1,0 +1,89 @@
+{% load static location_tags utils_tags i18n %}
+<section class="mobile-header d-flex d-lg-none">
+    <div class="container">
+        <div class="mobile-header__row">
+            <a class="logo-link" href="/">
+                <img {% if config.HEDER_LOGO_FILE_MOBILE %}
+                    src="{{ MEDIA_URL }}{{ config.HEDER_LOGO_FILE_MOBILE }}"{% else %}
+                    src="{% if config.HEDER_LOGO_FILE %}{{ MEDIA_URL }}{{ config.HEDER_LOGO_FILE }}{% else %}{% static 'images/logo.svg' %}{% endif %}"{% endif %}
+                    alt="{{ config.SITE_NAME }}">
+            </a>
+            <div class="mobile-header__item">
+                {% if config.SHOW_PHONE_IN_MOBILE_HEADER %}
+                {% location_contact_phones as phones %}
+                {% if phones or request.location.email %}
+                <div class="mobile-header__phones">
+                    {% if phones %}
+                    {% for phone in phones %}
+                    <a href="tel:{{ phone.phone_raw }}"  class="mobile-header__phone">
+                        {{ phone.phone }}
+                    </a>
+                    {% endfor %}
+                    {% endif %}
+
+                    {% if request.location.email and config.LOCATION_EMAIL_SHOW_IN_HEADER %}
+                    <a href="mailto:{{ request.location.email }}" class="mobile-header__phone">
+                        {{ request.location.email }}
+                    </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% endif %}
+
+                <button data-open-search-modal class="mobile-header__search-button">
+                    <svg class="mobile-header__search-icon" width="17" height="17" viewBox="0 0 17 17" fill="none"
+                                                                                                       xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M1.26564 6.42777C1.26564 9.29027 3.5638 11.5925 6.37631 11.5925C9.18882 11.5925 11.487 9.29027 11.487 6.42777C11.487 3.56527 9.18882 1.26301 6.37631 1.26301C3.5638 1.26301 1.26564 3.56527 1.26564 6.42777Z"
+                            stroke="currentColor" stroke-width="2.52602" />
+                        <line y1="-1.26301" x2="7.5559" y2="-1.26301"
+                                                        transform="matrix(0.749811 0.661652 0.655349 -0.755326 11.3359 10.001)" stroke="currentColor"
+                                                                                                                                stroke-width="2.52602" />
+                    </svg>
+                </button>
+                <a href="#menu" id="my-button" data-open-menu class="mobile-header__hamburger-button">
+                    <div class="mobile-header__hamburger-line"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% render_mmenujs %}
+
+{# modal window #}
+<section class="search-modal-window">
+    <div class="search-modal-window__header">
+        <div class="container">
+            <div class="g-row search-modal-window__row">
+                <form action="{% url 'search' %}" class="search-modal-window__input-form">
+                    <input name="q" type="text" autocomplete="off"
+                                                class="search-modal-window__input"
+                                                value="{{request.GET.q}}"
+                                                data-clear-input="search-menu"
+                                                data-search-input="search-modal"
+                                                data-min-chars="{{ config.SEARCH__QUERY_MIN_CHARS }}"
+                                                data-search-url="{% url 'search' %}"
+                                                placeholder="{{ config.SEARCH_INPUT_PLACEHOLDER }}">
+
+                    <button data-clear-input-button="search-menu"
+                            type="button"
+                            data-clear-input
+                            class="search-modal-window__clear-input">
+                        <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 8L7.99998 1" stroke="#E5E5EA" stroke-width="0.991667" stroke-linecap="round" />
+                            <path d="M8 8L1 1" stroke="#E5E5EA" stroke-width="0.991667" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </form>
+
+                <button type="button" data-close-search-modal class="g-link search-modal-window__cancel">
+                    {% trans "Отмена" %}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="search-modal-window__search-results">
+        <div class="container" data-search-results="search-modal">
+        </div>
+    </div>
+</section>

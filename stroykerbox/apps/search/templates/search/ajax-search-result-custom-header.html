@@ -1,0 +1,47 @@
+{% load catalog_tags thumbnail i18n %}
+{% if products %}
+{% for product in products %}
+{% product_location_price product as product_price %}
+<a href="{{ product.get_absolute_url }}" class="s-item-link" style="display: flex">
+    {% if config.AJAX_SEARCH_RESULT_WITH_IMG %}
+    {% with product.main_image as product_image %}
+    {% if product_image %}
+    {% thumbnail product_image.image config.SEARCH_THUMB_DEFAULT_RATIO as im %}
+
+
+    <div class="s-item-img">
+        <img src="{{ im.url }}" alt="{{ product.name }}">
+    </div>
+
+    {% endthumbnail %}
+    {% endif %}
+    {% endwith %}
+    {% endif %}
+
+    <div class="s-item-info">
+        <span class="s-item-title">{{ product.name }}</span>
+
+        <span class="s-item-price">
+          {% if product_price %}
+          {{ product_price|multiplicity_price:product|price_format }} {% trans "₽" %}/{{ product.multiplicity_label|default:product.uom|default:"шт." }}
+          {% else %}
+            {{ config.PRODUCT_NOT_AVAIBLE_STATUS_NAME }}
+          {% endif %}
+        </span>
+    </div>
+</a>
+{% endfor %}
+{% endif %}
+
+{% for page in staticpages %}
+<a href="{{ page.get_absolute_url }}" class="s-item-link">
+    <div class="s-item-img">
+        {% thumbnail page.teaser_image config.SEARCH_THUMB_DEFAULT_RATIO as im %}
+        <img src="{{ im.url }}" alt="{{ page.title }}">
+        {% endthumbnail %}
+    </div>
+    <div class="s-item-info">
+        <span class="s-item-title">{{ page.title }}</span>
+    </div>
+</a>
+{% endfor %}

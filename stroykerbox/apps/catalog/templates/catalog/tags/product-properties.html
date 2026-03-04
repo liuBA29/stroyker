@@ -1,0 +1,25 @@
+{% if product %}
+<ul class="char">
+    {% for name, prop in delivery_props %}
+    {% if prop %}
+    <li><span class="char-text"><span class="char-text__mask">{{ name }}</span></span><span class="char-text">{{ prop }}</span></li>
+    {% endif %}
+    {% endfor %}
+
+    {% for param in product.params.all %}
+    <li><span class="char-text"><span class="char-text__mask">{{ param.parameter.name }}</span></span><span class="char-text">
+            {% if param.value_decimal %}
+            {{ param.value_decimal|floatformat:2 }}
+            {% else %}
+            {% for val in param.parameter_value.all %}
+            {{ val.value_str }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            {% endif %}
+        </span></li>
+        {% endfor %}
+
+        {% for prop in product.props.all %}
+        <li><span class="char-text"><span class="char-text__mask">{{ prop.name }}</span></span><span class="char-text">{{ prop.value }}</span></li>
+        {% endfor %}
+</ul>
+{% endif %}

@@ -1,0 +1,11 @@
+{% extends 'admin/change_list.html' %}
+{% load i18n %}
+
+{% block object-tools-items %}
+<li>
+    <a href="{% url 'admin:partner_import' %}" class="grp-state-focus import_link">
+        Импорт
+    </a>
+</li>
+{{ block.super }}
+{% endblock %}

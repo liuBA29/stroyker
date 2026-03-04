@@ -1,0 +1,16 @@
+{% extends 'catalog/category-base.html' %}
+{% load catalog_tags %}
+
+{% block content %}
+
+{% render_teaser_list products category %}
+
+{% if page_obj.paginator.num_pages > 1 %}
+<div style="margin: 2rem auto">
+    {% include 'include/pagination.html' %}
+</div>
+{% endif %}
+
+{% render_product_set_slider 'set-one' %}
+
+{% endblock content %}

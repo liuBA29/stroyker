@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static news_tags catalog_tags seo_tags thumbnail i18n %}
+
+{% block body_main_top_content %}
+
+<h1 class="h1">{% render_h1 %}</h1>
+
+<div class="articles-block-container">
+    <div class="articles-block">
+
+        {% for article in articles %}
+        <div class="item{% if forloop.counter < 3 %} item--half{% endif %}">
+            <a href="{{ article.get_absolute_url }}" class="new-slide-item{% if forloop.counter < 3 %} new-slide-item--wide{% endif %}">
+                <span class="new-slide-item__image">
+                    {% if article.image %}
+                    {% thumbnail article.image '350x400' as im %}
+                    <img src="{{ im.url }}" alt="{{ article.title }}">
+                    {% endthumbnail %}
+                    {% else %}
+                    <img src="{% static 'images/no-img.png' %}" alt="{{ article.title }}">
+                    {% endif %}
+                </span>
+                <span class="new-slide-item__content">
+                    <span class="new-slide-item__title">{{ article.label }}</span>
+                    <span class="new-slide-item__name">{{ article.title }}</span>
+                    <span class="new-slide-item__date">{{ article.created|date:"M Y" }}</span>
+                    {% if forloop.first %}
+                    <span class="btn-border">
+                        {% trans "Подробнее" %}
+                    </span>
+                    {% endif %}
+                </span>
+            </a>
+        </div>
+        {% endfor %}
+
+    </div>
+    {% include 'include/pagination.html' %}
+
+    <div class="btn-center mobile-show">
+        <a class="btn-border btn-download-5">
+            <span class="icon">
+                <img src="{% static 'images/show-more-arrow.svg' %}" alt="">
+            </span>
+            {% trans "Показать еще" %}
+        </a>
+    </div>
+
+</div>
+
+{% endblock body_main_top_content %}
+
+{% block body_main_center %}
+<section class="section-second-content">
+    <div class="container">
+        {% render_sales_slider %}
+        {% render_news_slider %}
+    </div>
+</section>
+{% endblock body_main_center %}

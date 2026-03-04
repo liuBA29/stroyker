@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static seo_tags i18n users_tags %}
+
+{% block body_main_top_content %}
+
+<div class="lk-main-page">
+    <h1>{% render_h1 %}</h1>
+
+    <div class="lk-main-page__head">
+        <div class="user-data">
+            {% render_user_avatar user %}
+
+            <div class="user-data__content">
+                <span class="user-data__name">
+                    {% if user.name %}{{ user.name }}{% else %}{{ user.email }}{% endif %}</span>
+                {% if user.discount_group %}
+                <div class="user-data__status">
+                    <span>{{ user.discount_group.name }}</span>
+                </div>
+                {% endif %}
+                <a href="{% url 'logout' %}" class="btn-border btn-exit lk-exit button-theme button-theme_secondary">
+                    <svg class="icon">
+                        <use xlink:href="#exit"></use>
+                    </svg>
+                    {% trans "Выйти" %}
+                </a>
+            </div>
+
+            {% if user.personal_info %}
+            <div class="user-data__personal">
+                {{ user.personal_info|linebreaks }}
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+
+<section class="lf-main-container">
+    <div class="container">
+
+        <a href="{% url 'users:orders_list' %}" class="mobile-menu-item">
+            {% trans "История заказов" %}
+            <span class="icon"><svg class="icon-svg">
+                    <use xlink:href="#tab-arrow"></use>
+                </svg></span>
+        </a>
+
+        <a href="{% url 'users:docs_index_list' %}" class="mobile-menu-item">
+            {% trans "Документооборот" %}
+            <span class="icon"><svg class="icon-svg">
+                    <use xlink:href="#tab-arrow"></use>
+                </svg></span>
+        </a>
+
+        <a href="{% url 'users:profile_edit' %}" class="mobile-menu-item">
+            {% trans "Личные данные" %}
+            <span class="icon"><svg class="icon-svg">
+                    <use xlink:href="#tab-arrow"></use>
+                </svg></span>
+        </a>
+
+        <div class="lk-main-menu">
+
+            <a href="{% url 'users:orders_list' %}" class="lk-menu-item">
+                <svg class="icon">
+                    <use xlink:href="#box"></use>
+                </svg>
+                <span class="lk-menu-item__name">{% trans "История заказов" %}</span>
+                <span class="lk-menu-item__text">{% trans "Просмотр, повтор, сохранение истории ваших покупок" %}</span>
+            </a>
+
+            <a href="{% url 'users:docs_index_list' %}" class="lk-menu-item">
+                <svg class="icon">
+                    <use xlink:href="#subtract"></use>
+                </svg>
+                <span class="lk-menu-item__name">{% trans "Документооборот" %}</span>
+                <span class="lk-menu-item__text">{% trans "Счета, акты и сметы. У нас ничего не теряется" %}</span>
+            </a>
+
+            <a href="{% url 'users:profile_edit' %}" class="lk-menu-item">
+                <svg class="icon">
+                    <use xlink:href="#pencil"></use>
+                </svg>
+                <span class="lk-menu-item__name">{% trans "Личные данные" %}</span>
+                <span class="lk-menu-item__text">{% trans "Пароль, логин и реквизиты" %}</span>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock body_main_top_content %}

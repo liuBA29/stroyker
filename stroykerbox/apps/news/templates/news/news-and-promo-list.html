@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static seo_tags %}
+
+{% block body_main_top_content %}
+<h1>{% render_h1 %}</h1>
+
+{% if main_item %}
+<div class="main-action">
+    <div class="main-action__image">
+        {% if main_item.image %}
+        <img src="{{ main_item.image.url }}" alt="{{ main_item.title }}">
+        {% else %}
+        <img src="{% static 'images/no-img.png' %}" alt="{{ main_item.title }}">
+        {% endif %}
+    </div>
+    <div class="main-action__text">
+        <div class="main-action__type main-action__type--{% if item.post_type == 'promo' %}action{% else %}news{% endif %}">
+            <span>{% if main_item.post_type == 'news' %}Новость{% else %}Акция{% endif %}</span>
+        </div>
+        {{ main_item.teaser|safe }}
+        <div>
+            <a class="btn-border button-theme button-theme_secondary" href="{{ main_item.get_absolute_url }}">
+                Подробнее
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="actions-container">
+    <div class="actions-content">
+
+        {% for item in items %}
+        <div class="item">
+            <a href="{{ item.get_absolute_url }}" class="action-item">
+                <span class="action-item__image">
+                    {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.teaser|striptags }}">
+                    {% else %}
+                    <img src="{% static 'images/no-img.png' %}" alt="{{ item.teaser|striptags }}">
+                    {% endif %}
+                </span>
+                <span class="action-item__content">
+                    <span class="action-item__type action-item__type--{% if item.post_type == 'promo' %}action{% else %}news{% endif %}">
+                        <span>
+                            {% if item.post_type == 'news' %}Новость{% else %}Акция{% endif %}
+                        </span>
+                    </span>
+                    <span class="action-item__title">{{ item.title }}</span>
+                </span>
+            </a>
+        </div>
+        {% empty %}
+
+        {% if not main_item and config.NEWS_EMPTY_MSG_HTML %}
+        {{ config.NEWS_EMPTY_MSG_HTML|safe }}
+        {% endif %}
+
+        {% endfor %}
+    </div>
+
+    {% if items.paginator.num_pages > 1 %}
+    <div class="btn-center">
+        {% include 'include/pagination.html' with page_obj=items %}
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock body_main_top_content %}

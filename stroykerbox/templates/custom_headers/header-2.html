@@ -1,0 +1,100 @@
+{% load static location_tags catalog_tags utils_tags i18n search_tags %}
+<!-- new header v2 -->
+<section class="__header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="logo">
+                    <a href="/">
+                        <img
+                            src="{% if config.HEDER_LOGO_FILE %}{{ MEDIA_URL }}{{ config.HEDER_LOGO_FILE }}{% else %}{% static 'images/logo.svg' %}{% endif %}">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 pl--0">
+                <div class="custom-block">
+                    <button class="btn catalog-btn">
+                        <span></span>{{ config.CATALOG_MENU_TITLE }}
+                    </button>
+                    {% render_search_form %}
+
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="options-box">
+
+                    <!-- --v2--  -->
+                    <ul class="option-items v-white">
+                        {% block compare_link %}
+                        {# compare indicator icon #}
+                        {# <li><a href="#"><img src="./images/header-icons/item-orange.svg" alt=""> 3</a></li> #}
+                        {% endblock compare_link %}
+
+                        {# cart item #}
+                        <li>
+                            <a href="{% url 'cart:cart' %}">
+                                {% if config.HEADER_ICON_CART %}
+                                <img class="icon-svg" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART }}"/>
+                                    {% if config.HEADER_ICON_CART_HOVER %}
+                                    <img class="icon-svg hover" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART_HOVER }}"/>
+                                    {% endif %}
+                                {% else %}
+                                <img src="{% static 'images/cart-icon-orange.svg' %}" alt="">
+                                {% endif %}
+                                <span class="cart-number">{{ cart|length }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    {% block links %}
+                    {% if config.WHITETHEME_SHOW_LK_LINKS %}
+                    <p class="login-register">
+                        {% if config.HEADER_ICON_LK %}
+                        <img class="icon-svg" src="{% get_media_prefix %}{{ config.HEADER_ICON_LK }}"/>
+                        {% if config.HEADER_ICON_LK_HOVER %}
+                        <img class="icon-svg hover" src="{% get_media_prefix %}{{ config.HEADER_ICON_LK_HOVER }}"/>
+                        {% endif %}
+                        {% else %}
+                        <img src="{% static 'images/profile-icon-t1.svg' %}" alt="">
+                        {% endif %}
+                        <a href="{% if request.user.is_authenticated %}{% url 'users:profile' %}{% else %}{% url 'login' %}{% endif %}">
+                            {% if request.user.is_authenticated %}
+
+                            {{ request.user.display_name }}
+
+                            {% else %}
+                            {% trans "Войти" %}
+                            {% endif %}
+                        </a>
+                        {% if request.user.is_anonymous %}
+                        <span>/</span><a href="{% url 'registration' %}">
+                            {% trans "Зарегистрироваться" %}
+                        </a>
+                        {% endif %}
+                    </p>
+
+                    {% endif %}
+                    {% endblock links %}
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="contact-box">
+                    {% render_custom_header_phone %}
+                    {% if not config.AMOCRM_CALLME_FORM %}
+                    <a href="javascript:;"
+                       data-fancybox="callme-modal"
+                       data-src="#callme-modal">
+                        <img src="{% static 'images/order-call-arrow.svg' %}" alt="">
+                        {% trans "Заказать звонок" %}
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- catalog  -->
+    <div class="catalog-box">
+        <div class="container">
+            {% render_catalog_dropdown_menu %}
+        </div>
+    </div>
+</section>

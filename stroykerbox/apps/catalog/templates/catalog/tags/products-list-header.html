@@ -1,0 +1,154 @@
+{% load static catalog_tags sekizai_tags i18n %}
+<div class="catalog-sorting">
+    <span class="catalog-sorting__title">{% trans "Сортировка:" %}</span>
+    <ul>
+        {% if request.GET.price_sort == 'price__asc' %}
+        <li class="active">
+            <a href="?{% url_add_qs 'price_sort' '' %}">
+                <span class="icon-sort-price price-asc">
+                    <span></span>
+                </span>{% trans "Цена (по возрастанию)" %}
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <a href="?{% url_add_qs 'price_sort' 'price__asc' %}">
+                <span class="icon-sort-price price-asc">
+                    <span></span>
+                </span>{% trans "Цена (по возрастанию)" %}
+            </a>
+        </li>
+        {% endif %}
+
+        {% if request.GET.price_sort == 'price__desc' %}
+        <li class="active">
+            <a href="?{% url_add_qs 'price_sort' '' %}">
+                <span class="icon-sort-price price-desc">
+                    <span></span>
+                </span>{% trans "Цена (по убыванию)" %}
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <a href="?{% url_add_qs 'price_sort' 'price__desc' %}">
+                <span class="icon-sort-price price-desc">
+                    <span></span>
+                </span>{% trans "Цена (по убыванию)" %}
+            </a>
+        </li>
+        {% endif %}
+
+
+        {% if not config.PRODUCT_ALLOW_SALE_NOT_AVAIBLE %}
+        {% if request.GET.sort_field == 'availability' %}
+        <li class="sort-availability active">
+            <a href="?{% url_qs_array 'sort_field' 'availability' remove=True %}">
+                {% trans "Наличие" %}
+            </a>
+        </li>
+        {% else %}
+        <li class="sort-availability">
+            <a href="?{% url_qs_array 'sort_field' 'availability' %}">
+                {% trans "Наличие" %}
+            </a>
+        </li>
+        {% endif %}
+        {% endif %}
+
+
+        {% if config.CATALOG_USE_SORT_BY_NAME %}
+        {% if request.GET.sort_field == 'name' %}
+        <li class="active">
+            <a href="?{% url_qs_array 'sort_field' 'name' remove=True %}">
+                По алфавиту
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <a href="?{% url_qs_array 'sort_field' 'name' %}">
+                По алфавиту
+            </a>
+        </li>
+        {% endif %}
+        {% endif %}
+
+    </ul>
+</div>
+
+{# Мобильное меню выбора варианта сортировки товаров #}
+<div class="sort-select">
+    <select name="characters" class="custom-select" tabindex="-1" id="products-header-sort-mobile">
+        <option value="" disabled selected>{% trans "выбрать..." %}</option>
+        {% if request.GET.price_sort == 'price__asc'%}
+        <option value="?{% url_add_qs 'price_sort' '' %}" selected>
+        {% trans "По цене (по возрастанию)" %}
+        </option>
+        {% else %}
+        <option value="?{% url_add_qs 'price_sort' 'price__asc' %}">
+        {% trans "По цене (по возрастанию)" %}
+        </option>
+        {% endif %}
+        {% if request.GET.price_sort == 'price__desc'%}
+        <option value="?{% url_add_qs 'price_sort' '' %}" selected>
+        {% trans "По цене (по убыванию)" %}
+        </option>
+        {% else %}
+        <option value="?{% url_add_qs 'price_sort' 'price__desc' %}">
+        {% trans "По цене (по убыванию)" %}
+        </option>
+        {% endif %}
+
+        {% if not config.PRODUCT_ALLOW_SALE_NOT_AVAIBLE %}
+        {% if 'availability' in sort_params %}
+        <option value="?{% url_qs_array 'sort_field' 'availability' remove=True %}" selected>
+        {% trans "По наличию" %}
+        </option>
+        {% else %}
+        <option value="?{% url_qs_array 'sort_field' 'availability' %}">
+        {% trans "По наличию" %}
+        </option>
+        {% endif %}
+        {% endif %}
+    </select>
+</div>
+
+<div class="catalog-right">
+    {% if config.CATALOG_DOWNLOAD_PRICES_LINK and category %}
+    <a href="{% url 'catalog:export-category-products' category.slug %}" class="price-download">
+        <svg class="icon">
+            <use xlink:href="#document-icon"></use>
+        </svg>
+        {% trans "Скачать прайс" %}
+    </a>
+    {% endif %}
+
+    {% if not config.WHITETHEME_PRODUCT_TEASER_VARIANT or config.WHITETHEME_PRODUCT_TEASER_VARIANT == '0' %}
+    <div class="view-sorting">
+        <span class="view-sorting__title">{% trans "Вид" %}</span>
+        <button data-list-view-mode="1" class="view-sort-item select-product-list-view view-sort-item--1{% if list_view_mode == 1 %} current{% endif %} button1">
+            <svg class="icon-svg">
+                <use xlink:href="#view-sort-1"></use>
+            </svg>
+        </button>
+        <button data-list-view-mode="2" class="view-sort-item select-product-list-view view-sort-item--2{% if list_view_mode == 2 %} current{% endif %} button2">
+            <svg class="icon-svg">
+                <use xlink:href="#view-sort-2"></use>
+            </svg>
+        </button>
+        <button data-list-view-mode="3" class="view-sort-item view-sort-item--3 {% if list_view_mode == 3 %} current{% endif %} button3"{% if not line_display_mode or request.user.is_anonymous and not config.CATALOG_LIST_VIEW_PROFIMODE_FOR_ANONYMOUS %} style="display: none;"{% endif %}>
+            <svg class="icon-svg">
+                <use xlink:href="#view-sort-3"></use>
+            </svg>
+        </button>
+    </div>
+    {% endif %}
+
+</div>
+
+{% if category and not category.sidebar_siblings %}
+<a class="filter-btn"></a>
+{% endif %}
+
+{% addtoblock 'js' %}
+<script src="{% static 'js/js.cookie.min.js' %}"></script>
+{% endaddtoblock %}

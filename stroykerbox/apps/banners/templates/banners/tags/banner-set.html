@@ -1,0 +1,20 @@
+{% if bannerset %}
+
+{% if bannerset.title or custom_block_title %}
+<h2 class="mb-25"{% if custom_block_title_color %} style="color: {{ custom_block_title_color }}"{% endif %}>
+    {{ custom_block_title|default:bannerset.title }}
+</h2>
+{% endif %}
+
+
+<div class="b-multirows-row d-grid row-gap-25 column-gap-grid grid-columns-{{ bannerset.grid_columns }} grid-columns-sm-{{ bannerset.grid_columns_sm }} grid-columns-md-{{ bannerset.grid_columns_md }} grid-columns-lg-{{ bannerset.grid_columns_lg }}">
+    {% for banner in bannerset.bannerset_items.all %}
+    {% if bannerset.row_type == 1 %}
+    {% include 'banners/include/banner-img-as-bg.html' %}
+    {% else %}
+    {% include 'banners/include/banner-img-as-image.html' %}
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endif %}

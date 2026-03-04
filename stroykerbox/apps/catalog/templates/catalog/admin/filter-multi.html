@@ -1,0 +1,31 @@
+{% load i18n %}
+<div class="grp-module">
+    <div class="grp-row multifilter">
+        <h3>{{ title }}</h3>
+        <ul class="mulitple-choice">
+            {% for choice in choices %}
+            {% if choice.reset %}
+
+            <li class="show-all{% if choice.selected %} selected{% endif %}">
+                {% trans "Показать все" as show_all_title %}
+                <a href="{{ choice.query_string|iriencode }}" title="{{ show_all_title }}">
+                    <strong>{% trans "Показать все" %}</strong>
+                </a>
+            </li>
+
+            {% else %}
+
+            <li{% if choice.selected %} class="selected"{% endif %}>
+                {{ choice.display }}
+                {% if choice.selected and choice.exclude_query_string %}
+                <a href="{{ choice.exclude_query_string|iriencode }}" style="display:inline"><strong> -</strong></a>
+                {% endif %}
+                {% if not choice.selected and choice.include_query_string %}
+                <a href="{{ choice.include_query_string|iriencode }}" style="display:inline"><strong> +</strong></a>
+                {% endif %}
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>

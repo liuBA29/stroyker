@@ -1,0 +1,69 @@
+<div class="cart-extra-field {% if field.css_class %}{{ field.css_class }}{% endif %}" binded="{{ field.binded_to }}"
+     style="display: none;">
+
+  {% if field.field_type == 'label' %}
+    <!-- LABEL (Faqat matn chiqarish) -->
+    <div class="form-group-label">{{ field.label }}</div>
+  {% else %}
+    <div class="form-group-input-label">{{ field.label }}</div>
+
+    <!-- FORM ELEMENT (TEXT, TEXTAREA, SELECT) -->
+    <div class="form-group">
+      {% if field.field_type == 'text' %}
+        <input type="text" name="extra_{{ field.id }}" class="form-control {{ field.css_class }}"
+               id="id_extra_{{ field.id }}" {% if field.required %}required{% endif %}>
+        <label for="id_extra_{{ field.id }}" class="label-name">
+          {% if field.comment %}
+            <span class="content-name">{{ field.comment }}
+              {% if field.required %}
+                <span class="required_mark required_mark__inline">*</span>
+              {% endif %}
+            </span>
+          {% endif %}
+        </label>
+
+      {% elif field.field_type == 'textarea' %}
+        <textarea name="extra_{{ field.id }}" class="form-control {{ field.css_class }}"
+                  id="id_extra_{{ field.id }}" {% if field.required %}required{% endif %}></textarea>
+        <label for="id_extra_{{ field.id }}" class="label-name">
+          {% if field.commen %}
+            <span class="content-name">{{ field.comment }}
+              {% if field.required %}
+                <span class="required_mark required_mark__inline">*</span>
+              {% endif %}
+            </span>
+          {% endif %}
+        </label>
+
+      {% elif field.field_type == 'select' %}
+        <div class="select">
+          <input class="d-none" data-select="extra_{{ field.id }}" name="extra_{{ field.id }}" value=""
+                 type="text">
+          <div data-select-value-container="extra_{{ field.id }}"
+               class="select__value-content form-control {{ field.css_class }}">
+            <p data-select-value="extra_{{ field.id }}" class="text">{{ field.label }}</p>
+            <div class="select__icon">
+              <svg width="12" height="7" viewBox="0 0 12 7" fill="none"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.72606 0L11.1403 1.41421L5.57036 6.98453L4.15614 5.57031L9.72606 0Z"
+                      fill="#2363D1"></path>
+                <path d="M0 1.41421L1.41421 0L6.98434 5.57047L5.57036 6.98453L0 1.41421Z"
+                      fill="#2363D1"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="select__content d-none" data-select-content="extra_{{ field.id }}">
+            {% for choice in field.split_choices %}
+              <div class="select__option" data-select-option="extra_{{ field.id }}"
+                   data-select-option-value="{{ choice.strip }}"
+                  {% if field.default_value == choice.strip %}
+                   data-select-option-selected {% endif %}>
+                {{ choice.strip }}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

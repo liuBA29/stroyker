@@ -1,0 +1,19 @@
+{% extends 'email/email-base.html' %}
+{% load utils_tags i18n %}
+
+{% block mail_header %}
+{% blocktranslate with site_name=config.SITE_NAME %}
+Ваш аккаунт на {{ site_name }} был активирован
+{% endblocktranslate %}
+{% endblock mail_header %}
+
+{% block mail_content %}
+{% if password %}
+<strong>{% trans "Пароль для авторизации:" %}</strong> {{ password }}
+{% endif %}
+
+{% if profile_link %}
+<strong>{% trans "Личный кабинет:" %}</strong> <a href="{{ profile_link }}">{{ profile_link }}</a>
+{% endif %}
+
+{% endblock mail_content %}

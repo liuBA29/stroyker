@@ -1,0 +1,120 @@
+{% extends 'base-dark.html' %}
+{% load static sekizai_tags seo_tags catalog_tags i18n %}
+
+{% block title %}{% trans "Оформление заказа - Завершение" %}{% endblock %}
+
+{% block body_main_top_content %}
+
+<a href="{% url 'cart:cart' %}" class="mobile-menu-item">
+    {% trans "Шаг 1. Корзина" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+
+<a href="{% url 'cart:delivery' %}" class="mobile-menu-item">
+    {% trans "Шаг 2. Доставка" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+
+<a href="{% url 'cart:payment' %}" class="mobile-menu-item">
+    {% trans "Шаг 3. Оплата" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+
+<a href="" class="mobile-menu-item active">
+    {% trans "Шаг 4. Завершение" %}
+    <span class="icon"><svg class="icon-svg">
+            <use xlink:href="#tab-arrow"></use>
+        </svg></span>
+</a>
+
+<div class="delivery-container">
+    <div class="delivery-content">
+        <div class="delivery-block delivery-block--order-succes">
+
+            <div class="order-succes">
+                <span class="content-title content-title--lg">
+                    {% trans "Ваш заказ успешно оформлен" %}
+                </span>
+                <div class="order-number">
+                    <span>{% trans "Заказ №" %}</span>{{ order.id }}
+                </div>
+                <div class="order-succes-item">
+                    <span class="order-succes-item__title">{% trans "Доставка:" %} </span>
+                    <p>{% trans "Тип доставки —" %}<br>
+                        {{ order.delivery }}</p>
+                    {% if order.delivery.point %}
+                    <p>{% trans "Адрес пункта самовывоза —" %}<br>
+                        {{ order.delivery.point.address }}</p>
+                    {% elif order.delivery.stock %}
+                    <p>{% trans "Склад —" %}<br>
+                        {{ order.delivery.stock }}</p>
+                    <p>{% trans "Адрес доставки —" %}<br>
+                        {{ order.delivery.address }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="order-succes-item">
+                    <span class="order-succes-item__title">{% trans "Оплата:" %} </span>
+                    <p>{{ order.payment_method_name }}{% if invoicing %} (<a href="{% url 'cart:order-invoice-pdf' order.id %}">{% trans "Скачать" %}</a>){% endif %}</p>
+                </div>
+
+                {% if order.yookassa_status %}
+                  <div class="order-succes-item">
+                      <span class="order-succes-item__title">{% trans "Статус оплаты:" %}</span>
+                      <p>
+                          {% if order.yookassa_status == order.YOOKASSA_SUCCEEDED %}
+                              {% trans "оплачено" %}
+                          {% else %}
+                              {% trans "не оплачено" %}
+                          {% endif %}
+                      </p>
+                  </div>
+                {% endif %}
+
+                <div class="order-succes-total">
+                    <span>{% trans "Итого:" %}</span>{{ order.final_price|price_format }} {{ currency_symbol }}
+                </div>
+
+                {% if order.user and not order.user.is_active %}
+                <div class="order-succes-item">
+                    <p>
+                        {% trans "Данные Вашей учетной записи и заказа переданы менеджеру для проверки.  После активации аккаунта на указанный Вами адрес электронной почты придет уведомление." %}
+                    </p>
+                </div>
+                {% endif %}
+
+            </div>
+
+            <a href="/" class="btn btn--main btn--fixed-width btn--size-md">{% trans "Вернуться в магазин" %}</a>
+        </div>
+
+    </div>
+    <div class="delivery-steps">
+        <div class="step-item done">
+            <span class="step-item__number">1</span><a href="{% url 'cart:cart' %}">{% trans "Корзина" %}</a>
+        </div>
+        <div class="step-item done">
+            <span class="step-item__number">2</span><a href="{% url 'cart:delivery' %}">{% trans "Доставка" %}</a>
+        </div>
+        <div class="step-item done">
+            <span class="step-item__number">3</span><a href="{% url 'cart:payment' %}">{% trans "Оплата" %}</a>
+        </div>
+        <div class="step-item current">
+            <span class="step-item__number">4</span>{% trans "Завершение" %}
+        </div>
+    </div>
+</div>
+
+{% addtoblock 'js' %}
+<script src="{% static 'commerce/js/seccess-order.js' %}?{{ current_version }}"></script>
+{% endaddtoblock %}
+
+{% endblock body_main_top_content %}
+
+{% block body_main_bottom %}{% endblock %}

@@ -1,0 +1,190 @@
+<!DOCTYPE html>{% load static utils_tags i18n %}
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=580, initial-scale=1">
+        {% block css_file %}{% endblock %}
+        <title>{% config_value 'SITE_NAME' %}</title>
+    </head>
+    {% load utils_tags %}
+    <body class="invoice-bg">
+        <div class="invoice">
+            <div class="invoice__head">
+                {% get_media_prefix as MEDIA_URL %}
+                {% config_value 'HEDER_LOGO_FILE' as custom_header_logo %}
+                <span class="invoice__logo">
+                    <img src="{% settings_value 'BASE_URL' %}{% if custom_header_logo %}{{ MEDIA_URL }}{{ custom_header_logo }}{% else %}{% static 'images/invoice-logo.svg' %}{% endif %}" style="max-width: 190px;">
+                </span>
+                <div class="invoice__head-content">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><span>{% trans "Банк получателя" %}</span><br>{{ config.BILLING_INFO__BANK__NAME }}</td>
+                                <td>
+                                    <div class="invoice-data-item">
+                                        <span>{% trans "БИК" %}</span>{{ config.BILLING_INFO__BANK__BIK }}
+                                    </div>
+                                    <div class="invoice-data-item">
+                                        <span>{% trans "к/c" %}</span>{{ config.BILLING_INFO__BANK__ACC_NUM }}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="invoice-data-inline">
+                                        <div class="invoice-data-item">
+                                            <span>{% trans "ИНН" %}</span>{{ config.BILLING_INFO__INN }}
+                                        </div>
+                                        {% if config.BILLING_INFO__KPP %}
+                                        <div class="invoice-data-item">
+                                            <span>{% trans "КПП" %}</span>{{ config.BILLING_INFO__KPP }}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="invoice-data-item">
+                                        <span>{% trans "Получатель" %}</span>{{ config.BILLING_INFO__NAME }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="invoice-data-item">
+                                        <span>{% trans "р/с" %}</span>{{ config.BILLING_INFO__COMPANY_BANK_ACC_NUM }}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="invoice__content">
+                <h2>
+                    {% blocktranslate with order_id=order.id order_created=order.created_at|date:"d.m.Y" %}
+                    Счёт на оплату № {{ order_id }} от {{ order_created }}
+                    {% endblocktranslate %}
+                </h2>
+
+                <div class="invoice__contacts">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><span>{% trans "Поставщик:" %}</span>
+                                    {% trans "(Испольнитель)" %}</td>
+                                <td>
+                                    {{ config.BILLING_INFO__NAME }},
+                                    {% trans "ИНН" %} {{ config.BILLING_INFO__INN }}
+                                    {% if config.BILLING_INFO__KPP %}, {% trans "КПП" %} {{ config.BILLING_INFO__KPP }}{% endif %},
+                                    {{ config.BILLING_INFO__ADDRESS }}
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span>{% trans "Покупатель:" %}</span>({% trans "Заказчик" %})
+                                </td>
+                                <td>{{ customer_name }}</td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span>{% trans "Основание:" %}</span>
+                                </td>
+                                <td>
+                                    {% trans "Заказ покупателя" %}
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-order">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>{% trans "№" %}</th>
+                                <th>{% trans "Товар / Услуга" %}</th>
+                                <th>{% trans "Код" %}</th>
+                                <th>{% trans "Кол-во" %}</th>
+                                <th>{% trans "Ед." %}</th>
+                                <th>{% trans "Цена" %}</th>
+                                <th>{% trans "Сумма" %}</th>
+                            </tr>
+                            {% for item in order.order_products.all %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ item.product.name }}</td>
+                                <td>{{ item.product.code }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.product.uom }}</td>
+                                <td>{{ item.personal_product_price }}</td>
+                                <td>{{ item.personal_product_price|multiplication:item.quantity }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <ul>
+                        <li><span>{% trans "Итого:" %}</span> {{ order.total_price }}</li>
+
+                        <li>
+                            {% if order.include_vat and order.total_price_vat %}
+                            <span>{% trans "В том числе НДС:" %}</span> {{ order.total_price_vat }}
+                            {% else %}
+                            <span>{% trans "Без налога НДС:" %}</span> -
+                            {% endif %}
+                        </li>
+
+                        {% if order.delivery_cost %}
+                        <li><span>{% trans "Стоимость доставки:" %}</span> {{ order.delivery_cost }}</li>
+                        {% endif %}
+                        <li><span>{% trans "Всего к оплате:" %}</span> {{ order.final_price }}</li>
+                        <li><span>{% trans "Вес (кг):" %}</span> {{ order.total_weight }}</li>
+                    </ul>
+                </div>
+
+                <div class="invoice__text">
+                    <div class="invoice__text-top">
+                        {% blocktranslate with products_count=order.products.all|length total_price=order.total_price currency_symbol=currency_symbol %}
+                        Всего наименований {{ products_count }}, на сумму {{ total_price }} {{ currency_symbol }}
+                        {% endblocktranslate %}
+                        <strong> {{ order.total_price|rub2words }}  </strong>
+                    </div>
+                    {% blocktranslate %}
+                    <p>Оплата данного счета означает согласие Покупателя с условиями поставки товара:<br>
+                        1. Вид, количество, ассортимент и иные данные о поставляемой товаре содеражатся в настоящем счете.<br>
+                        2. Счёт действителен 3 рабочих дня. Покупатель обязуется оплатить товары в течение этого срока.<br>
+                        3. Товар отпускается по факту прихода денег на р/с Поставщика, при наличии доверенности и паспорта</p>
+                    {% endblocktranslate %}
+                </div>
+
+
+                <div class="invoice__signature">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><strong>{% trans "Руководитель" %}</strong></td>
+                                <td>
+                                    <span class="signature-item"></span>
+                                    <span class="signature-item__title">{% trans "Подпись" %}</span>
+                                </td>
+                                <td>
+                                    <span class="signature-item">{{ config.BILLING_INFO__CHIEF_SHURNAME }}</span>
+                                    <span class="signature-item__title">{% trans "Расшифровка подписи" %}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <span class="mp">{% trans "М.П." %}</span>
+                    {% config_value 'BILLING_INFO__SIGNATURE_FILE' as stamp_file %}
+                    {% if stamp_file %}
+                    <img src="{% settings_value 'BASE_URL' %}{{ MEDIA_URL }}{{ stamp_file }}" style="position: absolute; max-width: 300px;top: -45px;left: 40px;">
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="invoice__footer">
+                <p>{{ config.BILLING_INFO__FOOTER_CONTACTS }}</p>
+            </div>
+        </div>
+    </body>

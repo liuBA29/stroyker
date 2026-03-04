@@ -1,0 +1,40 @@
+<section class="conditional-section bg-color mb-0">
+    <div class="container">
+        <div class="catalog-side mobile-show">
+            <span class="catalog-side__title">
+                <span class="icon">
+                    <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0V2H16V0H0ZM0 8H16V6H0V8ZM0 14H16V12H0V14Z" fill="currentColor"></path>
+                    </svg>
+                </span>
+                {{ config.CATALOG_MENU_TITLE }}
+            </span>
+
+            <!-- аккордеон вариант (классу catalog-side__content добавилось класс -accordeon чтобы css конфликты не были, в scripts.js добавилось одна строка - $('.catalog-side__content-accordeon').toggle(0); ) -->
+            <div class="catalog-side__content-accordeon">
+                <ul class="custom__accordion v-arrow mb-0">
+                    {% for category in categories %}
+                    <li>
+                        {% if not category.published_children.exists %}
+                        <a href="{{ category.get_absolute_url }}" class="acc__toggle not_toggle">
+                            {{ category.name }}
+                        </a>
+                        {% else %}
+                        <a class="acc__toggle" href="javascript:void(0);">{{ category.name }}</a>
+                        <ul class="inner">
+                            {% for child in category.published_children.all %}
+                            <li>
+                                <a href="{{ child.get_absolute_url }}" class="acc__toggle acc__toggle-inner not_toggle">
+                                    {{ child.name }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,19 @@
+{% extends 'custom_headers/header-2.html' %}
+
+{% block compare_link %}{% endblock %}
+
+{% block links %}
+<ul class="nav-items">
+    {% for menu_item in header_menu %}
+    {% if forloop.counter < 3 %}
+    <li{% if menu_item.css_class %} class="{{ menu_item.css_class }}"{% endif %}>
+        <a{% if menu_item.title %} title="{{ menu_item.title }}"{% endif %}
+                                   href="{{ menu_item.url }}"{% if request.path == menu_item.url %}
+                                   class="active"{% endif %}{% if menu_item.new_tab %} target="_blank"{% endif %}>
+            {{ menu_item.anchor }}
+        </a>
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endblock links %}

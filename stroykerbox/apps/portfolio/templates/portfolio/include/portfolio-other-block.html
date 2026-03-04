@@ -1,0 +1,26 @@
+<span class="content-title portfolio-set-title h2">Другие проекты</span>
+<div class="product-slider product-slider--4 product-slider--5 related-products-main">
+    <div class="slider-constructor" data-slides="1" data-sm-slides="2" data-md-slides="2" data-lg-slides="3" data-test="3" data-xl-slides="4">
+        {% for item in items %}
+        <article class="portfolio-card">
+            <a href="{{ item.get_absolute_url }}" class="stretched-link"></a>
+            <span class="portfolio-card-bg" style="background-image: url({{ item.teaser_image.url }});"></span>
+
+            <div class="portfolio-card-info">
+                {% if item.category %}
+                <span class="portfolio-card-type">{{ item.category.name }}</span>
+                {% endif %}
+                <h2 class="portfolio-card-title">{{ item.name }}</h2>
+                <span class="portfolio-card-placeholder">
+                    Подробнее
+                    <span class="svg-icon">
+                        <svg>
+                            <use xlink:href="#arrow-client"></use>
+                        </svg>
+                    </span>
+                </span>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,27 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+
+{% block pretitle %}
+{% if config.ADMIN_LOGO %}
+<img id="django-admin-logo" src="{% get_media_prefix %}{{ config.ADMIN_LOGO }}"{% if config.ADMIN_LOGO_MAX_HEIGHT %} style="max-height: {{ config.ADMIN_LOGO_MAX_HEIGHT }}px"{% endif %}/>
+{% endif %}
+
+{{ block.super }}
+{% endblock %}
+
+{% block userlinks %}
+{{ block.super }}
+{% endblock userlinks %}
+
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/custom_admin.css' %}?v2">
+{{ config.ADMIN_HEADER_CUSTOM_CODE|safe }}
+{% endblock %}
+
+{% block footer %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'js/custom_admin.js' %}?v1"></script>
+{% endblock %}

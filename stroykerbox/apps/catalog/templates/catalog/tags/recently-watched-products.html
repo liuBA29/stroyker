@@ -1,0 +1,13 @@
+{% if config.RECENTLY_WATCHED_BLOCK_IS_ENABLED and products %}
+{% load catalog_tags %}
+<section class="conditional-section pt-50 pb-50">
+    <div class="container">
+        <h2 class="mb-25">Вы недавно смотрели</h2>
+        <div class="slider-constructor" {% slider_constructor_dataset %} data-rows="1" data-sm-rows="1">
+            {% for product in products %}
+            {% render_product_teaser_new product %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}

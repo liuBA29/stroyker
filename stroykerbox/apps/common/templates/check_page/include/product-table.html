@@ -1,0 +1,187 @@
+<div class="d-flex flex-column gap-60px mb-lg-120px mb-80px">
+    <div class="d-flex flex-column gap-20px">
+        <h2 class="h4 mb-0px">
+            {{ section_title|default:"Товары" }}{% if points %} (оценка: <strong>{{ points }}</strong>){% endif %}
+            {% if download_heavy_picture_link %}
+            <a href="{% url "catalog:download-heavy-picture-products-xml" %}" download>товары с тяжелыми картинками</a>
+            {% endif %}
+        </h2>
+
+        <div class="table-responsive">
+            <table class="table table-products table-layout-fixed m-0px">
+                <colgroup>
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-10">
+                    <col class="w-10">
+                </colgroup>
+                <thead class="table-light">
+                    <tr>
+                        <th></th>
+                        <th>Min одна картинка</th>
+                        <th>Min три картинки</th>
+                        <th>Описание</th>
+                        <th>Описание от 500 символов</th>
+                        <th>Параметры</th>
+                        <th>Свойства</th>
+                        <th>Сопутствующие товары</th>
+                        <th>Max вес изображений</th>
+                        <th>Есть цена</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">
+
+                            {% if products.count %}
+                            <button class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#{{ collapsed_block_id|default:"collapse_products_all" }}"
+                                    aria-expanded="false"
+                                    aria-controls="collapse_products">
+                                Все товары
+                            </button>
+                            {% else %}
+                            <strong>Все товары</strong>
+                            {% endif %}
+
+                        </th>
+                        <td>
+                            <div class="text-center">
+                                {{ products.has_images }}/{{ products.count }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ products.min_3_img }}/{{ products.count }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ products.has_description }}/{{ products.count }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ products.description_500 }}/{{ products.count }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ products.has_params }}/{{ products.count }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ products.has_props }}/{{ products.count }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ products.has_related }}/{{ products.count }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ products.max_img_size.0 }} {{ products.max_img_size.1 }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-center">
+                                {{ products.has_price }}/{{ products.count }}
+                            </div>
+                        </td>
+                    </tr>
+
+                    {% if products.count %}
+                    <tr>
+                        <td colspan="10" class="p-0px">
+                            <div id="{{ collapsed_block_id|default:"collapse_products_all" }}"
+                                 class="collapse">
+                                <table class="table table-layout-fixed m-0px">
+                                    <colgroup>
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                        <col class="w-10">
+                                    </colgroup>
+
+                                    <tbody>
+                                        {% for name, data in products_by_category.items %}
+                                        <tr>
+                                            <th scope="row">
+                                                {{ name }}
+                                                </button>
+                                            </th>
+                                            <td>
+                                                <div class="text-center">
+                                                    {{ data.has_images|default:0 }}/{{ data.count }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-center">
+                                                    {{ data.min_3_img|default:0 }}/{{ data.count }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-center">
+                                                    {{ data.has_description|default:0 }}/{{ data.count }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-center">
+                                                    {{ data.description_500|default:0 }}/{{ data.count }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-center">
+                                                    {{ data.has_params|default:0 }}/{{ data.count }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-center">
+                                                    {{ data.has_props|default:0 }}/{{ data.count }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-center">
+                                                    {{ data.has_related|default:0 }}/{{ data.count }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-center">
+                                                    {{ data.max_img_size.0 }} {{ data.max_img_size.1 }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-center">
+                                                    {{ data.has_price|default:0 }}/{{ data.count }}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

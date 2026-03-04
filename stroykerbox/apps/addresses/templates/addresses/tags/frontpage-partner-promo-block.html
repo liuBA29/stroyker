@@ -1,0 +1,20 @@
+{% load i18n %}
+<div class="main-number-item">
+    <span>{{ partners_count_total }}</span>{% trans "Партнёров<br /> в РФ" %}
+</div>
+{% if partners_count_region %}
+<div class="main-number-item">
+    <span>{{ partners_count_region }}</span>{% trans "В вашем<br /> регионе" %}
+</div>
+{% endif %}
+
+<div class="welcome">
+    <span class="welcome__text{% if request.user.is_authenticated %} no-arrow{% endif %}">
+        {% trans "Добро пожаловать в клуб<br /> умной дистрибуции!" %}
+    </span>
+
+    {% if request.user.is_anonymous %}
+    <a href="{% url 'registration' %}" class="btn btn--main">{% trans "Стать партнером" %}</a>
+    {% endif %}
+</div>
+

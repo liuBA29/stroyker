@@ -1,0 +1,98 @@
+{% extends 'base-dark.html' %}
+{% load static seo_tags crm_tags sekizai_tags i18n users_tags %}
+
+{% block body_main_top_content %}
+{% block lk_wrapper %}
+
+<div class="private-office">
+    <div class="lk-head">
+        {% block lk_header %}
+        <h1 class="h1">{% render_h1 %}</h1>
+        <a href="{% url 'logout' %}" class="btn-border btn-exit"><span class="icon">
+                <img src="{% static 'images/exit-icon.svg' %}"></span>{% trans "Выйти" %}</a>
+        {% endblock lk_header %}
+    </div>
+
+    <div class="lk-container">
+        {% block lk_main %}
+        <div class="lk-side">
+            {% block lk_sidebar %}
+            <div class="user-data">
+                {% render_user_avatar user %}
+
+                <span class="user-data__name">{% if user.name %}{{ user.name }}{% else %}{{ user.email }}{% endif %}</span>
+                {% if user.discount_group %}
+                <span class="user-data__status">{{ user.discount_group.name }}</span>
+                {% endif %}
+            </div>
+
+            <ul class="lk-menu">
+                <li><a href="{% url 'users:orders_list' %}">
+                        <span class="icon">
+                            <svg class="icon-svg">
+                                <use xlink:href="#delivery-icon"></use>
+                            </svg>
+                        </span>{% trans "История заказов" %}</a>
+                </li>
+                <li><a href="{% url 'users:docs_index_list' %}">
+                        <span class="icon">
+                            <svg class="icon-svg">
+                                <use xlink:href="#document-icon"></use>
+                            </svg>
+                        </span>{% trans "Документооборот" %}</a>
+                </li>
+                <li><a href="{% url 'users:profile_edit' %}">
+                        <span class="icon"><svg class="icon-svg">
+                                <use xlink:href="#edit-icon"></use>
+                            </svg>
+                        </span>{% trans "Личные данные" %}</a>
+                </li>
+            </ul>
+
+            {% block lk_mobile %}
+            <a href="{% url 'users:orders_list' %}" class="mobile-menu-item">
+                {% trans "История заказов" %}
+                <span class="icon"><svg class="icon-svg">
+                        <use xlink:href="#tab-arrow"></use>
+                    </svg></span>
+            </a>
+
+            <a href="{% url 'users:docs_index_list' %}" class="mobile-menu-item">
+                {% trans "Документооборот" %}
+                <span class="icon"><svg class="icon-svg">
+                        <use xlink:href="#tab-arrow"></use>
+                    </svg></span>
+            </a>
+            <a href="{% url 'users:profile_edit' %}" class="mobile-menu-item">
+                {% trans "Личные данные" %}
+                <span class="icon"><svg class="icon-svg">
+                        <use xlink:href="#tab-arrow"></use>
+                    </svg></span>
+            </a>
+            {% endblock lk_mobile %}
+
+            {% endblock lk_sidebar %}
+        </div>
+        <div class="lk-content">
+            {% block lk_content %}{% endblock lk_content %}
+        </div>
+        {% endblock lk_main %}
+    </div>
+</div>
+
+
+{% endblock lk_wrapper %}
+
+{% block lk_bottom %}{% endblock lk_bottom %}
+
+{% endblock body_main_top_content %}
+
+{% block body_main_bottom %}
+{{ block.super }}
+
+{% addtoblock 'js' %}
+<script type="text/javascript" src="{% static 'users/js/users.js' %}"></script>
+{% endaddtoblock %}
+
+{% endblock body_main_bottom %}
+

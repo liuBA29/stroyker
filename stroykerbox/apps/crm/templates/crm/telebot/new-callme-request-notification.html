@@ -1,0 +1,11 @@
+{% load utils_tags %}
+<strong>Запрос обратного звонка на сайте {{ site.domain }}</strong>
+{% if object %}<a href="http://{{ site.domain }}{% url 'admin:crm_crmrequestbase_change' object.pk %}">Для управления запросом перейдите по ссылке</a>{% endif %}
+{% if location %}
+Регион: {{ location.city }}{% endif %}
+Имя: {{ object.name }}
+Телефон: <a href="tel:+{{ object.phone|clear_phone }}">{{ object.phone }}</a>
+{% if object.message %}
+Сообщение: {{ object.message }}
+{% endif %}{% if object.page_url %}
+URL страницы отправки: <a href="{{ object.page_url }}">{{ object.page_url }}</a>{% endif %}

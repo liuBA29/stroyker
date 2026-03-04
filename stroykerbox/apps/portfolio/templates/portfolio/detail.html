@@ -1,0 +1,59 @@
+{% extends 'portfolio/portfolio-base.html' %}
+{% load sekizai_tags custom_form_tags %}
+
+{% block portfolio_main_content %}
+<div class="portfolio-widget">
+    <h1>
+        {{ item.name }}
+    </h1>
+
+    {% if config.PORTFOLIO_GALLERY_WIDGET == "slider" %}
+    <div class="portfolio-slider">
+        <div class="slider-constructor" data-md-variable-width="true" data-center="false" data-md-center="true" data-md-slides="1" data-no-arrows="true">
+            {% for img in item.images.all %}
+            <a href="{{ img.image.url }}" data-fancybox="images" class="portfolio-slider-picture">
+                <img src="{{ img.image.url }}" loading="lazy" class="portfolio-slider-image" width="580" height="430" alt="{{ item.name }} (фото {{ forloop.counter }})">
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    {% include 'portfolio/include/gallery-widget.html' with widget_class=config.PORTFOLIO_GALLERY_WIDGET item=item %}
+    {% endif %}
+
+    <div class="d-flex flex-column gap-15 gap-md-20">
+        <p class="g-title">Общее описание объекта, характеристики</p>
+        <div class="text-page">
+            {{ item.description|custom_form_inside }}
+        </div>
+    </div>
+
+    <div class="portfolio-share ya-share-block">
+        <a class="btn-radius share-btn">
+            <span class="icon-svg">
+                <svg class="icon"><use xlink:href="#share-icon"></use></svg>
+            </span>
+            Поделиться
+
+        </a>
+
+        {% addtoblock "css" %}
+        <style>
+.portfolio-share .share-block__show { right: 0; left: auto }
+.portfolio-share .share-block__show::after { left: 300px; }
+        </style>
+        {% endaddtoblock "css" %}
+
+        <div class="share-block__show">
+            <p>Чтобы поделиться ссылкой, нажмите на иконку вашей соцсети</p>
+            {% include 'include/ya-share.html' %}
+        </div>
+    </div>
+
+</div>
+
+{% if portfolio_other %}
+{% include 'portfolio/include/portfolio-other-block.html' with items=portfolio_other %}
+{% endif %}
+
+{% endblock portfolio_main_content %}

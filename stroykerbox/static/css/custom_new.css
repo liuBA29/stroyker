@@ -1,0 +1,42 @@
+.__header .option-items li a.header-cart {
+    margin-left: 0;
+}
+.header-user__link.noauth {
+    display: inline;
+    bottom: 10px;
+}
+.header-user__link.noauth .icon {
+    position: relative;
+    top: 10px;
+    margin: 0;
+}
+.header-cart .icon img.icon-svg {
+    right: 0;
+}
+.inner-page section.header--bottom-mob, .inner-page section.__h-fat-v2-bottom {
+    background-color: #000 !important;
+}
+.__header .catalog-btn span, .__header .catalog-btn span:before,
+.__header .catalog-btn span::after{
+    background-color: var(--header-top-icon-color, #2363D1);
+}
+.catalog-header-content .catalog-box a:hover, .catalog-header-content .catalog-box a::after {
+    background-color: transparent !important;
+}
+.burger-box svg {
+    color: var(--main-elements-color, #2363D1);
+}
+.product-card__radio-options.product-modification-params a.active {
+    background: #2363D1;
+    border-color: #2363D1;
+    color: #FFF;
+}
+.header-body__content {
+    z-index: 9999;
+}
+.conditional-section.mb-0 {
+    margin-top: 0 !important;
+}
+.input-number input[type="number"] {
+    width: 70px !important;
+}

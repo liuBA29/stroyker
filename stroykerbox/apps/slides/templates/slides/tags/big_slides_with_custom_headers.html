@@ -1,0 +1,43 @@
+{% if slides %}
+{% load static sekizai_tags %}
+{% addtoblock 'js' %}
+<script src="{% static 'swiper/swiper-bundle.min.js' %}"></script>
+{% endaddtoblock %}
+
+{% addtoblock 'css' %}
+<link rel="stylesheet" href="{% static 'swiper/swiper-bundle.min.css' %}">
+{% endaddtoblock %}
+
+<div class="home-banner swiper swiper_home-banner">
+    <div class="swiper-wrapper">
+        {% for slide in slides %}
+        <!--slide-->
+        <!--image_left-crop/image_right-crop добавить класс для обрезки 2/3-->
+        <div class="swiper-slide home-banner__slide">
+            <div class="image image_cover image_left-crop">
+                {% if slide.url %}
+                <a href="{{ slide.url }}" title="{{ slide.name }}">
+                    <img src="{{ slide.image_file.url }}" alt="{{ slide.name }}">
+                </a>
+                {% else %}
+                <img src="{{ slide.image_file.url }}" alt="{{ slide.name }}">
+                {% endif %}
+                {% if has_content %}
+                <div class="home-banner__content">
+                    <div class="home-banner__content-left">
+                        <div class="home-banner__content-wrapper">
+
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="swiper-pagination swiper-pagination-big-bottom"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"> </div>
+</div>
+
+{% endif %}

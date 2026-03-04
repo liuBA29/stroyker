@@ -1,0 +1,14 @@
+{% if items %}
+<ul>
+    {% for item in items %}
+    <li>
+        <a title="{{ item.title }}" href="{{ item.get_absolute_url }}">
+            {{ item.title|truncatechars:45 }}
+            <svg class="icon">
+                <use xlink:href="#tab-arrow"></use>
+            </svg>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}

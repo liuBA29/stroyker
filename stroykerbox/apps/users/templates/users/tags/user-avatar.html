@@ -1,0 +1,9 @@
+<span class="user-data__avatar">
+    {% if avatar %}
+    <img class="icon-svg" src="{{ avatar.url }}"/>
+    {% else %}
+    <svg class="icon-svg">
+        <use xlink:href="#user-icon"></use>
+    </svg>
+    {% endif %}
+</span>

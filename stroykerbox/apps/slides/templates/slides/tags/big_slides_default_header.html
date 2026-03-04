@@ -1,0 +1,32 @@
+{% if slides %}
+<div class="home-banner">
+    <div class="owl-carousel"{% if show_dots %} data-show-dots=""{% endif %} data-autoplay-timeout="{{ config.SLIDES_BIG_SLIDES_TIMEOUT }}">
+        <!--slide-->
+        {% for slide in slides %}
+        <div class="home-banner__slide">
+            {% if has_content %}
+            <div class="home-banner__slide-container container">
+
+                <!--Если нужен фон, добавляется модификатор home-banner__slide-content_bg-->
+                <!--Если вертикальное выравнивание по правой стороне, добавляется модификатор home-banner__slide-content_right-->
+                <div class="home-banner__slide-content home-banner__slide-content_right">
+                    {{ slide.content|safe }}
+                </div>
+            </div>
+            {% endif %}
+            <!--image-->
+            {% if slide.url %}
+            <a class="image image_cover" href="{{ slide.url }}" title="{{ slide.name }}">
+                <img src="{{ slide.image_file.url }}" alt="{{ slide.name }}">
+            </a>
+            {% else %}
+            <div class="image image_cover">
+                <img src="{{ slide.image_file.url }}" alt="{{ slide.name }}">
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endif %}

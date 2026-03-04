@@ -1,0 +1,12 @@
+{% extends '404.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "403 - Доступ запрещен" %}{% endblock %}
+
+{% block error_message %}
+{% blocktranslate %}
+<h1>Произошла ошибка!</h1>
+<p>У Вас нет права доступа к содержимому данной страницы.</p>
+<p>Код ошибки: 403</p>
+{% endblocktranslate %}
+{% endblock error_message %}

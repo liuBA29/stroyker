@@ -1,0 +1,98 @@
+{% load static catalog_tags utils_tags i18n %}
+<div id="sync1" class="owl-carousel owl-theme">
+    {# вариант, когда у товара есть пикчи #}
+    {% for image in images %}
+
+    {% if image.image|has_attr:"url" %}
+    <a class="item" href="{{ image.image.url }}" data-fancybox="images" target="_blank">
+        <img itemprop="image" src="{{ image.image.url }}" alt="{{ product.name }} (фото {{ forloop.counter }})">
+        <span class="product-item__flag-content">
+            {% if product.is_new %}
+            <span class="product-item__flag product-item__flag--new">
+                {% trans "новинка" %}
+            </span>
+            {% endif %}
+            {% if product.is_sale %}
+            <span class="product-item__flag product-item__flag--sale">
+                {% trans "распродажа" %}
+            </span>
+            {% endif %}
+            {% if product.is_hit %}
+            <span class="product-item__flag product-item__flag--hit">
+                {% trans "хит" %}
+            </span>
+            {% endif %}
+            {% if product.discounted %}
+            <span class="product-item__flag product-item__flag--discounted">
+                {% trans "уценка" %}
+            </span>
+            {% endif %}
+            {% if product.is_action %}
+            <span class="product-item__flag product-item__flag--offer">
+                {% trans "акция" %}
+            </span>
+            {% endif %}
+            {% render_product_sale_badge product badge_classes="product-card-sell-badge d-md-none" %}
+        </span>
+        {% if product.price_type %}
+        <span class="product-item__img-text">{{ product.price_type }}</span>
+        {% endif %}
+    </a>
+    {% endif %}
+    {% empty %}
+
+    {# вариант, когда у товара пикчей нет, и используется "дефолтная" пикча #}
+    {% get_media_prefix as MEDIA_URL %}
+    {% config_value 'PRODUCT_DEFAULT_IMAGE' as default_image %}
+    {% if default_image %}
+    <div class="item">
+        <img itemprop="image" src="{{ MEDIA_URL }}{{ default_image }}" alt="{{ product.name }}">
+        <span class="product-item__flag-content">
+            {% if product.is_new %}
+            <span class="product-item__flag product-item__flag--new">
+                {% trans "новинка" %}
+            </span>
+            {% endif %}
+            {% if product.is_sale %}
+            <span class="product-item__flag product-item__flag--sale">
+                {% trans "распродажа" %}
+            </span>
+            {% endif %}
+            {% if product.is_hit %}
+            <span class="product-item__flag product-item__flag--hit">
+                {% trans "хит" %}
+            </span>
+            {% endif %}
+            {% if product.discounted %}
+            <span class="product-item__flag product-item__flag--discounted">
+                {% trans "уценка" %}
+            </span>
+            {% endif %}
+            {% if product.is_action %}
+            <span class="product-item__flag product-item__flag--offer">
+                {% trans "акция" %}
+            </span>
+            {% endif %}
+            {% render_product_sale_badge product badge_classes="product-card-sell-badge d-md-none" %}
+        </span>
+        {% if product.price_type %}
+        <span class="product-item__img-text">{{ product.price_type }}</span>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% endfor %}
+</div>
+
+
+{% if images %}
+<div id="sync2" class="owl-carousel owl-theme">
+    {% for image in images %}
+    {% if image.image|has_attr:"url" %}
+    <div class="item">
+        <img src="{{ image.image.url }}" alt="">
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endif %}

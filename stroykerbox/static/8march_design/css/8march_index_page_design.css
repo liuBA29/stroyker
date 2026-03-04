@@ -1,0 +1,2374 @@
+/* 8march_index_page_design — стили только для главной страницы заказчика (path == '/')
+ *
+ * Подключается отдельно от 8march_design.css (хэдер/футер).
+ * Включение: ENABLE_8MARCH_DESIGN = True и ENABLE_8MARCH_INDEX_PAGE = True в settings.
+ * Подключается только на главной; на остальных страницах этот файл не загружается.
+ *
+ * Селекторы лучше вешать на .frontpage или .page-index-8march, чтобы не задеть внутренние страницы.
+ */
+
+/* Единый отступ между рубриками главной 8march */
+.page-index-8march {
+  --8march-section-gap: 4rem;
+}
+.page-index-8march .index-8march-vector-zone > section + section {
+  margin-top: var(--8march-section-gap) !important;
+}
+.page-index-8march .index-8march-content > .index-8march-vector-zone + * {
+  margin-top: 0 !important;
+}
+.page-index-8march .index-8march-content > section + section,
+.page-index-8march .index-8march-content > section + div {
+  margin-top: var(--8march-section-gap) !important;
+}
+
+/* Убрать зелёный зазор над блоком «Сборные букеты» */
+.page-index-8march .index-info-8march + .index-bouquets-8march {
+  margin-top: 0 !important;
+}
+
+/* --- Типографика по эталону Figma ---
+ * Заголовки секций: sans-serif, полужирный, ВЕРХНИЙ РЕГИСТР, увеличенный letter-spacing.
+ * Подписи категорий, кнопки: sans-serif, полужирный/обычный, ВЕРХНИЙ РЕГИСТР.
+ * Описания: sans-serif, regular. Цены: актуальная — bold, старая — regular + зачёркивание + серый.
+ */
+.page-index-8march .index-social-8march__title {
+  font-family: var(--8march-font-heading, 'Inter', system-ui, sans-serif);
+  font-weight: var(--8march-heading-weight, 600);
+  letter-spacing: var(--8march-heading-letter-spacing, 0.05em);
+  color: var(--8march-heading-color, #2d2d2d);
+  text-transform: uppercase;
+  text-align: left;
+}
+
+/* Крупные заголовки секций: АКЦИИ, СБОРНЫЕ БУКЕТЫ, ОТЗЫВЫ, ГДЕ МЫ НАХОДИМСЯ (и аналоги) */
+.big-title {
+  font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
+  font-weight: 300 !important;
+  font-size: 48px !important;
+  line-height: 100% !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+  text-align: left;
+  color: #000000 !important;
+  margin: 0 auto 1.5rem;
+  max-width: 1200px;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  box-sizing: border-box;
+}
+
+/* Заголовки секций главной 8march — Roboto Light (кроме .big-title: АКЦИИ, СБОРНЫЕ БУКЕТЫ, ОТЗЫВЫ, ГДЕ МЫ НАХОДИМСЯ) */
+.page-index-8march .index-social-8march__title,
+.page-index-8march .index-info-8march__heading,
+.page-index-8march .index-hero-8march__text {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+.page-index-8march .index-categories-8march__label,
+.page-index-8march .index-hero-8march__btn,
+.page-index-8march .index-promo-8march__btn,
+.page-index-8march .index-promo-8march__btn-catalog,
+.page-index-8march .index-bouquets-8march__btn,
+.page-index-8march .index-bouquets-8march__btn-catalog,
+.page-index-8march .index-bouquet-wish-8march__submit,
+.page-index-8march .index-social-8march__link,
+.page-index-8march .index-reviews-8march__btn-leave,
+.page-index-8march .index-reviews-8march__more-link {
+  font-family: var(--8march-font-body, 'Inter', system-ui, sans-serif);
+}
+.page-index-8march .index-hero-8march__btn,
+.page-index-8march .index-promo-8march__btn-catalog,
+.page-index-8march .index-bouquets-8march__btn-catalog,
+.page-index-8march .index-bouquet-wish-8march__submit {
+  font-weight: var(--8march-btn-weight, 600);
+  letter-spacing: var(--8march-btn-letter-spacing, 0.03em);
+  text-transform: uppercase;
+}
+.page-index-8march .index-bouquets-8march__desc,
+.page-index-8march .index-social-8march__text,
+.page-index-8march .index-reviews-8march__stats,
+.page-index-8march .index-reviews-8march__text {
+  font-family: var(--8march-font-body, 'Inter', system-ui, sans-serif);
+  font-weight: 400;
+  color: var(--8march-body-color, #2d2d2d);
+}
+.page-index-8march .index-promo-8march__price-new,
+.page-index-8march .index-bouquets-8march__price {
+  font-weight: 700;
+}
+.page-index-8march .index-promo-8march__price-old {
+  font-weight: 400;
+  text-decoration: line-through;
+  color: #6b6b6b;
+}
+
+/* Весь контент главной 8march — шрифт по умолчанию (правая колонка героя — отдельно, как в 1 и 3 карточке) */
+.page-index-8march .index-8march-content,
+.page-index-8march .index-8march-content p:not(.index-hero-8march__text):not(.index-hero-8march__subtext):not(.index-hero-8march__8march-slogan),
+.page-index-8march .index-8march-content span,
+.page-index-8march .index-8march-content h2,
+.page-index-8march .index-8march-content h3 {
+  font-family: var(--8march-font-body, 'Inter', system-ui, sans-serif);
+}
+/* Вторая карточка героя: контент заблюренного квадрата не трогать общим правилом — как в 1-й и 3-й */
+.page-index-8march .index-hero-8march__8march-card .index-hero-8march__8march-number,
+.page-index-8march .index-hero-8march__8march-card .index-hero-8march__8march-month,
+.page-index-8march .index-hero-8march__8march-card .index-hero-8march__8march-slogan {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+.page-index-8march .index-hero-8march__8march-card .index-hero-8march__8march-number {
+  font-size: clamp(8.5rem, 22vw, 14rem);
+  font-weight: 700;
+  line-height: 0.9;
+  margin-bottom: -0.15em;
+  background: linear-gradient(160deg, #3B3036 0%, #8b6b6b 40%, #c49a9a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 24px rgba(196, 154, 154, 0.25);
+}
+.page-index-8march .index-hero-8march__8march-card .index-hero-8march__8march-month {
+  font-size: clamp(3rem, 6.2vw, 4rem);
+  font-weight: 700;
+  margin-top: -0.35em;
+  letter-spacing: 0.02em;
+  background: linear-gradient(160deg, #3B3036 0%, #8b6b6b 50%, #c49a9a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-top: -0.15em;
+}
+.page-index-8march .index-hero-8march__8march-card .index-hero-8march__8march-slogan {
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: center;
+  color: #2d2d2d;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  padding-bottom: 0;
+}
+/* Правая колонка героя во всех трёх карточках — одинаковые стили (как в 1 и 3) */
+.page-index-8march .index-hero-8march__right,
+.page-index-8march .index-hero-8march__slide .index-hero-8march__right {
+  font-family: 'Roboto', sans-serif !important;
+}
+.page-index-8march .index-hero-8march__right .index-hero-8march__text {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 300 !important;
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem) !important;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+}
+.page-index-8march .index-hero-8march__right .index-hero-8march__subtext {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem) !important;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: #2d2d2d;
+}
+.page-index-8march .index-hero-8march__right .index-hero-8march__btn {
+  font-family: var(--8march-font-body, 'Inter', system-ui, sans-serif) !important;
+  font-weight: 600 !important;
+}
+.page-index-8march .index-info-8march__heading {
+  font-family: var(--8march-font-heading, 'Inter', system-ui, sans-serif);
+  font-weight: var(--8march-heading-weight, 600);
+  letter-spacing: var(--8march-heading-letter-spacing, 0.05em);
+  text-transform: uppercase;
+}
+
+/* Контент главной 8march — клики и hover: без перехвата, main/footer не блокируются */
+.page-index-8march .page {
+  pointer-events: auto !important;
+}
+.page-index-8march main,
+.page-index-8march footer {
+  pointer-events: auto !important;
+}
+.page-index-8march main *,
+.page-index-8march footer * {
+  pointer-events: auto !important;
+}
+
+/* Десктоп: хэдер не перехватывает клики вне своей видимой области (на мобильной и так работает) */
+@media (min-width: 768px) {
+  .page-index-8march header {
+    pointer-events: none;
+  }
+  .page-index-8march header > * {
+    pointer-events: auto;
+  }
+}
+.index-8march-content {
+  position: relative;
+  z-index: 50;
+}
+.index-8march-content a,
+.index-8march-content button,
+.index-8march-content input,
+.index-8march-content select,
+.index-8march-content textarea,
+.index-8march-content [role="button"],
+.index-8march-content label[for] {
+  cursor: pointer;
+}
+.index-8march-content input:not([type="submit"]):not([type="button"]),
+.index-8march-content select,
+.index-8march-content textarea {
+  cursor: text;
+}
+
+/* Чекбоксы и формы (в т.ч. футер «Остались вопросы?») — кликабельны */
+.page-index-8march input[type="checkbox"],
+.page-index-8march input[type="checkbox"] + label,
+.page-index-8march .form-group.privacy-policy .checkbox,
+.page-index-8march .form-group.privacy-policy label,
+section.feedback-form input[type="checkbox"],
+section.feedback-form input[type="checkbox"] + label,
+section.feedback-form .checkbox,
+section.feedback-form .checkbox label,
+section.feedback-form a,
+section.feedback-form button {
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+.page-index-8march footer a,
+.page-index-8march footer button {
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+/* Метка «ты на нашей главной» — только когда подключены стили главной 8march */
+.page-index-8march-badge {
+  position: fixed;
+  bottom: 12px;
+  left: 12px;
+  z-index: 9998;
+  padding: 6px 10px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #2d2d2d;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(45, 45, 45, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+  font-family: inherit;
+}
+
+/* Область контента главной при включённом стиле 8march */
+.frontpage.page-index-8march main,
+.page-index-8march.frontpage main {
+  /* Пример: свои отступы/фон только для главной */
+}
+
+/* Блоки главной (middle — слайдеры, кастомные блоки и т.д.) */
+.frontpage.page-index-8march .section,
+.frontpage.page-index-8march [class*="tag-container"] {
+  /* Добавлять стили по необходимости */
+}
+
+/* --- Герой главной 8march: карусель слайдов, слева картинка + опционально логотип, справа бежевый блок, стрелки --- */
+.index-hero-8march {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* Обёртка карусели героя: один видимый слайд */
+.index-hero-8march__slides {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.index-hero-8march__track {
+  display: flex;
+  width: 300%;
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+.index-hero-8march__slide {
+  flex: 0 0 33.333%;
+  min-width: 33.333%;
+  width: 33.333%;
+}
+
+.index-hero-8march__slide .index-hero-8march__inner {
+  width: 100%;
+}
+
+.index-hero-8march__inner {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 552px;
+}
+
+.index-hero-8march__left {
+  flex: 1 1 50%;
+  min-height: 552px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: none !important;
+}
+
+.index-hero-8march__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 552px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Квадратик с логотипом: светлый полупрозрачный с блюром; меньше блока с картинкой по ширине и высоте, расположен внутри него по центру */
+.page-index-8march .index-hero-8march__logo-box,
+.index-hero-8march__logo-box {
+  position: relative;
+  z-index: 1;
+  width: min(280px, 42vw);
+  max-width: 85%;
+  aspect-ratio: 1;
+  max-height: min(280px, 50vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 252, 0.78) !important;
+  background-color: rgba(255, 255, 252, 0.78) !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+/* Сброс серого фона у картинки логотипа (глобальные заглушки не должны его трогать). Никакой рамочки и скруглений вокруг логотипа. */
+.page-index-8march .index-hero-8march__logo-box .index-hero-8march__logo,
+.index-hero-8march__logo-box .index-hero-8march__logo {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+}
+
+.index-hero-8march__logo {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* Вторая карточка героя: квадратик с надписью «8 марта» — меньше блока с картинкой, расположен внутри по центру */
+.index-hero-8march__8march-card {
+  position: relative;
+  z-index: 1;
+  width: min(280px, 42vw);
+  max-width: 85%;
+  aspect-ratio: 1;
+  max-height: min(280px, 50vh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.5rem 1.5rem 0.25rem 1.5rem;
+  overflow: hidden;
+  background: rgba(255, 255, 252, 0.78) !important;
+  background-color: rgba(255, 255, 252, 0.78) !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  text-align: center;
+  box-sizing: border-box;
+}
+/* Логотип поверх фото (вторая карточка): без отдельной рамочки — лежит на фоне, не внутри квадратика */
+.index-hero-8march__logo--on-photo {
+  position: relative;
+  z-index: 1;
+  max-width: 200px !important;
+  width: auto;
+  margin-bottom: 0.5rem;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+/* Логотип внутри карточки 8 марта — чуть меньше, выше, без рамочки */
+.index-hero-8march__8march-card .index-hero-8march__8march-card-logo,
+.index-hero-8march__8march-card .index-hero-8march__logo {
+  width: 100%;
+  max-width: 165px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  margin-top: -0.9rem;
+  margin-bottom: 0.5rem;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+}
+.index-hero-8march__8march-brand {
+  font-family: var(--8march-font-body, 'Inter', system-ui, sans-serif);
+  font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #2d2d2d;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.index-hero-8march__8march-number {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(8.5rem, 22vw, 14rem);
+  font-weight: 700;
+  line-height: 0.9;
+  margin-bottom: -0.15em;
+  background: linear-gradient(160deg, #3B3036 0%, #8b6b6b 40%, #c49a9a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 24px rgba(196, 154, 154, 0.25);
+}
+/* «8» и «марта» — сквозь них видна чёткая картинка (заливка фоновым изображением из inline style) */
+.index-hero-8march__8march-number--image-fill,
+.index-hero-8march__8march-month--image-fill {
+  background-size: 200% auto;
+  background-position: 20% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+.index-hero-8march__8march-month {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3rem, 6.2vw, 4rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: linear-gradient(160deg, #3B3036 0%, #8b6b6b 50%, #c49a9a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-top: -0.35em;
+}
+.index-hero-8march__8march-slogan {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: center;
+  color: #2d2d2d;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  padding-bottom: 0;
+  max-width: none;
+}
+
+.index-hero-8march__right {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 2rem 2rem 8.25rem;
+  background-color: #F9F3EE;
+  color: #2d2d2d;
+  position: relative;
+  overflow: visible;
+  border-left: none !important;
+}
+
+.index-hero-8march__text {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  letter-spacing: 0.02em;
+}
+
+/* Подзаголовок на слайде (СКИДКА 10%, СКИДКА 30%) — крупнее и жирнее */
+.index-hero-8march__subtext {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: #2d2d2d;
+}
+
+/* Общий стиль чёрных кнопок (В КАТАЛОГ, ВЫБРАТЬ БУКЕТ, ОТПРАВИТЬ) */
+.black-button {
+  display: inline-block;
+  font-weight: 600;
+  color: #fff !important;
+  background-color: #1a1a1a !important;
+  background: #1a1a1a !important;
+  border: none;
+  border-radius: 0 !important;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.black-button:hover {
+  background-color: #2d2d2d !important;
+  background: #2d2d2d !important;
+  color: #FBE3E1 !important;
+}
+
+/* Кнопка В КАТАЛОГ / ВЫБРАТЬ БУКЕТ в герое — размеры */
+.page-index-8march .index-hero-8march__right .index-hero-8march__btn,
+.index-hero-8march__btn {
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+}
+
+/* Стрелочки промотки внизу справа героя — как в акциях: нежный розовый круг без рамки */
+/* Стрелочки промотки внизу справа героя — как в акциях: нежный розовый круг без рамки */
+.index-hero-8march__nav {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  left: auto;
+  transform: none;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.index-hero-8march__arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none !important;
+  background: #FBE3E1 !important;
+  background-color: #FBE3E1 !important;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #FBE3E1;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.index-hero-8march__arrow svg {
+  width: 50%;
+  height: auto;
+  display: block;
+  color: #2d2d2d;
+  stroke: #2d2d2d;
+}
+
+.index-hero-8march__arrow:hover {
+  background: #f5d5d2 !important;
+  background-color: #f5d5d2 !important;
+  color: #f5d5d2;
+}
+.index-hero-8march__arrow:hover svg {
+  color: #2d2d2d;
+  stroke: #2d2d2d;
+}
+
+.index-hero-8march__arrow--prev {
+  /* стрелка — встроенный SVG в разметке */
+}
+
+.index-hero-8march__arrow--next {
+  /* стрелка — встроенный SVG в разметке */
+}
+
+@media (max-width: 767px) {
+  .index-hero-8march__inner {
+    flex-direction: column-reverse;
+    min-height: auto;
+  }
+  .index-hero-8march__left,
+  .index-hero-8march__right {
+    min-height: 260px;
+  }
+  .index-hero-8march__img {
+    min-height: 260px;
+  }
+  .index-hero-8march__left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .index-hero-8march__logo-box {
+    width: min(140px, 42vw);
+    max-width: 55%;
+    max-height: min(140px, 28vh);
+    aspect-ratio: 1;
+    padding: 0.75rem 0.875rem;
+  }
+  .index-hero-8march__8march-card {
+    width: min(140px, 42vw);
+    max-width: 55%;
+    max-height: min(140px, 28vh);
+    aspect-ratio: 1;
+    padding: 0.75rem 0.875rem;
+  }
+  .index-hero-8march__logo {
+    max-width: 100px;
+  }
+  .index-hero-8march__right {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .index-hero-8march__right .index-hero-8march__text {
+    text-align: center;
+  }
+  .index-hero-8march__nav {
+    left: 50%;
+    right: auto;
+    bottom: 0;
+    transform: translateX(-50%);
+  }
+  .index-hero-8march__arrow {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* --- Ряд категорий 8march: круглые картинки + подписи --- */
+.index-8march-vector-zone {
+  position: relative;
+  background: #fff;
+}
+
+/* Одна диагональная линия: от конца категорий (справа сверху) до начала «Сборные букеты» (слева внизу). Параметры по Figma. */
+.index-8march__diagonal-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+}
+.index-8march__diagonal-line svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* В зоне вектора секции без фона — дуга видна сквозь них (зона только до конца акций). Правый блок героя с текстом «ДОСТАВКА ЦВЕТОВ И БУКЕТОВ» — с бежевым фоном, не прозрачный. */
+.index-8march-vector-zone .index-hero-8march,
+.index-8march-vector-zone .index-categories-8march,
+.index-8march-vector-zone .index-promo-8march {
+  background: transparent;
+  background-color: transparent;
+}
+.index-8march-vector-zone .index-hero-8march .index-hero-8march__right {
+  background-color: #F9F3EE !important;
+  background: #F9F3EE !important;
+}
+.index-8march__diagonal-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+}
+.index-8march__diagonal-line svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.index-categories-8march {
+  width: 100%;
+  background: #fff;
+  padding: 2rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.index-categories-8march__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem 1.5rem;
+  padding: 0 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.index-categories-8march__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #2d2d2d;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.index-categories-8march__img-wrap {
+  width: 85px;
+  height: 115px;
+  border-radius: 50px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.25s ease;
+  position: relative;
+}
+
+.index-categories-8march__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.index-categories-8march__label {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  max-width: 110px;
+  color: #c49a9a;
+}
+.index-categories-8march__label-line {
+  display: block;
+}
+
+.index-categories-8march__item:hover {
+  color: #363533;
+}
+.index-categories-8march__item:hover .index-categories-8march__label {
+  color: #b08a8a;
+}
+.index-categories-8march__item:hover .index-categories-8march__img-wrap {
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.08),
+    4px 8px 20px rgba(251, 227, 225, 0.5),
+    2px 6px 14px rgba(251, 227, 225, 0.35);
+}
+
+.index-categories-8march__nav {
+  display: none; /* пролистывание отключено — блок не листается */
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  gap: 0.5rem;
+}
+
+.index-categories-8march__arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #e8e0d5;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+}
+
+.index-categories-8march__arrow:hover {
+  background: #ddd5ca;
+}
+
+.index-categories-8march__arrow--prev {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c49a9a' stroke-width='2'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.index-categories-8march__arrow--next {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c49a9a' stroke-width='2'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media (min-width: 768px) {
+  .index-categories-8march__inner {
+    padding-right: 4rem;
+  }
+  .index-categories-8march__img-wrap {
+    width: 100px;
+    height: 135px;
+    border-radius: 50px;
+  }
+  .index-categories-8march__label {
+    font-size: 0.8rem;
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 767px) {
+  .index-categories-8march__nav {
+    display: none;
+  }
+  .index-categories-8march__inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem 0.5rem;
+    justify-items: center;
+    overflow: visible;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    -webkit-overflow-scrolling: unset;
+    scroll-snap-type: none;
+    flex-wrap: unset;
+    justify-content: unset;
+  }
+  .index-categories-8march__item {
+    scroll-snap-align: unset;
+  }
+  /* Вторая строка: 5-й и 6-й элемент по центру */
+  .index-categories-8march__item:nth-child(5) {
+    grid-column: 2;
+  }
+  .index-categories-8march__item:nth-child(6) {
+    grid-column: 3;
+  }
+  .index-categories-8march__img-wrap {
+    width: 70px;
+    height: 94px;
+    border-radius: 50px;
+  }
+  .index-categories-8march__label {
+    font-size: 0.7rem;
+    max-width: 90px;
+  }
+}
+
+/* --- На главной 8march скрыть блоки контейнера middle (герой, категории и акции — свои), но не карту --- */
+.page-index-8march main .index-categories-8march ~ section.conditional-section:not(.ya-map) {
+  display: none;
+}
+
+/* --- Секция «АКЦИИ» 8march: карусель по эталону --- */
+.index-promo-8march {
+  width: 100%;
+  background: #fff;
+  padding: 2rem 0 2.5rem;
+  position: relative;
+  overflow: visible;
+  z-index: 0;
+}
+
+.index-promo-8march__title {
+  position: relative;
+  z-index: 1;
+}
+
+.index-promo-8march__carousel-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  min-height: 500px;
+  height: 500px;
+}
+
+.index-promo-8march__carousel {
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+.index-promo-8march__track {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.index-promo-8march__track::-webkit-scrollbar {
+  display: none;
+}
+
+.index-promo-8march__card {
+  flex: 0 0 auto;
+  width: 260px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-decoration: none;
+  color: #2d2d2d;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  opacity: 0.94;
+  transition: none;
+}
+
+.index-promo-8march__card--large {
+  width: 377px;
+  min-width: 377px;
+  flex: 0 0 377px;
+  opacity: 1;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+  transition: none;
+}
+
+@media (min-width: 1600px) {
+  .index-promo-8march__card {
+    width: 320px;
+  }
+  .index-promo-8march__card--large {
+    width: 462px;
+    min-width: 462px;
+    flex: 0 0 462px;
+  }
+  .index-bouquets-8march__grid-first {
+    width: 520px;
+    min-width: 520px;
+  }
+  .index-bouquets-8march__card--first {
+    width: 520px !important;
+    min-width: 520px;
+  }
+  .index-bouquets-8march__grid-rest {
+    grid-template-columns: repeat(2, 300px);
+  }
+  .index-bouquets-8march__grid-rest .index-bouquets-8march__card {
+    width: 300px;
+    max-width: 300px;
+  }
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-first {
+    width: 300px;
+    min-width: 300px;
+  }
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__card--first {
+    width: 300px !important;
+    min-width: 300px;
+  }
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest {
+    grid-template-columns: 300px 520px;
+  }
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest .index-bouquets-8march__card:first-child {
+    width: 300px;
+    max-width: 300px;
+  }
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest .index-bouquets-8march__card:last-child {
+    width: 520px;
+    min-width: 520px;
+  }
+}
+
+.index-promo-8march__img-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 0 !important;
+  margin-bottom: 0.75rem;
+}
+
+.index-promo-8march__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.index-promo-8march__prices {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.index-promo-8march__price-old {
+  font-size: 0.9rem;
+  color: #888;
+  text-decoration: line-through;
+}
+
+.index-promo-8march__price-new {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d2d2d;
+}
+
+.index-promo-8march__card:hover {
+  box-shadow: none !important;
+}
+.index-promo-8march__card--large:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06) !important;
+}
+/* Общий стиль бежевых кнопок в карточках (ПОДРОБНЕЕ, В КОРЗИНУ, УЗНАТЬ ЦЕНУ) */
+.beige_button {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: none;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  background: #e8e0d5;
+  color: #2d2d2d;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.beige_button:hover {
+  background: #f5d5d3;
+  color: #2d2d2d;
+}
+
+.index-promo-8march__btn {
+  /* размеры унаследованы от .beige_button */
+}
+
+.index-promo-8march__arrow {
+  position: absolute;
+  top: 35%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #FBE3E1;
+  cursor: pointer;
+  padding: 0;
+  z-index: 3;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.index-promo-8march__arrow:hover {
+  background: #f5d5d2;
+}
+
+.index-promo-8march__arrow--prev {
+  left: 0.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d2d2d' stroke-width='2'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.index-promo-8march__arrow--next {
+  right: 0.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d2d2d' stroke-width='2'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.index-promo-8march__footer {
+  text-align: center;
+  margin: 0.75rem auto 3rem;
+  background: #fff !important;
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  box-sizing: border-box;
+}
+
+.index-promo-8march__btn-catalog {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #2d2d2d !important;
+  border: none !important;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  background: #FBE3E1 !important;
+  background-color: #FBE3E1 !important;
+  background-image: none !important;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.index-promo-8march__btn-catalog:hover {
+  background: #f5d5d3 !important;
+  background-color: #f5d5d3 !important;
+}
+
+@media (max-width: 767px) {
+  .index-promo-8march__title {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .index-promo-8march__carousel-wrap {
+    position: static;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .index-promo-8march__arrow {
+    display: flex;
+    position: absolute;
+    top: 2rem;
+    margin-top: 0;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+  }
+  .index-promo-8march__arrow--prev {
+    left: auto;
+    right: 4rem;
+  }
+  .index-promo-8march__arrow--next {
+    right: 1rem;
+  }
+  .index-promo-8march__card,
+  .index-promo-8march__card--large {
+    width: 220px;
+    min-width: 220px;
+    flex: 0 0 220px;
+    opacity: 1;
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+/* --- Инфоблоки под кнопкой каталога (эталон) --- */
+.index-info-8march {
+  position: relative;
+  width: 100%;
+  height: 484px;
+  min-height: 484px;
+  padding: 2.5rem 1rem;
+  background: #fdf8f5;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.index-info-8march__watermark {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: #CFDCAB;
+  mask-image: url("/static/8march_design/images/luciano_logo.svg");
+  mask-size: 100% auto;
+  mask-repeat: no-repeat;
+  mask-position: center bottom;
+  -webkit-mask-image: url("/static/8march_design/images/luciano_logo.svg");
+  -webkit-mask-size: 100% auto;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center bottom;
+  pointer-events: none;
+}
+
+.index-info-8march__inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.75rem;
+  width: min(72rem, 100%);
+  max-width: 100%;
+  height: 194px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  background: transparent !important;
+}
+
+/* Блок с кнопками 2ГИС/ЯНДЕКС — по центру секции, сильно прозрачный и заблюренный (#F9F3EE) */
+.index-info-8march__ratings-block {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(72rem, 100%);
+  max-width: calc(100% - 2rem);
+  height: 400px;
+  padding: 1.25rem 1.25rem 0 0;
+  box-sizing: border-box;
+  background: rgba(252, 248, 245, 0.4);
+  z-index: 1;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.index-info-8march__ratings-inner {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+  height: 100%;
+  padding-bottom: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+}
+
+.index-info-8march__ratings-block .index-ratings-8march__item {
+  margin: 0;
+  width: 9rem;
+  height: 7.1rem; /* пропорция 165:130 */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  gap: 0.25rem;
+  background: #FBE3E1;
+}
+
+.index-ratings-8march__label {
+  font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
+  font-weight: 300 !important;
+  font-style: normal;
+  font-size: 1.25rem;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #B8736E;
+}
+
+/* НЕ МЕНЯТЬ! Выравнивание 2ГИС/ЯНДЕКС — пока заказчик не попросит конкретно. */
+/* ЯНДЕКС — опустить на один уровень с подписью 2ГИС */
+.index-info-8march__ratings-block .index-ratings-8march__item:last-child .index-ratings-8march__label {
+  padding-top: 0.5rem;
+}
+.index-info-8march__ratings-block .index-ratings-8march__item:last-child .index-ratings-8march__row {
+  margin-top: 0.4rem;
+}
+
+/* НЕ ТРОГАТЬ! Цифра «2» в 2ГИС — по ТЗ заказчика, не менять. */
+.index-ratings-8march__label-num {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 300 !important;
+  font-style: normal;
+  font-size: 40px !important;
+  line-height: 100% !important;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  vertical-align: baseline;
+}
+
+.index-ratings-8march__row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.25rem;
+}
+
+.index-info-8march__item {
+  text-align: left;
+  background: transparent !important;
+}
+
+.index-info-8march__heading {
+  margin: 0 0 1rem;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 300 !important;
+  font-style: normal;
+  font-size: min(1.875rem, 32px) !important;
+  line-height: 100% !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+  color: #B8736E;
+}
+
+.index-info-8march__text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.45;
+  color: #6b6363;
+}
+
+@media (max-width: 767px) {
+  .index-info-8march__inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* На малом экране: рубрика «Гарантия / Доставка / Подарки» и звёзды — один столбец, блок выше, звёзды в конце */
+@media (max-width: 767px) {
+  .index-info-8march {
+    height: auto;
+    min-height: auto;
+    padding: 2rem 1rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .index-info-8march__inner {
+    height: auto;
+    min-height: 0;
+    order: 1;
+  }
+  .index-info-8march__ratings-block {
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-top: 2rem;
+    padding: 1rem 0 0;
+    order: 2;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .index-info-8march__ratings-inner {
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+}
+
+/* --- Рейтинги 2ГИС / ЯНДЕКС --- */
+.index-ratings-8march {
+  padding: 1.5rem 1rem;
+  background: #fff;
+}
+
+.index-ratings-8march__inner {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.index-ratings-8march__item {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #5c4a4a;
+  background: #e8c4c4;
+  border-radius: 0;
+}
+
+.index-ratings-8march__star {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  line-height: 1;
+  font-size: 3rem;
+  color: #B8736E;
+  opacity: 1;
+  vertical-align: middle;
+}
+
+.index-ratings-8march__score {
+  font-family: 'Blacker Sans Text', 'Inter', system-ui, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 42.2px;
+  line-height: 100%;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #B8736E;
+  display: inline-block;
+  width: 62px;
+  height: 50px;
+  opacity: 1;
+  box-sizing: border-box;
+  line-height: 50px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* --- Секция СБОРНЫЕ БУКЕТЫ (эталон: сетка карточек, квадратные фото как в акциях) --- */
+.index-bouquets-8march {
+  padding: 2rem 0 2.5rem;
+  background: #fff;
+}
+
+/* Карусель сборных букетов (общий скрипт 8march_carousel.js) */
+.index-bouquets-8march__carousel-wrap {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  min-height: 380px;
+}
+
+.index-bouquets-8march__carousel {
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+.index-bouquets-8march__track {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.index-bouquets-8march__track::-webkit-scrollbar {
+  display: none;
+}
+
+.index-bouquets-8march__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #e8e0d5;
+  cursor: pointer;
+  padding: 0;
+  z-index: 3;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d2d2d' stroke-width='2'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.index-bouquets-8march__arrow:hover {
+  background-color: #ddd5ca;
+}
+
+.index-bouquets-8march__arrow--prev {
+  left: 0.5rem;
+}
+
+.index-bouquets-8march__track .index-bouquets-8march__card {
+  flex: 0 0 auto;
+  width: 260px;
+  min-width: 260px;
+  scroll-snap-align: start;
+  box-sizing: border-box;
+  transition: none;
+}
+
+.index-bouquets-8march__track .index-bouquets-8march__card--large {
+  width: 377px;
+  min-width: 377px;
+  flex: 0 0 377px;
+}
+
+/* Сетка 3×3: в каждом ряду первая карточка крупнее, две остальные меньше */
+.index-bouquets-8march__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  box-sizing: border-box;
+}
+
+.index-bouquets-8march__grid-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.index-bouquets-8march__grid-first {
+  width: 400px;
+  min-width: 400px;
+  flex-shrink: 0;
+}
+
+.index-bouquets-8march__grid-rest {
+  display: grid;
+  grid-template-columns: repeat(2, 260px);
+  gap: 1.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.index-bouquets-8march__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-decoration: none;
+  color: #2d2d2d;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  opacity: 0.94;
+  transition: none;
+}
+
+/* Первая карточка в ряду — крупнее (400px), остальные две — меньше (260px) */
+.index-bouquets-8march__card--first {
+  width: 400px !important;
+  min-width: 400px;
+  opacity: 1;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.index-bouquets-8march__grid-rest .index-bouquets-8march__card {
+  width: 260px;
+  max-width: 260px;
+}
+
+/* Второй ряд: крупная последняя карточка, две предыдущие — меньше */
+.index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-first {
+  width: 260px;
+  min-width: 260px;
+}
+.index-bouquets-8march__grid-row--last-big .index-bouquets-8march__card--first {
+  width: 260px !important;
+  min-width: 260px;
+  box-shadow: none;
+  transform: none;
+}
+.index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest {
+  grid-template-columns: 260px 400px;
+}
+.index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest .index-bouquets-8march__card:first-child {
+  width: 260px;
+  max-width: 260px;
+}
+.index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest .index-bouquets-8march__card:last-child {
+  width: 400px;
+  min-width: 400px;
+  max-width: none;
+  opacity: 1;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+.index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest .index-bouquets-8march__card:last-child:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06) !important;
+}
+
+.index-bouquets-8march__card:hover {
+  box-shadow: none !important;
+}
+.index-bouquets-8march__card--first:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06) !important;
+}
+
+.index-bouquets-8march__img-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 0 !important;
+  margin-bottom: 0.75rem;
+}
+
+.index-bouquets-8march__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.index-bouquets-8march__desc {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: #2d2d2d;
+  text-align: left;
+}
+
+.index-bouquets-8march__price {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d2d2d;
+}
+
+.index-bouquets-8march__btn--alt {
+  margin-top: 0.25rem;
+}
+
+.index-bouquets-8march__footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 0 1rem;
+  background: #fff !important;
+}
+
+.index-bouquets-8march__btn-catalog {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #2d2d2d !important;
+  border: none !important;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  background: #FBE3E1 !important;
+  background-color: #FBE3E1 !important;
+  background-image: none !important;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.index-bouquets-8march__btn-catalog:hover {
+  background: #f5d5d3 !important;
+  background-color: #f5d5d3 !important;
+}
+
+@media (min-width: 768px) {
+  .index-bouquets-8march__grid-first {
+    width: 440px;
+    min-width: 440px;
+  }
+  .index-bouquets-8march__card--first {
+    width: 440px !important;
+    min-width: 440px;
+  }
+  .index-bouquets-8march__grid-rest {
+    grid-template-columns: repeat(2, 260px);
+  }
+  .index-bouquets-8march__grid-rest .index-bouquets-8march__card {
+    width: 260px;
+    max-width: 260px;
+  }
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-first {
+    width: 260px;
+    min-width: 260px;
+  }
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__card--first {
+    width: 260px !important;
+    min-width: 260px;
+  }
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest {
+    grid-template-columns: 260px 440px;
+  }
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest .index-bouquets-8march__card:first-child {
+    width: 260px;
+    max-width: 260px;
+  }
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest .index-bouquets-8march__card:last-child {
+    width: 440px;
+    min-width: 440px;
+  }
+}
+
+@media (max-width: 767px) {
+  .index-bouquets-8march__title {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .index-bouquets-8march__grid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .index-bouquets-8march__grid-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  .index-bouquets-8march__grid-first,
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-first {
+    width: 100%;
+    min-width: 0;
+  }
+  .index-bouquets-8march__grid-rest,
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    grid-template-columns: unset;
+    gap: 1.5rem;
+  }
+  .index-bouquets-8march__card--first,
+  .index-bouquets-8march__grid-rest .index-bouquets-8march__card,
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__card--first,
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest .index-bouquets-8march__card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-shadow: none;
+    transform: none;
+  }
+  .index-bouquets-8march__carousel-wrap {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .index-bouquets-8march__arrow {
+    display: none;
+  }
+  .index-bouquets-8march__track .index-bouquets-8march__card {
+    width: 242px;
+    min-width: 242px;
+  }
+  .index-bouquets-8march__track .index-bouquets-8march__card--large {
+    width: 352px;
+    min-width: 352px;
+    flex: 0 0 352px;
+  }
+}
+
+/* --- Блок «Букет по вашим желаниям»: слева 8.png, справа форма --- */
+.index-bouquet-wish-8march {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.index-bouquet-wish-8march__inner {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 320px;
+}
+
+.index-bouquet-wish-8march__left {
+  flex: 1 1 50%;
+  min-height: 280px;
+  overflow: hidden;
+  background: #c5d4c4;
+}
+
+.index-bouquet-wish-8march__img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.index-bouquet-wish-8march__right {
+  flex: 1 1 50%;
+  padding: 2rem;
+  background: #f8f6f3;
+  display: flex;
+  flex-direction: column;
+}
+
+.index-bouquet-wish-8march__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
+  font-weight: 300 !important;
+  font-size: 32px !important;
+  line-height: 100% !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+  color: #000000 !important;
+}
+
+.index-bouquet-wish-8march__phone {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--8march-body-color, #2d2d2d);
+}
+.index-bouquet-wish-8march__phone a {
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+.index-bouquet-wish-8march__phone a:hover {
+  text-decoration: underline;
+}
+
+.index-bouquet-wish-8march__desc {
+  margin: 0 0 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #6b6363;
+}
+
+.index-bouquet-wish-8march__form {
+  max-width: 360px;
+}
+
+.index-bouquet-wish-8march__field {
+  margin-bottom: 12px;
+}
+
+.index-bouquet-wish-8march__field--with-icon {
+  position: relative;
+}
+
+.index-bouquet-wish-8march__field--with-icon .index-bouquet-wish-8march__input {
+  padding-right: 2.5rem;
+}
+
+.index-bouquet-wish-8march__field-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: #3B3036;
+}
+
+.index-bouquet-wish-8march__field-icon svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+/* Все поля формы — без скруглений (имя, телефон, дата, пожелания); чекбокс .green-checkbox не трогаем */
+.index-bouquet-wish-8march__form input:not(.green-checkbox):not(.white-checkbox),
+.index-bouquet-wish-8march__form textarea,
+.index-bouquet-wish-8march__input {
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+}
+
+.index-bouquet-wish-8march__input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-family: Inter, system-ui, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0;
+  color: #3B3036;
+  background: #fff;
+  border: none;
+  border-radius: 0 !important;
+  box-sizing: border-box;
+  outline: none;
+}
+.index-bouquet-wish-8march__input:focus {
+  outline: none;
+}
+
+.index-bouquet-wish-8march__input::placeholder {
+  font-family: Inter, system-ui, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0;
+  color: #3B3036;
+  opacity: 0.7;
+}
+
+.index-bouquet-wish-8march__textarea {
+  resize: none;
+  min-height: 0;
+  height: 2.6rem;
+  border: none;
+  border-radius: 0 !important;
+}
+
+.index-bouquet-wish-8march__submit {
+  width: auto;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.index-bouquet-wish-8march .form-group.privacy-policy {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #6b6363;
+}
+
+.index-bouquet-wish-8march .form-group.privacy-policy label {
+  cursor: pointer;
+}
+
+/* Класс зелёного чекбокса — скруглённый квадрат, при отмеченном состоянии зелёный фон и белая галочка */
+.green-checkbox {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  -webkit-border-radius: 6px !important;
+  background: #e8e6e4 !important;
+  cursor: pointer;
+  box-sizing: border-box !important;
+  outline: none !important;
+  transition: background-color 0.2s ease;
+}
+.green-checkbox:checked {
+  background: #cfdcab !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6 L5 9 L10 3'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 10px 10px !important;
+  border-radius: 6px !important;
+  -webkit-border-radius: 6px !important;
+}
+
+/* Класс белого чекбокса — скруглённый квадрат, белый фон; при отмеченном состоянии зелёный фон и белая галочка (как у .green-checkbox) */
+.white-checkbox {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  border-radius: 6px !important;
+  -webkit-border-radius: 6px !important;
+  background: #ffffff !important;
+  cursor: pointer;
+  box-sizing: border-box !important;
+  outline: none !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.white-checkbox:checked {
+  background: #cfdcab !important;
+  border-color: #cfdcab !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6 L5 9 L10 3'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 10px 10px !important;
+  border-radius: 6px !important;
+  -webkit-border-radius: 6px !important;
+}
+
+/* Чекбокс согласия в блоке «Букет по вашим желаниям» — использует .green-checkbox */
+.index-bouquet-wish-8march__agreement .checkbox {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem;
+}
+.index-bouquet-wish-8march__agreement label {
+  margin: 0 !important;
+  font-size: 0.8rem !important;
+  color: #6b6363 !important;
+}
+
+@media (max-width: 767px) {
+  .index-bouquet-wish-8march__inner {
+    flex-direction: column;
+  }
+  .index-bouquet-wish-8march__left {
+    min-height: 220px;
+  }
+  .index-bouquet-wish-8march__img {
+    min-height: 220px;
+  }
+  .index-bouquet-wish-8march__right {
+    min-height: auto;
+  }
+}
+
+/* --- LUCIANO В СОЦСЕТЯХ (светло-розовая полоса по эталону) --- */
+.index-social-8march {
+  width: 100%;
+  padding: 1.75rem 1rem;
+  background: #fce8e9;
+}
+
+.index-social-8march__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+}
+
+.index-social-8march__title {
+  margin: 0;
+  font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
+  font-weight: 300 !important;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  color: #2d2d2d;
+  flex: 0 0 auto;
+}
+
+.index-social-8march__text {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #5c4a4a;
+  flex: 1 1 280px;
+  max-width: 520px;
+}
+
+.index-social-8march__links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.index-social-8march__link {
+  font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
+  font-weight: 300 !important;
+  font-size: 1.5rem;
+  letter-spacing: 0.03em;
+  color: #B8736E;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.index-social-8march__link:hover {
+  color: #a06660;
+}
+
+/* --- ОТЗЫВЫ (эталон: карточка рейтинга, кнопка, список отзывов) --- */
+.index-reviews-8march {
+  width: 100%;
+  padding: 2rem 1rem 2.5rem;
+  background: #fff;
+}
+
+.index-reviews-8march__title {
+  /* типографика — из .big-title; у секции ОТЗЫВЫ меньшие боковые отступы, заголовок по центру */
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  text-align: center !important;
+}
+
+.index-reviews-8march__card {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.index-reviews-8march__card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.index-reviews-8march__brand {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d2d2d;
+}
+
+.index-reviews-8march__source {
+  font-size: 0.9rem;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.index-reviews-8march__source:hover {
+  text-decoration: underline;
+  color: #1d4ed8;
+}
+
+.index-reviews-8march__rating-block {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.index-reviews-8march__rating-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2d2d2d;
+}
+
+.index-reviews-8march__stars {
+  color: #eab308;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+}
+
+.index-reviews-8march__stars--small {
+  font-size: 0.9rem;
+  display: block;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.index-reviews-8march__stats {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: #6b6363;
+}
+
+.index-reviews-8march__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.index-reviews-8march__cta-text {
+  font-size: 0.9rem;
+  color: #2d2d2d;
+}
+
+.index-reviews-8march__btn-leave {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background: #2563eb;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.index-reviews-8march__btn-leave:hover {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.index-reviews-8march__list {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.index-reviews-8march__item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.index-reviews-8march__item:last-child {
+  border-bottom: none;
+}
+
+.index-reviews-8march__avatar {
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 0;
+  background: #e8e0d5;
+}
+
+.index-reviews-8march__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.index-reviews-8march__name {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #2d2d2d;
+}
+
+.index-reviews-8march__date {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.index-reviews-8march__text {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #444;
+}
+
+.index-reviews-8march__more {
+  text-align: center;
+  margin: 1rem 0 0;
+  padding-top: 0.75rem;
+}
+
+.index-reviews-8march__more-link {
+  font-size: 0.9rem;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.index-reviews-8march__more-link:hover {
+  text-decoration: underline;
+  color: #1d4ed8;
+}
+
+/* --- ГДЕ МЫ НАХОДИМСЯ: карта на весь экран + overlay-панель (эталон) --- */
+.index-8march-map-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+}
+
+.page-index-8march .index-8march-map-wrap .conditional-section.ya-map,
+.page-index-8march .index-8march-map-wrap section.ya-map {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 80vh;
+  padding: 0;
+  margin: 0;
+}
+
+.page-index-8march .index-8march-map-wrap .wide-map,
+.page-index-8march .index-8march-map-wrap #yamap_addresses {
+  width: 100% !important;
+  height: 80vh !important;
+  min-height: 400px !important;
+}
+
+.index-8march-map-overlay {
+  position: absolute;
+  left: 2rem;
+  top: 2rem;
+  z-index: 2;
+  max-width: 420px;
+  padding: 1.75rem 2rem;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+}
+
+.index-8march-map-overlay .index-8march-questions-wrap__title {
+  margin: 0 0 1rem;
+  text-align: left;
+}
+
+.index-8march-map-overlay__row {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: inherit;
+  margin: 0 0 0.75rem;
+  max-width: 100%;
+}
+.index-8march-map-overlay__row.index-8march-map-overlay__phone {
+  margin: 0 0 1.25rem;
+}
+
+.index-8march-map-overlay__icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e8c4c0;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.index-8march-map-overlay__icon svg {
+  width: 14px;
+  height: 14px;
+}
+.index-8march-map-overlay__row:hover .index-8march-map-overlay__icon {
+  background: #B8736E;
+}
+
+.index-8march-map-overlay__text {
+  font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif);
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #2d2d2d;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.index-8march-map-overlay__phone .index-8march-map-overlay__text {
+  text-transform: none;
+  font-size: 1rem;
+}
+
+.index-8march-map-overlay__row:hover .index-8march-map-overlay__text {
+  color: #5c4a4a;
+}
+
+.index-8march-map-overlay__btn {
+  display: inline-block;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .index-8march-map-overlay {
+    left: 1rem;
+    top: 1rem;
+    right: 1rem;
+    max-width: none;
+    padding: 1.25rem 1rem;
+  }
+  .page-index-8march .index-8march-map-wrap .wide-map,
+  .page-index-8march .index-8march-map-wrap #yamap_addresses {
+    height: 60vh !important;
+    min-height: 320px !important;
+  }
+}

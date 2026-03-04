@@ -1,0 +1,11 @@
+{% if discount_percent %}
+    {% if for_teaser %}
+    <div class="{{ badge_classes|default:"product-card-sell-badge product-card-sell-badge_bottom" }}">
+        -{{ discount_percent }}%
+    </div>
+    {% else %}
+    <span class="{{ badge_classes|default:"product-sale-badge product-sale-badge_margin d-none d-md-inline-flex ms-10" }}">
+        -{{ discount_percent }}%
+    </span>
+    {% endif %}
+{% endif %}

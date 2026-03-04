@@ -1,0 +1,98 @@
+{% load static sekizai_tags utils_tags i18n %}
+<div class="mobile-menu-head">
+    <div class="mobile-menu-head__title">{% trans "Фильтры" %}</div>
+    <a class="mobile-menu-head__close-btn close-btn-2">
+        <svg class="icon">
+            <use xlink:href="#delete"></use>
+        </svg>
+    </a>
+</div>
+<form  action="{{ request.path }}" id="catalog_filter_form" method="get" class="catalog-filter-body" autocomplete="off">
+    <ul class="catalog-filter-accordion">
+
+        {% for field in filter_form %}
+
+        {% if field.name != 'price_range' and field.name != 'price_sorting' %}
+
+        {% if field|fieldtype == 'Select' %}
+        <li>
+            <span class="opener">{{ field.label }}</span>
+            <ul class="submenu" style="display:block">
+                <li>
+                    <div class="filter-item">
+                        <div class="filter-item__content">
+                            <div class="form-group filter-select">
+                                {{ field }}
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </li>
+
+        {% else %}
+
+        {% if filter_form.data %} {# form has filters #}
+        <li{% if field.name in filter_form.expanded_fields %} class="active"{% endif %}>
+            <a href="#" class="opener">{{ field.label }}
+                <svg class="icon">
+                    <use xlink:href="#tab-arrow"></use>
+                </svg>
+            </a>
+            <ul class="submenu" style="display:{% if field.name in filter_form.expanded_fields %}block{% else %}none{% endif %}">
+                <li>
+                    <div class="filter-item">
+                        <div class="filter-item__content">
+                            {{ field }}
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </li>
+        {% else %} {# form without filters #}
+        <li{% if forloop.first or field.name in filter_form.expanded_fields %} class="active"{% endif %}>
+            <a href="#" class="opener">{{ field.label }}
+                <svg class="icon">
+                    <use xlink:href="#tab-arrow"></use>
+                </svg>
+            </a>
+            <ul class="submenu" style="display:{% if forloop.first or field.name in filter_form.expanded_fields %}block{% else %}none{% endif %}">
+                <li>
+                    <div class="filter-item">
+                        <div class="filter-item__content">
+                            {{ field }}
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </li>
+        {% endif %}
+
+        {% endif %}
+
+
+        {% endif %}
+        {% endfor %}
+
+    </ul>
+
+    <div class="catalog-filter__bottom">
+        <span class="filter-item-title">{{ filter_form.price_range.label }}</span>
+        {{ filter_form.price_range }}
+    </div>
+
+
+    <div class="catalog-filter__btns">
+        <button class="btn btn--main-min button-theme button-theme_primary">
+            {% trans "Применить" %}
+        </button>
+        <a href="{{ request.path }}" class="btn-border btn-link">
+            {% trans "Очистить" %}
+        </a>
+    </div>
+    <span class="filter-show-all" style="display: none"></span>
+
+</form>

@@ -1,0 +1,5 @@
+{% load static %}
+<img {% if mobile_mode and config.HEDER_LOGO_FILE_MOBILE %}
+    src="{{ MEDIA_URL }}{{ config.HEDER_LOGO_FILE_MOBILE }}"{% else %}
+    src="{% if config.HEDER_LOGO_FILE %}{{ MEDIA_URL }}{{ config.HEDER_LOGO_FILE }}{% else %}{% static 'images/logo.svg' %}{% endif %}"{% endif %}
+    alt="{{ config.SITE_NAME }}">

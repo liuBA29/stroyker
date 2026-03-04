@@ -1,0 +1,13 @@
+<div class="catalog__links-block catalog__links-block--portfolio city-select">
+    <div class="custom-select-wrapper">
+        <select class="city-select-dropdown" onchange="location = this.value;">
+            <option value="{{ request.path }}">Все города</option>
+            {% for city in partner_cities %}
+            <option value="{{ request.path }}?city={{ city.slug }}" 
+                    {% if request.GET.city == city.slug %}selected{% endif %}>
+                {{ city.name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+</div>

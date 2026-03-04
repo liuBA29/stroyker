@@ -1,0 +1,15 @@
+{% load i18n %}
+{% if config.USE_MULTIPLE_LANG %}
+{% get_available_languages as LANGUAGES %}
+<form id="user-lang-switcher" action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}" />
+    <select name="language" onchange="this.form.submit()">
+        {% for code, name in LANGUAGES %}
+        <option value="{{ code }}"{% if code == request.LANGUAGE_CODE %} selected="selected"{% endif %}>{{ name }}</option>
+        {% endfor %}
+    </select>
+</form>
+{% endif %}
+
+

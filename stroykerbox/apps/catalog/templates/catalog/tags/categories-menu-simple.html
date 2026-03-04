@@ -1,0 +1,9 @@
+<ul>
+    {% for category in categories %}
+    <li class="menu-item{% if category.highlight %} catalog-sale-link{% endif %}{% if request.path == node_url %} current{% endif %}"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+    {% if max_rows and forloop.counter == max_rows %}
+</ul>
+<ul>
+    {% endif %}
+    {% endfor %}
+</ul>

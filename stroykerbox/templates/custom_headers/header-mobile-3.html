@@ -1,0 +1,81 @@
+{% load static catalog_tags location_tags utils_tags customization_tags i18n search_tags %}
+<!-- header mobile  -->
+<section class="header--mob">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="logo">{{ custom_logo }}
+                    <a href="/">
+                        {% render_logo_image mobile=True %}
+                    </a>
+                </div>
+            </div>
+            <div class="col-8">
+                {% render_search_form mobile=True icon_position=right %}
+            </div>
+            <div class="col-1">
+                <div class="burger-box">
+                    <button class="btn" id="my-button">
+                        <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="17" height="2" rx="1" fill="currentColor"/>
+                            <rect y="6" width="17" height="2" rx="1" fill="currentColor"/>
+                            <rect y="12" width="17" height="2" rx="1" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% render_mmenujs %}
+</section>
+
+<!-- Нельзя менять section в div иначе mmenu (#my-menu) не будет работать корректно  -->
+<section class="header--bottom-mob bottom-fixed">
+    <div class="container">
+        <div class="row">
+            <div class="col-5">
+                {% location_contact_phones as phones %}
+
+                {% if phones or request.location.email %}
+
+                {% if phones %}
+                {% for phone in phones %}
+                {% if forloop.first %}
+                <a href="tel:{{ phone.phone_raw }}" class="custom-mob-number">
+                    {{ phone.phone }}
+                </a>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                {% if request.location.email and config.LOCATION_EMAIL_SHOW_IN_HEADER %}
+                <a href="mailto:{{ request.location.email }}" class="custom-mob-number">
+                    {{ request.location.email }}
+                </a>
+                {% endif %}
+
+                {% endif %}
+            </div>
+            <div class="col-3 pl--0 pr--0">
+                {% if not config.AMOCRM_CALLME_FORM %}
+                <a href="#" class="custom-tel-24" data-fancybox="callme-modal-menu" data-src="#callme-modal">
+                    <img src="{% static 'images/tel-24.svg' %}" alt="">
+                    {% trans "Заказать звонок" %}
+                </a>
+                {% endif %}
+            </div>
+            <div class="col-4">
+                <a href="{% url 'cart:cart' %}" class="custom-mob-cart bordered">
+                    <span class="cart-number">{{ cart|length }}</span>
+                    {% if config.HEADER_ICON_CART %}
+                    <img class="icon-svg" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART }}"/>
+                        {% if config.HEADER_ICON_CART_HOVER %}
+                        <img class="icon-svg hover" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART_HOVER }}"/>
+                        {% endif %}
+                    {% else %}
+                    <img src="{% static 'images/cart-icon-white.svg' %}" alt="">
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

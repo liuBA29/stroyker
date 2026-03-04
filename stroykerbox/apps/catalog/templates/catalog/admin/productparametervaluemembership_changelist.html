@@ -1,0 +1,13 @@
+{# ImportMixin is used to create the list of categories #}
+{% extends 'admin/change_list.html' %}
+{% load i18n %}
+
+{% block object-tools-items %}
+{{ block.super }}
+<li>
+    <a href="{% url 'admin:productparametervaluemembership_export' %}{{cl.get_query_string}}">{% trans "Экспорт" %}</a>
+</li>
+<li>
+    <a href="{% url 'admin:productparametervaluemembership_import' %}">{% trans "Импорт" %}</a>
+</li>
+{% endblock %}

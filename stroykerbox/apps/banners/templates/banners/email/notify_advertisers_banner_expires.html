@@ -1,0 +1,26 @@
+{% extends 'email/email-base.html' %}
+{% load utils_tags i18n %}
+
+{% block mail_header %}
+{% blocktranslate with site_name=config.SITE_NAME %}
+Уведомление о завершении срока показа баннера на сайте {{ site_name }}
+{% endblocktranslate %}
+{% endblock mail_header %}
+
+{% block mail_content %}
+
+{% blocktranslate with views_counter=banner.views_counter clicks_counter=banner.clicks_counter %}
+<p>Срок публикации вашего баннера заканчивается ДД.ММ.ГГГГ</p>
+<strong>Статистика по баннеру:</strong>
+<ul>
+    <li>просмотров - {{ views_counter }}</li>
+    <li>кликов - {{ clicks_counter  }}</li>
+</ul>
+{% endblocktranslate %}
+
+{% if config.BANNERS_NOTIFY_CONTACT_TEXT %}
+{% blocktranslate with contact_text=config.BANNERS_NOTIFY_CONTACT_TEXT|safe %}
+<p>Для продолжения публикации свяжитесь с нами: {{ contact_text }}</p>
+{% endblocktranslate %}
+{% endif %}
+{% block mail_content %}

@@ -1,0 +1,159 @@
+{% load utils_tags humanize commerce_tags catalog_tags i18n %}
+<table style="border-collapse: collapse;background: #F5F5F5;width: 100%;margin-bottom: 15px;" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr>
+            <td>
+                <div class="contacts-row" style="padding: 30px 15px 30px 30px;overflow: hidden;">
+                    <div class="contacts-col" style="width: 46%;float:left;">
+                        <p style="font-family: Arial,sans-serif;font-size: 14px;line-height: 20px;">
+                            <strong>{% trans "Номер заказа:" %}</strong> {{ order.pk }}
+                        </p>
+                        {% if location %}
+                        <p style="font-family: Arial,sans-serif;font-size: 14px;line-height: 20px;margin-bottom: 15px;">
+                            <strong>{% trans "Доставка:" %}</strong><br>
+                            <p>{% trans "Регион:" %}</p><br>
+                            {{ location.name }}
+                        </p>
+                        {% endif %}
+                        <p style="font-family: Arial,sans-serif;font-size: 14px;line-height: 20px;margin-bottom: 15px;">
+                            <strong>{% trans "Доставка:" %}</strong><br>
+                            {{ order.delivery }}<br>
+                            {% if order.delivery.point %}
+                            <p>{% trans "Адрес пункта самовывоза —" %}<br>
+                                {{ order.delivery.point.address }}</p>
+                            {% elif order.delivery.stock %}
+                            <p>{% trans "Склад —" %}<br>
+                                {{ order.delivery.stock }}</p>
+                            <p>{% trans "Адрес доставки —" %}<br>
+                                {{ order.delivery.address }}</p>
+                            {% endif %}
+                        </p>
+
+
+                        <p style="font-family: Arial,sans-serif;font-size: 14px;line-height: 20px;">
+                            <strong>{% trans "Оплата:" %}</strong><br>
+                            {{ order.payment_method_name }}
+                            {% if invoicing %} (<a href="{% settings_value 'BASE_URL' %}{% url 'cart:order-invoice-pdf' order.id %}">Скачать</a>){% endif %}
+                        </p>
+                        {% if order.yookassa_status %}
+                            <p style="font-family: Arial,sans-serif;font-size: 14px;line-height: 20px;">
+                                <strong>{% trans "Статус оплаты:" %}</strong>
+                                {% if order.yookassa_status == order.YOOKASSA_SUCCEEDED %}
+                                    {% trans "оплачено" %}
+                                {% else %}
+                                    {% trans "не оплачено" %}
+                                {% endif %}
+                            </p>
+                        {% endif %}
+                    </div>
+
+                    {% if order.user %}
+                    <div class="contacts-col">
+                        <p style="font-family: Arial,sans-serif;font-size: 14px;line-height: 20px;"><strong>
+                                {% trans "Контактные данные:" %}
+                            </strong><br>
+                            {% if order.user.company %}
+                            {{ order.user.company }}<br>
+                            {% endif %}
+                            {% if order.user.name %}
+                            {{ order.user.name }}<br>
+                            {% endif %}
+                            {% if order.user.phone %}
+                            {{ order.user.phone }}<br>
+                            {% endif %}
+                            {{ order.user.email }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if order.comment %}
+                    <div class="contacts-col">
+                        <p style="font-family: Arial,sans-serif;font-size: 14px;line-height: 20px;">
+                            <strong>{% trans "Комментарий к заказу:" %}</strong><br>
+                            {{ order.comment|linebreaks }}
+                        </p>
+                    </div>
+                    {% endif %}
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+{% if order.orderextrafieldvalue_set.exists %}
+**Дополнительные поля заказа:**
+<table style="border-collapse: collapse; width: 100%; margin-bottom: 15px;" cellspacing="0" cellpadding="5">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #E5E5EA; padding: 5px; text-align: left;">{% trans "Название" %}</th>
+            <th style="border: 1px solid #E5E5EA; padding: 5px; text-align: left;">{% trans "Значение" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for field_value in order.orderextrafieldvalue_set.all %}
+        <tr>
+            <td style="border: 1px solid #E5E5EA; padding: 5px;">{{ field_value.field.name }}</td>
+            <td style="border: 1px solid #E5E5EA; padding: 5px;">{{ field_value.value }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+<div style="font-family: 'Montserrat',sans-serif;font-style: italic; font-size: 18px;line-height: 28px;font-weight: bold;padding-bottom: 5px;">
+    {% trans "Товары" %}
+</div>
+
+
+<table style="border-collapse: collapse;width: 100%;padding-bottom: 20px;" cellspacing="0" cellpadding="0">
+    <tbody>
+        {% for product in order.order_products.all %}
+        {% product_cart_price product.product order as product_price %}
+        <tr>
+            <td style="padding: 8px 15px; font-family: Arial,sans-serif;font-size: 14px;line-height: 18px;color: #333;border-bottom: 1px solid #E5E5EA;">{{ forloop.counter }}.</td>
+            <td style="padding: 8px 15px;border-bottom: 1px solid #E5E5EA;">
+                <span style="display: block;font-family: Arial,sans-serif;font-size: 10px;color: #767676;">{{ product.product.code }}</span>
+                <a href="{% settings_value 'BASE_URL' %}{{ product.product.get_absolute_url }}" target="_blank" style="font-family: Arial,sans-serif;font-size: 14px;line-height: 20px">{{ product.product.name }}</a>
+            </td>
+            <td style="padding: 8px 15px;border-bottom: 1px solid #E5E5EA;">
+                <span style="display: block;font-family: Arial,sans-serif;font-size: 14px;line-height: 18px;color: #333;font-weight: bold;">Цена</span>
+                <span style="font-family: Arial,sans-serif;font-size: 14px;line-height: 18px;color: #333;">{{ product_price|price_format }} {{ currency_symbol }}</span>
+            </td>
+            <td style="padding: 8px 15px;border-bottom: 1px solid #E5E5EA;">
+                <span style="display: block;font-family: Arial,sans-serif;font-size: 14px;line-height: 18px;color: #333;font-weight: bold;">Кол-во</span>
+                <span style="font-family: Arial,sans-serif;font-size: 14px;line-height: 18px;color: #333;">{{ product.quantity }}</span>
+            </td>
+            <td style="padding: 8px 15px;font-family: Arial,sans-serif;font-size: 14px;line-height: 18px;color: #333;border-bottom: 1px solid #E5E5EA;">
+                <span style="display: block;font-family: Arial,sans-serif;font-size: 14px;line-height: 18px;color: #333;font-weight: bold;">Кол-во</span>
+                <span style="font-family: Arial,sans-serif;font-size: 14px;line-height: 18px;color: #333;"><strong>{{ product_price|multiplication:product.quantity|price_format }} {{ currency_symbol }}</strong></span>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+<table style="float: right;border-collapse: collapse;width: 50%;margin-top: 20px;" cellspacing="0" cellpadding="0">
+    <tbody>
+        {% if not hide_total_weight %}
+        <tr>
+            <td style="font-family: Arial,sans-serif;font-size: 14px;line-height: 20px;color: #333;padding-bottom: 10px;">
+                {% trans "Общий вес, кг:" %}
+            </td>
+            <td style="font-family: Arial,sans-serif;font-size: 14px;line-height: 20px;color: #333;padding-bottom: 10px;" align="right">{{ order.total_weight|floatformat:2 }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td style="font-family: Arial,sans-serif;font-size: 14px;line-height: 20px;color: #333;padding-bottom: 10px;">
+                {% trans "Стоимость доставки:" %}
+            </td>
+            <td style="font-family: Arial,sans-serif;font-size: 14px;line-height: 20px;color: #333;padding-bottom: 10px;" align="right">{{ order.delivery_cost|price_format }} {{ currency_symbol }}</td>
+        </tr>
+        <tr>
+            <td style="font-family: Arial,sans-serif;font-size: 18px;line-height: 24px;color: #333;">
+                <strong>{% trans "Итого:" %}</strong>
+            </td>
+            <td style="font-family: Arial,sans-serif;font-size: 18px;line-height: 24px;color: #333;" align="right"><strong>{{ order.final_price|price_format }} {{ currency_symbol }}</strong></td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,81 @@
+{% load static sekizai_tags statictext_tags utils_tags i18n common_tags %}
+<section class="section-dark feedback-form{% if config.FEEDBACK_FORM_BG_IMG %} bg-image"
+         style="background-image: url({% get_media_prefix %}{{ config.FEEDBACK_FORM_BG_IMG }}){% endif %}">
+    <div class="container">
+        <div class="question-main" id="question-main">
+
+            <div class="question-form">
+                <span class="content-title center h2">{% config_value 'FEEDBACK_FORM_TITLE' %}</span>
+                <form action="{% url 'crm:feedback-message-request' %}"
+                      method="post"
+                      id="feedback-message-request-form"
+                      onsubmit="{% render_yandex_metrika_goal config.YMETRICA_GOAL_FORM_FEEDBACK %}">
+                    {% csrf_token %}
+                    <div class="question-form__column">
+                        <div class="form-group{% if form.name.errors %} form-group--error{% endif %}">
+                            <input type="text"{% if request.user.is_authenticated and request.user.name %} value="{{ request.user.name }}"{% endif %} class="form-control" name="name" autocomplete="off" required>
+                            <label for="name" class="label-name">
+                                <span class="content-name">
+                                    {% trans "Имя*" %}
+                                </span>
+                            </label>
+                            {% if form.name.errors %}
+                            <span class="error-text">{{ form.name.errors }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group{% if form.phone.errors %} form-group--error{% endif %}">
+                            <input type="phone"{% if request.user.is_authenticated and request.user.phone %}
+                                   value="{{ request.user.phone }}"{% endif %}
+                                   class="form-control phone" name="phone" autocomplete="off" required>
+                            <label for="phone" class="label-name">
+                                <span class="content-name">
+                                    {% trans "Телефон*" %}
+                                </span>
+                            </label>
+                            {% if form.phone.errors %}
+                            <span class="error-text">{{ form.phone.errors }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group{% if form.email.errors %} form-group--error{% endif %}">
+                            <input type="mail"{% if request.user.is_authenticated %} value="{{ request.user.email }}"{% endif %} class="form-control" name="email" autocomplete="off" required>
+                            <label for="text" class="label-name">
+                                <span class="content-name">
+                                    {% trans "e-mail*" %}
+                                </span>
+                            </label>
+                            {% if form.email.errors %}
+                            <span class="error-text">{{ form.email.errors }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="question-form__column">
+                        <div class="form-group{% if form.message.errors %} form-group--error{% endif %}">
+                            <textarea class="form-control" name="message" autocomplete="off" required></textarea>
+                            <label for="message" class="label-name">
+                                <span class="content-name">
+                                    {% trans "Комментарий*" %}
+                                </span>
+                            </label>
+                            {% if form.message.errors %}
+                            <span class="error-text">{{ form.message.errors }}</span>
+                            {% endif %}
+                        </div>
+                        {{ form.url }}
+
+                        <button type="submit" class="btn btn--main-min">{% trans "Отправить" %}</button>
+                    </div>
+
+                    {% for f in form.hidden_fields %}
+                    {{ f }}
+                    {% endfor %}
+
+                    {% render_form_agreement form %}
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% addtoblock "js" %}
+{{ form.media }}
+{% endaddtoblock %}

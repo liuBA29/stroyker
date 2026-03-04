@@ -1,0 +1,16 @@
+{% load static catalog_tags %}
+
+{% if related_products_category %}
+
+{% if config.RELATED_PRODUCTS_BLOCK_TITLE %}
+<span class="content-title product-set-title h2">{{ config.RELATED_PRODUCTS_BLOCK_TITLE }}</span>
+{% endif %}
+<div class="product-slider product-slider--4 product-slider--5 related-products-category">
+    <div class="slider-constructor" {% slider_constructor_dataset %}>
+        {% for product in related_products_category %}
+        {% render_product_teaser_new product %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endif %}

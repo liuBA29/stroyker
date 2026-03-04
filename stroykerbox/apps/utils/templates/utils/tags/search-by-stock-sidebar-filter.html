@@ -1,0 +1,26 @@
+{% load i18n %}
+<div class="catalog-filter">
+    <form id="search_filter_by_stock" method="get" class="catalog-filter-body" autocomplete="off">
+        <div class="submenu" style="display:block">
+            <div class="filter-item">
+                <div class="filter-item__content">
+                    <div class="form-group filter-select">
+                        <input type="hidden" name="q" value="{{ request.GET.q }}">
+                        {% if request.GET.sort_field %}
+                        <input type="hidden" name="sort_field" value="{{ request.GET.sort_field }}">
+                        {% endif %}
+                        <span class="filter-item-title">{{ config.SEARCH_WAREHOUSE_FILTER_TITLE }}</span>
+                        {{ form.stock }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="catalog-filter__btns">
+            <button class="btn btn--main-min button-theme button-theme_primary">
+                {% trans "Применить" %}
+            </button>
+        </div>
+
+    </form>
+</div>

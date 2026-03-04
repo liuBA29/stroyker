@@ -1,0 +1,404 @@
+<!DOCTYPE html>{% load static sekizai_tags seo_tags menu_tags utils_tags location_tags crm_tags users_tags commerce_tags catalog_tags slide_tags statictext_tags subscription_tags customization_tags i18n open_graph_tags %} {% project_version as current_version %}
+<html lang="{{ request.LANG_CODE|default:'ru' }}">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block meta_tags %}
+        {% render_meta_tags %}
+        {% endblock %}
+        {% open_graph_tags %}
+        <title>{% block title %}{% render_title %}{% endblock %}</title>
+
+        {% get_media_prefix as MEDIA_URL %}
+        {% config_value 'FAVICON_FILE' as favicon %}
+
+        {% if favicon %}
+        <link rel="shortcut icon" href="{{ MEDIA_URL }}{{ favicon }}">
+        {% endif %}
+
+        {% addtoblock "css" %}
+        {% custom_colors_is_active as custom_colors_css %}
+        {% if custom_colors_css %}
+        <link rel="stylesheet" href="{% url 'customization:custom-colors-css' %}?v{% custom_colors_css_version %}" type="text/css"/>
+        {% endif %}
+        <link rel="stylesheet" href="{% static 'css/mmenu.css' %}?v5" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}?v5" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/nouislider.css' %}?v5" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}?v5" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/tippy.css' %}?v5" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}?{{ current_version }}" type="text/css">
+        {% endaddtoblock %}
+
+        {% render_block "css" %}
+
+        {% addtoblock "js" %}
+        <script type="text/javascript">
+            // This url dictionary is used in js scripts instead of direct links.
+            const URLS = {
+                static: "{% static '' %}",
+                cart: "{% url 'cart:cart' %}",
+                register: "{% url 'registration' %}",
+            }
+        </script>
+        <script src="{% static 'js/jquery.js' %}?v5"></script>
+        <script src="{% static 'js/inputmask.js' %}?v5"></script>
+        <script src="{% static 'js/fancyapps.js' %}?v5"></script>
+        <script src="{% static 'js/mmenu-js.js' %}?v5"></script>
+        <script src="{% static 'js/owl.carousel.js' %}?v5"></script>
+        <script src="{% static 'js/slick-carousel.js' %}?v5"></script>
+        <script src="{% static 'js/app.js' %}?{{ current_version }}"></script>
+        <script src="{% static 'js/tippy.js.js' %}?v5"></script>
+        <script src="{% static 'js/popperjs.js' %}?v5"></script>
+        <script src="{% static 'js/main.js' %}?{{ current_version }}"></script>
+        <script src="{% static 'js/notify.min.js' %}"></script>
+        <script src="{% static 'js/ajax_setup.js' %}?{{ current_version }}"></script>
+        <script src="{% static 'js/search.js' %}?{{ current_version }}"></script>
+
+        {# catalog.js (app version) #}
+        {# <script src="{% static 'catalog/js/catalog.js' %}?{{ current_version }}"></script> #}
+
+        {# catalog.js (frontend version) #}
+        <script src="{% static 'js/catalog.js' %}?{{ current_version }}"></script>
+
+        <script src="{% static 'custom_forms/js/custom_forms.js' %}?{{ current_version }}"></script>
+        <script src="{% static 'commerce/js/cart.js' %}?{{ current_version }}"></script>
+
+        {% if YCAPTCHA_ENABLED %}
+        <script src="https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onloadFunction{{ widget_uuid }}" defer></script>
+        <script src="{% static 'ycaptcha/ycaptcha-init.js' %}?{{ current_version }}"></script>
+        {% endif %}
+
+        {% endaddtoblock %}
+
+        {{ config.PAGE_HEAD_CUSTOM_CODE|safe }}
+    </head>
+
+    <body class="{% if request.path == '/' %}frontpage{% else %}inner-page{% endif %}">
+        <div class="page">
+            <header>
+                {% block body_pre_header %}
+                {% render_tag_container 'pre_header' wrapper_main_class="additional-section" %}
+                {% endblock body_pre_header %}
+
+                {% block body_header %}
+                {% render_header %}
+                {% if config.CUSTOM_HEADER_ID and config.CUSTOM_HEADER_ID != '0' %}
+                {% render_mobile_header %}
+                {% endif %}
+                {% endblock body_header %}
+
+                {% block body_post_header %}
+                {% render_tag_container 'post_header' wrapper_main_class="additional-section" %}
+                {% endblock body_post_header %}
+            </header>
+
+            <main>
+                {% block body_main %}
+                {% block body_main_top %}
+                {% if config.CATALOG_SHOW_CHILDS_IN_PARENT %}
+                {% render_catalog_menu_mobile_new %}
+                {% else %}
+                <section class="section mobile-show header-top-bg-color">
+                    <div class="container">
+                        {% render_catalog_categories_menu_mobile False %}
+                    </div>
+                </section>
+                {% endif %}
+                {% block body_main_top_content_with_sections %}
+                <section class="{% block content_bg_class %}section{% endblock %}">
+                    <div class="container">
+                        {% render_breadcrumbs %}
+                        <div class="content-block">
+                            {% block body_main_top_content %}{% endblock body_main_top_content %}
+                        </div>
+                    </div>
+                </section>
+                {% endblock body_main_top_content_with_sections %}
+                {% endblock body_main_top %}
+
+                {% block body_main_center %}{% endblock body_main_center %}
+
+                {% block body_main_bottom %}
+                {# {% render_feedback_form_section %} #}
+                {% render_tag_container 'bottom' %}
+                {% endblock body_main_bottom %}
+
+                {% endblock body_main %}
+            </main>
+
+
+            {% block body_footer %}
+            {% config_value 'FOOTER_LOGO_FILE' as custom_footer_logo %}
+            {% config_value 'FOOTER_USE_BG_IMG' as footer_use_bg_image %}
+            {% config_value 'FOOTER_BG_IMG' as footer_bg_image %}
+            <footer>
+                {% schema_org_organization %}
+                {% if footer_use_bg_image and footer_bg_image %}
+                <img src="{{ MEDIA_URL }}{{ footer_bg_image }}" alt="{% config_value 'SITE_NAME' %}">
+                {% endif %}
+
+                {% render_statictext_var 'cookie-modal__text' as cookie_modal_text %}
+                <div id="cookie-modal" class="cookie-modal" style="display: none;">
+                    <div class="cookie-modal__content">
+                        {% if cookie_modal_text %}
+                        {{ cookie_modal_text|safe }}
+                        {% else %}
+                        <h4>Собираем cookie-файлы</h4>
+                        <p>Наш сайт использует cookie. Хотите продолжить?</p>
+                        <button>Ок</button>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-first-column">
+                            {% location_contact_phone as location_phone %}
+                            {% if location_phone %}
+                            <div class="footer-phone">
+                                <a onclick="{% render_yandex_metrika_goal config.YANDEX_METRICA_PHONE_TARGET_NAME %}"
+                                   href="tel:{{ location_phone.phone_raw }}">
+                                    {{ location_phone.phone }}
+                                </a>
+                            </div>
+                            {% endif %}
+                            <span class="footer-contact">
+                                {{ config.MAIL__FOOTER_CONTACTS|safe }}
+                            </span>
+                            <a href="/" class="logo">
+                                <img src="{% if custom_footer_logo %}{{ MEDIA_URL }}{{ custom_footer_logo }}{% else %}{% static 'images/footer-logo.svg' %}{% endif %}" alt="{% config_value 'SITE_NAME' %}">
+                            </a>
+                            <div class="mobile-show">
+                                {{ config.STROYKER_COPYRIGHTS|safe }}
+                            </div>
+                        </div>
+                        <div class="footer-content__menu">
+                            <div class="footer-content__column footer-content__column--lg">
+                                <span class="footer-content__title">Каталог</span>
+
+                                <div class="footer-content__ul-content">
+                                    {% render_catalog_categories_menu_simple config.CATALOG_MENU_FOOTER_ITEMS_PER_COL %}
+                                </div>
+
+                            </div>
+
+                            <div class="footer-content__column">
+                                <span class="footer-content__title">{% trans "Покупателям" %}</span>
+                                {% render_menu 'footer_customer_menu' %}
+                            </div>
+
+                        </div>
+
+                        <div class="footer-right">
+                            {% render_footer_subscription_form %}
+                            {{ config.STROYKER_COPYRIGHTS|safe }}
+                            {% render_footer_playmarket %}
+                            {% if config.FLOAT_BUTTON_INFO_TEXT %}
+                            <p class="footer-content-cookie">
+                                {{ config.FLOAT_BUTTON_INFO_TEXT|safe }}
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <div class="footer-bottom__left">
+                            <span class="copy version">{{ current_version }}</span>
+                            {% render_statictext 'footer_text' %}
+                        </div>
+                        {% render_footer_social_links %}
+                        {% render_recaptcha_terms_text %}
+                        {% render_lang_switcher %}
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        {% if main_buttons %}
+        <div class="bottom-mobile-menu{% if config.MOBILE_BUTTON_PANEL == 'circle' %} bottom-mobile-menu_radius{% endif %} d-block d-lg-none">
+            {% for main_button in main_buttons %}
+            <div class="bottom-mobile-menu-list{% if config.MOBILE_BUTTON_ADDITIONAL_MENU == 'button' %} bottom-mobile-menu-list_plates{% endif %}">
+                {% for subitem in main_button.get_children %}
+                <a class="g-link bottom-mobile-menu-list__link" href="{{ subitem.url }}">
+                    {{ subitem.name }}
+                    {% if config.MOBILE_BUTTON_ADDITIONAL_MENU == 'list' %}
+                    <svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L1.70635e-07 11.1962L8.97455e-07 0.803848L6 6Z" class="bottom-mobile-menu-list__icon-arrow-fill"></path></svg>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </div>
+            {% endfor %}
+
+            <div class="bottom-mobile-menu__content">
+                <div class="bottom-mobile-menu__row">
+                    {% for main_button in main_buttons %}
+                    {% if main_button.type == 'additional_menu' %}
+                    <button data-toggle-bottom-dropdown class="bottom-mobile-menu-button{% if config.MOBILE_BUTTONS_UNDERLINE %} bottom-mobile-menu-button_underline{% endif %}{% if request.path == main_button.url %} bottom-mobile-menu-button_active{% endif %}{% if config.MOBILE_BACKGROUND_ON_HOVER %} bottom-mobile-menu-button_background{% endif %}">
+                        <div class="bottom-mobile-menu-button__inner">
+                            <div class="bottom-mobile-menu-button__icon-wrapper">
+                                <img class="bottom-mobile-menu-button__icon" src="{{ main_button.icon_default.url }}" alt="">
+                                <img class="bottom-mobile-menu-button__icon bottom-mobile-menu-button__icon_active" src="{{ main_button.icon_active.url }}" alt="">
+                            </div>
+                            {% if config.MOBILE_BUTTONS_SHOW_TEXT %}<span class="bottom-mobile-menu-button__text">{{ main_button.name }}</span>{% endif %}
+                        </div>
+                    </button>
+                    {% else %}
+                    <a class="bottom-mobile-menu-button{% if config.MOBILE_BUTTONS_UNDERLINE %} bottom-mobile-menu-button_underline{% endif %}{% if request.path == main_button.url %} bottom-mobile-menu-button_active{% endif %}{% if config.MOBILE_BACKGROUND_ON_HOVER %} bottom-mobile-menu-button_background{% endif %}" href="{% firstof main_button.url '#' %}">
+                        <div class="bottom-mobile-menu-button__inner">
+                            <div class="bottom-mobile-menu-button__icon-wrapper">
+                                {% if main_button.type == 'cart' %}
+                                <span class="bottom-mobile-menu-button__counter cart-number">{% cart_count_products %}</span>
+                                {% endif %}
+                                <img class="bottom-mobile-menu-button__icon" src="{{ main_button.icon_default.url }}" alt="">
+                                <img class="bottom-mobile-menu-button__icon bottom-mobile-menu-button__icon_active" src="{{ main_button.icon_active.url }}" alt="">
+                            </div>
+                            {% if config.MOBILE_BUTTONS_SHOW_TEXT %}<span class="bottom-mobile-menu-button__text">{{ main_button.name }}</span>{% endif %}
+                        </div>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endblock body_footer %}
+
+        {% addtoblock 'svg' %}
+        <symbol id="exit" stroke="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 21.4 18">
+        <path d="M3.8 8l3-3-1.4-1.4L0 9l5.4 5.4L6.8 13l-3-3h5.6V8H3.8zm5.6-8v8h6v2h-6v8h12V0h-12z"></path>
+        </symbol>
+        <symbol id="arrow-right" stroke="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 10.5 18.1">
+        <path d="M1.4,18.1L0,16.7l7.6-7.6L0,1.5L1.4,0l9,9.1C10.4,9.1,1.3,18.1,1.4,18.1z"></path>
+        </symbol>
+        <symbol id="pencil" stroke="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 35.9 35.9">
+        <path d="M0 27.5V36h8.5l20.3-20.3-8.5-8.5L0 27.5zM34.8 3.9L32 1.2C31.2.4 30.2 0 29.1 0 28 0 27 .4 26.2 1.2l-3 3.1 8.5 8.5 3.1-3.1c.7-.8 1.2-1.8 1.2-2.9-.1-1.1-.5-2.1-1.2-2.9z"></path>
+        </symbol>
+        <symbol id="box" stroke="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 18 20.2">
+        <path d="M9 0L5.5 2l9 5.2 3.5-2L9 0zM3.5 3.2L0 5.2l9 5.2 3.5-2-9-5.2zM0 15.6l8 4.6v-8.1L0 7.5v8.1zm10 4.6l8-4.6V7.5l-8 4.6v8.1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+        </symbol>
+        <symbol id="subtract" stroke="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 14 20">
+        <path d="M5 0h9v20H0V5l5-5zm2 6h4v1H7V6zm4 4V9H3v1h8zm0 2v1H3v-1h8zm-4 4v-1H3v1h4z" fill-rule="evenodd" clip-rule="evenodd"></path>
+        </symbol>
+        <symbol viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" id="compare-icon">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.395 10.995v16.59H2.996v-16.59h4.399zm22.387 7.995v8.595h-4.4v-8.594h4.4zM18.588 3v24.585H14.19V3h4.4z" fill="currentColor"></path>
+        </symbol>
+        <symbol viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" id="shopping-cart">
+        <path d="M9.332 25.333a1.667 1.667 0 1 0 0 3.334 1.667 1.667 0 0 0 0-3.334zm14.667 0a1.667 1.667 0 1 0 0 3.335 1.667 1.667 0 0 0 0-3.335zM25.332 24v-2.667h-14.32l-.427-1.733L28 16.48V6.667H7.372L6.665 4H1.332v2.667h3.293L8.932 24h16.4z" fill="currentColor"></path>
+        </symbol>
+        <symbol viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" id="compare-icon-2">
+        <path d="M17 8.237h-3v8.002h3V8.237zM3 4.236H0v12.003h3V4.236zm7-4.002H7V16.24h3V.234z" fill="currentColor"></path>
+        </symbol>
+        <symbol viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" id="user-icon">
+        <path d="M15.999 13.335a5.333 5.333 0 1 0 0-10.667 5.333 5.333 0 0 0 0 10.667zm10.28 8.266a14.56 14.56 0 0 0-20.56 0l-.387.4v6h21.333v-6l-.386-.4z" fill="currentColor"></path>
+        </symbol>
+        <symbol viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" id="search-icon">
+        <path stroke="currentColor" stroke-width="2" d="M17.062 16.768l-5-5M14.165 7.5c-.09 3.592-3.07 6.5-6.651 6.5a6.303 6.303 0 0 1-6.326-6.5C1.278 3.908 4.257 1 7.838 1a6.303 6.303 0 0 1 6.327 6.5z"></path>
+        </symbol>
+        <symbol viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg" id="1">
+        <path d="M22 10h-4v10h4V10zM4 5H0v15h4V5zm9-5H9v20h4V0z" fill="currentColor"></path>
+        </symbol>
+        <symbol viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" id="product-nav-arrow">
+        <path d="M5.092 11l5.093-5.093L5.091.815" stroke="currentColor" stroke-width="2"></path>
+        </symbol>
+        <symbol viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg" id="tab-arrow">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.334L1.1 0 8 6.612 14.9 0 16 1.334 8 9 0 1.334z" fill="currentColor"></path>
+        </symbol>
+        <symbol viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" id="delete">
+        <path fill="currentColor" d="M5.656 18.656L18.384 5.928l1.414 1.415L7.07 20.07z"></path>
+        <path fill="currentColor" d="M7.07 5.93l12.728 12.728-1.414 1.414L5.656 7.344z"></path>
+        </symbol>
+        <symbol viewBox="0 0 25 11" fill="none" xmlns="http://www.w3.org/2000/svg" id="schedule-icon">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M24.4.873L13.387 10.73l-4.405-3.9-4.555 3.799H.4l8.537-7.55 4.454 3.945L20.554.73 24.4.873z" fill="currentColor"></path>
+        </symbol>
+        <symbol viewBox="0 0 16 23" fill="none" xmlns="http://www.w3.org/2000/svg" id="share-icon">
+        <path d="M12.606 2.97L2.203 12.174l10.403 8.403" stroke="currentColor"></path>
+        <circle cx="12.906" cy="3.07" r="2.5" fill="currentColor"></circle>
+        <circle cx="3.303" cy="11.873" r="2.5" fill="currentColor"></circle>
+        <circle cx="12.906" cy="19.875" r="2.5" fill="currentColor"></circle>
+        </symbol>
+        <symbol viewBox="0 0 48 31" fill="none" xmlns="http://www.w3.org/2000/svg" id="delivery-white">
+        <path d="M14.77 26.5c0 2.485-1.86 4.5-4.155 4.5-2.294 0-4.153-2.015-4.153-4.5s1.86-4.5 4.153-4.5c2.294 0 4.154 2.015 4.154 4.5zm24.846 0c0 2.485-1.86 4.5-4.154 4.5-2.294 0-4.153-2.015-4.153-4.5s1.86-4.5 4.153-4.5c2.294 0 4.154 2.015 4.154 4.5z" fill="currentColor"></path>
+        <path d="M6.5 0H35l-1.77 7h7.462L48 13.848 45 26H0L6.5 0z" fill="currentColor"></path>
+        </symbol>
+        <symbol viewBox="0 0 47 30" fill="none" xmlns="http://www.w3.org/2000/svg" id="check-btn">
+        <path d="M5.176 9H0l5.824 21H11L5.176 9z" fill="currentColor"></path>
+        <path d="M47 0h-8L8 26l3.033 4L47 0z" fill="currentColor"></path>
+        </symbol>
+        <symbol viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg" id="view-sort-2">
+        <path stroke="currentColor" d="M6 7.5h8m-8-6h8m-8 12h8"></path>
+        <path fill="currentColor" d="M0 12h3v3H0zm0-6h3v3H0zm0-6h3v3H0z"></path>
+        </symbol>
+        <symbol viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" id="view-sort-1">
+        <path fill="currentColor" d="M12 12h3v3h-3zm-6 0h3v3H6zm-6 0h3v3H0zm12-6h3v3h-3zM6 6h3v3H6zM0 6h3v3H0zm12-6h3v3h-3zM6 0h3v3H6zM0 0h3v3H0z"></path>
+        </symbol>
+        <symbol viewBox="0 0 13 11" fill="none" xmlns="http://www.w3.org/2000/svg" id="view-sort-3">
+        <path stroke="currentColor" d="M0 5.5h13M0 .5h13m-13 10h13"></path>
+        </symbol>
+        <symbol viewBox="0 0 29 27" fill="none" xmlns="http://www.w3.org/2000/svg" id="shopping-cart-full">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.092 6l21.817 2.24-4.03 10.827L8.083 20 7.092 6zm6.913 18.229a2.39 2.39 0 0 1-2.38 2.4 2.39 2.39 0 0 1-2.38-2.4 2.39 2.39 0 0 1 2.38-2.4 2.39 2.39 0 0 1 2.38 2.4zm5.78 2.4a2.39 2.39 0 0 0 2.38-2.4 2.39 2.39 0 0 0-2.38-2.4 2.39 2.39 0 0 0-2.38 2.4 2.39 2.39 0 0 0 2.38 2.4z" fill="currentColor"></path>
+        <path d="M9.617 19.5l-2-17-7.5-.5" stroke="currentColor" stroke-width="3"></path>
+        </symbol>
+        <symbol viewBox="0 0 23 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" id="review-heart">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.955 3.556C9.293 1.828 8.743 1.1 5.887 1.003 3.03.905.983 3.241 1 5.756c.017 2.515 1 4.138 3.015 5.738l6.573 5.219c.482.383.787.383 1.269 0l6.572-5.219c2.015-1.6 2.998-3.223 3.015-5.738.018-2.515-2.03-4.85-4.886-4.753-2.856.097-3.406.825-5.069 2.553a.379.379 0 0 1-.534 0z" stroke="#1C52AC" stroke-width="2" stroke-miterlimit="22.926"></path>
+        </symbol>
+        <symbol viewBox="0 0 23 19" fill="none" xmlns="http://www.w3.org/2000/svg" id="review-comment">
+        <path d="M6 6h11M6 10h7" stroke="#1C52AC" stroke-width="2"></path>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.073 1h16.854C21.067 1 22 1.808 22 2.796v9.847c0 .987-.933 1.796-2.073 1.796h-5.76c-1.378 0-1.097-.068-2.217.63L7.49 17.85c-.58.362-1.323.03-1.323-.59v-2.25c0-.484-.334-.571-.75-.571H3.074C1.933 14.439 1 13.63 1 12.643V2.796C1 1.808 1.933 1 3.073 1z" stroke="#1C52AC" stroke-width="2" stroke-miterlimit="22.926"></path>
+        </symbol>
+
+        <symbol viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" id="comparison-delete">
+        <path d="M6.344 6.343l11.314 11.314m-11.313 0L17.658 6.343" stroke="currentColor" stroke-width="2"></path>
+        </symbol>
+        <symbol viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg" id="delivery-icon">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.406 1.61l-3.48 2 9 5.19 3.48-2-9-5.19zm-5.48 3.16L3.406 6.8l9 5.2 3.52-2-9-5.23zM3.406 17.2l8 4.61v-8.08l-8-4.62v8.09zm10 4.61l8-4.61V9.11l-8 4.62v8.08z" fill="currentColor"></path>
+        </symbol>
+        <symbol viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" id="document-icon">
+        <path d="M30.82 4H8v40h32V13.18L30.82 4zM26 30H16v-3.8h10V30zm6-8H16v-3.9h16V22z" fill="currentColor"></path>
+        </symbol>
+        <symbol viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" id="edit-icon">
+        <path d="M6 33.518v8.48h8.48l20.34-20.34-8.48-8.48L6 33.518zm34.76-23.52L38 7.238a4.12 4.12 0 0 0-5.78 0l-3.04 3.1 8.48 8.48 3.1-3.08a4.12 4.12 0 0 0 0-5.74z" fill="currentColor"></path>
+        </symbol>
+        <symbol viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg" id="arrow-client">
+        <path d="M2.18 19.05L.77 17.64 8.4 10 .77 2.36 2.18.95 11.23 10l-9.05 9.05z" fill="currentColor"></path>
+        </symbol>
+        <symbol viewBox="0 0 336 45" fill="none" xmlns="http://www.w3.org/2000/svg" id="dev-logo">
+        <path d="M87.027 34.632c12.732 0 15.011-4.175 15.011-8.231v-.459c0-4.885-3.582-7.032-12.79-7.298l-4.367-.09c-4.56-.103-5.27-.887-5.27-1.864v-.03c0-.947.488-1.791 5.344-1.791h.325c5.241 0 5.76 1.687 5.848 2.576h10.067v-.267c0-3.834-2.74-7.654-14.715-7.654h-2.902c-11.296 0-13.93 3.45-13.93 7.402v.282c0 3.745 2.501 7.032 11.887 7.298l4.486.133c5.077.163 5.7.948 5.7 2.177v.03c0 1.169-.756 2.279-5.922 2.279h-.297c-5.27 0-5.95-2.117-6.054-3.42H69.292v.326c0 3.168 1.392 8.601 14.774 8.601h2.961zm26.04-.458h9.253V16.557h10.452V9.954h-30.156v6.603h10.451v17.617zm31.341-18.328h10.614c2.088 0 2.798.918 2.798 2.058v.03c0 1.17-.74 2.072-2.798 2.072h-10.614v-4.16zm0 10.023h8.853c3.656 0 4.915 1.436 4.915 4.204V32.9c0 .695.074 1.02.296 1.273h9.445v-.163c-.237-.415-.459-1.037-.459-2.739v-3.583c0-3.123-1.984-5.077-4.974-5.758 1.82-.415 4.87-1.88 4.87-5.404v-.355c0-3.938-3.124-6.218-10.185-6.218h-22.014v24.22h9.253v-8.305zm42.339-16.374c-15.692 0-17.676 7.461-17.676 12.021v.977c0 4.515 1.984 12.14 17.676 12.14h1.465c15.663 0 17.647-7.625 17.647-12.14v-.977c0-4.56-2.014-12.02-17.647-12.02h-1.465zm9.534 12.702c0 2.606-1.658 5.892-8.824 5.892-7.15 0-8.823-3.42-8.823-5.966v-.385c0-2.576 1.54-5.729 8.823-5.729 7.166 0 8.824 3.153 8.824 5.73v.458z" fill="currentColor"></path>
+        <path d="M215.897 34.174h9.237v-9.046l12.969-15.174h-10.126l-7.195 8.364-7.076-8.364h-11.059l13.25 15.1v9.12zm32.346 0V23.337l11.828 10.837h12.036l-14.552-13.22 14.108-11H260.16l-11.917 9.564V9.954h-9.238v24.22h9.238zm24.811-24.22v24.22h27.062v-6.055h-17.943v-3.316h17.321V18.91h-17.321v-3.035h17.676V9.954h-26.795zm38.98 5.892h10.614c2.073 0 2.798.918 2.798 2.058v.03c0 1.17-.755 2.072-2.798 2.072h-10.614v-4.16zm0 10.023h8.853c3.641 0 4.915 1.436 4.915 4.204V32.9c0 .695.059 1.02.296 1.273h9.445v-.163c-.237-.415-.459-1.037-.459-2.739v-3.583c0-3.123-1.984-5.077-4.989-5.758 1.821-.415 4.885-1.88 4.885-5.404v-.355c0-3.938-3.124-6.218-10.185-6.218h-22.014v24.22h9.253v-8.305z" fill="currentColor"></path>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M29.471 44.505L13.852 26.522l24.87 7.345-9.25 10.638z" fill="currentColor"></path>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10.581l7.758 8.94 34.567 10.191 10.615-12.21L6.587 3.821 0 10.582z" fill="currentColor"></path>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M48.775.103L11.293 0l45.251 13.358L59 10.547 48.775.103z" fill="currentColor"></path>
+        </symbol>
+        {% endaddtoblock %}
+
+        <svg width="0" height="0" class="hidden">
+            {% render_block "svg" %}
+        </svg>
+
+        {% if messages %}
+        <div id="system-messages">
+            {% for message in messages %}
+            <span class="content-title content-title--min center content-title--margin">{{ message }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block bottom %}
+        {% render_callme_request_form %}
+        {% endblock bottom %}
+
+
+        {% addtoblock "css" %}
+        {% render_custom_styles %}
+        {% endaddtoblock %}
+
+        {% render_block "js" %}
+
+        {% block other_js %}{% endblock %}
+        {% if not debug %}
+        {% utils_yandex_metrika_code %}
+        {% endif %}
+
+    </body>
+
+</html>

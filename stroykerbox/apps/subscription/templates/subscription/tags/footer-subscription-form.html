@@ -1,0 +1,22 @@
+{% load sekizai_tags utils_tags statictext_tags common_tags %}
+<span class="footer-content__title">
+    Оставайтесь на связи!<span>Новинки, скидки, предложения</span>
+</span>
+<form id="footer-subscription-form"
+      method="POST"
+      action="{% url 'subscription:new' %}"
+      onsubmit="{% render_yandex_metrika_goal config.YMETRICA_GOAL_FORM_SUBSCRIBE %}">
+    {% csrf_token %}
+    <div class="footer-subscribe">
+        {% csrf_token %}
+        <input type="email" name="email" required="" placeholder="Адрес электронной почты">
+        {{ form.email.errors }}
+
+        <button type="submit" class="button-theme button-theme_primary">Подписаться</button>
+    </div>
+    {% render_form_agreement form %}
+</form>
+
+{% addtoblock "js" %}
+{{ form.media }}
+{% endaddtoblock %}

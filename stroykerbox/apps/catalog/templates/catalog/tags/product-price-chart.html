@@ -1,0 +1,36 @@
+{% if chart_data %}
+
+{% load static sekizai_tags i18n %}
+
+<div class="price-chart">
+    <div class="price-chart__head">
+        <div class="price-chart__select">
+            <select name="characters" class="custom-select" tabindex="-1" id="chart-period-select">
+                <option value="month" selected="">{% trans "За месяц" %}</option>
+                <option value="quarter">{% trans "Квартал" %}</option>
+                <option value="year">{% trans "За год" %}</option>
+                <option value="all_time">{% trans "За все время" %}</option>
+            </select>
+            <input id="product_id_for_chart" type="hidden" name="product_id" value="{{ object.id }}">
+        </div>
+    </div>
+    <div class="price-chart__content">
+        <canvas id="canvas" width="967" height="483" class="chartjs-render-monitor" style="display: block; width: 967px; height: 483px;"></canvas>
+    </div>
+</div>
+
+
+{% addtoblock 'js' %}
+<script src="{% static 'catalog/js/Chart.bundle.min.js' %}"></script>
+<script>
+    var prices = {% if chart_prices %}{{ chart_prices|safe|escape }}{% else %}[]{% endif %};
+    var priceDates = {% if chart_price_dates %}{{ chart_price_dates|safe|escape }}{% else %}[]{% endif %};
+    var ajaxChartPricesDataUrl = "{% url 'catalog:ajax_chart_prices_data' %}";
+    var label_period = "{{ label_period }}";
+</script>
+<script src="{% static 'catalog/js/chart_custom.js' %}"></script>
+{% endaddtoblock %}
+
+{% else %}
+<p>{% trans "Цена на данный продукт еще не менялась." %}</p>
+{% endif %}

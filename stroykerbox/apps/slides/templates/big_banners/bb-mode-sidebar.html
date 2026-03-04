@@ -1,0 +1,11 @@
+{% load catalog_tags %}
+<div class="welcome">
+    <div class="welcome__side" id="welcome-catalog-menu">
+        {% render_catalog_categories_menu %}
+    </div>
+    <div class="welcome__content" id="welcome-content">
+        <div class="home-banner cropped--{{ config.BB_CROP_MODE }}{% if has_content %} inner-block__active{% endif %}">
+            {% include 'big_banners/include/bb-baners-list.html' %}
+        </div>
+    </div>
+</div>

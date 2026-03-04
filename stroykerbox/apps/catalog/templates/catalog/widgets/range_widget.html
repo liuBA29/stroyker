@@ -1,0 +1,22 @@
+{% load i18n %}
+{% spaceless %}
+
+<div class="filter-range">
+    <div class="filter-range__head">
+        <span>{% trans "От" %}</span>
+        <span>{% trans "До" %}</span>
+    </div>
+
+    <div class="range-slider" data-name="{{ widget.name }}"></div>
+    <div class="filter-range__content">
+        {% for widget in widget.subwidgets %}
+        <div class="input-cont">
+            <div class="input-placeholder"></div>
+            {% include widget.template_name %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endspaceless %}
+

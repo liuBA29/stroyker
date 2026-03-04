@@ -1,0 +1,31 @@
+{% load static sekizai_tags %}
+{% if banners %}
+<div class="advertising advertising_horizontal">
+    {% if title %}
+    <h2>{{ title }}</h2>
+    {% endif %}
+    <div class="advertising__container">
+        {% for banner in banners %}
+        {% if banner.image_url %}
+        <a class="advertising__block" href="{{ banner.image_url }}">
+            <img data-bnr-pk="{{ banner.pk }}" class="bnr-image-for-page" src="{{ banner.image_file.url }}" alt="{{ banner.name }}">
+        </a>
+        {% else %}
+        <div class="advertising__block">
+            <img data-bnr-pk="{{ banner.pk }}" class="bnr-image-for-page" src="{{ banner.image_file.url }}" alt="{{ banner.name }}">
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% addtoblock 'js' %}
+<script>
+    var BNR_URLS = {
+        'inc_views': '{% url 'banners:views-increment' %}',
+        'inc_clicks': '{% url 'banners:clicks-increment' %}'
+    };
+</script>
+<script src="{% static 'banners/js/bnrs.js' %}"></script>
+{% endaddtoblock %}

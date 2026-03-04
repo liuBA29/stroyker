@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans "Главная" %}</a>
+    &rsaquo; <a href="{% url 'admin:crm_crmrequestbase_changelist'  %}">CRM</a>
+    &rsaquo; <a href="{% url 'admin:crm_crmrequestbase_changelist'  %}">Запросы от клиентов</a>
+    &rsaquo; Логи из файла: {{ log_file }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <code class="log-file-content">{{ text|linebreaks }}</code>
+</div>
+{% endblock %}

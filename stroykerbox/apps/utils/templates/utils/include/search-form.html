@@ -1,0 +1,7 @@
+<input name="q" type="text" autocomplete="off" class="search_input" value="{{request.GET.q}}" data-min-chars="{{ config.SEARCH__QUERY_MIN_CHARS }}" data-search-url="{% url 'search' %}" placeholder="{{ config.SEARCH_INPUT_PLACEHOLDER }}">
+<button>
+    <svg class="icon-svg">
+        <use xlink:href="#search-icon"></use>
+    </svg>
+</button>
+<div id="search-result-container" style="display: none;" class="header-search-results"></div>

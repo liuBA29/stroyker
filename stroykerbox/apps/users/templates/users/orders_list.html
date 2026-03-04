@@ -1,0 +1,78 @@
+{% extends 'users/users-base.html' %}
+{% load humanize i18n %}
+
+{% block lk_content %}
+
+<span class="lk-title">{% trans "История заказов" %}</span>
+
+{% if orders %}
+<div class="select-mobile">
+    <div class="styled-select tabs-lk-mobile" data-tabgroup="first-tab-group">
+        <select class="mobile-doc-year-select">
+            {% for order_year in years %}
+            <option value="year{{ order_year }}">{{ order_year }}</option>
+            {% endfor %}
+        </select>
+        <span class="fa fa-sort-desc"></span>
+    </div>
+</div>
+{% endif %}
+
+<div class="tabs-lk-content">
+    {% if orders %}
+    <ul class="tabs-lk clearfix" data-tabgroup="first-tab-group">
+        {% for year in years %}
+        <li><a {% if forloop.first %}class="active" {% endif %}href="#year{{ year }}">{{ year }}</a></li>
+        {% endfor %}
+    </ul>
+
+
+    <div id="first-tab-group" class="tabgroup">
+        {% regroup orders by created_at.year as orders_by_year %}
+        {% for year in orders_by_year %}
+        <div id="year{{ year.grouper }}" class="tab-lk">
+
+            <div class="history-orders">
+
+                <div class="history-orders__head">
+                    <span class="history-orders__head-item">{% trans "№ Заказа" %}</span>
+                    <span class="history-orders__head-item">{% trans "Дата" %}</span>
+                    <span class="history-orders__head-item">{% trans "Получение" %}</span>
+                    <span class="history-orders__head-item">{% trans "Сумма" %}</span>
+                    <span class="history-orders__head-item">{% trans "Статус" %}</span>
+                    <span class="history-orders__head-item">{% trans "Оплачено" %}</span>
+                </div>
+
+                {% for order in year.list %}
+                <div class="history-order-item">
+                    <div class="history-order-item__number">
+                        {% if config.LK_HIDE_ORDER_DETAILS %}
+                        <span>#</span>{{ order.pk }}
+                        {% else %}
+                        <a href="{{ order.get_absolute_url }}"><span>#</span>{{ order.pk }}</a>
+                        {% endif %}
+                    </div>
+                    <div class="history-order-item__date">
+                        <span class="history-order-item__mobile-title">{% trans "Дата" %}</span>
+                        {{ order.created_at|date:"d.m.Y" }}</div>
+                    <div class="history-order-item__delivery">
+                        <span class="history-order-item__mobile-title">{% trans "Получение" %}</span>{{ order.delivery|default:"-" }}</div>
+                    <div class="history-order-item__sum">{{ order.total_price|intcomma }} {% trans "₽" %} <span class="pay pay--none"></span></div>
+                    <div class="history-order-item__status">
+                        <span class="history-order-item__mobile-title">{% trans "Статус" %}</span>{{ order.status }}</div>
+                    <div class="history-order-item__pay">{{ order.is_paid|yesno:'Да,Нет' }}</div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+    {% else %}
+    <p>{% trans "Заказов еще не было." %}</p>
+    {% endif %}
+</div>
+
+{% endblock lk_content %}

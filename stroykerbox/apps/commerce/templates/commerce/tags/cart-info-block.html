@@ -1,0 +1,16 @@
+{% load static %}
+<a href="{% url 'cart:cart' %}" class="header-cart">
+    <i class="icon">
+        {% if config.HEADER_ICON_CART %}
+        <img class="icon-svg" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART }}"/>
+            {% if config.HEADER_ICON_CART_HOVER %}
+            <img class="icon-svg hover" src="{% get_media_prefix %}{{ config.HEADER_ICON_CART_HOVER }}"/>
+            {% endif %}
+        {% else %}
+        <svg class="icon-svg">
+            <use xlink:href="#shopping-cart"></use>
+        </svg>
+        {% endif %}
+    </i>
+    <span class="cart-number">{{ cart|length }}</span>
+</a>

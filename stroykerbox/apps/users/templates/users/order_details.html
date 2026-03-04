@@ -1,0 +1,92 @@
+{% extends 'users/users-base.html' %}
+{% load humanize utils_tags i18n %}
+
+{% block lk_content %}
+
+
+<span class="lk-title">{% trans "История заказов" %}</span>
+
+
+<div class="history-order">
+    <div class="history-order__head">
+        <a href="{% url 'users:orders_list' %}" class="back-btn"> <span class="icon">
+                <svg class="icon-svg">
+                    <use xlink:href="#tab-arrow"></use>
+                </svg>
+            </span>{% trans "К списку заказов" %}</a>
+            <span class="history-order__number">{% trans "Заказ №" %}{{ order.pk }}</span>
+    </div>
+
+    <div class="history-order__list">
+        <ul>
+            {% if order.delivery.point %}
+            <li><span>{% trans "Самовывоз со склада:" %}</span> {{ order.delivery.point.address }}</li>
+            {% elif order.delivery.address %}
+            <li><span>{% trans "Доставка по адресу:" %}</span> {{ order.delivery.address }}</li>
+            {% endif %}
+            {% if order.payment_method_name %}
+            <li><span>{% trans "Оплата:" %}</span> {{ order.payment_method_name }}
+                {% if invoice_pdf_link %} (<a href="{% url 'cart:order-invoice-pdf' order.pk %}" download>{% trans "скачать счет" %}</a>){% endif %}
+            </li>
+            {% endif %}
+            <li><span>{% trans "Оплачено:" %}</span> {{ order.is_paid|yesno:'Да,Нет' }}</li>
+            <li><span>{% trans "Статус:" %}</span> {{ order.status_name }}</li>
+        </ul>
+    </div>
+    <div class="table table--order">
+        <div class="table-scroll">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>{% trans "Артикул" %}</th>
+                        <th>{% trans "Наименование" %}</th>
+                        <th  class="align-left">{% trans "Цена" %}</th>
+                        <th>{% trans "Кол-во" %}</th>
+                        <th class="align-right">{% trans "Сумма" %}</th>
+                    </tr>
+                    {% for item in order.order_products.all %}
+                    <tr>
+                        <td>{{ item.product.code }}</td>
+                        <td>{{ item.product.name }}</td>
+                        <td class="align-left">
+                            {% if item.personal_product_price %}
+                            {{ item.personal_product_price|intcomma }}
+                            {% else %}
+                            {{ item.product_price|intcomma }}
+                            {% endif %} {% trans "₽" %}
+                        </td>
+                        <td>{{ item.quantity  }}</td>
+                        <td class="align-right">
+                            {% if item.personal_product_price %}
+                            {{ item.personal_product_price|multiplication:item.quantity|intcomma }}
+                            {% else %}
+                            {{ item.product_price|multiplication:item.quantity|intcomma }}
+                            {% endif %} {% trans "₽" %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody></table>
+
+        </div>
+
+        <div class="table-total">
+            <ul>
+                {% if order.delivery %}
+                <li>
+                    <span class="table-total__sm">{% trans "Доставка:" %}</span>
+                    <span class="table-total__sm">
+                        {% if order.delivery_cost %}{{ order.delivery_cost }}{% else %}0{% endif %} {% trans "₽" %}
+                    </span>
+                </li>
+                {% endif %}
+                <li>
+                    <span class="table-total__lg">{% trans "Итого:" %}</span>
+                    <span class="table-total__lg">{{ order.final_price|intcomma }} {% trans "₽" %}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+{% endblock lk_content %}

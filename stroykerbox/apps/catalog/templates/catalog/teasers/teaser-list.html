@@ -1,0 +1,11 @@
+{% load static catalog_tags statictext_tags %}
+{% if products %}
+<div class="{% teaser_list_grid_classes %}">
+    {% for product in products %}
+    {% render_product_teaser_new product teaser_product_category %}
+    {% empty %}
+    {% render_statictext 'no_category_or_products_text' %}
+    {% endfor %}
+</div>
+
+{% endif %}

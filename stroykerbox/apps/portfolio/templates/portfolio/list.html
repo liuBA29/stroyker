@@ -1,0 +1,33 @@
+{% extends 'portfolio/portfolio-base.html' %}
+{% load static %}
+
+
+{% block portfolio_main_content %}
+
+{% if config.PORTFOLIO_MAIN_PAGE_H1 %}
+<h1>
+    {{ config.PORTFOLIO_MAIN_PAGE_H1 }}
+</h1>
+{% endif %}
+
+<div class="catalog__links-block catalog__links-block--portfolio">
+    <div class="catalog__links-item">
+        <a class="catalog-item__link{% if not request.GET.category %} active{% endif %}" href="{{ request.path }}">
+            Все
+        </a>
+    </div>
+    {% for cat in portfolio_categories %}
+    <div class="catalog__links-item">
+        <a class="catalog-item__link{% if current_category_slug == cat.category__slug %} active{% endif %}" href="{{ request.path }}?category={{ cat.category__slug }}">
+            {{ cat.category__name }}
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% include 'portfolio/include/listing.html' with items=items listing_class=config.PORTFOLIO_LISTING_VARIANT %}
+
+{% include 'include/pagination.html' %}
+
+{% endblock portfolio_main_content %}

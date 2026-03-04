@@ -1,0 +1,15 @@
+{% for item in html %}
+{% if item.without_wrapper %}
+{{ item.code|safe }}
+{% else %}
+<section class="{{ wrapper_main_class }}{% if item.wrapper_classes %} {{ item.wrapper_classes }}{% endif %}{% if item.tag_class %} {{ item.tag_class }}{% endif %}{% if item.bg_color or item.bg_image_url %} conditional-section_bg{% endif %}"
+         {% if item.bg_color or item.top_indent or item.bottom_indent %}
+         style="{% if item.bg_color %}background-color: {{ item.bg_color }};{% endif %}{% if item.top_indent %} padding-top: {{ item.top_indent }}px;{% endif %}{% if item.bottom_indent %} padding-bottom: {{ item.bottom_indent }}px;{% endif %}"
+         {% endif %}>
+    {% if item.bg_image_url %}<img src="{{ item.bg_image_url }}"/>{% endif %}
+    <div class="container">
+        {{ item.code|safe }}
+    </div>
+</section>
+{% endif %}
+{% endfor %}

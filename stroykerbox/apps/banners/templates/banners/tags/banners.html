@@ -1,0 +1,28 @@
+{% load static sekizai_tags %}
+{% if banners %}
+<div class="product-slider__banners">
+    {% for banner in banners %}
+    <div class="item">
+        <div class="product-item product-item--banner">
+            {% if banner.image_url %}
+            <a href="{{ banner.image_url }}" title="{{ banner.name }}">
+                <img data-bnr-pk="{{ banner.pk }}" class="bnr-image-for-page" src="{{ banner.image_file.url }}" alt="{{ banner.name }}">
+            </a>
+            {% else %}
+            <img data-bnr-pk="{{ banner.pk }}" class="bnr-image-for-page" src="{{ banner.image_file.url }}" alt="{{ banner.name }}">
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% addtoblock 'js' %}
+<script>
+    var BNR_URLS = {
+        'inc_views': '{% url 'banners:views-increment' %}',
+        'inc_clicks': '{% url 'banners:clicks-increment' %}'
+    };
+</script>
+<script src="{% static 'banners/js/bnrs.js' %}"></script>
+{% endaddtoblock %}

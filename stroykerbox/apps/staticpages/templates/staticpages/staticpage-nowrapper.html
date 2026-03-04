@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load custom_form_tags %}
+
+
+{% block body_main_top %}{{ page.text|custom_form_inside }}{% endblock body_main_top %}
+
+{% block body_main_center %}
+{% include 'staticpages/include/custom-staticfiles.html' %}
+{% endblock body_main_center %}

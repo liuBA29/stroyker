@@ -1,0 +1,78 @@
+{% load statictext_tags sekizai_tags i18n common_tags %}
+<form action="{% url 'registration' %}" method="post">
+    {% csrf_token %}
+    {{ form.captcha }}
+    <div class="form-group{% if form.email.errors %} form-group--error{% endif %}">
+        {{ form.email }}
+        <label for="email" class="label-name">
+            <span class="content-name">
+                {% trans "Email*" %}
+            </span>
+        </label>
+        {% if form.email.errors %}
+        <span class="error-text">{{ form.email.errors }}</span>
+        {% endif %}
+    </div>
+    <div class="form-group{% if form.phone.errors %} form-group--error{% endif %}">
+        {{ form.phone }}
+        <label for="phone" class="label-name">
+            <span class="content-name">
+                {% trans "Телефон*" %}
+            </span>
+        </label>
+        {% if form.phone.errors %}
+        <span class="error-text">{{ form.phone.errors }}</span>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.name }}
+        <label for="name" class="label-name">
+            <span class="content-name">
+                {% trans "Имя" %}
+            </span>
+        </label>
+    </div>
+    <div class="form-group">
+        {{ form.company }}
+        <label for="company" class="label-name">
+            <span class="content-name">
+                {% trans "Компания" %}
+            </span>
+        </label>
+    </div>
+    <div class="form-group{% if form.password1.errors or form.password2.errors %} form-group--error{% endif %}">
+        {{ form.password1 }}
+        <label for="password1" class="label-name">
+            <span class="content-name">
+                {% trans "Пароль*" %}
+            </span>
+        </label>
+    </div>
+    <div class="form-group{% if form.password1.errors or form.password2.errors %} form-group--error{% endif %}">
+        {{ form.password2 }}
+        <label for="password2" class="label-name">
+            <span class="content-name">
+                {% trans "Повтор пароля*" %}
+            </span>
+        </label>
+        {% if form.password1.errors or form.password2.errors %}
+        <span class="error-text">{{ form.password1.errors }}{{ form.password2.errors }}</span>
+        {% endif %}
+    </div>
+    <div class="form-gorup-inline">
+        <button class="btn btn--main-min">{% trans "Сохранить" %}</button>
+    </div>
+    {% if form.errors %}
+    <div class="form-group--error">
+        <div class="error-text" style="margin-bottom: 1rem;">
+            {% trans "Исправьте ошибки, допущенные при заполнении формы." %} {{ form.non_field_errors }}
+        </div>
+    </div>
+    {% endif %}
+
+    {% render_form_agreement form %}
+
+</form>
+{% addtoblock "js" %}
+{{ form.midia }}
+{% endaddtoblock %}

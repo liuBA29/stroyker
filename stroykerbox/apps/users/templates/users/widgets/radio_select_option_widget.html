@@ -1,0 +1,10 @@
+{% if wrap_label %}
+<label{% if widget.attrs.id %} for="{{ widget.attrs.id }}"{% endif %} class="radio -inline">
+    {% endif %}
+    {% include "django/forms/widgets/input.html" %}
+    {% if wrap_label %}
+    <span class="outer">
+        <span class="inner"></span>
+    </span>
+    <span class="text">{{ widget.label }}</span>
+</label>{% endif %}

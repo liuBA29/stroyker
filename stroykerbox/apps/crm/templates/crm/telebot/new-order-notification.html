@@ -1,0 +1,35 @@
+{% load utils_tags %}
+{% config_value 'SIMPLE_CART_MODE' as simple_mode %}
+<strong>Новый заказ в корзине на сайте {{ site.domain }}</strong>
+{% if object %}<a href="http://{{ site.domain }}{% url 'admin:commerce_order_change' object.pk %}">Для управления заказом перейдите по ссылке</a>{% endif %}
+{% if location %}
+Регион: {{ location.name }}{% endif %}
+Доставка: {{ object.delivery }}
+{% if object.delivery.point %}
+Адрес пункта самовывоза: {{ object.delivery.point.address }}{% elif object.delivery.stock %}
+Склад: {{ object.delivery.stock }}
+Адрес доставки: {{ object.delivery.address }}{% endif %}
+Оплата: {{ object.payment_method_name }}{% if object.user %}
+{% if object.yookassa_status %}Статус оплаты: {% if object.yookassa_status == object.YOOKASSA_SUCCEEDED %}оплачено{% else %}не оплачено{% endif %}{% endif %}
+{% if object.user.company %}Компания: {{ object.user.company }}{% endif %}
+{% if object.user.name %}Контактное лицо: {{ object.user.name }}{% endif %}
+{% if object.user.phone %}Телефон: <a href="tel:+{{ object.user.phone|clear_phone }}">+{{ object.user.phone|clear_phone }}</a>{% endif %}
+Email: <a href="mailto:{{ object.user.email }}">{{ object.user.email }}</a>
+{% if object.ordercontactdata.name %}Контактное лицо: {{ object.ordercontactdata.name }}{% endif %}
+{% if object.ordercontactdata.phone %}Телефон: <a href="tel:+{{ object.ordercontactdata.phone|clear_phone }}">{{ object.ordercontactdata.phone }}</a>{% endif %}
+{% if object.ordercontactdata.email %}Email: <a href="mailto:{{ object.ordercontactdata.email }}">{{ object.ordercontactdata.email }}</a>{% endif %}{% else %}
+{% if object.delivery.name %}Контактное лицо: {{ object.delivery.name }}{% endif %}
+{% if object.delivery.phone %}Телефон: <a href="tel+{{ object.delivery.phone|clear_phone }}">{{ object.delivery.phone }}</a>{% endif %}
+{% if object.delivery.email %}Email: <a href="mailto:{{ object.delivery.email }}">{{ object.delivery.email }}</a>{% endif %}{% endif %}{% if object.comment %}
+Комментарий к заказу:
+{{ object.comment|striptags }}{% endif %}
+Товары: {% for order_product in object.order_products.all %}
+<a href="http://{{ site.domain }}{{ order_product.product.get_absolute_url }}">{{ order_product.product.name }}</a> , артикул: <code>{{ order_product.product.code }}</code>, количество: <strong>{{ order_product.quantity }}</strong>{% if config.TELEBOT_SHOW_STOCKS_IN_MSG %}{% for stock in order_product.product.available_stocks_list %}
+{{ stock.address }}{% if not forloop.last %}, {% elif forloop.parentloop.last %}
+{% endif %}{% endfor %}{% endif %}{% endfor %}
+На сумму: {{ object.final_price }} {{ currency_symbol|default:"руб." }}.
+
+<strong>Дополнительные поля:</strong>
+{% for extra_field in object.extra_field_values.all %}
+- <strong>{{ extra_field.field.label }}:</strong> {{ extra_field.value }}
+{% endfor %}

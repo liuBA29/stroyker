@@ -1,0 +1,11 @@
+{% load cache %}
+{% cache None customization_custom_styles %}
+{% if custom_styles %}
+{% if has_files %}
+{% for style in custom_styles %}{% if style.file %}<link rel="stylesheet" href="{{ style.file.url }}"> {% endif %}{% endfor %}
+{% endif %}{% if has_inline %}
+<style>{% for style in custom_styles %}
+{% if style.inline_styles %}{{ style.inline_styles|safe }}{% endif %}
+{% endfor %}</style>
+{% endif %}{% endif %}
+{% endcache %}

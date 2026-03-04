@@ -1,0 +1,14 @@
+{% extends 'admin/change_list.html' %}
+{% load i18n %}
+
+{% block object-tools-items %}
+{{ block.super }}
+{% if not config.VK_MARKET_ACCESS_TOKEN %}
+<li>
+    <a href="{% url 'admin:vk_get_code' %}">{% trans "Получить ключ доступа" %}</a>
+</li>
+{% endif %}
+<li>
+    <a href="{% url 'admin:vk_update_categories' %}">{% trans "Обновить список категорий с VK-Маркета" %}</a>
+</li>
+{% endblock %}

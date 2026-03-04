@@ -1,0 +1,503 @@
+{% load static crm_tags common_tags address_tags sekizai_tags %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>8 марта — тестовый новый дизайн | LUCIANO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Шрифты: Inter, Cormorant Garamond (300,500,700), Geologica, Roboto -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700&family=Geologica:wght@400&family=Roboto:wght@300&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700&family=Geologica:wght@400&family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static '8march_design/css/8march_base.css' %}">
+  <link rel="stylesheet" href="{% static '8march_design/css/8march_design.css' %}">
+  <link rel="stylesheet" href="{% static '8march_design/css/8march_index_page_design.css' %}">
+  {% render_block "css" %}
+</head>
+<body class="page-index-8march">
+  <div class="page">
+    {% include 'includes/header_8march_standalone.html' %}
+
+    <main>
+      <div class="index-8march-content">
+        <div class="index-8march-vector-zone">
+          <div class="index-8march__diagonal-line" aria-hidden="true">
+            <svg viewBox="0 0 100 280" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <path d="M 100 0 Q 25 140 0 280" stroke="#FFF2F1" stroke-width="52" stroke-linecap="round" fill="none" vector-effect="non-scaling-stroke"/>
+            </svg>
+          </div>
+
+          <section class="index-hero-8march" aria-roledescription="carousel" aria-label="Промо-баннеры">
+            <div class="index-hero-8march__slides">
+              <div class="index-hero-8march__track" id="hero-carousel-track">
+                <div class="index-hero-8march__slide" data-hero-slide="0">
+                  <div class="index-hero-8march__inner">
+                    <div class="index-hero-8march__left">
+                      <img src="{% static '8march_design/images/LUCIANO/1.png' %}" alt="" class="index-hero-8march__img" role="presentation">
+                      <div class="index-hero-8march__logo-box">
+                        <img src="{% static '8march_design/images/LUCIANO/Logo.svg' %}" alt="LUCIANO" class="index-hero-8march__logo">
+                      </div>
+                    </div>
+                    <div class="index-hero-8march__right">
+                      <p class="index-hero-8march__text">ДОСТАВКА ЦВЕТОВ<br>И БУКЕТОВ</p>
+                      <a href="{% url 'catalog:index' %}" class="index-hero-8march__btn black-button">В КАТАЛОГ</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="index-hero-8march__slide" data-hero-slide="1">
+                  <div class="index-hero-8march__inner">
+                    <div class="index-hero-8march__left">
+                      <img src="{% static 'images/8march_rect.png' %}" alt="8 марта" class="index-hero-8march__img" role="presentation">
+                      <div class="index-hero-8march__8march-card">
+                        <img src="{% static '8march_design/images/LUCIANO/Logo.svg' %}" alt="LUCIANO" class="index-hero-8march__logo">
+                        <span class="index-hero-8march__8march-number index-hero-8march__8march-number--image-fill" style="background-image: url('{% static 'images/8march_rect.png' %}');">8</span>
+                        <span class="index-hero-8march__8march-month index-hero-8march__8march-month--image-fill" style="background-image: url('{% static 'images/8march_rect.png' %}');">марта</span>
+                        <!-- Слоган: 1-я строка «Скажите цветами то, что», 2-я «невозможно выразить словами» — не менять без явного указания -->
+                        <p class="index-hero-8march__8march-slogan">Скажите цветами то, что<br>невозможно выразить словами</p>
+                      </div>
+                    </div>
+                    <div class="index-hero-8march__right">
+                      <!-- Перенос «ДЛЯ НЕЕ» на новую строку — не менять без явного указания -->
+                      <p class="index-hero-8march__text">БУКЕТЫ СПЕЦИАЛЬНО<br>ДЛЯ НЕЕ</p>
+                      <p class="index-hero-8march__subtext">СКИДКА 10%</p>
+                      <a href="{% url 'catalog:category' '8-marta' %}" class="index-hero-8march__btn black-button">ВЫБРАТЬ БУКЕТ</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="index-hero-8march__slide" data-hero-slide="2">
+                  <div class="index-hero-8march__inner">
+                    <div class="index-hero-8march__left">
+                      <img src="{% static 'images/tender_flowers_rect.png' %}" alt="Свадебные букеты" class="index-hero-8march__img" role="presentation">
+                    </div>
+                    <div class="index-hero-8march__right">
+                      <p class="index-hero-8march__text">СВАДЕБНЫЕ БУКЕТЫ</p>
+                      <p class="index-hero-8march__subtext">СКИДКА 30%</p>
+                      <a href="{% url 'catalog:index' %}" class="index-hero-8march__btn black-button">ВЫБРАТЬ БУКЕТ</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="index-hero-8march__nav" aria-hidden="true">
+              <button type="button" class="index-hero-8march__arrow index-hero-8march__arrow--prev" title="Назад" aria-label="Предыдущий слайд">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button type="button" class="index-hero-8march__arrow index-hero-8march__arrow--next" title="Вперёд" aria-label="Следующий слайд">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+          </section>
+
+          <section class="index-categories-8march">
+            <div class="index-categories-8march__inner">
+              {% for item in categories_8march %}
+              <a href="{{ item.url }}" class="index-categories-8march__item">
+                <span class="index-categories-8march__img-wrap">
+                  <img src="{% static item.image %}" alt="{{ item.alt }}" class="index-categories-8march__img">
+                </span>
+                <span class="index-categories-8march__label">{{ item.label|safe }}</span>
+              </a>
+              {% endfor %}
+            </div>
+            <div class="index-categories-8march__nav" aria-hidden="true">
+              <button type="button" class="index-categories-8march__arrow index-categories-8march__arrow--prev" title="Назад"></button>
+              <button type="button" class="index-categories-8march__arrow index-categories-8march__arrow--next" title="Вперёд"></button>
+            </div>
+          </section>
+
+          <section class="index-promo-8march">
+            <h2 class="index-promo-8march__title big-title">АКЦИИ</h2>
+            <div class="index-promo-8march__carousel-wrap">
+              <button type="button" class="index-promo-8march__arrow index-promo-8march__arrow--prev" title="Назад" aria-label="Назад"></button>
+              <div class="index-promo-8march__carousel" data-promo-carousel>
+                <div class="index-promo-8march__track">
+                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card index-promo-8march__card--large">
+                    <span class="index-promo-8march__img-wrap">
+                      <img src="{% static '8march_design/images/LUCIANO/2.png' %}" alt="" class="index-promo-8march__img">
+                    </span>
+                    <span class="index-promo-8march__prices">
+                      <span class="index-promo-8march__price-old">3 250 P</span>
+                      <span class="index-promo-8march__price-new">3 150 P</span>
+                    </span>
+                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  </a>
+                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
+                    <span class="index-promo-8march__img-wrap">
+                      <img src="{% static '8march_design/images/LUCIANO/Rectangle 8.png' %}" alt="" class="index-promo-8march__img">
+                    </span>
+                    <span class="index-promo-8march__prices">
+                      <span class="index-promo-8march__price-old">12 250 P</span>
+                      <span class="index-promo-8march__price-new">10 500 P</span>
+                    </span>
+                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  </a>
+                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
+                    <span class="index-promo-8march__img-wrap">
+                      <img src="{% static '8march_design/images/LUCIANO/Rectangle 9.png' %}" alt="" class="index-promo-8march__img">
+                    </span>
+                    <span class="index-promo-8march__prices">
+                      <span class="index-promo-8march__price-old">7 400 P</span>
+                      <span class="index-promo-8march__price-new">5 850 P</span>
+                    </span>
+                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  </a>
+                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
+                    <span class="index-promo-8march__img-wrap">
+                      <img src="{% static '8march_design/images/LUCIANO/4.png' %}" alt="" class="index-promo-8march__img">
+                    </span>
+                    <span class="index-promo-8march__prices">
+                      <span class="index-promo-8march__price-old">5 200 P</span>
+                      <span class="index-promo-8march__price-new">4 600 P</span>
+                    </span>
+                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  </a>
+                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
+                    <span class="index-promo-8march__img-wrap">
+                      <img src="{% static '8march_design/images/LUCIANO/2.png' %}" alt="" class="index-promo-8march__img">
+                    </span>
+                    <span class="index-promo-8march__prices">
+                      <span class="index-promo-8march__price-old">3 250 P</span>
+                      <span class="index-promo-8march__price-new">3 150 P</span>
+                    </span>
+                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  </a>
+                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
+                    <span class="index-promo-8march__img-wrap">
+                      <img src="{% static '8march_design/images/LUCIANO/Rectangle 8.png' %}" alt="" class="index-promo-8march__img">
+                    </span>
+                    <span class="index-promo-8march__prices">
+                      <span class="index-promo-8march__price-old">12 250 P</span>
+                      <span class="index-promo-8march__price-new">10 500 P</span>
+                    </span>
+                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  </a>
+                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
+                    <span class="index-promo-8march__img-wrap">
+                      <img src="{% static '8march_design/images/LUCIANO/Rectangle 9.png' %}" alt="" class="index-promo-8march__img">
+                    </span>
+                    <span class="index-promo-8march__prices">
+                      <span class="index-promo-8march__price-old">7 400 P</span>
+                      <span class="index-promo-8march__price-new">5 850 P</span>
+                    </span>
+                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  </a>
+                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
+                    <span class="index-promo-8march__img-wrap">
+                      <img src="{% static '8march_design/images/LUCIANO/4.png' %}" alt="" class="index-promo-8march__img">
+                    </span>
+                    <span class="index-promo-8march__prices">
+                      <span class="index-promo-8march__price-old">5 200 P</span>
+                      <span class="index-promo-8march__price-new">4 600 P</span>
+                    </span>
+                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  </a>
+                </div>
+              </div>
+              <button type="button" class="index-promo-8march__arrow index-promo-8march__arrow--next" title="Вперёд" aria-label="Вперёд"></button>
+            </div>
+            <div class="index-promo-8march__footer">
+              <a href="{% url 'catalog:index' %}" class="index-promo-8march__btn-catalog">СМОТРЕТЬ ВЕСЬ КАТАЛОГ</a>
+            </div>
+          </section>
+        </div>
+
+        <section class="index-info-8march">
+          <div class="index-info-8march__watermark" aria-hidden="true"></div>
+          <div class="index-info-8march__inner">
+            <div class="index-info-8march__item">
+              <h3 class="index-info-8march__heading">ГАРАНТИЯ<br>КАЧЕСТВА 2 ДНЯ</h3>
+              <p class="index-info-8march__text">мы получаем цветы с лучших премиальных плантаций и гарантируем качество и свежесть букетов</p>
+            </div>
+            <div class="index-info-8march__item">
+              <h3 class="index-info-8march__heading">БЕСПЛАТНАЯ<br>ДОСТАВКА ПО ГОРОДУ</h3>
+              <p class="index-info-8march__text">доставка в отдалённые районы рассчитывается индивидуально менеджером</p>
+            </div>
+            <div class="index-info-8march__item">
+              <h3 class="index-info-8march__heading">БОЛЬШОЙ ВЫБОР<br>ПОДАРКОВ</h3>
+              <p class="index-info-8march__text">свечи, диффузоры, вазы, косметика и товары для дома</p>
+            </div>
+          </div>
+          <div class="index-info-8march__ratings-block">
+            <div class="index-info-8march__ratings-inner">
+              <div class="index-ratings-8march__item">
+                <span class="index-ratings-8march__label"><span class="index-ratings-8march__label-num">2</span>ГИС</span>
+                <span class="index-ratings-8march__row"><span class="index-ratings-8march__score">5.0</span><span class="index-ratings-8march__star">★</span></span>
+              </div>
+              <div class="index-ratings-8march__item">
+                <span class="index-ratings-8march__label">ЯНДЕКС</span>
+                <span class="index-ratings-8march__row"><span class="index-ratings-8march__score">5.0</span><span class="index-ratings-8march__star">★</span></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="index-bouquets-8march" aria-labelledby="index-bouquets-8march-title">
+          <h2 class="index-bouquets-8march__title big-title" id="index-bouquets-8march-title">СБОРНЫЕ БУКЕТЫ</h2>
+          <div class="index-bouquets-8march__grid">
+            <div class="index-bouquets-8march__grid-row">
+              <div class="index-bouquets-8march__grid-first">
+                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
+                  <span class="index-bouquets-8march__img-wrap">
+                    <img src="{% static '8march_design/images/LUCIANO/4.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                  </span>
+                  <p class="index-bouquets-8march__desc">Авторский букет с гортензиями и кустовыми розами</p>
+                  <p class="index-bouquets-8march__price">3 150 Р</p>
+                  <span class="index-bouquets-8march__btn beige_button">В КОРЗИНУ</span>
+                </a>
+              </div>
+              <div class="index-bouquets-8march__grid-rest">
+                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card">
+                  <span class="index-bouquets-8march__img-wrap">
+                    <img src="{% static '8march_design/images/LUCIANO/5.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                  </span>
+                  <p class="index-bouquets-8march__desc">Авторский букет с гортензиями, розами Pink Mondal и эвкалиптом</p>
+                  <span class="index-bouquets-8march__btn index-bouquets-8march__btn--alt beige_button">УЗНАТЬ ЦЕНУ</span>
+                </a>
+                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card">
+                  <span class="index-bouquets-8march__img-wrap">
+                    <img src="{% static '8march_design/images/LUCIANO/6.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                  </span>
+                  <p class="index-bouquets-8march__desc">Авторский букет с пионовидными розами и эвкалиптом</p>
+                  <p class="index-bouquets-8march__price">6 000 Р</p>
+                  <span class="index-bouquets-8march__btn beige_button">В КОРЗИНУ</span>
+                </a>
+              </div>
+            </div>
+            <div class="index-bouquets-8march__grid-row index-bouquets-8march__grid-row--last-big">
+              <div class="index-bouquets-8march__grid-first">
+                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
+                  <span class="index-bouquets-8march__img-wrap">
+                    <img src="{% static '8march_design/images/LUCIANO/5.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                  </span>
+                  <p class="index-bouquets-8march__desc">Авторский букет с гортензиями, розами Pink Mondal и эвкалиптом</p>
+                  <span class="index-bouquets-8march__btn index-bouquets-8march__btn--alt beige_button">УЗНАТЬ ЦЕНУ</span>
+                </a>
+              </div>
+              <div class="index-bouquets-8march__grid-rest">
+                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card">
+                  <span class="index-bouquets-8march__img-wrap">
+                    <img src="{% static '8march_design/images/LUCIANO/4.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                  </span>
+                  <p class="index-bouquets-8march__desc">Авторский букет с гортензиями и кустовыми розами</p>
+                  <p class="index-bouquets-8march__price">3 150 Р</p>
+                  <span class="index-bouquets-8march__btn beige_button">В КОРЗИНУ</span>
+                </a>
+                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card">
+                  <span class="index-bouquets-8march__img-wrap">
+                    <img src="{% static '8march_design/images/LUCIANO/6.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                  </span>
+                  <p class="index-bouquets-8march__desc">Авторский букет с пионовидными розами и эвкалиптом</p>
+                  <p class="index-bouquets-8march__price">6 000 Р</p>
+                  <span class="index-bouquets-8march__btn beige_button">В КОРЗИНУ</span>
+                </a>
+              </div>
+            </div>
+            <div class="index-bouquets-8march__grid-row">
+              <div class="index-bouquets-8march__grid-first">
+                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
+                  <span class="index-bouquets-8march__img-wrap">
+                    <img src="{% static '8march_design/images/LUCIANO/6.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                  </span>
+                  <p class="index-bouquets-8march__desc">Авторский букет с пионовидными розами и эвкалиптом</p>
+                  <p class="index-bouquets-8march__price">6 000 Р</p>
+                  <span class="index-bouquets-8march__btn beige_button">В КОРЗИНУ</span>
+                </a>
+              </div>
+              <div class="index-bouquets-8march__grid-rest">
+                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card">
+                  <span class="index-bouquets-8march__img-wrap">
+                    <img src="{% static '8march_design/images/LUCIANO/4.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                  </span>
+                  <p class="index-bouquets-8march__desc">Авторский букет с гортензиями и кустовыми розами</p>
+                  <p class="index-bouquets-8march__price">3 150 Р</p>
+                  <span class="index-bouquets-8march__btn beige_button">В КОРЗИНУ</span>
+                </a>
+                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card">
+                  <span class="index-bouquets-8march__img-wrap">
+                    <img src="{% static '8march_design/images/LUCIANO/5.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                  </span>
+                  <p class="index-bouquets-8march__desc">Авторский букет с гортензиями, розами Pink Mondal и эвкалиптом</p>
+                  <span class="index-bouquets-8march__btn index-bouquets-8march__btn--alt beige_button">УЗНАТЬ ЦЕНУ</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="index-bouquets-8march__footer">
+            <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__btn-catalog">СМОТРЕТЬ ВЕСЬ КАТАЛОГ</a>
+          </div>
+        </section>
+
+        <section class="index-bouquet-wish-8march" aria-labelledby="index-bouquet-wish-8march-title">
+            <div class="index-bouquet-wish-8march__inner">
+              <div class="index-bouquet-wish-8march__left">
+                <img src="{% static '8march_design/images/LUCIANO/8.png' %}" alt="" class="index-bouquet-wish-8march__img" role="presentation">
+              </div>
+              <div class="index-bouquet-wish-8march__right">
+                <h2 class="index-bouquet-wish-8march__title" id="index-bouquet-wish-8march-title">БУКЕТ ПО ВАШИМ ЖЕЛАНИЯМ</h2>
+                {% autoescape off %}
+                <p class="index-bouquet-wish-8march__desc">Оставьте запрос на индивидуальный заказ.<br>Мы поможем выбрать идеальный букет для вашего события.</p>
+                {% endautoescape %}
+                <form action="{% url 'crm:feedback-message-request' %}" method="post" id="feedback-bouquet-wish-form" class="index-bouquet-wish-8march__form">
+                  {% csrf_token %}
+                  {% for f in feedback_form.hidden_fields %}{{ f }}{% endfor %}
+                  <div class="index-bouquet-wish-8march__field">
+                    <input type="text" name="name" class="index-bouquet-wish-8march__input" placeholder="Ваше имя" required>
+                  </div>
+                  <div class="index-bouquet-wish-8march__field">
+                    <input type="text" name="phone" class="index-bouquet-wish-8march__input" placeholder="Номер телефона" required>
+                  </div>
+                  <div class="index-bouquet-wish-8march__field index-bouquet-wish-8march__field--with-icon">
+                    <input type="text" name="delivery_date" class="index-bouquet-wish-8march__input" placeholder="Дата доставки" autocomplete="off">
+                    <span class="index-bouquet-wish-8march__field-icon" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="13" rx="1"/><path d="M3 8h14"/><path d="M7 2v4"/><path d="M13 2v4"/></svg>
+                    </span>
+                  </div>
+                  <div class="index-bouquet-wish-8march__field">
+                    <input type="email" name="email" class="index-bouquet-wish-8march__input" placeholder="Email">
+                  </div>
+                  <div class="index-bouquet-wish-8march__field">
+                    <textarea name="message" class="index-bouquet-wish-8march__input index-bouquet-wish-8march__textarea" placeholder="Пожелания" rows="1">Пожелания</textarea>
+                  </div>
+                  <button type="submit" class="index-bouquet-wish-8march__submit black-button">ОТПРАВИТЬ</button>
+                  <div class="form-group privacy-policy index-bouquet-wish-8march__agreement">
+                    <div class="checkbox">
+                      <input type="checkbox" name="privacy-policy" id="privacy-bouquet-wish" required autocomplete="off" class="green-checkbox">
+                      <label for="privacy-bouquet-wish">Вы даете согласие на публикацию отзывов</label>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section class="index-social-8march">
+          <div class="index-social-8march__inner">
+            <h2 class="index-social-8march__title">LUCIANO В СОЦСЕТЯХ</h2>
+            <p class="index-social-8march__text">Присоединяйтесь к нашим социальным сетям, чтобы оставаться в курсе всех актуальных акций, скидок и розыгрышей!</p>
+            <div class="index-social-8march__links">
+              <a href="#" class="index-social-8march__link">TELEGRAM</a>
+              <a href="#" class="index-social-8march__link">VK</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="index-reviews-8march">
+          <h2 class="index-reviews-8march__title big-title">ОТЗЫВЫ</h2>
+          <div class="index-reviews-8march__card">
+            <div class="index-reviews-8march__card-head">
+              <span class="index-reviews-8march__brand">Лучиано</span>
+              <a href="#" class="index-reviews-8march__source" target="_blank" rel="noopener noreferrer">Яндекс Карты</a>
+            </div>
+            <div class="index-reviews-8march__rating-block">
+              <span class="index-reviews-8march__rating-value">5,0</span>
+              <span class="index-reviews-8march__stars" aria-label="5 из 5">★★★★★</span>
+            </div>
+            <p class="index-reviews-8march__stats">53 отзыва · 56 оценок</p>
+            <div class="index-reviews-8march__cta">
+              <span class="index-reviews-8march__cta-text">Поставьте нам оценку</span>
+              <a href="#" class="index-reviews-8march__btn-leave">Оставить отзыв</a>
+            </div>
+            <ul class="index-reviews-8march__list">
+              <li class="index-reviews-8march__item">
+                <span class="index-reviews-8march__avatar" aria-hidden="true"></span>
+                <div class="index-reviews-8march__body">
+                  <span class="index-reviews-8march__name">Виктория Кухарева</span>
+                  <span class="index-reviews-8march__date">29 сентября 2025</span>
+                  <span class="index-reviews-8march__stars index-reviews-8march__stars--small">★★★★★</span>
+                  <p class="index-reviews-8march__text">Обращаюсь в цветочную студию не впервые. От самого начала до получения букета все прошло идеально…</p>
+                </div>
+              </li>
+              <li class="index-reviews-8march__item">
+                <span class="index-reviews-8march__avatar" aria-hidden="true"></span>
+                <div class="index-reviews-8march__body">
+                  <span class="index-reviews-8march__name">Кристина Невская</span>
+                  <span class="index-reviews-8march__date">22 ноября 2025</span>
+                  <span class="index-reviews-8march__stars index-reviews-8march__stars--small">★★★★★</span>
+                  <p class="index-reviews-8march__text">Благодарю за красивый букет и оперативную доставку. Рекомендую!</p>
+                </div>
+              </li>
+            </ul>
+            <p class="index-reviews-8march__more">
+              <a href="#" class="index-reviews-8march__more-link">Больше отзывов на Яндекс Картах</a>
+            </p>
+          </div>
+        </section>
+
+        <section class="index-8march-questions-wrap" id="questions-section" aria-labelledby="questions-8march-title">
+          <div class="index-8march-map-wrap">
+            <div class="index-8march-map-overlay" aria-hidden="false">
+              <h2 class="index-8march-questions-wrap__title big-title" id="questions-8march-title">ГДЕ МЫ<br>НАХОДИМСЯ</h2>
+              <a href="https://yandex.ru/maps/?text=Самара,+ул.+Ново-Садовая,+179" target="_blank" rel="noopener noreferrer" class="index-8march-map-overlay__row index-8march-map-overlay__address">
+                <span class="index-8march-map-overlay__icon index-8march-map-overlay__icon--address" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </span>
+                <span class="index-8march-map-overlay__text">Г. САМАРА,<br>УЛ. НОВО-САДОВАЯ, Д. 179</span>
+              </a>
+              <a href="tel:+79179500606" class="index-8march-map-overlay__row index-8march-map-overlay__phone">
+                <span class="index-8march-map-overlay__icon index-8march-map-overlay__icon--phone" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                </span>
+                <span class="index-8march-map-overlay__text">+7 (917) 950-06-06</span>
+              </a>
+              <a href="tel:+79179500606" class="index-8march-map-overlay__btn black-button">СВЯЗАТЬСЯ</a>
+            </div>
+            {% render_partners_yamap use_main_store_address=1 %}
+          </div>
+        </section>
+      </div>
+    </main>
+
+    {% include 'includes/footer_8march_standalone.html' %}
+  </div>
+
+  {% render_block "js" %}
+  <script src="{% static '8march_design/js/8march_carousel.js' %}"></script>
+  <script>
+  (function() {
+    var totalHeroSlides = 3;
+    var heroTrack = document.getElementById('hero-carousel-track');
+    var heroSection = heroTrack && heroTrack.closest('.index-hero-8march');
+    var heroPrev = heroSection && heroSection.querySelector('.index-hero-8march__arrow--prev');
+    var heroNext = heroSection && heroSection.querySelector('.index-hero-8march__arrow--next');
+    var heroIndex = 0;
+    function setHeroSlide(i) {
+      heroIndex = Math.max(0, Math.min(i, totalHeroSlides - 1));
+      if (heroTrack) heroTrack.style.transform = 'translateX(-' + (heroIndex * 100 / totalHeroSlides) + '%)';
+    }
+    if (heroPrev) heroPrev.addEventListener('click', function() { setHeroSlide(heroIndex - 1); });
+    if (heroNext) heroNext.addEventListener('click', function() { setHeroSlide(heroIndex + 1); });
+  })();
+  </script>
+  <script>
+  (function() {
+    function init() {
+      var promoWrap = document.querySelector('.index-promo-8march__carousel-wrap');
+      if (promoWrap && typeof init8marchCarousel === 'function') {
+        init8marchCarousel(promoWrap, {
+          trackSelector: '.index-promo-8march__track',
+          prevSelector: '.index-promo-8march__arrow--prev',
+          nextSelector: '.index-promo-8march__arrow--next',
+          cardSelector: '.index-promo-8march__card',
+          cardLargeClass: 'index-promo-8march__card--large',
+          gap: 20,
+          smallW: 260,
+          largeW: 377,
+          breakpoints: [
+            { minWidth: 1600, smallW: 320, largeW: 462 },
+            { minWidth: 768, smallW: 260, largeW: 377 },
+            { minWidth: 0, smallW: 220, largeW: 220 }
+          ]
+        });
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+  </script>
+</body>
+</html>
