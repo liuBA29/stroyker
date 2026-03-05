@@ -41,15 +41,16 @@ def view_8march_design_test(request):
         footer_contacts = getattr(config, 'MAIL__FOOTER_CONTACTS', None) or ''
     except Exception:
         pass
-    # Рубрика с овальными картинками: фиксированная логика как на lucianoflowers.ru
-    # (порядок, подписи, картинки и целевые категории)
+    # Рубрика с овальными картинками: фиксированная логика как на lucianoflowers.ru.
+    # ВАЖНО: соответствие "картинка/подпись -> slug" менять самостоятельно нельзя;
+    # правки только по прямому согласованию с заказчиком.
     category_slots = (
-        ('images/gotovaya-vitrina.png', 'Готовая витрина', 'ГОТОВАЯ<br>ВИТРИНА', '8-marta'),
-        ('images/monoduo-bukety.png', 'Моно букеты', 'МОНО<br>БУКЕТЫ', 'gotovaya-vitrina'),
-        ('images/kompozicii.png', 'Композиции', 'КОМПОЗИЦИИ', 'cvety-na-prazdniki'),
+        ('images/gotovaya-vitrina.png', 'Готовая витрина', 'ГОТОВАЯ<br>ВИТРИНА', 'gotovaya-vitrina'),
+        ('images/monoduo-bukety.png', 'Моно букеты', 'МОНО<br>БУКЕТЫ', 'monoduo-bukety'),
+        ('images/kompozicii.png', 'Композиции', 'КОМПОЗИЦИИ', 'kompozicii'),
         ('images/wow-effect.png', 'Эффектные букеты', 'ЭФФЕКТНЫЕ<br>БУКЕТЫ', 'wow-bukety'),
-        ('images/fresh-buketi.png', 'Интерьерные букеты', 'ИНТЕРЬЕРНЫЕ<br>БУКЕТЫ', 'monoduo-bukety'),
-        ('images/podarki.png', 'Подарки', 'ПОДАРКИ', 'wow-bukety'),
+        ('images/fresh-buketi.png', 'Интерьерные букеты', 'ИНТЕРЬЕРНЫЕ<br>БУКЕТЫ', 'fresh-bukety'),
+        ('images/podarki.png', 'Подарки', 'ПОДАРКИ', 'podarki'),
     )
     categories_8march = []
     for img, alt, label, slug in category_slots:
