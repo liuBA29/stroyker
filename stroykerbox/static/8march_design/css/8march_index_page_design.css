@@ -1346,7 +1346,7 @@ section.feedback-form button {
   .index-info-8march {
     height: auto;
     min-height: auto;
-    padding: 2rem 1rem 2.5rem;
+    padding: 2rem 1rem 10rem;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -1369,20 +1369,22 @@ section.feedback-form button {
     order: 1;
   }
   .index-info-8march__ratings-block {
-    position: static;
+    position: absolute;
     transform: none;
-    left: auto;
-    top: auto;
-    width: 100%;
+    inset: 0 1rem 1rem 0;
+    width: auto;
     max-width: 100%;
     height: auto;
     margin-top: 2rem;
-    padding: 1rem 0 0;
+    padding: 0 0 1rem;
     order: 2;
     display: flex;
     justify-content: center;
+    align-items: flex-end;
     flex-wrap: wrap;
     gap: 1rem;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
   .index-info-8march__ratings-inner {
     justify-content: center;
