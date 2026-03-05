@@ -1,0 +1,48 @@
+Справочник: блок круглых картинок на главной 8march (/8march_design/)
+Не менять подписи и картинки без согласования; при подмене — восстанавливать по этому файлу.
+Код: stroykerbox/urls.py, view_8march_design_test, category_slots.
+
+================================================================================
+СПРАВОЧНИК РУБРИК (название, картинка, категория каталога, slug)
+================================================================================
+
+1) Готовая витрина
+   Картинка:     images/gotovaya-vitrina.png
+   Категория:    Хиты продаж (slug gotovaya-vitrina)
+   Ссылка:       /catalog/gotovaya-vitrina/
+
+2) Моно букеты
+   Картинка:     images/monoduo-bukety.png
+   Категория:    Моно/дуо букеты (slug monoduo-bukety)
+   Ссылка:       /catalog/monoduo-bukety/
+
+3) Композиции
+   Картинка:     images/kompozicii.png
+   Категория:    Цветочные композиции (slug kompozicii)
+   Ссылка:       /catalog/kompozicii/
+
+4) WOW эффект
+   Картинка:     images/wow-effect.png
+   Категория:    Эффектные букеты (slug wow-bukety)
+   Ссылка:       /catalog/wow-bukety/
+
+5) Fresh букеты
+   Картинка:     images/fresh-buketi.png
+   Категория:    Интерьерные букеты (slug fresh-bukety)
+   Ссылка:       /catalog/fresh-bukety/
+
+6) Подарки
+   Картинка:     images/podarki.png
+   Категория:    Подарки (slug podarki)
+   Ссылка:       /catalog/podarki/
+
+================================================================================
+КУДА ПОЙДУТ ССЫЛКИ С КАЖДОЙ КАРТИНКИ
+================================================================================
+
+Готовая витрина   →  /catalog/gotovaya-vitrina/
+Моно букеты       →  /catalog/monoduo-bukety/
+Композиции        →  /catalog/kompozicii/
+WOW эффект        →  /catalog/wow-bukety/
+Fresh букеты      →  /catalog/fresh-bukety/
+Подарки           →  /catalog/podarki/
