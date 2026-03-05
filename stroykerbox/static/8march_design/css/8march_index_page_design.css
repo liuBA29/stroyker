@@ -661,7 +661,7 @@ section.feedback-form button {
     left: 50%;
     right: auto;
     bottom: 0;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(65px); /* на маленьком экране опустить стрелки ниже блока категорий (эталон) */
   }
   .index-hero-8march__arrow {
     width: 38px;
