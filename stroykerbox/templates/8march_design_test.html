@@ -1,10 +1,15 @@
-{% load static crm_tags common_tags address_tags sekizai_tags %}
+{% load static crm_tags common_tags address_tags sekizai_tags statictext_tags utils_tags %}
+{% get_media_prefix as MEDIA_URL %}
+{% config_value 'FAVICON_FILE' as favicon %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>8 марта — тестовый новый дизайн | LUCIANO</title>
+  {% if favicon %}
+  <link rel="shortcut icon" href="{{ MEDIA_URL }}{{ favicon }}">
+  {% endif %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Шрифты: Inter, Cormorant Garamond (300,500,700), Geologica, Roboto -->
@@ -50,9 +55,9 @@
                 <div class="index-hero-8march__slide" data-hero-slide="1">
                   <div class="index-hero-8march__inner">
                     <div class="index-hero-8march__left">
-                      <img src="{% static 'images/8march_rect.png' %}" alt="8 марта" class="index-hero-8march__img" role="presentation">
+                      <img src="{% static 'images/8march_rect.png' %}" alt="8 марта" class="index-hero-8march__img" role="presentation" loading="lazy" decoding="async">
                       <div class="index-hero-8march__8march-card">
-                        <img src="{% static '8march_design/images/LUCIANO/Logo.svg' %}" alt="LUCIANO" class="index-hero-8march__logo">
+                        <img src="{% static '8march_design/images/LUCIANO/Logo.svg' %}" alt="LUCIANO" class="index-hero-8march__logo" loading="lazy" decoding="async">
                         <span class="index-hero-8march__8march-number index-hero-8march__8march-number--image-fill" style="background-image: url('{% static 'images/8march_rect.png' %}');">8</span>
                         <span class="index-hero-8march__8march-month index-hero-8march__8march-month--image-fill" style="background-image: url('{% static 'images/8march_rect.png' %}');">марта</span>
                         <!-- Слоган: 1-я строка «Скажите цветами то, что», 2-я «невозможно выразить словами» — не менять без явного указания -->
@@ -70,7 +75,7 @@
                 <div class="index-hero-8march__slide" data-hero-slide="2">
                   <div class="index-hero-8march__inner">
                     <div class="index-hero-8march__left">
-                      <img src="{% static 'images/tender_flowers_rect.png' %}" alt="Свадебные букеты" class="index-hero-8march__img" role="presentation">
+                      <img src="{% static 'images/tender_flowers_rect.png' %}" alt="Свадебные букеты" class="index-hero-8march__img" role="presentation" loading="lazy" decoding="async">
                     </div>
                     <div class="index-hero-8march__right">
                       <p class="index-hero-8march__text">СВАДЕБНЫЕ БУКЕТЫ</p>
@@ -96,7 +101,7 @@
               {% for item in categories_8march %}
               <a href="{{ item.url }}" class="index-categories-8march__item">
                 <span class="index-categories-8march__img-wrap">
-                  <img src="{% static item.image %}" alt="{{ item.alt }}" class="index-categories-8march__img">
+                  <img src="{% static item.image %}" alt="{{ item.alt }}" class="index-categories-8march__img" loading="lazy" decoding="async">
                 </span>
                 <span class="index-categories-8march__label">{{ item.label|safe }}</span>
               </a>
@@ -120,7 +125,7 @@
                   {% for item in promo_products %}
                   <a href="{{ item.url }}" class="index-promo-8march__card{% if forloop.first %} index-promo-8march__card--large{% endif %}">
                     <span class="index-promo-8march__img-wrap">
-                      <img src="{{ item.image }}" alt="{{ item.alt }}" class="index-promo-8march__img">
+                      <img src="{{ item.image }}" alt="{{ item.alt }}" class="index-promo-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
                     </span>
                     <span class="index-promo-8march__prices">
                       {% if item.old_price %}<span class="index-promo-8march__price-old">{{ item.old_price }}</span>{% endif %}
@@ -148,7 +153,7 @@
                   {% for item in promo_products %}
                   <a href="{{ item.url }}" class="index-promo-8march__card{% if forloop.first %} index-promo-8march__card--large{% endif %}">
                     <span class="index-promo-8march__img-wrap">
-                      <img src="{{ item.image }}" alt="{{ item.alt }}" class="index-promo-8march__img">
+                      <img src="{{ item.image }}" alt="{{ item.alt }}" class="index-promo-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
                     </span>
                     <span class="index-promo-8march__prices">
                       {% if item.old_price %}<span class="index-promo-8march__price-old">{{ item.old_price }}</span>{% endif %}
@@ -204,7 +209,7 @@
               <div class="index-bouquets-8march__grid-first">
                 <a href="{{ bouquet_products.0.url }}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{{ bouquet_products.0.image }}" alt="{{ bouquet_products.0.alt }}" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.0.image }}" alt="{{ bouquet_products.0.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.0.name }}</p>
                   {% if bouquet_products.0.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.0.price }}</p>{% endif %}
@@ -214,7 +219,7 @@
               <div class="index-bouquets-8march__grid-rest">
                 <a href="{{ bouquet_products.1.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{{ bouquet_products.1.image }}" alt="{{ bouquet_products.1.alt }}" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.1.image }}" alt="{{ bouquet_products.1.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.1.name }}</p>
                   {% if bouquet_products.1.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.1.price }}</p>{% endif %}
@@ -222,7 +227,7 @@
                 </a>
                 <a href="{{ bouquet_products.2.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{{ bouquet_products.2.image }}" alt="{{ bouquet_products.2.alt }}" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.2.image }}" alt="{{ bouquet_products.2.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.2.name }}</p>
                   {% if bouquet_products.2.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.2.price }}</p>{% endif %}
@@ -234,7 +239,7 @@
               <div class="index-bouquets-8march__grid-first">
                 <a href="{{ bouquet_products.3.url }}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{{ bouquet_products.3.image }}" alt="{{ bouquet_products.3.alt }}" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.3.image }}" alt="{{ bouquet_products.3.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.3.name }}</p>
                   {% if bouquet_products.3.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.3.price }}</p>{% endif %}
@@ -244,7 +249,7 @@
               <div class="index-bouquets-8march__grid-rest">
                 <a href="{{ bouquet_products.4.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{{ bouquet_products.4.image }}" alt="{{ bouquet_products.4.alt }}" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.4.image }}" alt="{{ bouquet_products.4.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.4.name }}</p>
                   {% if bouquet_products.4.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.4.price }}</p>{% endif %}
@@ -252,7 +257,7 @@
                 </a>
                 <a href="{{ bouquet_products.5.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{{ bouquet_products.5.image }}" alt="{{ bouquet_products.5.alt }}" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.5.image }}" alt="{{ bouquet_products.5.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.5.name }}</p>
                   {% if bouquet_products.5.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.5.price }}</p>{% endif %}
@@ -264,7 +269,7 @@
               <div class="index-bouquets-8march__grid-first">
                 <a href="{{ bouquet_products.6.url }}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{{ bouquet_products.6.image }}" alt="{{ bouquet_products.6.alt }}" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.6.image }}" alt="{{ bouquet_products.6.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.6.name }}</p>
                   {% if bouquet_products.6.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.6.price }}</p>{% endif %}
@@ -274,7 +279,7 @@
               <div class="index-bouquets-8march__grid-rest">
                 <a href="{{ bouquet_products.7.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{{ bouquet_products.7.image }}" alt="{{ bouquet_products.7.alt }}" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.7.image }}" alt="{{ bouquet_products.7.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.7.name }}</p>
                   {% if bouquet_products.7.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.7.price }}</p>{% endif %}
@@ -282,7 +287,7 @@
                 </a>
                 <a href="{{ bouquet_products.8.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{{ bouquet_products.8.image }}" alt="{{ bouquet_products.8.alt }}" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.8.image }}" alt="{{ bouquet_products.8.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.8.name }}</p>
                   {% if bouquet_products.8.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.8.price }}</p>{% endif %}
@@ -299,7 +304,7 @@
         <section class="index-bouquet-wish-8march" aria-labelledby="index-bouquet-wish-8march-title">
             <div class="index-bouquet-wish-8march__inner">
               <div class="index-bouquet-wish-8march__left">
-                <img src="{% static '8march_design/images/LUCIANO/8.png' %}" alt="" class="index-bouquet-wish-8march__img" role="presentation">
+                <img src="{% static '8march_design/images/LUCIANO/8.png' %}" alt="" class="index-bouquet-wish-8march__img" role="presentation" loading="lazy" decoding="async">
               </div>
               <div class="index-bouquet-wish-8march__right">
                 <h2 class="index-bouquet-wish-8march__title" id="index-bouquet-wish-8march-title">БУКЕТ ПО ВАШИМ ЖЕЛАНИЯМ</h2>
@@ -419,6 +424,7 @@
                 width="100%"
                 height="100%"
                 frameborder="0"
+                loading="lazy"
                 allowfullscreen="true"
                 style="border:0; display:block;"
               ></iframe>
@@ -431,6 +437,11 @@
     {% include 'includes/footer_8march_standalone.html' %}
   </div>
 
+  <script src="{% static 'js/jquery.js' %}?v5"></script>
+  <script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+  <script>
+    window.$ = window.$ || window.jQuery;
+  </script>
   {% render_block "js" %}
   <script src="{% static '8march_design/js/8march_carousel.js' %}"></script>
   <script>
