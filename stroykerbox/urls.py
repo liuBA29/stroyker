@@ -34,6 +34,7 @@ def view_8march_design_test(request):
     cart = (request.session.get('cart') or []) if hasattr(request, 'session') else []
     cart_count = len(cart) if isinstance(cart, (list, tuple)) else 0
     header_logo_url = footer_logo_url = header_phone = footer_contacts = ''
+    social_link_telegram = social_link_vk = ''
     try:
         media_url = getattr(settings, 'MEDIA_URL', '') or ''
         header_logo = getattr(config, 'HEDER_LOGO_FILE', None) or getattr(config, 'HEADER_LOGO_FILE', None)
@@ -42,6 +43,8 @@ def view_8march_design_test(request):
         footer_logo_url = (media_url + footer_logo) if footer_logo else ''
         header_phone = getattr(config, 'CONTACT_PHONE', None) or getattr(config, 'PHONE', None) or ''
         footer_contacts = getattr(config, 'MAIL__FOOTER_CONTACTS', None) or ''
+        social_link_telegram = getattr(config, 'SOCIAL_LINK_TELEGRAM', None) or ''
+        social_link_vk = getattr(config, 'SOCIAL_LINK_VK', None) or ''
     except Exception:
         pass
     # Рубрика с овальными картинками: фиксированная логика как на lucianoflowers.ru.
@@ -176,6 +179,8 @@ def view_8march_design_test(request):
         'categories_8march': categories_8march,
         'promo_products': promo_products,
         'bouquet_products': bouquet_products,
+        'social_link_telegram': social_link_telegram,
+        'social_link_vk': social_link_vk,
     })
 
 

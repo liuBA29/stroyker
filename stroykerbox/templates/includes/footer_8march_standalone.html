@@ -33,16 +33,16 @@
                     <div class="footer-content__ul-content">
                         <ul>
                             <li><a href="{% url 'catalog:category' '8-marta' %}">Букет на 8 марта</a></li>
-                            <li><a href="{% url 'catalog:index' %}">Готовая витрина</a></li>
-                            <li><a href="{% url 'catalog:index' %}">Авторские букеты</a></li>
-                            <li><a href="{% url 'catalog:index' %}">Моно/дуо букеты</a></li>
-                            <li><a href="{% url 'catalog:index' %}">Wow букеты</a></li>
+                            <li><a href="{% url 'catalog:category' 'gotovaya-vitrina' %}">Готовая витрина</a></li>
+                            <li><a href="{% url 'catalog:category' 'avtorskie' %}">Авторские букеты</a></li>
+                            <li><a href="{% url 'catalog:category' 'monoduo-bukety' %}">Моно/дуо букеты</a></li>
+                            <li><a href="{% url 'catalog:category' 'wow-bukety' %}">Wow букеты</a></li>
                         </ul>
                         <ul>
-                            <li><a href="{% url 'catalog:index' %}">Fresh букеты</a></li>
-                            <li><a href="{% url 'catalog:index' %}">Цветочные композиции</a></li>
-                            <li><a href="{% url 'catalog:index' %}">Подарки</a></li>
-                            <li><a href="{% url 'catalog:index' %}">Сезонные цветы</a></li>
+                            <li><a href="{% url 'catalog:category' 'fresh-bukety' %}">Fresh букеты</a></li>
+                            <li><a href="{% url 'catalog:category' 'kompozicii' %}">Цветочные композиции</a></li>
+                            <li><a href="{% url 'catalog:category' 'podarki' %}">Подарки</a></li>
+                            <li><a href="{% url 'catalog:category' 'sezonnye-cvety' %}">Сезонные цветы</a></li>
                         </ul>
                     </div>
                 </div>
@@ -50,24 +50,22 @@
                     <span class="footer-content__title">ПОКУПАТЕЛЯМ</span>
                     <div class="footer-content__ul-content">
                         <ul>
-                            <li><a href="{% url 'catalog:index' %}">О студии</a></li>
-                            <li><a href="{% url 'catalog:index' %}">Услуги</a></li>
-                            <li><a href="{% url 'catalog:index' %}">Совет по уходу</a></li>
-                            <li><a href="{% url 'catalog:index' %}">Отзывы</a></li>
-                            <li><a href="{% url 'catalog:index' %}">Реквизиты</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'o-studii' %}">О студии</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'uslugi' %}">Услуги</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'sovet-po-uhodu' %}">Совет по уходу</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'otzyvy' %}">Отзывы</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'rekvizity' %}">Реквизиты</a></li>
                         </ul>
-                    </div>
-                </div>
-                <div class="footer-content__column footer-content__column--lg">
-                    <div class="footer-content__ul-content">
                         <ul>
-                            <li><a href="{% url 'catalog:index' %}">Доставка</a></li>
-                            <li><a href="{% url 'catalog:index' %}">Политика конфиденциальности</a></li>
-                            <li><a href="{% url 'catalog:index' %}">Публичная оферта</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'dostavka' %}">Доставка</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'politika-konfidentsialnosti' %}">Политика конфиденциальности</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'publichnaya-oferta' %}">Публичная оферта</a></li>
                             <li><a href="{% url 'contacts-page' %}">Контакты</a></li>
                         </ul>
                     </div>
                 </div>
+                
+                
             </div>
             <div class="footer-right footer-8march-copyright">
                 <p class="footer-copyright">© «LUCIANO», {% now "Y" %}</p>

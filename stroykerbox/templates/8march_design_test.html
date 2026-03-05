@@ -300,7 +300,7 @@
                   <div class="form-group privacy-policy index-bouquet-wish-8march__agreement">
                     <div class="checkbox">
                       <input type="checkbox" name="privacy-policy" id="privacy-bouquet-wish" required autocomplete="off" class="green-checkbox">
-                      <label for="privacy-bouquet-wish">Нажимая на кнопку, вы даете согласие на обработку<br>персональных данных и рекламную рассылку,<br>
+                      <label for="privacy-bouquet-wish">Нажимая на кнопку, вы даете согласие на обработку персональных данных и рекламную рассылку,
     и соглашаетесь с нашей политикой конфиденциальности</label>
                     </div>
                   </div>
@@ -315,8 +315,8 @@
             <h2 class="index-social-8march__title">LUCIANO В СОЦСЕТЯХ</h2>
             <p class="index-social-8march__text">Присоединяйтесь к нашим социальным сетям, чтобы оставаться в курсе всех актуальных акций, скидок и розыгрышей!</p>
             <div class="index-social-8march__links">
-              <a href="#" class="index-social-8march__link">TELEGRAM</a>
-              <a href="#" class="index-social-8march__link">VK</a>
+              <a href="{% if social_link_telegram %}{{ social_link_telegram }}{% else %}#{% endif %}" class="index-social-8march__link" {% if social_link_telegram %}target="_blank" rel="noopener noreferrer"{% endif %}>TELEGRAM</a>
+              <a href="{% if social_link_vk %}{{ social_link_vk }}{% else %}#{% endif %}" class="index-social-8march__link" {% if social_link_vk %}target="_blank" rel="noopener noreferrer"{% endif %}>VK</a>
             </div>
           </div>
         </section>
