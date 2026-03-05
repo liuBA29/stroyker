@@ -22,7 +22,6 @@ from stroykerbox.apps.utils.views import clear_cache, clear_thumbnail_cache
 from stroykerbox.apps.search.views import SearchResult
 from stroykerbox.apps.common.views import StaffCheckPage, DashboardPage
 from stroykerbox.apps.crm.forms import FeedbackMessageForm
-from stroykerbox.apps.catalog.models import Category
 
 YML_URL = getattr(config, 'YML_URL', 'catalog_export.yml') or 'catalog_export.yml'
 
@@ -42,24 +41,25 @@ def view_8march_design_test(request):
         footer_contacts = getattr(config, 'MAIL__FOOTER_CONTACTS', None) or ''
     except Exception:
         pass
-    # Корневые категории каталога по порядку — для блока с овальными картинками (Готовая витрина, Моно букеты и т.д.)
-    categories_qs = Category.objects.filter(published=True, level=0).order_by('tree_id', 'lft')[:6]
-    categories_list = list(categories_qs)
-    # Фиксированные картинки и подписи для 6 слотов; ссылка — на соответствующую категорию или каталог
+    # Рубрика с овальными картинками: фиксированная логика как на lucianoflowers.ru
+    # (порядок, подписи, картинки и целевые категории)
     category_slots = (
-        ('1.png', 'Готовая витрина', 'ГОТОВАЯ<br>ВИТРИНА'),
-        ('2.png', 'Моно букеты', 'МОНО<br>БУКЕТЫ'),
-        ('4.png', 'Авторские букеты', 'АВТОРСКИЕ<br>БУКЕТЫ'),
-        ('5.png', 'Композиции', 'КОМПОЗИЦИИ'),
-        ('6.png', 'Подарки', 'ПОДАРКИ'),
-        ('8.png', 'Букет по желанию', 'БУКЕТ ПО<br>ЖЕЛАНИЮ'),
+        ('images/gotovaya-vitrina.png', 'Готовая витрина', 'ГОТОВАЯ<br>ВИТРИНА', '8-marta'),
+        ('images/monoduo-bukety.png', 'Моно букеты', 'МОНО<br>БУКЕТЫ', 'gotovaya-vitrina'),
+        ('images/kompozicii.png', 'Композиции', 'КОМПОЗИЦИИ', 'cvety-na-prazdniki'),
+        ('images/wow-effect.png', 'Эффектные букеты', 'ЭФФЕКТНЫЕ<br>БУКЕТЫ', 'wow-bukety'),
+        ('images/fresh-buketi.png', 'Интерьерные букеты', 'ИНТЕРЬЕРНЫЕ<br>БУКЕТЫ', 'monoduo-bukety'),
+        ('images/podarki.png', 'Подарки', 'ПОДАРКИ', 'wow-bukety'),
     )
     categories_8march = []
-    for i, (img, alt, label) in enumerate(category_slots):
-        url = categories_list[i].get_absolute_url() if i < len(categories_list) else reverse('catalog:index')
+    for img, alt, label, slug in category_slots:
+        try:
+            url = reverse('catalog:category', kwargs={'category_slug': slug})
+        except Exception:
+            url = reverse('catalog:index')
         categories_8march.append({
             'url': url,
-            'image': '8march_design/images/LUCIANO/' + img,
+            'image': img,
             'alt': alt,
             'label': label,
         })

@@ -1202,7 +1202,7 @@ section.feedback-form button {
   width: 100%;
   height: 100%;
   z-index: 0;
-  background-color: #CFDCAB;
+  background-color: #CFDCAB;/* Это логотип лучано на большом экране  р разделе */
   mask-image: url("/static/8march_design/images/luciano_logo.svg");
   mask-size: 100% auto;
   mask-repeat: no-repeat;
@@ -1355,8 +1355,8 @@ section.feedback-form button {
   .index-info-8march__watermark {
     mask-image: url("/static/8march_design/images/luciano_logo_90.svg");
     -webkit-mask-image: url("/static/8march_design/images/luciano_logo_90.svg");
-    mask-size: auto 99%;
-    -webkit-mask-size: auto 99%;
+    mask-size: auto 80%;
+    -webkit-mask-size: auto 80%;
     mask-repeat: no-repeat;
     -webkit-mask-repeat: no-repeat;
     mask-position: right center;
@@ -1375,7 +1375,7 @@ section.feedback-form button {
     width: auto;
     max-width: 100%;
     height: auto;
-    margin-top: 2rem;
+    margin-top: 0;
     padding: 0 0 1rem;
     order: 2;
     display: flex;
@@ -1799,7 +1799,7 @@ section.feedback-form button {
   flex: 1 1 50%;
   min-height: 280px;
   overflow: hidden;
-  background: #c5d4c4;
+  background: transparent;
 }
 
 .index-bouquet-wish-8march__img {
