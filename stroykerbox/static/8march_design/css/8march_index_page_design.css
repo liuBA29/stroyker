@@ -335,25 +335,33 @@ section.feedback-form button {
 
 /* Квадратик с логотипом: светлый полупрозрачный с блюром; меньше блока с картинкой по ширине и высоте, расположен внутри него по центру */
 .page-index-8march .index-hero-8march__logo-box,
-.index-hero-8march__logo-box {
+.index-hero-8march__logo-box,
+.index-hero-8march__8march-card {
   position: relative;
   z-index: 1;
-  width: min(280px, 42vw);
+  /* ВАЖНО: на больших экранах размер блюренной области фиксирован 400x400; НИКОГДА не менять без прямого согласования с заказчиком. */
+  width: 400px;
+  height: 400px;
   max-width: 85%;
-  aspect-ratio: 1;
-  max-height: min(280px, 50vh);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
+  aspect-ratio: 1 / 1;
+  max-height: none;
   background: rgba(255, 255, 252, 0.78) !important;
   background-color: rgba(255, 255, 252, 0.78) !important;
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
-  border-radius: 0;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+}
+
+.page-index-8march .index-hero-8march__logo-box,
+.index-hero-8march__logo-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
 }
 /* Сброс серого фона у картинки логотипа (глобальные заглушки не должны его трогать). Никакой рамочки и скруглений вокруг логотипа. */
 .page-index-8march .index-hero-8march__logo-box .index-hero-8march__logo,
@@ -369,7 +377,8 @@ section.feedback-form button {
 
 .index-hero-8march__logo {
   width: 100%;
-  max-width: 260px;
+  /* ВАЖНО: логотип в герое НЕ уменьшать (особенно на больших экранах) без прямого согласования с заказчиком. */
+  max-width: 360px;
   height: auto;
   display: block;
   object-fit: contain;
@@ -378,29 +387,15 @@ section.feedback-form button {
   border-radius: 0 !important;
 }
 
+/* ВАЖНО/СТРОГИЙ ЗАПРЕТ: в этой карточке НИ В КОЕМ СЛУЧАЕ нельзя менять размеры шрифтов, позиционирование и любые стили (ни на каком экране) без прямого письменного согласования с заказчиком. */
 /* Вторая карточка героя: квадратик с надписью «8 марта» — меньше блока с картинкой, расположен внутри по центру */
 .index-hero-8march__8march-card {
-  position: relative;
-  z-index: 1;
-  width: min(280px, 42vw);
-  max-width: 85%;
-  aspect-ratio: 1;
-  max-height: min(280px, 50vh);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding: 1.5rem 1.5rem 0.25rem 1.5rem;
   overflow: hidden;
-  background: rgba(255, 255, 252, 0.78) !important;
-  background-color: rgba(255, 255, 252, 0.78) !important;
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-  -webkit-border-radius: 0 !important;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   text-align: center;
   box-sizing: border-box;
 }
@@ -419,6 +414,7 @@ section.feedback-form button {
   border-radius: 0 !important;
 }
 /* Логотип внутри карточки 8 марта — чуть меньше, выше, без рамочки */
+/* ВАЖНО: для 2-й карточки на больших экранах размеры логотипа, «8 марта» и слогана НИ В КОЕМ СЛУЧАЕ не менять без прямого согласования с заказчиком. */
 .index-hero-8march__8march-card .index-hero-8march__8march-card-logo,
 .index-hero-8march__8march-card .index-hero-8march__logo {
   width: 100%;
@@ -529,7 +525,7 @@ section.feedback-form button {
 /* Общий стиль чёрных кнопок (В КАТАЛОГ, ВЫБРАТЬ БУКЕТ, ОТПРАВИТЬ) */
 .black-button {
   display: inline-block;
-  font-weight: 600;
+  font-weight: 400;
   color: #fff !important;
   background-color: #1a1a1a !important;
   background: #1a1a1a !important;
@@ -621,30 +617,66 @@ section.feedback-form button {
   .index-hero-8march__right {
     min-height: 260px;
   }
+  .index-hero-8march__left {
+    height: 260px;
+  }
   .index-hero-8march__img {
-    min-height: 260px;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    object-position: center center;
   }
   .index-hero-8march__left {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .index-hero-8march__logo-box {
-    width: min(140px, 42vw);
-    max-width: 55%;
-    max-height: min(140px, 28vh);
-    aspect-ratio: 1;
-    padding: 0.75rem 0.875rem;
-  }
+  .page-index-8march .index-hero-8march__logo-box,
+  .index-hero-8march__logo-box,
   .index-hero-8march__8march-card {
-    width: min(140px, 42vw);
-    max-width: 55%;
-    max-height: min(140px, 28vh);
-    aspect-ratio: 1;
+    /* ВАЖНО: для малого экрана НИ В КОЕМ СЛУЧАЕ не менять ни размеры, ни пропорции блюренных блоков 1-й и 2-й карточек без прямого согласования с заказчиком. */
+    width: min(510px, 84vw) !important;
+    height: min(255px, 42vw) !important;
+    max-width: 75%;
+    max-height: none;
+    aspect-ratio: 2 / 1;
     padding: 0.75rem 0.875rem;
   }
   .index-hero-8march__logo {
     max-width: 100px;
+  }
+  .page-index-8march .index-hero-8march__logo-box .index-hero-8march__logo,
+  .index-hero-8march__logo-box .index-hero-8march__logo {
+    /* ВАЖНО: размер логотипа в 1-й карточке на малом экране НИ В КОЕМ СЛУЧАЕ не менять без прямого согласования с заказчиком. */
+    max-width: 150px;
+  }
+  /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: мобильные размеры/отступы логотипа, «8 марта» и слогана во 2-й карточке НИ В КОЕМ СЛУЧАЕ не менять без прямого письменного согласования с заказчиком. */
+  .page-index-8march .index-hero-8march__8march-card .index-hero-8march__logo,
+  .index-hero-8march__8march-card .index-hero-8march__logo {
+    max-width:96px;
+    margin-top: 0.1rem !important;
+    margin-bottom: 0.08rem !important;
+  }
+  .page-index-8march .index-hero-8march__8march-card .index-hero-8march__8march-number,
+  .index-hero-8march__8march-card .index-hero-8march__8march-number {
+    font-size: clamp(5.2rem, 18vw, 7.2rem);
+    line-height: 0.82;
+    margin-top: -0.12em !important;
+    margin-bottom: -0.08em;
+  }
+  .page-index-8march .index-hero-8march__8march-card .index-hero-8march__8march-month,
+  .index-hero-8march__8march-card .index-hero-8march__8march-month {
+    font-size: clamp(2rem, 7vw, 2.8rem);
+    line-height: 0.82;
+    margin-top: -0.22em;
+    margin-bottom: 0.04em;
+  }
+  .page-index-8march .index-hero-8march__8march-card .index-hero-8march__8march-slogan,
+  .index-hero-8march__8march-card .index-hero-8march__8march-slogan {
+    font-size: 14px;
+    line-height: 1;
+    margin-top: 0.12rem;
+    padding-top: 0;
   }
   .index-hero-8march__right {
     padding: 1.5rem 1rem;
@@ -965,7 +997,7 @@ section.feedback-form button {
 
 @media (min-width: 1600px) {
   .index-promo-8march__card {
-    width: 320px;
+    width: 700px;
   }
   .index-promo-8march__card--large {
     width: 462px;
@@ -1451,6 +1483,12 @@ section.feedback-form button {
   background: #fff;
 }
 
+.index-bouquets-8march .index-bouquets-8march__title {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+}
+
 /* Карусель сборных букетов (общий скрипт 8march_carousel.js) */
 .index-bouquets-8march__carousel-wrap {
   position: relative;
@@ -1530,7 +1568,7 @@ section.feedback-form button {
   flex-direction: column;
   gap: 2rem;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0;
   padding: 0 3rem;
   box-sizing: border-box;
 }

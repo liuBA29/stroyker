@@ -89,7 +89,7 @@ body {
 /* Общий стиль чёрных кнопок (хэдер, футер, главная — В КАТАЛОГ, ПЕРЕЗВОНИТЕ МНЕ, ОТПРАВИТЬ и т.д.) */
 .black-button {
   display: inline-block;
-  font-weight: 600;
+  font-weight: 400;
   color: #fff !important;
   background-color: #1a1a1a !important;
   background: #1a1a1a !important;
@@ -195,7 +195,29 @@ a.button:hover,
   box-shadow: 0 4px 14px #FBE3E1 !important;
 }
 
-/* Кнопки «СМОТРЕТЬ ВЕСЬ КАТАЛОГ» — нежный фон #FBE3E1, надпись цветом бывшего фона (розовый), без скруглений */
+/* АКЦИИ/BTN-CATALOG (ORIGINAL) — НЕ МЕНЯТЬ.
+   Раскомментировать только по прямой команде заказчика.
+*/
+/*
+a.index-promo-8march__btn-catalog,
+a.index-bouquets-8march__btn-catalog {
+  background: #FBE3E1 !important;
+  background-color: #FBE3E1 !important;
+  background-image: none !important;
+  color: #B8736E !important;
+  border: none !important;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+}
+a.index-promo-8march__btn-catalog:hover,
+a.index-bouquets-8march__btn-catalog:hover {
+  background: #f5d5d3 !important;
+  background-color: #f5d5d3 !important;
+  color: #a06660 !important;
+}
+*/
+
+/* АКЦИИ/BTN-CATALOG (ACTIVE DUPLICATE) — НЕ МЕНЯТЬ. */
 a.index-promo-8march__btn-catalog,
 a.index-bouquets-8march__btn-catalog {
   background: #FBE3E1 !important;

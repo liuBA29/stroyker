@@ -81,13 +81,58 @@ def view_8march_design_test(request):
         return f"{int(amount):,}".replace(',', ' ') + ' P'
 
     location = getattr(request, 'location', None)
+    # АКЦИИ (ORIGINAL) — НЕ МЕНЯТЬ.
+    # Раскомментировать только по прямой команде заказчика.
+    # # ВАЖНО: условие отбора товаров в блок «АКЦИИ» (published + обязательны обе цены) не менять без прямого указания заказчика.
+    # # promo_qs = Product.objects.filter(published=True, is_action=True).prefetch_related('images').distinct()
+    # promo_qs = Product.objects.filter(published=True).prefetch_related('images').distinct()
+    # if not promo_qs.exists():
+    #     promo_qs = Product.objects.filter(published=True, categories__slug='8-marta').prefetch_related('images').distinct()
+    # if not promo_qs.exists():
+    #     promo_qs = Product.objects.filter(published=True).prefetch_related('images')
+    #
+    # promo_products = []
+    # for product in promo_qs.order_by('-updated_at'):
+    #     price_obj = product.location_price_object(location)
+    #     main_price = (
+    #         getattr(price_obj, 'currency_price', None)
+    #         or getattr(price_obj, 'price', None)
+    #         or product.currency_price
+    #         or product.price
+    #     )
+    #     old_price = (
+    #         getattr(price_obj, 'currency_old_price', None)
+    #         or getattr(price_obj, 'old_price', None)
+    #         or product.currency_old_price
+    #         or product.old_price
+    #     )
+    #     main_price_fmt = _format_price(main_price)
+    #     old_price_fmt = _format_price(old_price)
+    #     if not (main_price_fmt and old_price_fmt):
+    #         continue
+    #     image_url = ''
+    #     if product.main_image and getattr(product.main_image, 'image', None):
+    #         try:
+    #             image_url = product.main_image.image.url
+    #         except Exception:
+    #             image_url = ''
+    #     if not image_url:
+    #         image_url = '/static/images/empty-product.svg'
+    #
+    #     promo_products.append({
+    #         'url': product.get_absolute_url() or reverse('catalog:index'),
+    #         'image': image_url,
+    #         'alt': product.name or 'Товар',
+    #         'price': main_price_fmt,
+    #         'old_price': old_price_fmt,
+    #     })
+    #     if len(promo_products) >= 24:
+    #         break
+
+    # АКЦИИ (ACTIVE DUPLICATE) — НЕ МЕНЯТЬ.
     # ВАЖНО: условие отбора товаров в блок «АКЦИИ» (published + обязательны обе цены) не менять без прямого указания заказчика.
     # promo_qs = Product.objects.filter(published=True, is_action=True).prefetch_related('images').distinct()
-    promo_qs = Product.objects.filter(published=True).prefetch_related('images').distinct()
-    if not promo_qs.exists():
-        promo_qs = Product.objects.filter(published=True, categories__slug='8-marta').prefetch_related('images').distinct()
-    if not promo_qs.exists():
-        promo_qs = Product.objects.filter(published=True).prefetch_related('images')
+    promo_qs = Product.objects.filter(published=True, categories__slug='8-marta').prefetch_related('images').distinct()
 
     promo_products = []
     for product in promo_qs.order_by('-updated_at'):
@@ -106,8 +151,6 @@ def view_8march_design_test(request):
         )
         main_price_fmt = _format_price(main_price)
         old_price_fmt = _format_price(old_price)
-        if not (main_price_fmt and old_price_fmt):
-            continue
         image_url = ''
         if product.main_image and getattr(product.main_image, 'image', None):
             try:
