@@ -1056,6 +1056,15 @@ footer .footer-right .footer-copyright {
 footer .footer-bottom .footer-bottom__left {
   display: none !important;
 }
+/* Только для 8march: скрыть служебную контактную строку из общего футера, если она подмешивается */
+.page-index-8march .footer-contact {
+  display: none !important;
+}
+/* Только для 8march: скрыть мобильный текст-копирайт/контакты из общего футера, если подмешивается */
+.page-index-8march .footer-first-column .mobile-show,
+.page-index-8march .footer-bottom__left .footer-text {
+  display: none !important;
+}
 
 /* ========== Футер 8march по эталону: ряд «Остались вопросы?» + телефон/ПЕРЕЗВОНИТЕ МНЕ, колонки ссылок, копирайт справа ========== */
 .footer--8march .footer-8march-questions-row {

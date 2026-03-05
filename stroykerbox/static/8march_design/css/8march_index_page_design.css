@@ -1202,7 +1202,7 @@ section.feedback-form button {
   width: 100%;
   height: 100%;
   z-index: 0;
-  background-color: #CFDCAB;/* Это логотип лучано на большом экране  р разделе */
+  background-color: #CFDCAB;/* Это логотип лучано на большом экране  р разделе ГАРАНТИЯ-рейтинг*/
   mask-image: url("/static/8march_design/images/luciano_logo.svg");
   mask-size: 100% auto;
   mask-repeat: no-repeat;
@@ -1792,7 +1792,7 @@ section.feedback-form button {
 .index-bouquet-wish-8march__inner {
   display: flex;
   flex-wrap: wrap;
-  min-height: 320px;
+  min-height: 420px;
 }
 
 .index-bouquet-wish-8march__left {
@@ -2375,14 +2375,18 @@ section.feedback-form button {
 @media (max-width: 767px) {
   .index-8march-map-overlay {
     left: 1rem;
-    top: 1rem;
+    top: auto;
+    bottom: 1rem;
     right: 1rem;
     max-width: none;
     padding: 1.25rem 1rem;
   }
+  .index-8march-map-overlay .index-8march-questions-wrap__title {
+    font-size: 2rem;
+  }
   .page-index-8march .index-8march-map-wrap .wide-map,
   .page-index-8march .index-8march-map-wrap #yamap_addresses {
-    height: 60vh !important;
-    min-height: 320px !important;
+    height: 120vh !important;
+    min-height: 640px !important;
   }
 }

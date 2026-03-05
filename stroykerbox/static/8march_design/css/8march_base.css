@@ -11,12 +11,12 @@
 }
 .container {
   width: 100%;
-  max-width: 1210px;
+  max-width: 1410px;
   min-width: 320px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 main {
   flex: 1 0 auto;
