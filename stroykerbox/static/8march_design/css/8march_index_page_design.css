@@ -1351,6 +1351,18 @@ section.feedback-form button {
     flex-direction: column;
     align-items: stretch;
   }
+  /* На маленьком экране: luciano_logo_90.svg (уже повёрнут), прижат к правому краю */
+  .index-info-8march__watermark {
+    mask-image: url("/static/8march_design/images/luciano_logo_90.svg");
+    -webkit-mask-image: url("/static/8march_design/images/luciano_logo_90.svg");
+    mask-size: auto 99%;
+    -webkit-mask-size: auto 99%;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: right center;
+    -webkit-mask-position: right center;
+    background-color:#CFDCAB;
+  }
   .index-info-8march__inner {
     height: auto;
     min-height: 0;
