@@ -94,7 +94,10 @@
   color: var(--8march-body-color, #2d2d2d);
 }
 .page-index-8march .index-promo-8march__price-new,
+.page-index-8march .index-promo-8march__price-old,
 .page-index-8march .index-bouquets-8march__price {
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif);
+  font-variant-numeric: lining-nums proportional-nums;
   font-weight: 700;
 }
 .page-index-8march .index-promo-8march__price-old {
@@ -938,6 +941,13 @@ section.feedback-form button {
   position: relative;
   z-index: 1;
 }
+/* ВАЖНО/СТРОГИЙ ЗАПРЕТ: шрифт и размер цифры «8» в заголовке «8 МАРТА» НИ В КОЕМ СЛУЧАЕ не менять без прямого письменного согласования с заказчиком. */
+.index-promo-8march__title .pretty_numbers {
+  font-size: 3em !important;
+  font-weight: 300 !important;
+  line-height: 1 !important;
+  display: inline-block;
+}
 
 .index-promo-8march__carousel-wrap {
   position: relative;
@@ -1063,15 +1073,28 @@ section.feedback-form button {
 }
 
 .index-promo-8march__price-old {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   color: #888;
   text-decoration: line-through;
 }
 
 .index-promo-8march__price-new {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: #2d2d2d;
+}
+.page-index-8march .index-8march-content span.index-promo-8march__price-old,
+.page-index-8march .index-8march-content span.index-promo-8march__price-new,
+.page-index-8march .index-8march-content p.index-bouquets-8march__price {
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif) !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  font-size: 24px !important;
+  leading-trim: none;
+  line-height: 100% !important;
+  letter-spacing: 0 !important;
+  font-variant-numeric: lining-nums proportional-nums;
+  text-transform: uppercase !important;
 }
 
 .index-promo-8march__card:hover {
@@ -1673,15 +1696,33 @@ section.feedback-form button {
 
 .index-bouquets-8march__desc {
   margin: 0 0 0.5rem;
-  font-size: 0.85rem;
-  line-height: 1.35;
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif);
+  font-weight: 300;
+  font-style: normal;
+  font-size: 16px;
+  leading-trim: none;
+  line-height: 100%;
+  letter-spacing: 0;
   color: #2d2d2d;
   text-align: left;
+}
+/* ВАЖНО/СТРОГИЙ ЗАПРЕТ: шрифты и типографику описаний/цен в карточках этого блока НИ В КОЕМ СЛУЧАЕ не менять без прямого письменного согласования с заказчиком. */
+.page-index-8march .index-bouquets-8march__desc {
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif);
+}
+.page-index-8march .index-8march-content p.index-bouquets-8march__desc {
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif) !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-size: 16px !important;
+  leading-trim: none;
+  line-height: 100% !important;
+  letter-spacing: 0 !important;
 }
 
 .index-bouquets-8march__price {
   margin: 0 0 0.75rem;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: #2d2d2d;
 }
