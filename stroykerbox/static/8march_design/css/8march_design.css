@@ -185,16 +185,14 @@ button,
 input[type="submit"],
 a.button,
 [class*="button"] {
-  border-radius: 999px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
-  transition: box-shadow 0.2s ease, transform 0.15s ease !important;
+  
 }
 button:hover,
 .btn:hover,
 input[type="submit"]:hover,
 a.button:hover,
 [class*="button"]:hover {
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 0 4px 14px #FBE3E1 !important;
 }
 
 /* Кнопки «СМОТРЕТЬ ВЕСЬ КАТАЛОГ» — нежный фон #FBE3E1, надпись цветом бывшего фона (розовый), без скруглений */
@@ -234,9 +232,7 @@ a,
 .product-preview,
 [class*="product-preview"],
 [class*="card"]:not(.index-hero-8march__logo-box):not(.index-hero-8march__8march-card):not(.index-promo-8march__card) {
-  border-radius: 16px !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
-  transition: box-shadow 0.25s ease, transform 0.2s ease !important;
+  
 }
 .product-teaser:hover,
 .product-preview:hover,

@@ -1572,7 +1572,7 @@ section.feedback-form button {
   width: 400px !important;
   min-width: 400px;
   opacity: 1;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  box-shadow: none !important;
   transform: translateY(-2px);
 }
 
@@ -1604,18 +1604,18 @@ section.feedback-form button {
   min-width: 400px;
   max-width: none;
   opacity: 1;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  box-shadow: none !important;
   transform: translateY(-2px);
 }
 .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest .index-bouquets-8march__card:last-child:hover {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06) !important;
+  box-shadow: none !important;
 }
 
 .index-bouquets-8march__card:hover {
   box-shadow: none !important;
 }
 .index-bouquets-8march__card--first:hover {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06) !important;
+  box-shadow: none !important;
 }
 
 .index-bouquets-8march__img-wrap {
@@ -1670,6 +1670,7 @@ section.feedback-form button {
   border: none !important;
   border-radius: 0;
   -webkit-border-radius: 0;
+  box-shadow: none !important;
   background: #FBE3E1 !important;
   background-color: #FBE3E1 !important;
   background-image: none !important;
@@ -1679,45 +1680,63 @@ section.feedback-form button {
   box-sizing: border-box;
 }
 
+.index-bouquets-8march .index-bouquets-8march__btn {
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
 .index-bouquets-8march__btn-catalog:hover {
   background: #f5d5d3 !important;
   background-color: #f5d5d3 !important;
 }
 
 @media (min-width: 768px) {
+  .index-bouquets-8march__grid {
+    max-width: none;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    --bouquets-gap: 1.5rem;
+    --bouquets-work: calc(100vw - 4rem - (2 * var(--bouquets-gap)));
+    --bouquets-small: calc(var(--bouquets-work) * 0.2826);
+    --bouquets-big: calc(var(--bouquets-work) * 0.4348);
+  }
+  .index-bouquets-8march__grid-row {
+    flex-wrap: nowrap;
+  }
   .index-bouquets-8march__grid-first {
-    width: 440px;
-    min-width: 440px;
+    width: var(--bouquets-big);
+    min-width: var(--bouquets-big);
   }
   .index-bouquets-8march__card--first {
-    width: 440px !important;
-    min-width: 440px;
+    width: var(--bouquets-big) !important;
+    min-width: var(--bouquets-big);
   }
   .index-bouquets-8march__grid-rest {
-    grid-template-columns: repeat(2, 260px);
+    grid-template-columns: repeat(2, var(--bouquets-small));
   }
   .index-bouquets-8march__grid-rest .index-bouquets-8march__card {
-    width: 260px;
-    max-width: 260px;
+    width: var(--bouquets-small);
+    max-width: var(--bouquets-small);
   }
   .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-first {
-    width: 260px;
-    min-width: 260px;
+    width: var(--bouquets-small);
+    min-width: var(--bouquets-small);
   }
   .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__card--first {
-    width: 260px !important;
-    min-width: 260px;
+    width: var(--bouquets-small) !important;
+    min-width: var(--bouquets-small);
   }
   .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest {
-    grid-template-columns: 260px 440px;
+    grid-template-columns: var(--bouquets-small) var(--bouquets-big);
   }
   .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest .index-bouquets-8march__card:first-child {
-    width: 260px;
-    max-width: 260px;
+    width: var(--bouquets-small);
+    max-width: var(--bouquets-small);
   }
   .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest .index-bouquets-8march__card:last-child {
-    width: 440px;
-    min-width: 440px;
+    width: var(--bouquets-big);
+    min-width: var(--bouquets-big);
   }
 }
 

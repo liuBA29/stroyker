@@ -81,7 +81,9 @@ def view_8march_design_test(request):
         return f"{int(amount):,}".replace(',', ' ') + ' P'
 
     location = getattr(request, 'location', None)
-    promo_qs = Product.objects.filter(published=True, is_action=True).prefetch_related('images').distinct()
+    # ВАЖНО: условие отбора товаров в блок «АКЦИИ» (published + обязательны обе цены) не менять без прямого указания заказчика.
+    # promo_qs = Product.objects.filter(published=True, is_action=True).prefetch_related('images').distinct()
+    promo_qs = Product.objects.filter(published=True).prefetch_related('images').distinct()
     if not promo_qs.exists():
         promo_qs = Product.objects.filter(published=True, categories__slug='8-marta').prefetch_related('images').distinct()
     if not promo_qs.exists():

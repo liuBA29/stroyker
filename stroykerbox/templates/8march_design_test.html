@@ -134,6 +134,32 @@
               <a href="{% url 'catalog:index' %}" class="index-promo-8march__btn-catalog">СМОТРЕТЬ ВЕСЬ КАТАЛОГ</a>
             </div>
           </section>
+          <section class="index-promo-8march">
+            <h2 class="index-promo-8march__title big-title">АКЦИИ</h2>
+            <div class="index-promo-8march__carousel-wrap">
+              <button type="button" class="index-promo-8march__arrow index-promo-8march__arrow--prev" title="Назад" aria-label="Назад"></button>
+              <div class="index-promo-8march__carousel" data-promo-carousel>
+                <div class="index-promo-8march__track">
+                  {% for item in promo_products %}
+                  <a href="{{ item.url }}" class="index-promo-8march__card{% if forloop.first %} index-promo-8march__card--large{% endif %}">
+                    <span class="index-promo-8march__img-wrap">
+                      <img src="{{ item.image }}" alt="{{ item.alt }}" class="index-promo-8march__img">
+                    </span>
+                    <span class="index-promo-8march__prices">
+                      {% if item.old_price %}<span class="index-promo-8march__price-old">{{ item.old_price }}</span>{% endif %}
+                      {% if item.price %}<span class="index-promo-8march__price-new">{{ item.price }}</span>{% endif %}
+                    </span>
+                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  </a>
+                  {% endfor %}
+                </div>
+              </div>
+              <button type="button" class="index-promo-8march__arrow index-promo-8march__arrow--next" title="Вперёд" aria-label="Вперёд"></button>
+            </div>
+            <div class="index-promo-8march__footer">
+              <a href="{% url 'catalog:index' %}" class="index-promo-8march__btn-catalog">СМОТРЕТЬ ВЕСЬ КАТАЛОГ</a>
+            </div>
+          </section>
         </div>
 
         <section class="index-info-8march">
@@ -421,22 +447,24 @@
   <script>
   (function() {
     function init() {
-      var promoWrap = document.querySelector('.index-promo-8march__carousel-wrap');
-      if (promoWrap && typeof init8marchCarousel === 'function') {
-        init8marchCarousel(promoWrap, {
-          trackSelector: '.index-promo-8march__track',
-          prevSelector: '.index-promo-8march__arrow--prev',
-          nextSelector: '.index-promo-8march__arrow--next',
-          cardSelector: '.index-promo-8march__card',
-          cardLargeClass: 'index-promo-8march__card--large',
-          gap: 20,
-          smallW: 260,
-          largeW: 377,
-          breakpoints: [
-            { minWidth: 1600, smallW: 320, largeW: 462 },
-            { minWidth: 768, smallW: 260, largeW: 377 },
-            { minWidth: 0, smallW: Math.max(220, window.innerWidth - 40), largeW: Math.max(220, window.innerWidth - 40) }
-          ]
+      var promoWraps = document.querySelectorAll('.index-promo-8march__carousel-wrap');
+      if (promoWraps.length && typeof init8marchCarousel === 'function') {
+        promoWraps.forEach(function(promoWrap) {
+          init8marchCarousel(promoWrap, {
+            trackSelector: '.index-promo-8march__track',
+            prevSelector: '.index-promo-8march__arrow--prev',
+            nextSelector: '.index-promo-8march__arrow--next',
+            cardSelector: '.index-promo-8march__card',
+            cardLargeClass: 'index-promo-8march__card--large',
+            gap: 20,
+            smallW: 260,
+            largeW: 377,
+            breakpoints: [
+              { minWidth: 1600, smallW: 320, largeW: 462 },
+              { minWidth: 768, smallW: 260, largeW: 377 },
+              { minWidth: 0, smallW: Math.max(220, window.innerWidth - 40), largeW: Math.max(220, window.innerWidth - 40) }
+            ]
+          });
         });
       }
     }
