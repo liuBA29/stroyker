@@ -16,12 +16,12 @@
                     <input type="text" name="name" class="feedback-form--8march-footer__input" required autocomplete="name" placeholder="Ваше имя"{% if request.user.is_authenticated and request.user.name %} value="{{ request.user.name }}"{% endif %}>
                 </label>
                 <label class="feedback-form--8march-footer__field">
-                    <span class="feedback-form--8march-footer__label" aria-hidden="true">Номер телефона</span>
-                    <input type="tel" name="phone" class="feedback-form--8march-footer__input feedback-form--8march-footer__input--phone" required autocomplete="tel" placeholder="Номер телефона"{% if request.user.is_authenticated and request.user.phone %} value="{{ request.user.phone }}"{% endif %}>
+                    <span class="feedback-form--8march-footer__label" aria-hidden="true">E-mail</span>
+                    <input type="email" name="email" class="feedback-form--8march-footer__input" required autocomplete="email" placeholder="E-mail"{% if request.user.is_authenticated %} value="{{ request.user.email }}"{% endif %}>
                 </label>
                 <label class="feedback-form--8march-footer__field">
-                    <span class="feedback-form--8march-footer__label" aria-hidden="true">e-mail</span>
-                    <input type="email" name="email" class="feedback-form--8march-footer__input" required autocomplete="email" placeholder="e-mail"{% if request.user.is_authenticated %} value="{{ request.user.email }}"{% endif %}>
+                    <span class="feedback-form--8march-footer__label" aria-hidden="true">Номер телефона</span>
+                    <input type="tel" name="phone" class="feedback-form--8march-footer__input feedback-form--8march-footer__input--phone" required autocomplete="tel" placeholder="Номер телефона"{% if request.user.is_authenticated and request.user.phone %} value="{{ request.user.phone }}"{% endif %}>
                 </label>
                 <label class="feedback-form--8march-footer__field">
                     <span class="feedback-form--8march-footer__label" aria-hidden="true">Ваш вопрос</span>

@@ -968,6 +968,7 @@ footer .container {
 }
 
 footer .footer-content__title {
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif) !important;
   font-weight: 700 !important;
   letter-spacing: 0.05em !important;
   text-transform: uppercase !important;
@@ -979,6 +980,13 @@ footer .footer-content__column a,
 footer .footer-content__ul-content a,
 footer .footer-first-column a,
 footer .footer-contact {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-size: 16px !important;
+  leading-trim: none;
+  line-height: 140% !important;
+  letter-spacing: 0 !important;
   color: var(--8march-footer-text) !important;
 }
 
@@ -1100,8 +1108,41 @@ footer .footer-bottom .footer-bottom__left {
   padding-bottom: 2rem;
   border-bottom: none !important;
 }
+.footer-8march-shift-block {
+  width: 3px;
+  min-width: 3px;
+  height: 1px;
+  background: transparent;
+  flex-shrink: 0;
+}
+.footer-8march-shift-block--right {
+  width: 12px;
+  min-width: 12px;
+}
+@media (min-width: 992px) {
+  .footer--8march .footer-8march-call-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .footer--8march .footer-8march-shift-block--right {
+    display: block;
+  }
+  .footer--8march .footer-8march-call__phone,
+  .footer--8march .footer-8march-call__btn,
+  .footer--8march .footer-8march-copyright .footer-copyright {
+    margin-right: 12px;
+  }
+  .footer--8march .footer-8march-call__phone {
+    margin-right: 0 !important;
+    position: relative;
+    left: -16px;
+  }
+}
 /* На больших экранах: заголовок слева, форма справа */
 @media (min-width: 992px) {
+  /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: стили большого футера (>=992px) в этом блоке финально утверждены.
+     НИ В КОЕМ СЛУЧАЕ не менять без прямого письменного согласования с заказчиком. */
   .footer--8march .footer-8march-questions-col {
     display: flex;
     flex-direction: row;
@@ -1117,17 +1158,38 @@ footer .footer-bottom .footer-bottom__left {
     flex-shrink: 0;
   }
 }
+@media (max-width: 767px) {
+  .footer-8march-shift-block {
+    display: none;
+  }
+  .footer--8march .footer-8march-call__phone,
+  .footer--8march .footer-8march-call__btn,
+  .footer--8march .footer-8march-copyright .footer-copyright {
+    margin-right: 0 !important;
+  }
+}
 .footer-8march-questions__title {
   font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif);
   font-weight: 300;
   font-style: normal;
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-size: 32px;
   letter-spacing: 0;
   text-transform: uppercase;
+  white-space: nowrap;
   color: var(--8march-footer-title, #2d2d2d);
   margin: 0 0 1rem;
   line-height: 100%;
   font-variant-numeric: lining-nums proportional-nums;
+}
+@media (min-width: 768px) {
+  .footer-8march-questions__title {
+    font-size: 32px;
+  }
+}
+@media (max-width: 767px) {
+  .footer-8march-questions__title {
+    font-size: 44px;
+  }
 }
 /* Новая форма 8 марта: 4 одинаковых поля ввода, симметричная сетка 2×2 */
 .feedback-form--8march-footer {
@@ -1276,6 +1338,19 @@ section.feedback-form--8march-footer button[type="submit"].black-button:hover {
     grid-template-rows: auto;
   }
 }
+@media (max-width: 767px) {
+  .footer--8march .feedback-form--8march-footer__form,
+  .footer--8march .feedback-form--8march-footer__grid {
+    width: 80vw;
+    max-width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer--8march .feedback-form--8march-footer__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+}
 
 .footer--8march .footer-8march-questions-col .feedback-form {
   background: transparent !important;
@@ -1377,8 +1452,15 @@ section.feedback-form--8march-footer button[type="submit"].black-button:hover {
   text-decoration: none !important;
 }
 .footer-8march-call__btn {
-  display: inline-block;
-  padding: 0.6rem 1.25rem;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 48px;
+  height: 48px;
+  line-height: 1 !important;
+  text-align: center !important;
+  white-space: nowrap;
+  padding: 0 1.25rem;
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
