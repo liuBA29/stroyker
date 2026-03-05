@@ -89,7 +89,12 @@ body {
 /* Общий стиль чёрных кнопок (хэдер, футер, главная — В КАТАЛОГ, ПЕРЕЗВОНИТЕ МНЕ, ОТПРАВИТЬ и т.д.) */
 .black-button {
   display: inline-block;
+  font-family: 'Inter', system-ui, sans-serif;
   font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  leading-trim: none;
+  line-height: 100%;
   color: #fff !important;
   background-color: #1a1a1a !important;
   background: #1a1a1a !important;
@@ -98,7 +103,7 @@ body {
   text-decoration: none;
   transition: background-color 0.2s ease, color 0.2s ease;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.09em;
 }
 .black-button:hover {
   background-color: #2d2d2d !important;
@@ -1113,14 +1118,16 @@ footer .footer-bottom .footer-bottom__left {
   }
 }
 .footer-8march-questions__title {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 700;
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif);
+  font-weight: 300;
+  font-style: normal;
   font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-  letter-spacing: 0.05em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--8march-footer-title, #2d2d2d);
   margin: 0 0 1rem;
-  line-height: 1.2;
+  line-height: 100%;
+  font-variant-numeric: lining-nums proportional-nums;
 }
 /* Новая форма 8 марта: 4 одинаковых поля ввода, симметричная сетка 2×2 */
 .feedback-form--8march-footer {

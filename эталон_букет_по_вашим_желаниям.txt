@@ -1,0 +1,57 @@
+ЭТАЛОН: РУБРИКА «БУКЕТ ПО ВАШИМ ЖЕЛАНИЯМ»
+Дата фиксации: 2026-03-05
+
+ВАЖНО:
+- Этот документ фиксирует текущее рабочее состояние рубрики.
+- Изменения структуры/стилей/типографики/высот/отступов/поведения блока выполнять только по прямому письменному согласованию с заказчиком.
+
+1) ШАБЛОН (источник разметки)
+Файл: stroykerbox/templates/8march_design_test.html
+Секция:
+
+<section class="index-bouquet-wish-8march" aria-labelledby="index-bouquet-wish-8march-title">
+  <div class="index-bouquet-wish-8march__inner">
+    <div class="index-bouquet-wish-8march__left">
+      <img src="{% static '8march_design/images/LUCIANO/8.png' %}" alt="" class="index-bouquet-wish-8march__img" role="presentation" loading="lazy" decoding="async">
+    </div>
+    <div class="index-bouquet-wish-8march__right">
+      <h2 class="index-bouquet-wish-8march__title" id="index-bouquet-wish-8march-title">БУКЕТ ПО ВАШИМ ЖЕЛАНИЯМ</h2>
+      <p class="index-bouquet-wish-8march__desc">Оставьте запрос на индивидуальный заказ.<br>Мы поможем выбрать идеальный букет для вашего события.</p>
+      <form action="{% url 'crm:feedback-message-request' %}" method="post" id="feedback-bouquet-wish-form" class="index-bouquet-wish-8march__form">
+        ...
+      </form>
+    </div>
+  </div>
+</section>
+
+2) СТИЛИ (источник оформления)
+Файл: stroykerbox/static/8march_design/css/8march_index_page_design.css
+Ключевые селекторы блока:
+
+.index-bouquet-wish-8march
+.index-bouquet-wish-8march__inner
+.index-bouquet-wish-8march__left
+.index-bouquet-wish-8march__img
+.index-bouquet-wish-8march__right
+.index-bouquet-wish-8march__title
+.index-bouquet-wish-8march__desc
+.index-bouquet-wish-8march__form
+.index-bouquet-wish-8march__input
+.index-bouquet-wish-8march__textarea
+.index-bouquet-wish-8march__submit
+.index-bouquet-wish-8march__agreement
+.green-checkbox
+.white-checkbox
+
+3) МОБИЛЬНЫЕ ПРАВИЛА
+Файл: stroykerbox/static/8march_design/css/8march_index_page_design.css
+Медиа-блок:
+@media (max-width: 767px) {
+  .index-bouquet-wish-8march__inner { ... }
+  .index-bouquet-wish-8march__left { ... }
+  .index-bouquet-wish-8march__img { ... }
+  .index-bouquet-wish-8march__right { ... }
+}
+
+4) ПРИМЕЧАНИЕ
+Этот файл создан как «эталон» текущего состояния именно рубрики «Букет по вашим желаниям».

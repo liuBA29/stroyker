@@ -528,7 +528,12 @@ section.feedback-form button {
 /* Общий стиль чёрных кнопок (В КАТАЛОГ, ВЫБРАТЬ БУКЕТ, ОТПРАВИТЬ) */
 .black-button {
   display: inline-block;
+  font-family: 'Inter', system-ui, sans-serif;
   font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  leading-trim: none;
+  line-height: 100%;
   color: #fff !important;
   background-color: #1a1a1a !important;
   background: #1a1a1a !important;
@@ -537,7 +542,7 @@ section.feedback-form button {
   text-decoration: none;
   transition: background-color 0.2s ease, color 0.2s ease;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.09em;
 }
 .black-button:hover {
   background-color: #2d2d2d !important;
@@ -1879,6 +1884,7 @@ section.feedback-form button {
 }
 
 /* --- Блок «Букет по вашим желаниям»: слева 8.png, справа форма --- */
+/* ВАЖНО/СТРОГИЙ ЗАПРЕТ: высоты, отступы, размеры, типографику и любые прочие стили этого блока самостоятельно НЕ менять; правки только по прямому письменному согласованию с заказчиком. */
 .index-bouquet-wish-8march {
   width: 100%;
   margin-left: 0;
@@ -2216,6 +2222,15 @@ section.feedback-form button {
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
+.index-reviews-8march__img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 790px;
+  object-fit: contain;
+  margin: 0 auto;
+}
 
 .index-reviews-8march__card-head {
   display: flex;
@@ -2389,17 +2404,22 @@ section.feedback-form button {
 
 .page-index-8march .index-8march-map-wrap .wide-map,
 .page-index-8march .index-8march-map-wrap #yamap_addresses {
+  /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: размеры карты на большом экране (650x650) зафиксированы; без прямого письменного согласования с заказчиком НЕ менять. */
   width: 100% !important;
-  height: 80vh !important;
-  min-height: 400px !important;
+  height: 650px !important;
+  min-height: 650px !important;
 }
 
 .index-8march-map-overlay {
+  /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: позиционирование и размеры карточки «ГДЕ МЫ НАХОДИМСЯ» на большом экране зафиксированы; без письменного согласования НЕ менять. */
   position: absolute;
-  left: 2rem;
-  top: 2rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   z-index: 2;
-  max-width: 420px;
+  width: 480px;
+  height: 485px;
+  max-width: 480px;
   padding: 1.75rem 2rem;
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(12px);
@@ -2407,9 +2427,14 @@ section.feedback-form button {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   border-radius: 0;
 }
+@media (min-width: 768px) {
+  .index-8march-map-overlay {
+    left: calc(50% - 120px);
+  }
+}
 
 .index-8march-map-overlay .index-8march-questions-wrap__title {
-  margin: 0 0 1rem;
+  margin: 0 0 1.35rem;
   text-align: left;
 }
 
@@ -2419,30 +2444,34 @@ section.feedback-form button {
   gap: 0.6rem;
   text-decoration: none;
   color: inherit;
-  margin: 0 0 0.75rem;
+  margin: 0 0 1.15rem;
   max-width: 100%;
 }
+.index-8march-map-overlay__row.index-8march-map-overlay__address {
+  margin-top: 0.35rem;
+}
 .index-8march-map-overlay__row.index-8march-map-overlay__phone {
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.8rem;
 }
 
 .index-8march-map-overlay__icon {
+  /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: диаметр иконок в блоке «ГДЕ МЫ НАХОДИМСЯ» зафиксирован 46px; без письменного согласования НЕ менять. */
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  background: #e8c4c0;
-  color: #fff;
+  background: #fce8e9;
+  color: #B8736E;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 .index-8march-map-overlay__icon svg {
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
 }
 .index-8march-map-overlay__row:hover .index-8march-map-overlay__icon {
-  background: #B8736E;
+  background: #f7dfe1;
 }
 
 .index-8march-map-overlay__text {
@@ -2458,6 +2487,40 @@ section.feedback-form button {
   text-transform: none;
   font-size: 1rem;
 }
+@media (min-width: 768px) {
+  /* ВАЖНО/СТРОГИЙ ЗАПРЕТ (БОЛЬШОЙ ЭКРАН):
+     Стили карточки «ГДЕ МЫ НАХОДИМСЯ» в этом блоке финально утверждены.
+     НИ В КОЕМ СЛУЧАЕ не менять размеры/позиционирование/интервалы/типографику
+     без прямого письменного согласования с заказчиком. */
+  .index-8march-map-overlay .index-8march-questions-wrap__title {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: none !important;
+    width: 100%;
+    margin-left: 0;
+  }
+  .index-8march-map-overlay {
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .index-8march-map-overlay__text {
+    line-height: 1.75 !important;
+  }
+  .index-8march-map-overlay__address .index-8march-map-overlay__text.pretty_numbers {
+    line-height: 1.4 !important;
+  }
+  .index-8march-map-overlay__phone .index-8march-map-overlay__text,
+  .index-8march-map-overlay__phone .index-8march-map-overlay__text.pretty_numbers {
+    line-height: 1.55 !important;
+  }
+  .index-8march-map-overlay__row.index-8march-map-overlay__phone {
+    display: flex;
+    width: 100%;
+  }
+}
 
 .index-8march-map-overlay__row:hover .index-8march-map-overlay__text {
   color: #5c4a4a;
@@ -2465,26 +2528,115 @@ section.feedback-form button {
 
 .index-8march-map-overlay__btn {
   display: inline-block;
+  width: 155px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.25rem;
   padding: 0.6rem 1.25rem;
-  font-size: 0.9rem;
   text-decoration: none;
 }
 
 @media (max-width: 767px) {
+  /* ПОМЕТКА: стили малой карты зафиксированы и согласованы; без прямого письменного согласования НЕ менять. */
+  /* ВАЖНО/СТРОГИЙ ЗАПРЕТ (МОБИЛЬНАЯ КАРТА):
+     Этот блок финально выверен заказчиком.
+     НИ В КОЕМ СЛУЧАЕ не менять без прямого письменного согласования:
+     - размеры и позиционирование карточки (.index-8march-map-overlay),
+     - размеры кружков/иконок (.index-8march-map-overlay__icon, svg),
+     - типографику/выравнивание заголовка и текста адреса/телефона,
+     - высоту карты (.wide-map / #yamap_addresses).
+  */
+  .index-8march-map-overlay__icon {
+    width: 46px;
+    height: 46px;
+  }
+  .index-8march-map-overlay__row {
+    align-items: center;
+  }
   .index-8march-map-overlay {
-    left: 1rem;
+    /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: мобильные размеры и позиционирование карточки «ГДЕ МЫ НАХОДИМСЯ» зафиксированы; без письменного согласования НЕ менять. */
+    width: 80vw;
+    height: 82vw;
+    max-width: 80vw;
+    left: 50%;
     top: auto;
-    bottom: 1rem;
-    right: 1rem;
-    max-width: none;
+    bottom: 2rem;
+    right: auto;
+    transform: translateX(-50%);
     padding: 1.25rem 1rem;
   }
   .index-8march-map-overlay .index-8march-questions-wrap__title {
-    font-size: 2rem;
+    font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif) !important;
+    font-weight: 300 !important;
+    font-style: normal !important;
+    font-size: 32px !important;
+    leading-trim: none;
+    line-height: 95% !important;
+    letter-spacing: 0 !important;
+    text-transform: uppercase !important;
+    font-variant-numeric: lining-nums proportional-nums;
+    text-align: left !important;
+    margin-left: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: none !important;
+    width: 100%;
+  }
+  .index-8march-map-overlay__address {
+    gap: 12px;
+    opacity: 1;
+  }
+  .index-8march-map-overlay__address .index-8march-map-overlay__text {
+    width: 240px;
+    height: auto;
+    font-size: 16px;
+    line-height: 100%;
+  }
+  .index-8march-map-overlay__phone .index-8march-map-overlay__text {
+    font-size: 16px;
+    line-height: 100%;
+  }
+  .index-8march-map-overlay__address .index-8march-map-overlay__text.pretty_numbers {
+    font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif) !important;
+    font-weight: 300 !important;
+    font-style: normal !important;
+    font-size: 16px !important;
+    leading-trim: none;
+    line-height: 100% !important;
+    letter-spacing: 0 !important;
+    text-transform: uppercase !important;
+    font-variant-numeric: lining-nums proportional-nums;
+  }
+  .index-8march-map-overlay__phone .index-8march-map-overlay__text.pretty_numbers {
+    font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif) !important;
+    font-weight: 300 !important;
+    font-style: normal !important;
+    font-size: 16px !important;
+    leading-trim: none;
+    line-height: 95% !important;
+    letter-spacing: 0 !important;
+    text-transform: uppercase !important;
+    font-variant-numeric: lining-nums proportional-nums;
+  }
+  .index-8march-map-overlay__btn {
+    width: 145px;
+    height: 47px;
+    line-height: 47px;
+  }
+  .index-8march-map-overlay__icon svg {
+    width: 20px;
+    height: 20px;
   }
   .page-index-8march .index-8march-map-wrap .wide-map,
   .page-index-8march .index-8march-map-wrap #yamap_addresses {
-    height: 120vh !important;
-    min-height: 640px !important;
+    /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: высота именно карты на телефоне зафиксирована 700px; без письменного согласования не менять. */
+    height: 700px !important;
+    min-height: 700px !important;
   }
 }
