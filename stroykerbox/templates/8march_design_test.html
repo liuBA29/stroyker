@@ -114,86 +114,18 @@
               <button type="button" class="index-promo-8march__arrow index-promo-8march__arrow--prev" title="Назад" aria-label="Назад"></button>
               <div class="index-promo-8march__carousel" data-promo-carousel>
                 <div class="index-promo-8march__track">
-                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card index-promo-8march__card--large">
+                  {% for item in promo_products %}
+                  <a href="{{ item.url }}" class="index-promo-8march__card{% if forloop.first %} index-promo-8march__card--large{% endif %}">
                     <span class="index-promo-8march__img-wrap">
-                      <img src="{% static '8march_design/images/LUCIANO/2.png' %}" alt="" class="index-promo-8march__img">
+                      <img src="{{ item.image }}" alt="{{ item.alt }}" class="index-promo-8march__img">
                     </span>
                     <span class="index-promo-8march__prices">
-                      <span class="index-promo-8march__price-old">3 250 P</span>
-                      <span class="index-promo-8march__price-new">3 150 P</span>
+                      {% if item.old_price %}<span class="index-promo-8march__price-old">{{ item.old_price }}</span>{% endif %}
+                      {% if item.price %}<span class="index-promo-8march__price-new">{{ item.price }}</span>{% endif %}
                     </span>
                     <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
                   </a>
-                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
-                    <span class="index-promo-8march__img-wrap">
-                      <img src="{% static '8march_design/images/LUCIANO/Rectangle 8.png' %}" alt="" class="index-promo-8march__img">
-                    </span>
-                    <span class="index-promo-8march__prices">
-                      <span class="index-promo-8march__price-old">12 250 P</span>
-                      <span class="index-promo-8march__price-new">10 500 P</span>
-                    </span>
-                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
-                  </a>
-                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
-                    <span class="index-promo-8march__img-wrap">
-                      <img src="{% static '8march_design/images/LUCIANO/Rectangle 9.png' %}" alt="" class="index-promo-8march__img">
-                    </span>
-                    <span class="index-promo-8march__prices">
-                      <span class="index-promo-8march__price-old">7 400 P</span>
-                      <span class="index-promo-8march__price-new">5 850 P</span>
-                    </span>
-                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
-                  </a>
-                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
-                    <span class="index-promo-8march__img-wrap">
-                      <img src="{% static '8march_design/images/LUCIANO/4.png' %}" alt="" class="index-promo-8march__img">
-                    </span>
-                    <span class="index-promo-8march__prices">
-                      <span class="index-promo-8march__price-old">5 200 P</span>
-                      <span class="index-promo-8march__price-new">4 600 P</span>
-                    </span>
-                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
-                  </a>
-                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
-                    <span class="index-promo-8march__img-wrap">
-                      <img src="{% static '8march_design/images/LUCIANO/2.png' %}" alt="" class="index-promo-8march__img">
-                    </span>
-                    <span class="index-promo-8march__prices">
-                      <span class="index-promo-8march__price-old">3 250 P</span>
-                      <span class="index-promo-8march__price-new">3 150 P</span>
-                    </span>
-                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
-                  </a>
-                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
-                    <span class="index-promo-8march__img-wrap">
-                      <img src="{% static '8march_design/images/LUCIANO/Rectangle 8.png' %}" alt="" class="index-promo-8march__img">
-                    </span>
-                    <span class="index-promo-8march__prices">
-                      <span class="index-promo-8march__price-old">12 250 P</span>
-                      <span class="index-promo-8march__price-new">10 500 P</span>
-                    </span>
-                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
-                  </a>
-                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
-                    <span class="index-promo-8march__img-wrap">
-                      <img src="{% static '8march_design/images/LUCIANO/Rectangle 9.png' %}" alt="" class="index-promo-8march__img">
-                    </span>
-                    <span class="index-promo-8march__prices">
-                      <span class="index-promo-8march__price-old">7 400 P</span>
-                      <span class="index-promo-8march__price-new">5 850 P</span>
-                    </span>
-                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
-                  </a>
-                  <a href="{% url 'catalog:index' %}" class="index-promo-8march__card">
-                    <span class="index-promo-8march__img-wrap">
-                      <img src="{% static '8march_design/images/LUCIANO/4.png' %}" alt="" class="index-promo-8march__img">
-                    </span>
-                    <span class="index-promo-8march__prices">
-                      <span class="index-promo-8march__price-old">5 200 P</span>
-                      <span class="index-promo-8march__price-new">4 600 P</span>
-                    </span>
-                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
-                  </a>
+                  {% endfor %}
                 </div>
               </div>
               <button type="button" class="index-promo-8march__arrow index-promo-8march__arrow--next" title="Вперёд" aria-label="Вперёд"></button>
@@ -239,88 +171,91 @@
           <div class="index-bouquets-8march__grid">
             <div class="index-bouquets-8march__grid-row">
               <div class="index-bouquets-8march__grid-first">
-                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
+                <a href="{{ bouquet_products.0.url }}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{% static '8march_design/images/LUCIANO/4.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.0.image }}" alt="{{ bouquet_products.0.alt }}" class="index-bouquets-8march__img">
                   </span>
-                  <p class="index-bouquets-8march__desc">Авторский букет с гортензиями и кустовыми розами</p>
-                  <p class="index-bouquets-8march__price">3 150 Р</p>
-                  <span class="index-bouquets-8march__btn beige_button">В КОРЗИНУ</span>
+                  <p class="index-bouquets-8march__desc">{{ bouquet_products.0.name }}</p>
+                  {% if bouquet_products.0.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.0.price }}</p>{% endif %}
+                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
                 </a>
               </div>
               <div class="index-bouquets-8march__grid-rest">
-                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card">
+                <a href="{{ bouquet_products.1.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{% static '8march_design/images/LUCIANO/5.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.1.image }}" alt="{{ bouquet_products.1.alt }}" class="index-bouquets-8march__img">
                   </span>
-                  <p class="index-bouquets-8march__desc">Авторский букет с гортензиями, розами Pink Mondal и эвкалиптом</p>
-                  <span class="index-bouquets-8march__btn index-bouquets-8march__btn--alt beige_button">УЗНАТЬ ЦЕНУ</span>
+                  <p class="index-bouquets-8march__desc">{{ bouquet_products.1.name }}</p>
+                  {% if bouquet_products.1.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.1.price }}</p>{% endif %}
+                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
                 </a>
-                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card">
+                <a href="{{ bouquet_products.2.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{% static '8march_design/images/LUCIANO/6.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.2.image }}" alt="{{ bouquet_products.2.alt }}" class="index-bouquets-8march__img">
                   </span>
-                  <p class="index-bouquets-8march__desc">Авторский букет с пионовидными розами и эвкалиптом</p>
-                  <p class="index-bouquets-8march__price">6 000 Р</p>
-                  <span class="index-bouquets-8march__btn beige_button">В КОРЗИНУ</span>
+                  <p class="index-bouquets-8march__desc">{{ bouquet_products.2.name }}</p>
+                  {% if bouquet_products.2.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.2.price }}</p>{% endif %}
+                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
                 </a>
               </div>
             </div>
             <div class="index-bouquets-8march__grid-row index-bouquets-8march__grid-row--last-big">
               <div class="index-bouquets-8march__grid-first">
-                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
+                <a href="{{ bouquet_products.3.url }}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{% static '8march_design/images/LUCIANO/5.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.3.image }}" alt="{{ bouquet_products.3.alt }}" class="index-bouquets-8march__img">
                   </span>
-                  <p class="index-bouquets-8march__desc">Авторский букет с гортензиями, розами Pink Mondal и эвкалиптом</p>
-                  <span class="index-bouquets-8march__btn index-bouquets-8march__btn--alt beige_button">УЗНАТЬ ЦЕНУ</span>
+                  <p class="index-bouquets-8march__desc">{{ bouquet_products.3.name }}</p>
+                  {% if bouquet_products.3.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.3.price }}</p>{% endif %}
+                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
                 </a>
               </div>
               <div class="index-bouquets-8march__grid-rest">
-                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card">
+                <a href="{{ bouquet_products.4.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{% static '8march_design/images/LUCIANO/4.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.4.image }}" alt="{{ bouquet_products.4.alt }}" class="index-bouquets-8march__img">
                   </span>
-                  <p class="index-bouquets-8march__desc">Авторский букет с гортензиями и кустовыми розами</p>
-                  <p class="index-bouquets-8march__price">3 150 Р</p>
-                  <span class="index-bouquets-8march__btn beige_button">В КОРЗИНУ</span>
+                  <p class="index-bouquets-8march__desc">{{ bouquet_products.4.name }}</p>
+                  {% if bouquet_products.4.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.4.price }}</p>{% endif %}
+                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
                 </a>
-                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card">
+                <a href="{{ bouquet_products.5.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{% static '8march_design/images/LUCIANO/6.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.5.image }}" alt="{{ bouquet_products.5.alt }}" class="index-bouquets-8march__img">
                   </span>
-                  <p class="index-bouquets-8march__desc">Авторский букет с пионовидными розами и эвкалиптом</p>
-                  <p class="index-bouquets-8march__price">6 000 Р</p>
-                  <span class="index-bouquets-8march__btn beige_button">В КОРЗИНУ</span>
+                  <p class="index-bouquets-8march__desc">{{ bouquet_products.5.name }}</p>
+                  {% if bouquet_products.5.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.5.price }}</p>{% endif %}
+                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
                 </a>
               </div>
             </div>
             <div class="index-bouquets-8march__grid-row">
               <div class="index-bouquets-8march__grid-first">
-                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
+                <a href="{{ bouquet_products.6.url }}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{% static '8march_design/images/LUCIANO/6.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.6.image }}" alt="{{ bouquet_products.6.alt }}" class="index-bouquets-8march__img">
                   </span>
-                  <p class="index-bouquets-8march__desc">Авторский букет с пионовидными розами и эвкалиптом</p>
-                  <p class="index-bouquets-8march__price">6 000 Р</p>
-                  <span class="index-bouquets-8march__btn beige_button">В КОРЗИНУ</span>
+                  <p class="index-bouquets-8march__desc">{{ bouquet_products.6.name }}</p>
+                  {% if bouquet_products.6.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.6.price }}</p>{% endif %}
+                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
                 </a>
               </div>
               <div class="index-bouquets-8march__grid-rest">
-                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card">
+                <a href="{{ bouquet_products.7.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{% static '8march_design/images/LUCIANO/4.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.7.image }}" alt="{{ bouquet_products.7.alt }}" class="index-bouquets-8march__img">
                   </span>
-                  <p class="index-bouquets-8march__desc">Авторский букет с гортензиями и кустовыми розами</p>
-                  <p class="index-bouquets-8march__price">3 150 Р</p>
-                  <span class="index-bouquets-8march__btn beige_button">В КОРЗИНУ</span>
+                  <p class="index-bouquets-8march__desc">{{ bouquet_products.7.name }}</p>
+                  {% if bouquet_products.7.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.7.price }}</p>{% endif %}
+                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
                 </a>
-                <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__card">
+                <a href="{{ bouquet_products.8.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
-                    <img src="{% static '8march_design/images/LUCIANO/5.png' %}" alt="Сборный букет" class="index-bouquets-8march__img">
+                    <img src="{{ bouquet_products.8.image }}" alt="{{ bouquet_products.8.alt }}" class="index-bouquets-8march__img">
                   </span>
-                  <p class="index-bouquets-8march__desc">Авторский букет с гортензиями, розами Pink Mondal и эвкалиптом</p>
-                  <span class="index-bouquets-8march__btn index-bouquets-8march__btn--alt beige_button">УЗНАТЬ ЦЕНУ</span>
+                  <p class="index-bouquets-8march__desc">{{ bouquet_products.8.name }}</p>
+                  {% if bouquet_products.8.price %}<p class="index-bouquets-8march__price">{{ bouquet_products.8.price }}</p>{% endif %}
+                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
                 </a>
               </div>
             </div>
@@ -365,7 +300,8 @@
                   <div class="form-group privacy-policy index-bouquet-wish-8march__agreement">
                     <div class="checkbox">
                       <input type="checkbox" name="privacy-policy" id="privacy-bouquet-wish" required autocomplete="off" class="green-checkbox">
-                      <label for="privacy-bouquet-wish">Вы даете согласие на публикацию отзывов</label>
+                      <label for="privacy-bouquet-wish">Нажимая на кнопку, вы даете согласие на обработку<br>персональных данных и рекламную рассылку,<br>
+    и соглашаетесь с нашей политикой конфиденциальности</label>
                     </div>
                   </div>
                 </form>

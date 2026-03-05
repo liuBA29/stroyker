@@ -1,3 +1,5 @@
+from decimal import Decimal, InvalidOperation
+
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import path, re_path, include
@@ -22,6 +24,7 @@ from stroykerbox.apps.utils.views import clear_cache, clear_thumbnail_cache
 from stroykerbox.apps.search.views import SearchResult
 from stroykerbox.apps.common.views import StaffCheckPage, DashboardPage
 from stroykerbox.apps.crm.forms import FeedbackMessageForm
+from stroykerbox.apps.catalog.models import Product
 
 YML_URL = getattr(config, 'YML_URL', 'catalog_export.yml') or 'catalog_export.yml'
 
@@ -64,6 +67,104 @@ def view_8march_design_test(request):
             'alt': alt,
             'label': label,
         })
+
+    def _format_price(value):
+        if value in (None, ''):
+            return ''
+        try:
+            amount = Decimal(value).quantize(Decimal('1'))
+        except (InvalidOperation, TypeError, ValueError):
+            return ''
+        return f"{int(amount):,}".replace(',', ' ') + ' P'
+
+    location = getattr(request, 'location', None)
+    promo_qs = Product.objects.filter(published=True, is_action=True).prefetch_related('images').distinct()
+    if not promo_qs.exists():
+        promo_qs = Product.objects.filter(published=True, categories__slug='8-marta').prefetch_related('images').distinct()
+    if not promo_qs.exists():
+        promo_qs = Product.objects.filter(published=True).prefetch_related('images')
+
+    promo_products = []
+    for product in promo_qs.order_by('-updated_at'):
+        price_obj = product.location_price_object(location)
+        main_price = (
+            getattr(price_obj, 'currency_price', None)
+            or getattr(price_obj, 'price', None)
+            or product.currency_price
+            or product.price
+        )
+        old_price = (
+            getattr(price_obj, 'currency_old_price', None)
+            or getattr(price_obj, 'old_price', None)
+            or product.currency_old_price
+            or product.old_price
+        )
+        main_price_fmt = _format_price(main_price)
+        old_price_fmt = _format_price(old_price)
+        if not (main_price_fmt and old_price_fmt):
+            continue
+        image_url = ''
+        if product.main_image and getattr(product.main_image, 'image', None):
+            try:
+                image_url = product.main_image.image.url
+            except Exception:
+                image_url = ''
+        if not image_url:
+            image_url = '/static/images/empty-product.svg'
+
+        promo_products.append({
+            'url': product.get_absolute_url() or reverse('catalog:index'),
+            'image': image_url,
+            'alt': product.name or 'Товар',
+            'price': main_price_fmt,
+            'old_price': old_price_fmt,
+        })
+        if len(promo_products) >= 24:
+            break
+
+    bouquets_qs = Product.objects.filter(published=True, images__isnull=False).prefetch_related('images').distinct()
+    bouquet_base = list(bouquets_qs.order_by('?')[:9])
+    if not bouquet_base:
+        bouquet_base = list(Product.objects.filter(published=True).prefetch_related('images').order_by('-updated_at')[:9])
+
+    bouquet_products = []
+    if bouquet_base:
+        while len(bouquet_products) < 9:
+            for product in bouquet_base:
+                price_obj = product.location_price_object(location)
+                main_price = (
+                    getattr(price_obj, 'currency_price', None)
+                    or getattr(price_obj, 'price', None)
+                    or product.currency_price
+                    or product.price
+                )
+                image_url = ''
+                if product.main_image and getattr(product.main_image, 'image', None):
+                    try:
+                        image_url = product.main_image.image.url
+                    except Exception:
+                        image_url = ''
+                if not image_url:
+                    image_url = '/static/images/empty-product.svg'
+
+                bouquet_products.append({
+                    'url': product.get_absolute_url() or reverse('catalog:index'),
+                    'image': image_url,
+                    'alt': product.name or 'Сборный букет',
+                    'name': product.name or 'Сборный букет',
+                    'price': _format_price(main_price),
+                })
+                if len(bouquet_products) >= 9:
+                    break
+    else:
+        bouquet_products = [{
+            'url': reverse('catalog:index'),
+            'image': '/static/images/empty-product.svg',
+            'alt': 'Сборный букет',
+            'name': 'Сборный букет',
+            'price': '',
+        } for _ in range(9)]
+
     return render(request, '8march_design_test.html', {
         'cart_count': cart_count,
         'header_phone': header_phone or None,
@@ -73,6 +174,8 @@ def view_8march_design_test(request):
         'footer_logo_url': footer_logo_url or None,
         'feedback_form': FeedbackMessageForm(),
         'categories_8march': categories_8march,
+        'promo_products': promo_products,
+        'bouquet_products': bouquet_products,
     })
 
 
