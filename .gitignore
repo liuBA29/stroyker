@@ -48,3 +48,4 @@ stroykerbox/apps/utils/fixtures/constance_dump.json
 # Локальные инструкции (не пушить — только для копирования в чат)
 LOCAL_DEPLOY_NUANCES.txt
 LOCAL_APT_UPDATE_NUANCES.txt
+/эталон 1.txt

@@ -1172,9 +1172,9 @@ section.feedback-form button {
   }
   .index-promo-8march__card,
   .index-promo-8march__card--large {
-    width: 220px;
-    min-width: 220px;
-    flex: 0 0 220px;
+    width: calc(100vw - 2.5rem);
+    min-width: calc(100vw - 2.5rem);
+    flex: 0 0 calc(100vw - 2.5rem);
     opacity: 1;
     box-shadow: none;
     transform: none;
