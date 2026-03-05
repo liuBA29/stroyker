@@ -924,14 +924,17 @@ footer::before {
 }
 
 @media (max-width: 767px) {
-  footer::before {
+  .footer--8march::before {
+    top: 0;
+    bottom: auto;
     mask-image: url("/static/8march_design/images/luciano_logo_90.svg");
     -webkit-mask-image: url("/static/8march_design/images/luciano_logo_90.svg");
     /* contain — чтобы весь логотип помещался и не обрезался по краям */
     mask-size: contain;
     -webkit-mask-size: contain;
-    mask-position: right center;
-    -webkit-mask-position: right center;
+    mask-position: right top !important;
+    -webkit-mask-position: right top !important;
+    
   }
 }
 
@@ -1933,15 +1936,4 @@ img[src*="placeholder"],
   }
 }
 
-/* Убрать дубликат телефона в футере (слева от каталога) — телефон уже в блоке «Остались вопросы?» */
-footer .footer-first-column .footer-phone {
-  display: none !important;
-}
-/* Скрыть логотип (картинку) в первой колонке футера */
-footer .footer-first-column .logo {
-  display: none !important;
-}
-/* Убрать первую колонку целиком — каталог и остальные столбцы смещаются влево */
-footer .footer-first-column {
-  display: none !important;
-}
+
