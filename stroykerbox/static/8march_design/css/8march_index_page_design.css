@@ -2198,6 +2198,7 @@ section.feedback-form button {
   max-width: 520px;
 }
 
+/* --- LUCIANO В СОЦСЕТЯХ. Рубрика неизменяема без согласования: ссылки TELEGRAM/VK, выравнивание на малом экране. --- */
 .index-social-8march__links {
   display: flex;
   gap: 1rem;
@@ -2227,6 +2228,7 @@ section.feedback-form button {
   color: #a06660;
 }
 
+/* --- ОТЗЫВЫ. Рубрика неизменяема без согласования: фон pink_round, картинка otzyvy как фон, высота на малом экране, скругления. --- */
 /* --- ОТЗЫВЫ (эталон: карточка рейтинга, кнопка, список отзывов) --- */
 .index-reviews-8march {
   width: 100%;
@@ -2266,6 +2268,7 @@ section.feedback-form button {
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
+/* Блок картинки отзывов (otzyvy.png фоном). Неизменяем без согласования. */
 .index-reviews-8march__image {
   max-width: 600px;
   margin: 0 auto;
@@ -2442,14 +2445,23 @@ section.feedback-form button {
   color: #1d4ed8;
 }
 
-/* --- ГДЕ МЫ НАХОДИМСЯ: карта на весь экран + overlay-панель (эталон) --- */
+/* --- ГДЕ МЫ НАХОДИМСЯ. Рубрика неизменяема без согласования: смещение карточки влево на большом экране, скрытие .hidden под картой. --- */
+/* PROD: не дать вылезать надписи типа "Luciano Flowers г. Самара, ул. 22 партсъезда..." под картой — скрыть schema.org и все .hidden внутри страницы 8 марта. */
 .page-index-8march .hidden {
   /* PROD-FIX: на сервере иногда отсутствует глобальный стиль `.hidden { display: none; }`,
      из-за чего schema.org блок (название/адрес/телефон) становится видимым под картой.
      Локально этот класс скрыт базовыми стилями, поэтому там надписи нет. */
   display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  left: -9999px !important;
 }
-
+.page-index-8march div[itemtype="http://schema.org/Organization"] {
+  display: none !important;
+}
+/* --- ГДЕ МЫ НАХОДИМСЯ: карта на весь экран + overlay-панель (эталон) --- */
 .index-8march-map-wrap {
   position: relative;
   width: 100%;
@@ -2494,6 +2506,7 @@ section.feedback-form button {
   border-radius: 0;
 }
 @media (min-width: 768px) {
+  /* Большой экран: смещение карточки влево. Неизменяемо без согласования. */
   .index-8march-map-overlay {
     left: calc(50% - 220px);
   }

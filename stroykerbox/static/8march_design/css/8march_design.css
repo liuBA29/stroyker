@@ -1003,6 +1003,7 @@ footer .footer-contact {
   line-height: 170% !important;
 }
 
+/* Футер 8march: заголовки КАТАЛОГ и ПОКУПАТЕЛЯМ. Рубрика неизменяема без согласования (отступы заголовок–пункты). */
 /* Заголовки КАТАЛОГ и ПОКУПАТЕЛЯМ — отступ сверху, опустить ниже */
 .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__title {
   margin-top: 1.25rem !important;
