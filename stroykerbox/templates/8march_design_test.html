@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="{% static '8march_design/css/8march_base.css' %}">
   <link rel="stylesheet" href="{% static '8march_design/css/8march_design.css' %}">
   <link rel="stylesheet" href="{% static '8march_design/css/8march_index_page_design.css' %}">
+  <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}?v5" type="text/css">
   {% render_block "css" %}
 </head>
 <body class="page-index-8march">
@@ -398,10 +399,72 @@
     {% include 'includes/footer_8march_standalone.html' %}
   </div>
 
+  {% render_callme_request_form %}
   <script src="{% static 'js/jquery.js' %}?v5"></script>
   <script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
   <script>
     window.$ = window.$ || window.jQuery;
+  </script>
+  <script src="{% static 'js/fancyapps.js' %}?v5"></script>
+  <script>
+  (function() {
+    var $ = window.jQuery || window.$;
+    if (!$) return;
+    function initCallmeFallback() {
+      if (typeof $.fancybox !== 'undefined' && $.fancybox.open) return;
+      var callmeModal = document.getElementById('callme-modal');
+      if (!callmeModal) return;
+      var overlay = null;
+      function hideModal() {
+        callmeModal.classList.remove('callme-modal--open');
+        if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        overlay = null;
+      }
+      function showModal() {
+        if (!overlay) {
+          overlay = document.createElement('div');
+          overlay.setAttribute('role', 'presentation');
+          overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9998;';
+          overlay.addEventListener('click', function(e) { if (e.target === overlay) hideModal(); });
+        }
+        document.body.appendChild(overlay);
+        callmeModal.classList.add('callme-modal--open');
+      }
+      $.fancybox = $.fancybox || {};
+      $.fancybox.close = $.fancybox.close || hideModal;
+      $.fancybox.open = $.fancybox.open || function(html) {
+        hideModal();
+        var wrap = document.createElement('div');
+        wrap.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9998;display:flex;align-items:center;justify-content:center;';
+        var box = document.createElement('div');
+        box.className = 'modal-content';
+        box.style.cssText = 'background:#fff;padding:1.5rem;max-width:90%;max-height:90%;overflow:auto;';
+        box.innerHTML = (typeof html === 'string' ? html : (html && html.length && html[0].content ? html[0].content : ''));
+        var closeBtn = document.createElement('button');
+        closeBtn.type = 'button';
+        closeBtn.textContent = 'Закрыть';
+        closeBtn.style.marginTop = '1rem';
+        closeBtn.onclick = function() { wrap.parentNode && wrap.parentNode.removeChild(wrap); };
+        box.appendChild(closeBtn);
+        wrap.appendChild(box);
+        wrap.addEventListener('click', function(e) { if (e.target === wrap) wrap.parentNode && wrap.parentNode.removeChild(wrap); });
+        document.body.appendChild(wrap);
+      };
+      $(document).on('click', '[data-fancybox="callme-modal"], a.callme-button[data-src="#callme-modal"]', function(e) {
+        e.preventDefault();
+        showModal();
+      });
+      $(document).on('click', '#callme-modal [data-fancybox-close]', function(e) {
+        e.preventDefault();
+        hideModal();
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCallmeFallback);
+    } else {
+      initCallmeFallback();
+    }
+  })();
   </script>
   {% render_block "js" %}
   <script src="{% static '8march_design/js/8march_carousel.js' %}"></script>

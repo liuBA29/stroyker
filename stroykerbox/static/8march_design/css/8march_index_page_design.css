@@ -2719,3 +2719,20 @@ section.feedback-form button {
     min-height: 700px !important;
   }
 }
+
+/* Модалка «ПЕРЕЗВОНИТЕ МНЕ» (форма заказчика): скрыта в потоке страницы, открывается Fancybox по клику */
+.page-index-8march #callme-modal {
+  display: none !important;
+}
+/* Fallback, если Fancybox не загрузился: показ по классу */
+.page-index-8march #callme-modal.callme-modal--open {
+  display: block !important;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+}
