@@ -990,6 +990,17 @@ footer .footer-contact {
   color: var(--8march-footer-text) !important;
 }
 
+/* Колонки КАТАЛОГ и ПОКУПАТЕЛЯМ — увеличенный межстрочный интервал */
+.footer--8march .footer-8march-menu .footer-content__column a,
+.footer--8march .footer-8march-menu .footer-content__ul-content a {
+  line-height: 170% !important;
+}
+
+/* Заголовки КАТАЛОГ и ПОКУПАТЕЛЯМ — отступ сверху, опустить ниже */
+.footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__title {
+  margin-top: 1.25rem !important;
+}
+
 footer .footer-content__column a:hover,
 footer .footer-content__ul-content a:hover {
   opacity: 0.8;
@@ -1349,6 +1360,15 @@ section.feedback-form--8march-footer button[type="submit"].black-button:hover {
   .footer--8march .feedback-form--8march-footer__grid {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+  }
+  .footer--8march .footer-8march-questions-col,
+  .footer--8march .footer-8march-call-col,
+  .footer--8march .footer-8march-menu,
+  .footer--8march .footer-8march-copyright {
+    width: 80vw;
+    max-width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
