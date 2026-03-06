@@ -5,7 +5,7 @@ from django.conf import settings
 
 
 def get_commits_count(day_ago=30):
-    command = ['git', 'rev-list', 'master',
+    command = ['git', 'rev-list', 'HEAD',
                '--count', f'--since={day_ago}.day']
     try:
         commits_count = subprocess.run(
@@ -16,7 +16,7 @@ def get_commits_count(day_ago=30):
 
 
 def get_version(major_version_number=None, after_date=None):
-    command = ['git', 'rev-list', 'master', '--count']
+    command = ['git', 'rev-list', 'HEAD', '--count']
     if after_date:
         command.append(f'--after={after_date}')
     try:

@@ -68,18 +68,6 @@
                     </div>
                   </div>
                 </div>
-                <div class="index-hero-8march__slide" data-hero-slide="2">
-                  <div class="index-hero-8march__inner">
-                    <div class="index-hero-8march__left">
-                      <img src="{% static 'images/tender_flowers_rect.png' %}" alt="Свадебные букеты" class="index-hero-8march__img" role="presentation" loading="lazy" decoding="async">
-                    </div>
-                    <div class="index-hero-8march__right">
-                      <p class="index-hero-8march__text">СВАДЕБНЫЕ БУКЕТЫ</p>
-                      <p class="index-hero-8march__subtext">СКИДКА 30%</p>
-                      <a href="{% url 'catalog:index' %}" class="index-hero-8march__btn black-button">ВЫБРАТЬ БУКЕТ</a>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
             <div class="index-hero-8march__nav" aria-hidden="true">
@@ -308,7 +296,7 @@
                 <img src="{% static '8march_design/images/LUCIANO/8.png' %}" alt="" class="index-bouquet-wish-8march__img" role="presentation" loading="lazy" decoding="async">
               </div>
               <div class="index-bouquet-wish-8march__right">
-                <h2 class="index-bouquet-wish-8march__title" id="index-bouquet-wish-8march-title">БУКЕТ ПО ВАШИМ ЖЕЛАНИЯМ</h2>
+                <h2 class="index-bouquet-wish-8march__title" id="index-bouquet-wish-8march-title">БУКЕТ ПО ВАШИМ<br>ЖЕЛАНИЯМ</h2>
                 {% autoescape off %}
                 <p class="index-bouquet-wish-8march__desc">Оставьте запрос на индивидуальный заказ.<br>Мы поможем выбрать идеальный букет для вашего события.</p>
                 {% endautoescape %}
@@ -611,9 +599,10 @@
   <script src="{% static '8march_design/js/8march_carousel.js' %}"></script>
   <script>
   (function() {
-    var totalHeroSlides = 3;
     var heroTrack = document.getElementById('hero-carousel-track');
     var heroSection = heroTrack && heroTrack.closest('.index-hero-8march');
+    var heroSlides = heroTrack ? heroTrack.querySelectorAll('.index-hero-8march__slide') : [];
+    var totalHeroSlides = heroSlides.length || 1;
     var heroPrev = heroSection && heroSection.querySelector('.index-hero-8march__arrow--prev');
     var heroNext = heroSection && heroSection.querySelector('.index-hero-8march__arrow--next');
     var heroIndex = 0;
@@ -621,6 +610,7 @@
       heroIndex = Math.max(0, Math.min(i, totalHeroSlides - 1));
       if (heroTrack) heroTrack.style.transform = 'translateX(-' + (heroIndex * 100 / totalHeroSlides) + '%)';
     }
+    setHeroSlide(0);
     if (heroPrev) heroPrev.addEventListener('click', function() { setHeroSlide(heroIndex - 1); });
     if (heroNext) heroNext.addEventListener('click', function() { setHeroSlide(heroIndex + 1); });
   })();

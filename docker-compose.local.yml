@@ -1,0 +1,56 @@
+# Локальная разработка на Windows (PostgreSQL + Redis + Django runserver)
+
+services:
+  db:
+    image: postgres:11-alpine
+    environment:
+      - LANG=ru_RU.utf8
+      - POSTGRES_USER=stroykerbox
+      - POSTGRES_PASSWORD=stroykerbox
+      - POSTGRES_DB=stroykerbox
+      - PGDATA=/var/lib/postgresql/data
+    volumes:
+      - ./docker_data_local/psql:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  redis:
+    image: redis:alpine
+    command: redis-server
+    volumes:
+      - ./docker_data_local/redis/data:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  migrations:
+    build:
+      context: .
+      dockerfile: Dockerfile-django-new
+    image: stroykerbox-django:latest
+    working_dir: /code
+    volumes:
+      - .:/code
+    command: ./wait-for-it.sh db:5432 -- python manage.py migrate -v2
+    environment:
+      - DJANGO_SETTINGS_MODULE=stroykerbox.settings.dev
+    depends_on:
+      - db
+    restart: "no"
+
+  django:
+    image: stroykerbox-django:latest
+    working_dir: /code
+    volumes:
+      - .:/code
+    environment:
+      - DJANGO_SETTINGS_MODULE=stroykerbox.settings.dev
+    command: ./wait-for-it.sh db:5432 -- python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8001:8000"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - migrations
+    restart: unless-stopped

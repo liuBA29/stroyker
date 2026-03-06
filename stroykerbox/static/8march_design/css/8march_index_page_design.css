@@ -293,15 +293,15 @@ section.feedback-form button {
 
 .index-hero-8march__track {
   display: flex;
-  width: 300%;
+  width: 200%;
   transition: transform 0.4s ease;
   will-change: transform;
 }
 
 .index-hero-8march__slide {
-  flex: 0 0 33.333%;
-  min-width: 33.333%;
-  width: 33.333%;
+  flex: 0 0 50%;
+  min-width: 50%;
+  width: 50%;
 }
 
 .index-hero-8march__slide .index-hero-8march__inner {
@@ -1982,10 +1982,15 @@ section.feedback-form button {
   text-decoration: underline;
 }
 
+/* Стили менять нельзя */
 .index-bouquet-wish-8march__desc {
   margin: 0 0 1.5rem;
-  font-size: 0.9rem;
-  line-height: 1.45;
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0;
   color: #6b6363;
 }
 
@@ -2041,7 +2046,8 @@ section.feedback-form button {
 .index-bouquet-wish-8march__input {
   width: 100%;
   padding: 0.6rem 0.75rem;
-  font-family: Inter, system-ui, sans-serif;
+  /* Стили менять нельзя */
+  font-family: Inter, sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
@@ -2058,8 +2064,9 @@ section.feedback-form button {
   outline: none;
 }
 
+/* Стили менять нельзя */
 .index-bouquet-wish-8march__input::placeholder {
-  font-family: Inter, system-ui, sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
@@ -2752,4 +2759,167 @@ section.feedback-form button {
   max-width: 90vw;
   max-height: 90vh;
   overflow: auto;
+}
+
+/* Модалка «ПЕРЕЗВОНИТЕ МНЕ» в стиле 8 марта (наша форма) */
+.page-index-8march #callme-modal.callme-modal--open.callme-8march {
+  background: transparent !important;
+  padding: 0 !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+
+.callme-8march__box {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 2rem 2rem 1.75rem;
+  background: #f8f4f0;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+}
+
+.callme-8march__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #2d2d2d;
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.callme-8march__close:hover {
+  color: #000;
+}
+
+.callme-8march__title {
+  font-family: var(--8march-font-body, 'Inter', system-ui, sans-serif);
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #2d2d2d;
+  margin: 0 0 1.5rem;
+  padding-right: 2rem;
+}
+
+.callme-8march__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.callme-8march__field {
+  margin-bottom: 1rem;
+}
+
+.callme-8march__label {
+  display: block;
+  font-family: var(--8march-font-body, 'Inter', system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #6b6363;
+  margin-bottom: 0.35rem;
+}
+
+.callme-8march__input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #3B3036;
+  background: #fff;
+  border: 1px solid #e0d9d2;
+  border-radius: 6px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.callme-8march__input:focus {
+  border-color: #b5a99a;
+  outline: none;
+}
+
+.callme-8march__input::placeholder {
+  color: #9a9191;
+}
+
+.callme-8march__form .form-group.privacy-policy {
+  margin: 1rem 0 1.25rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #6b6363;
+}
+
+.callme-8march__form .form-group.privacy-policy .checkbox {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.5rem;
+}
+
+.callme-8march__form .form-group.privacy-policy label {
+  margin: 0 !important;
+  cursor: pointer;
+}
+
+.callme-8march__form .form-group.privacy-policy a {
+  color: #5a7a5e;
+  text-decoration: underline;
+}
+
+.callme-8march__form .form-group.privacy-policy a:hover {
+  color: #4a6a4e;
+}
+
+.callme-8march__form input[type="checkbox"] {
+  margin-top: 0.2rem !important;
+  flex-shrink: 0;
+}
+
+.callme-8march__submit {
+  width: 100%;
+  padding: 0.7rem 1.25rem;
+  font-family: var(--8march-font-body, 'Inter', system-ui, sans-serif);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: #d4a5a5;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.callme-8march__submit:hover {
+  background: #c49090;
+}
+
+.callme-8march__form .form-group--error .callme-8march__input,
+.callme-8march__form .form-group.form-group--error .callme-8march__input {
+  border-color: #c44;
+}
+
+.callme-8march__form .error-text {
+  display: block;
+  font-size: 0.8rem;
+  color: #c44;
+  margin-top: 0.25rem;
 }

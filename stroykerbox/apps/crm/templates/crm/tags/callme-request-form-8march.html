@@ -1,0 +1,34 @@
+{% load sekizai_tags static utils_tags i18n common_tags %}
+{# Модалка «ПЕРЕЗВОНИТЕ МНЕ» в стиле дизайна 8 марта (когда AMOCRM_CALLME_FORM не задан). #}
+<div id="callme-modal" class="modal callme-8march" style="display: none;">
+    <div class="callme-8march__box">
+        <a href="javascript:;" class="callme-8march__close" data-fancybox-close aria-label="{% trans 'Закрыть' %}">×</a>
+        <h2 class="callme-8march__title">{% trans "ЗАКАЗАТЬ ОБРАТНЫЙ ЗВОНОК" %}</h2>
+        <form id="crm-callme-request-form"
+              class="callme-8march__form callme-request-form"
+              method="post"
+              action="{% url 'crm:callme-request' %}"
+              onsubmit="{% render_yandex_metrika_goal config.YMETRICA_GOAL_FORM_CALLME %}">
+            {% csrf_token %}
+            <div class="callme-8march__field form-group">
+                <label for="callme-8march-name" class="callme-8march__label">{% trans "ВАШЕ ИМЯ" %}</label>
+                <input type="text" id="callme-8march-name" class="callme-8march__input" name="name"
+                       {% if request.user.is_authenticated and request.user.name %} value="{{ request.user.name }}"{% endif %}
+                       autocomplete="name" required>
+            </div>
+            <div class="callme-8march__field form-group">
+                <label for="callme-8march-phone" class="callme-8march__label">{% trans "ВАШ ТЕЛЕФОН" %}</label>
+                <input type="tel" id="callme-8march-phone" class="callme-8march__input callme-8march__input--phone phone" name="phone"
+                       {% if request.user.is_authenticated and request.user.phone %} value="{{ request.user.phone }}"{% endif %}
+                       autocomplete="tel" required>
+            </div>
+            {% for f in callme_form.hidden_fields %}{{ f }}{% endfor %}
+            {% render_form_agreement callme_form %}
+            <button type="submit" class="callme-8march__submit">{% trans "Отправить" %}</button>
+        </form>
+    </div>
+</div>
+
+{% addtoblock "js" %}
+{{ callme_form.media }}
+{% endaddtoblock %}
