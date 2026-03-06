@@ -1,0 +1,38 @@
+{% load static utils_tags common_tags %}
+{# Форма «Букет по вашим желаниям» для страницы 8 марта. Подключается в 8march_design_test.html. Логика: crm:feedback-message-request, как форма обратной связи. #}
+<div class="index-bouquet-wish-8march__form-wrap">
+  <form action="{% url 'crm:feedback-message-request' %}"
+        method="post"
+        id="feedback-bouquet-wish-form"
+        class="index-bouquet-wish-8march__form"
+        onsubmit="{% render_yandex_metrika_goal config.YMETRICA_GOAL_FORM_FEEDBACK %}">
+    {% csrf_token %}
+    {% for f in feedback_form.hidden_fields %}{{ f }}{% endfor %}
+    <div class="index-bouquet-wish-8march__field form-group">
+      <input type="text" name="name" class="index-bouquet-wish-8march__input" placeholder="Ваше имя" required>
+    </div>
+    <div class="index-bouquet-wish-8march__field form-group">
+      <input type="tel" name="phone" class="index-bouquet-wish-8march__input index-bouquet-wish-8march__input--phone" placeholder="+7 (___) ___ - __ - __" required autocomplete="tel">
+    </div>
+    <div class="index-bouquet-wish-8march__field index-bouquet-wish-8march__field--with-icon form-group">
+      <input type="text" name="delivery_date" id="feedback-bouquet-wish-delivery-date" class="index-bouquet-wish-8march__input" placeholder="Дата доставки" autocomplete="off" readonly>
+      <span class="index-bouquet-wish-8march__field-icon index-bouquet-wish-8march__field-icon--date-trigger" aria-hidden="true" title="Выбрать дату">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="13" rx="1"/><path d="M3 8h14"/><path d="M7 2v4"/><path d="M13 2v4"/></svg>
+      </span>
+    </div>
+    <div class="index-bouquet-wish-8march__field form-group">
+      <input type="email" name="email" class="index-bouquet-wish-8march__input" placeholder="Email">
+    </div>
+    <div class="index-bouquet-wish-8march__field form-group">
+      <textarea name="message" class="index-bouquet-wish-8march__input index-bouquet-wish-8march__textarea" placeholder="Пожелания" rows="1"></textarea>
+    </div>
+    <button type="submit" class="index-bouquet-wish-8march__submit black-button">ОТПРАВИТЬ</button>
+    <div class="form-group privacy-policy index-bouquet-wish-8march__agreement">
+      <div class="checkbox">
+        <input type="checkbox" name="privacy-policy" id="privacy-bouquet-wish" required autocomplete="off" class="green-checkbox">
+        <label for="privacy-bouquet-wish">Нажимая на кнопку, вы даете согласие на обработку персональных данных и рекламную рассылку,
+и соглашаетесь с нашей политикой конфиденциальности</label>
+      </div>
+    </div>
+  </form>
+</div>

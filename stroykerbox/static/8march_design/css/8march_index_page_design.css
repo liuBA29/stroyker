@@ -2012,6 +2012,11 @@ section.feedback-form button {
   height: 20px;
 }
 
+.index-bouquet-wish-8march__field-icon--date-trigger {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
 /* Все поля формы — без скруглений (имя, телефон, дата, пожелания); чекбокс .green-checkbox не трогаем */
 .index-bouquet-wish-8march__form input:not(.green-checkbox):not(.white-checkbox),
 .index-bouquet-wish-8march__form textarea,

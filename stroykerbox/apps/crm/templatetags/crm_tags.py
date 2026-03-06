@@ -32,7 +32,12 @@ def render_feedback_form_section_8march(context):
 @register.simple_tag(takes_context=True)
 def render_callme_request_form(context, mobile=False):
     if config.AMOCRM_CALLME_FORM:
-        return mark_safe(config.AMOCRM_CALLME_FORM)
+        html = config.AMOCRM_CALLME_FORM
+        # Чтобы модалка открывалась по data-src="#callme-modal" (хедер/футер), нужен элемент с этим id.
+        # Если в HTML заказчика уже есть — не трогаем. Если нет — оборачиваем в один div, не меняя содержимое.
+        if 'id="callme-modal"' not in html and "id='callme-modal'" not in html:
+            html = '<div id="callme-modal" class="modal">' + html + '</div>'
+        return mark_safe(html)
 
     context['callme_form'] = CallMeForm()
     context['mobile_mode'] = mobile

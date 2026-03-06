@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="{% static '8march_design/css/8march_design.css' %}">
   <link rel="stylesheet" href="{% static '8march_design/css/8march_index_page_design.css' %}">
   <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}?v5" type="text/css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" crossorigin="anonymous">
   {% render_block "css" %}
 </head>
 <body class="page-index-8march">
@@ -307,36 +308,7 @@
                 {% autoescape off %}
                 <p class="index-bouquet-wish-8march__desc">Оставьте запрос на индивидуальный заказ.<br>Мы поможем выбрать идеальный букет для вашего события.</p>
                 {% endautoescape %}
-                <form action="{% url 'crm:feedback-message-request' %}" method="post" id="feedback-bouquet-wish-form" class="index-bouquet-wish-8march__form">
-                  {% csrf_token %}
-                  {% for f in feedback_form.hidden_fields %}{{ f }}{% endfor %}
-                  <div class="index-bouquet-wish-8march__field">
-                    <input type="text" name="name" class="index-bouquet-wish-8march__input" placeholder="Ваше имя" required>
-                  </div>
-                  <div class="index-bouquet-wish-8march__field">
-                    <input type="text" name="phone" class="index-bouquet-wish-8march__input" placeholder="Номер телефона" required>
-                  </div>
-                  <div class="index-bouquet-wish-8march__field index-bouquet-wish-8march__field--with-icon">
-                    <input type="text" name="delivery_date" class="index-bouquet-wish-8march__input" placeholder="Дата доставки" autocomplete="off">
-                    <span class="index-bouquet-wish-8march__field-icon" aria-hidden="true">
-                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="13" rx="1"/><path d="M3 8h14"/><path d="M7 2v4"/><path d="M13 2v4"/></svg>
-                    </span>
-                  </div>
-                  <div class="index-bouquet-wish-8march__field">
-                    <input type="email" name="email" class="index-bouquet-wish-8march__input" placeholder="Email">
-                  </div>
-                  <div class="index-bouquet-wish-8march__field">
-                    <textarea name="message" class="index-bouquet-wish-8march__input index-bouquet-wish-8march__textarea" placeholder="Пожелания" rows="1">Пожелания</textarea>
-                  </div>
-                  <button type="submit" class="index-bouquet-wish-8march__submit black-button">ОТПРАВИТЬ</button>
-                  <div class="form-group privacy-policy index-bouquet-wish-8march__agreement">
-                    <div class="checkbox">
-                      <input type="checkbox" name="privacy-policy" id="privacy-bouquet-wish" required autocomplete="off" class="green-checkbox">
-                      <label for="privacy-bouquet-wish">Нажимая на кнопку, вы даете согласие на обработку персональных данных и рекламную рассылку,
-    и соглашаетесь с нашей политикой конфиденциальности</label>
-                    </div>
-                  </div>
-                </form>
+                {% include 'crm/tags/bouquet-wish-form-section-8march.html' %}
               </div>
             </div>
           </section>
@@ -399,13 +371,15 @@
     {% include 'includes/footer_8march_standalone.html' %}
   </div>
 
-  {% render_callme_request_form %}
+  {% include 'includes/callme-modal-8march.html' %}
   <script src="{% static 'js/jquery.js' %}?v5"></script>
   <script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
   <script>
     window.$ = window.$ || window.jQuery;
   </script>
   <script src="{% static 'js/fancyapps.js' %}?v5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ru.js" crossorigin="anonymous"></script>
   <script>
   (function() {
     var $ = window.jQuery || window.$;
@@ -419,6 +393,13 @@
         callmeModal.classList.remove('callme-modal--open');
         if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
         overlay = null;
+        if (window.location.hash === '#callme-modal') {
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, '', window.location.pathname + window.location.search);
+          } else {
+            window.location.hash = '';
+          }
+        }
       }
       function showModal() {
         if (!overlay) {
@@ -429,6 +410,11 @@
         }
         document.body.appendChild(overlay);
         callmeModal.classList.add('callme-modal--open');
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search + '#callme-modal');
+        } else {
+          window.location.hash = 'callme-modal';
+        }
       }
       $.fancybox = $.fancybox || {};
       $.fancybox.close = $.fancybox.close || hideModal;
@@ -512,6 +498,61 @@
       document.addEventListener('DOMContentLoaded', init);
     } else {
       init();
+    }
+  })();
+  </script>
+  <script>
+  (function() {
+    var form = document.getElementById('feedback-bouquet-wish-form');
+    if (!form) return;
+    var phoneInput = form.querySelector('.index-bouquet-wish-8march__input--phone');
+    if (!phoneInput) return;
+    function formatPhoneMask(value) {
+      var digits = (value || '').replace(/\D/g, '');
+      if (digits.charAt(0) === '8') digits = '7' + digits.slice(1);
+      if (digits.charAt(0) !== '7') digits = '7' + digits;
+      digits = digits.slice(0, 11);
+      if (digits.length === 0) return '';
+      if (digits.length <= 1) return '+7';
+      if (digits.length <= 4) return '+7 (' + digits.slice(1);
+      if (digits.length <= 7) return '+7 (' + digits.slice(1, 4) + ') ' + digits.slice(4);
+      return '+7 (' + digits.slice(1, 4) + ') ' + digits.slice(4, 7) + '-' + digits.slice(7, 9) + '-' + digits.slice(9, 11);
+    }
+    function onPhoneInput(e) {
+      var pos = phoneInput.selectionStart;
+      var oldLen = phoneInput.value.length;
+      var formatted = formatPhoneMask(phoneInput.value);
+      phoneInput.value = formatted;
+      var newLen = formatted.length;
+      var newPos = Math.max(0, pos + (newLen - oldLen));
+      phoneInput.setSelectionRange(newPos, newPos);
+    }
+    phoneInput.addEventListener('input', onPhoneInput);
+    phoneInput.addEventListener('paste', function(e) {
+      e.preventDefault();
+      var pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+      if (pasted.charAt(0) === '8') pasted = '7' + pasted.slice(1);
+      if (pasted.charAt(0) !== '7') pasted = '7' + pasted;
+      phoneInput.value = formatPhoneMask(pasted);
+    });
+  })();
+  </script>
+  <script>
+  (function() {
+    var dateInput = document.getElementById('feedback-bouquet-wish-delivery-date');
+    var trigger = document.querySelector('.index-bouquet-wish-8march__field-icon--date-trigger');
+    if (!dateInput || typeof flatpickr === 'undefined') return;
+    var fp = flatpickr(dateInput, {
+      locale: 'ru',
+      dateFormat: 'Y-m-d',
+      altInput: true,
+      altFormat: 'j F Y',
+      altInputClass: 'index-bouquet-wish-8march__input',
+      allowInput: false,
+      disableMobile: true
+    });
+    if (trigger && fp) {
+      trigger.addEventListener('click', function() { fp.open(); });
     }
   })();
   </script>
