@@ -346,17 +346,15 @@
             <h2 class="index-social-8march__title">LUCIANO В СОЦСЕТЯХ</h2>
             <p class="index-social-8march__text">Присоединяйтесь к нашим социальным сетям, чтобы оставаться в курсе всех актуальных акций, скидок и розыгрышей!</p>
             <div class="index-social-8march__links">
-              <a href="{% if social_link_telegram %}{{ social_link_telegram }}{% else %}#{% endif %}" class="index-social-8march__link" {% if social_link_telegram %}target="_blank" rel="noopener noreferrer"{% endif %}>TELEGRAM</a>
-              <a href="{% if social_link_vk %}{{ social_link_vk }}{% else %}#{% endif %}" class="index-social-8march__link" {% if social_link_vk %}target="_blank" rel="noopener noreferrer"{% endif %}>VK</a>
+              <a href="https://t.me/+79179500606" class="index-social-8march__link" target="_blank" rel="noopener noreferrer">TELEGRAM</a>
+              <a href="https://vk.com/luciano.flowers" class="index-social-8march__link" target="_blank" rel="noopener noreferrer">VK</a>
             </div>
           </div>
         </section>
 
         <section class="index-reviews-8march">
           <h2 class="index-reviews-8march__title big-title">ОТЗЫВЫ</h2>
-          <div class="index-reviews-8march__card">
-            <img src="{% static 'images/otzyvy.png' %}" alt="Отзывы" class="index-reviews-8march__img" loading="lazy" decoding="async">
-          </div>
+          <div class="index-reviews-8march__image" aria-label="Отзывы"></div>
         </section>
 
         <section class="index-8march-questions-wrap" id="questions-section" aria-labelledby="questions-8march-title">

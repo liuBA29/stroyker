@@ -1006,6 +1006,8 @@ footer .footer-contact {
 /* Заголовки КАТАЛОГ и ПОКУПАТЕЛЯМ — отступ сверху, опустить ниже */
 .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__title {
   margin-top: 1.25rem !important;
+  /* ВАЖНО/НЕ МЕНЯТЬ: отступ между заголовком колонки и пунктами меню (по согласованию) */
+  margin-bottom: 1.25rem !important;
 }
 
 footer .footer-content__column a:hover,
