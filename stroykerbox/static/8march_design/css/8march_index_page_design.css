@@ -27,7 +27,7 @@
   margin-top: 0 !important;
 }
 
-/* --- Типографика по эталону Figma ---
+/* --- Типографика по эталону Figma. НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! ---
  * Заголовки секций: sans-serif, полужирный, ВЕРХНИЙ РЕГИСТР, увеличенный letter-spacing.
  * Подписи категорий, кнопки: sans-serif, полужирный/обычный, ВЕРХНИЙ РЕГИСТР.
  * Описания: sans-serif, regular. Цены: актуальная — bold, старая — regular + зачёркивание + серый.
@@ -276,7 +276,7 @@ section.feedback-form button {
   /* Добавлять стили по необходимости */
 }
 
-/* --- Герой главной 8march: карусель слайдов, слева картинка + опционально логотип, справа бежевый блок, стрелки --- */
+/* --- Герой главной 8march: карусель слайдов, слева картинка + опционально логотип, справа бежевый блок, стрелки. НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! --- */
 .index-hero-8march {
   width: 100%;
   margin: 0;
@@ -736,7 +736,7 @@ section.feedback-form button {
   }
 }
 
-/* --- Ряд категорий 8march: круглые картинки + подписи --- */
+/* --- Ряд категорий 8march: круглые картинки + подписи. НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! --- */
 .index-8march-vector-zone {
   position: relative;
   background: #fff;
@@ -962,7 +962,7 @@ section.feedback-form button {
   display: none;
 }
 
-/* --- Секция «АКЦИИ» 8march: карусель по эталону --- */
+/* --- Секция «АКЦИИ» 8march: карусель по эталону. НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! --- */
 .index-promo-8march {
   width: 100%;
   background: #fff;
@@ -1098,6 +1098,42 @@ section.feedback-form button {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Большой экран (8 марта): фото на всю ширину, три в ряд, стрелки скрыты. Малый экран не трогаем. */
+@media (min-width: 768px) {
+  .index-promo-8march__arrow {
+    display: none !important;
+  }
+  .index-promo-8march__carousel-wrap {
+    max-width: 100%;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    min-height: 400px;
+    height: auto;
+  }
+  .index-promo-8march__carousel {
+    overflow: visible;
+  }
+  .index-promo-8march__track {
+    overflow-x: visible;
+    scroll-snap-type: none;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+  .index-promo-8march__card,
+  .index-promo-8march__card--large {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto !important;
+  }
+  .index-promo-8march__img-wrap {
+    aspect-ratio: 3/4;
+  }
+  .index-promo-8march__img {
+    object-fit: cover;
+  }
 }
 
 .index-promo-8march__prices {
@@ -1274,9 +1310,12 @@ section.feedback-form button {
     box-shadow: none;
     transform: none;
   }
+  .index-promo-8march__footer {
+    margin-top: 5rem;
+  }
 }
 
-/* --- Инфоблоки под кнопкой каталога (эталон) --- */
+/* --- Инфоблоки под кнопкой каталога (эталон). НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! --- */
 .index-info-8march {
   position: relative;
   width: 100%;
@@ -1553,7 +1592,7 @@ section.feedback-form button {
   vertical-align: middle;
 }
 
-/* --- Секция СБОРНЫЕ БУКЕТЫ (эталон: сетка карточек, квадратные фото как в акциях) --- */
+/* --- Секция СБОРНЫЕ БУКЕТЫ (эталон: сетка карточек, квадратные фото как в акциях). НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! --- */
 .index-bouquets-8march {
   padding: 2rem 0 2.5rem;
   background: #fff;
@@ -2203,7 +2242,7 @@ section.feedback-form button {
   }
 }
 
-/* --- LUCIANO В СОЦСЕТЯХ (светло-розовая полоса по эталону) --- */
+/* --- LUCIANO В СОЦСЕТЯХ (светло-розовая полоса по эталону). НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! --- */
 .index-social-8march {
   width: 100%;
   padding: 1.75rem 1rem;
@@ -2269,7 +2308,7 @@ section.feedback-form button {
 }
 
 /* --- ОТЗЫВЫ. Рубрика неизменяема без согласования: фон pink_round, картинка otzyvy как фон, высота на малом экране, скругления. --- */
-/* --- ОТЗЫВЫ (эталон: карточка рейтинга, кнопка, список отзывов) --- */
+/* --- ОТЗЫВЫ (эталон: карточка рейтинга, кнопка, список отзывов). НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! --- */
 .index-reviews-8march {
   width: 100%;
   padding: 2rem 1rem 2.5rem;
@@ -2500,7 +2539,7 @@ section.feedback-form button {
 .page-index-8march div[itemtype="http://schema.org/Organization"] {
   display: none !important;
 }
-/* --- ГДЕ МЫ НАХОДИМСЯ: карта на весь экран + overlay-панель (эталон) --- */
+/* --- ГДЕ МЫ НАХОДИМСЯ: карта на весь экран + overlay-панель (эталон). НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! --- */
 .index-8march-map-wrap {
   position: relative;
   width: 100%;
@@ -2955,6 +2994,10 @@ section.feedback-form button {
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.06);
   justify-content: space-around;
   align-items: flex-start;
+  transition: transform 0.25s ease;
+}
+.mobile-bottom-nav-8march--hidden {
+  transform: translateY(100%);
 }
 
 .page-index-8march .page {

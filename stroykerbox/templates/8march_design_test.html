@@ -134,18 +134,30 @@
               <button type="button" class="index-promo-8march__arrow index-promo-8march__arrow--prev" title="Назад" aria-label="Назад"></button>
               <div class="index-promo-8march__carousel" data-promo-carousel>
                 <div class="index-promo-8march__track">
-                  {% for item in promo_products %}
-                  <a href="{{ item.url }}" class="index-promo-8march__card{% if forloop.first %} index-promo-8march__card--large{% endif %}">
+                  <a href="{% url 'catalog:category' '8-marta' %}" class="index-promo-8march__card index-promo-8march__card--large">
                     <span class="index-promo-8march__img-wrap">
-                      <img src="{{ item.image }}" alt="{{ item.alt }}" class="index-promo-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
+                      <img src="{% static '8march_design/images/3.jpeg' %}" alt="" class="index-promo-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
+                    </span>
+                    <span class="index-promo-8march__prices">по запросу</span>
+                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  </a>
+                  <a href="{% url 'catalog:category' '8-marta' %}" class="index-promo-8march__card">
+                    <span class="index-promo-8march__img-wrap">
+                      <img src="{% static '8march_design/images/1.jpeg' %}" alt="" class="index-promo-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
                     </span>
                     <span class="index-promo-8march__prices">
-                      {% if item.old_price %}<span class="index-promo-8march__price-old">{{ item.old_price }}</span>{% endif %}
-                      {% if item.price %}<span class="index-promo-8march__price-new">{{ item.price }}</span>{% endif %}
+                      <span class="index-promo-8march__price-old">4 900</span>
+                      <span class="index-promo-8march__price-new">4 250 р.</span>
                     </span>
                     <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
                   </a>
-                  {% endfor %}
+                  <a href="{% url 'catalog:category' '8-marta' %}" class="index-promo-8march__card">
+                    <span class="index-promo-8march__img-wrap">
+                      <img src="{% static '8march_design/images/2.jpeg' %}" alt="" class="index-promo-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
+                    </span>
+                    <span class="index-promo-8march__prices">по запросу</span>
+                    <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  </a>
                 </div>
               </div>
               <button type="button" class="index-promo-8march__arrow index-promo-8march__arrow--next" title="Вперёд" aria-label="Вперёд"></button>
@@ -433,6 +445,33 @@
       <span class="mobile-bottom-nav-8march__label">Корзина</span>
     </a>
   </nav>
+
+  <script>
+  (function() {
+    var nav = document.querySelector('.mobile-bottom-nav-8march');
+    if (!nav) return;
+    var lastScrollY = 0;
+    var ticking = false;
+    function updateNav() {
+      var w = window.innerWidth;
+      if (w >= 768) { nav.classList.remove('mobile-bottom-nav-8march--hidden'); return; }
+      var y = window.pageYOffset || document.documentElement.scrollTop;
+      if (y <= 60) nav.classList.remove('mobile-bottom-nav-8march--hidden');
+      else if (y > lastScrollY) nav.classList.add('mobile-bottom-nav-8march--hidden');
+      else nav.classList.remove('mobile-bottom-nav-8march--hidden');
+      lastScrollY = y;
+      ticking = false;
+    }
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(updateNav);
+        ticking = true;
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', updateNav);
+  })();
+  </script>
 
   {% include 'includes/callme-modal-8march.html' %}
   <script src="{% static 'js/jquery.js' %}?v5"></script>
