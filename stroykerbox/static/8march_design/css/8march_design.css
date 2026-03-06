@@ -946,6 +946,12 @@ footer::before {
   background-color: #FBE3E1;
 }
 
+/*
+ * МАЛЫЙ ФУТЕР 8MARCH — НЕИЗМЕНЯЕМ!
+ * Все стили малого футера (мобильная/планшетная версия: @media max-width: 767px и max-width: 991px
+ * для .footer--8march и связанных блоков) подобраны вручную и утверждены.
+ * Без письменного согласования с заказчиком не менять.
+ */
 @media (max-width: 767px) {
   /* НЕ МЕНЯТЬ: малый футер 8march (мобильная версия) — стили подобраны вручную, без согласования не трогать. */
   .footer--8march::before {
@@ -1120,6 +1126,16 @@ footer .footer-bottom .footer-bottom__left {
   padding-bottom: 2rem;
   border-bottom: none !important;
 }
+@media (min-width: 992px) {
+  .footer--8march .footer-8march-questions-row {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+  }
+  .footer--8march .footer-8march-content {
+    gap: 1.5rem;
+  }
+}
 .footer-8march-shift-block {
   width: 3px;
   min-width: 3px;
@@ -1179,6 +1195,10 @@ footer .footer-bottom .footer-bottom__left {
   .footer--8march .footer-8march-call__btn,
   .footer--8march .footer-8march-copyright .footer-copyright {
     margin-right: 0 !important;
+  }
+  .footer--8march .footer-8march-call-col,
+  .footer--8march .footer-8march-call__phone {
+    text-align: left !important;
   }
 }
 .footer-8march-questions__title {
@@ -1495,6 +1515,11 @@ section.feedback-form--8march-footer button[type="submit"].black-button:hover {
   gap: 2rem;
   align-items: end;
 }
+@media (min-width: 992px) {
+  .footer--8march .footer-8march-content {
+    gap: 1.5rem;
+  }
+}
 .footer--8march .footer-8march-menu {
   display: flex;
   flex-wrap: wrap;
@@ -1527,12 +1552,16 @@ section.feedback-form--8march-footer button[type="submit"].black-button:hover {
   background: transparent !important;
   background-color: transparent !important;
 }
+/* МАЛЫЙ ФУТЕР 8MARCH — НЕИЗМЕНЯЕМ (см. комментарий выше). Стили ниже — без согласования не трогать. */
 @media (max-width: 991px) {
   .footer--8march .footer-8march-questions-row {
     grid-template-columns: 1fr;
   }
   .footer-8march-call-col {
     text-align: left;
+  }
+  .footer--8march .footer-8march-call__phone {
+    text-align: left !important;
   }
   .footer--8march .footer-8march-content {
     grid-template-columns: 1fr;
@@ -1591,6 +1620,23 @@ section.feedback-form--8march-footer button[type="submit"].black-button:hover {
   }
   .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy label {
     font-size: 0.75rem !important;
+  }
+  /* Малый футер: заканчивается условно двумя строчками после копирайта — сильно уменьшаем нижний отступ */
+  .footer--8march {
+    padding-bottom: 2rem !important;
+  }
+  .footer--8march .footer-8march-questions-row {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  .footer--8march .footer-8march-content {
+    gap: 1rem !important;
+  }
+  .footer--8march .footer-bottom {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    margin-bottom: 0 !important;
   }
 }
 
