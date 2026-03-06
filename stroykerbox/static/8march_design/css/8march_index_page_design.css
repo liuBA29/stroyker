@@ -616,6 +616,11 @@ section.feedback-form button {
   /* стрелка — встроенный SVG в разметке */
 }
 
+/*
+ * НЕ МЕНЯТЬ: стили малого экрана (max-width: 767px) для героя 8 марта и стрелок промотки.
+ * Настраивались вручную, сложно подобраны. Без письменного согласования с заказчиком не трогать.
+ * См. эталон: эталон_малый_экран_герой_8марта.txt
+ */
 @media (max-width: 767px) {
   .index-hero-8march__inner {
     flex-direction: column-reverse;
@@ -697,7 +702,7 @@ section.feedback-form button {
   .index-hero-8march__right .index-hero-8march__text {
     text-align: center;
   }
-  /* Только малый экран: убрать зелёную/бежевую подложку под стрелками героя и поставить стрелки на место */
+  /* Только малый экран: убрать зелёную/бежевую подложку под стрелками героя и поставить стрелки на место. НЕ МЕНЯТЬ. */
   .index-hero-8march {
     background-color: #fff;
     padding-bottom: 65px;
@@ -709,6 +714,7 @@ section.feedback-form button {
     bottom: 0;
     transform: translateX(-50%) translateY(12px);
   }
+  /* Стрелки героя на малом экране — размер. НЕ МЕНЯТЬ. */
   .index-hero-8march__arrow {
     width: 38px;
     height: 38px;
