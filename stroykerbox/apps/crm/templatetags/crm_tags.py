@@ -38,7 +38,11 @@ def render_callme_request_form(context, mobile=False):
         if 'id="callme-modal"' not in html and "id='callme-modal'" not in html:
             html = '<div id="callme-modal" class="modal">' + html + '</div>'
         return mark_safe(html)
-
+    request = context.get('request')
+    is_8march = request and '/8march_design/' in (getattr(request, 'path', '') or '')
+    # На странице 8 марта не показываем нашу форму — только форма заказчика из конфига. Пустой div, чтобы кнопка не ломалась.
+    if is_8march:
+        return mark_safe('<div id="callme-modal" class="modal" style="display:none;" aria-hidden="true"></div>')
     context['callme_form'] = CallMeForm()
     context['mobile_mode'] = mobile
     return render_to_string('crm/tags/callme-request-form.html', context.flatten(), request=context.request)
