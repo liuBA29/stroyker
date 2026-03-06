@@ -947,6 +947,7 @@ footer::before {
 }
 
 @media (max-width: 767px) {
+  /* НЕ МЕНЯТЬ: малый футер 8march (мобильная версия) — стили подобраны вручную, без согласования не трогать. */
   .footer--8march::before {
     top: 0;
     bottom: auto;
@@ -1170,6 +1171,7 @@ footer .footer-bottom .footer-bottom__left {
   }
 }
 @media (max-width: 767px) {
+  /* Малый футер 8march — не менять. */
   .footer-8march-shift-block {
     display: none;
   }
@@ -1198,6 +1200,7 @@ footer .footer-bottom .footer-bottom__left {
   }
 }
 @media (max-width: 767px) {
+  /* Малый футер 8march — размер заголовка «Остались вопросы», не менять. */
   .footer-8march-questions__title {
     font-size: 44px;
   }
@@ -1350,6 +1353,7 @@ section.feedback-form--8march-footer button[type="submit"].black-button:hover {
   }
 }
 @media (max-width: 767px) {
+  /* НЕ МЕНЯТЬ: малый футер 8march — ширина блоков 80vw, выравнивание по форме «Остались вопросы». Без согласования не трогать. */
   .footer--8march .feedback-form--8march-footer__form,
   .footer--8march .feedback-form--8march-footer__grid {
     width: 80vw;
@@ -1574,6 +1578,20 @@ section.feedback-form--8march-footer button[type="submit"].black-button:hover {
     background-color: #fff !important;
     border: 1px solid var(--8march-footer-input-border, #e0e0e0) !important;
   }
+  /* Чекбокс формы «Остались вопросы»: как на большом экране (без белой рамочки), подпись чуть мельче */
+  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy .checkbox {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+  }
+  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy input[type="checkbox"] {
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy label {
+    font-size: 0.75rem !important;
+  }
 }
 
 section.feedback-form .form-control,
@@ -1736,6 +1754,13 @@ section.feedback-form form .form-group.privacy-policy .checkbox label {
   font-weight: 400 !important;
   text-transform: none !important;
   white-space: nowrap !important;
+}
+
+/* Малый футер 8march: подпись чекбокса «Остались вопросы» — уменьшенный шрифт (перебивает правило выше) */
+@media (max-width: 991px) {
+  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy .checkbox label {
+    font-size: 0.6rem !important;
+  }
 }
 
 /* На малом экране: чекбокс переносится вниз, ровно под кнопку */
