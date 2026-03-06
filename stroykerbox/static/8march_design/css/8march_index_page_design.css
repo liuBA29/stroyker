@@ -697,11 +697,17 @@ section.feedback-form button {
   .index-hero-8march__right .index-hero-8march__text {
     text-align: center;
   }
+  /* Только малый экран: убрать зелёную/бежевую подложку под стрелками героя и поставить стрелки на место */
+  .index-hero-8march {
+    background-color: #fff;
+    padding-bottom: 65px;
+    margin-bottom: -65px;
+  }
   .index-hero-8march__nav {
     left: 50%;
     right: auto;
     bottom: 0;
-    transform: translateX(-50%) translateY(65px); /* на маленьком экране опустить стрелки ниже блока категорий (эталон) */
+    transform: translateX(-50%) translateY(12px);
   }
   .index-hero-8march__arrow {
     width: 38px;
@@ -890,6 +896,9 @@ section.feedback-form button {
 }
 
 @media (max-width: 767px) {
+  .index-categories-8march {
+    margin-top: 65px;
+  }
   .index-categories-8march__nav {
     display: none;
   }
