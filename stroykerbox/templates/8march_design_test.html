@@ -1,4 +1,4 @@
-{% load static crm_tags common_tags address_tags sekizai_tags statictext_tags utils_tags %}
+{% load static crm_tags common_tags address_tags sekizai_tags statictext_tags utils_tags commerce_tags %}
 {% get_media_prefix as MEDIA_URL %}
 {% config_value 'FAVICON_FILE' as favicon %}
 <!DOCTYPE html>
@@ -428,7 +428,7 @@
     <a href="{% url 'cart:cart' %}" class="mobile-bottom-nav-8march__item">
       <span class="mobile-bottom-nav-8march__icon mobile-bottom-nav-8march__icon--cart">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        {% if cart_count %}<span class="mobile-bottom-nav-8march__badge">{{ cart_count }}</span>{% endif %}
+        {% cart_count_products as cart_count_8march %}{% if cart_count_8march %}<span class="mobile-bottom-nav-8march__badge">{{ cart_count_8march }}</span>{% endif %}
       </span>
       <span class="mobile-bottom-nav-8march__label">Корзина</span>
     </a>

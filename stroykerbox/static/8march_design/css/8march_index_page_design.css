@@ -525,28 +525,43 @@ section.feedback-form button {
   color: #2d2d2d;
 }
 
-/* Общий стиль чёрных кнопок (В КАТАЛОГ, ВЫБРАТЬ БУКЕТ, ОТПРАВИТЬ) */
+/* Общий стиль чёрных кнопок (В КАТАЛОГ, ВЫБРАТЬ БУКЕТ, ОТПРАВИТЬ): шрифт и цвет текста */
 .black-button {
   display: inline-block;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
-  leading-trim: none;
   line-height: 100%;
-  color: #fff !important;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #FBE3E1 !important;
   background-color: #1a1a1a !important;
   background: #1a1a1a !important;
   border: none;
   border-radius: 0 !important;
   text-decoration: none;
   transition: background-color 0.2s ease, color 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
 }
 .black-button:hover {
   background-color: #2d2d2d !important;
   background: #2d2d2d !important;
+  color: #FBE3E1 !important;
+}
+
+/* Не менять без согласования! Единый шрифт и вид у всех чёрных кнопок: перебиваем более специфичные правила только по типографике, высоте 50px и цвету текста #FBE3E1. */
+.page-index-8march .black-button,
+.page-index-8march .index-hero-8march__right .index-hero-8march__btn.black-button,
+.page-index-8march .feedback-form--8march-footer__submit.black-button,
+.page-index-8march section.feedback-form--8march-footer button[type="submit"].black-button {
+  font-family: Inter, sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-size: 16px !important;
+  line-height: 100% !important;
+  letter-spacing: 0.09em !important;
+  text-transform: uppercase !important;
+  height: 50px !important;
   color: #FBE3E1 !important;
 }
 
@@ -2924,7 +2939,7 @@ section.feedback-form button {
   margin-top: 0.25rem;
 }
 
-/* Не менять без согласования! Данные строго неизменны (высота 80px, фон #FBE3E1, иконки и подписи #B8736E и т.д.). --- Мобильное нижнее меню (Frame 142): показываем на малом экране; на ширине от 992px скрыто --- */
+/* Не менять без согласования! Данные строго неизменны (высота 80px, фон #FBE3E1, иконки и подписи #B8736E и т.д.). --- Мобильное нижнее меню (Frame 142): только на малом экране (<768px); от 768px скрыто --- */
 .mobile-bottom-nav-8march {
   display: flex;
   position: fixed;
@@ -3038,7 +3053,7 @@ section.feedback-form button {
   text-align: center;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .mobile-bottom-nav-8march {
     display: none;
   }
