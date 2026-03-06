@@ -1217,6 +1217,11 @@ section.feedback-form button {
   .index-promo-8march__title {
     padding-left: 1rem;
     padding-right: 1rem;
+    font-size: 34px !important;
+    margin-top: -2.5rem !important;
+  }
+  .index-promo-8march__title .pretty_numbers {
+    font-size: 2em !important;
   }
   .index-promo-8march__carousel-wrap {
     position: static;
@@ -1837,6 +1842,7 @@ section.feedback-form button {
   .index-bouquets-8march__title {
     padding-left: 1rem;
     padding-right: 1rem;
+    font-size: 34px !important;
   }
   .index-bouquets-8march__grid {
     padding-left: 1rem;
@@ -2220,6 +2226,12 @@ section.feedback-form button {
   padding-left: 1rem !important;
   padding-right: 1rem !important;
   text-align: center !important;
+}
+
+@media (max-width: 767px) {
+  .index-reviews-8march__title {
+    font-size: 34px !important;
+  }
 }
 
 .index-reviews-8march__card {
