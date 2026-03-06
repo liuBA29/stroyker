@@ -1,0 +1,28 @@
+{% load reviews_tags i18n %}
+{# Секция ОТЗЫВЫ на странице 8 марта: отзывы из админки (ProductReview). #}
+<section class="index-reviews-8march" aria-labelledby="index-reviews-8march-title">
+  <h2 class="index-reviews-8march__title big-title" id="index-reviews-8march-title">ОТЗЫВЫ</h2>
+  {% if reviews %}
+  <div class="index-reviews-8march__widget-wrap index-reviews-8march__list-wrap" style="max-width:600px;margin:0 auto;">
+    <ul class="index-reviews-8march__list">
+      {% for review in reviews %}
+      <li class="index-reviews-8march__item">
+        <span class="index-reviews-8march__avatar" aria-hidden="true"></span>
+        <div class="index-reviews-8march__body">
+          <span class="index-reviews-8march__name">{% if review.user %}{% if review.user.get_full_name %}{{ review.user.get_full_name }}{% else %}{{ review.user.email }}{% endif %}{% else %}{% trans "Гость" %}{% endif %}</span>
+          <span class="index-reviews-8march__date">{{ review.created_at|date:"d.m.Y" }}</span>
+          {% if review.rating_value %}
+          <span class="index-reviews-8march__stars index-reviews-8march__stars--small" aria-label="Оценка: {{ review.rating_value }} из 5">{% for i in "12345" %}{% if forloop.counter <= review.rating_value %}★{% else %}☆{% endif %}{% endfor %}</span>
+          {% endif %}
+          {% if review.review_text %}
+          <p class="index-reviews-8march__text">{{ review.review_text|linebreaksbr }}</p>
+          {% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% else %}
+  <p class="index-reviews-8march__empty" style="max-width:600px;margin:0 auto;text-align:center;color:#666;padding:2rem;">{% trans "Отзывов пока нет." %}</p>
+  {% endif %}
+</section>

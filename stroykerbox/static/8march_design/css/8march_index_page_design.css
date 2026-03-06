@@ -1351,6 +1351,19 @@ section.feedback-form button {
   background: #FBE3E1;
 }
 
+.index-ratings-8march__link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+.index-ratings-8march__link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .index-ratings-8march__label {
   font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
   font-weight: 300 !important;
@@ -2273,7 +2286,7 @@ section.feedback-form button {
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* Блок картинки отзывов (otzyvy.png фоном). Неизменяем без согласования. */
+/* Блок картинки отзывов (otzyvy.png фоном). */
 .index-reviews-8march__image {
   max-width: 600px;
   margin: 0 auto;
@@ -2285,7 +2298,6 @@ section.feedback-form button {
   background-size: 90% auto;
   border-radius: 12px;
   overflow: hidden;
-  /* anti-alias fix: убирает "точки" на скруглениях при зуме */
   -webkit-clip-path: inset(0 round 12px);
   clip-path: inset(0 round 12px);
 }

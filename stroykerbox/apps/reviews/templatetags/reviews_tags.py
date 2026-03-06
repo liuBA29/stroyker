@@ -47,3 +47,10 @@ def product_reviews_counter(product_pk):
 def product_votes_counter(product_pk):
     return ProductReview.objects.published().filter(
         product_id=product_pk, rating_value__gt=0).count()
+
+
+@register.inclusion_tag('reviews/tags/reviews-list-8march.html')
+def render_reviews_for_8march(limit=10):
+    """Последние опубликованные отзывы о товарах для секции ОТЗЫВЫ на странице 8 марта."""
+    reviews = ProductReview.objects.published().select_related('product', 'user').order_by('-created_at')[:limit]
+    return {'reviews': reviews}

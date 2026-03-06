@@ -187,12 +187,16 @@
           <div class="index-info-8march__ratings-block">
             <div class="index-info-8march__ratings-inner">
               <div class="index-ratings-8march__item">
-                <span class="index-ratings-8march__label"><span class="index-ratings-8march__label-num">2</span>ГИС</span>
-                <span class="index-ratings-8march__row"><span class="index-ratings-8march__score">5.0</span><span class="index-ratings-8march__star">★</span></span>
+                <a href="https://go.2gis.com/FiKdO" target="_blank" rel="noopener noreferrer" class="index-ratings-8march__link">
+                  <span class="index-ratings-8march__label"><span class="index-ratings-8march__label-num">2</span>ГИС</span>
+                  <span class="index-ratings-8march__row"><span class="index-ratings-8march__score">5.0</span><span class="index-ratings-8march__star">★</span></span>
+                </a>
               </div>
               <div class="index-ratings-8march__item">
-                <span class="index-ratings-8march__label">ЯНДЕКС</span>
-                <span class="index-ratings-8march__row"><span class="index-ratings-8march__score">5.0</span><span class="index-ratings-8march__star">★</span></span>
+                <a href="https://yandex.ru/profile/225213078936?lang=ru" target="_blank" rel="noopener noreferrer" class="index-ratings-8march__link">
+                  <span class="index-ratings-8march__label">ЯНДЕКС</span>
+                  <span class="index-ratings-8march__row"><span class="index-ratings-8march__score">5.0</span><span class="index-ratings-8march__star">★</span></span>
+                </a>
               </div>
             </div>
           </div>
@@ -327,7 +331,6 @@
         </section>
 
         <section class="index-reviews-8march">
-          <!-- ОТЗЫВЫ: картинка фоном (otzyvy). Неизменяемо без согласования. -->
           <h2 class="index-reviews-8march__title big-title">ОТЗЫВЫ</h2>
           <div class="index-reviews-8march__image" aria-label="Отзывы"></div>
         </section>
@@ -384,15 +387,78 @@
   (function() {
     var $ = window.jQuery || window.$;
     if (!$) return;
+    function openCallmeModalStandalone() {
+      var el = document.getElementById('callme-modal');
+      if (!el) return;
+      var ov = document.createElement('div');
+      ov.setAttribute('role', 'presentation');
+      ov.id = 'callme-modal-overlay';
+      ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9998;';
+      ov.addEventListener('click', function() {
+        ov.remove();
+        el.classList.remove('callme-modal--open');
+        el.style.display = '';
+        el.style.visibility = '';
+        if (window.history && window.history.replaceState) window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      });
+      document.body.appendChild(ov);
+      el.classList.add('callme-modal--open');
+      el.style.display = 'block';
+      el.style.visibility = 'visible';
+      el.style.position = 'fixed';
+      el.style.left = '50%';
+      el.style.top = '50%';
+      el.style.transform = 'translate(-50%, -50%)';
+      el.style.zIndex = '9999';
+      el.style.minWidth = '320px';
+      el.style.minHeight = '120px';
+      el.style.maxWidth = '90vw';
+      el.style.maxHeight = '90vh';
+      el.style.overflow = 'auto';
+      el.style.background = '#fff';
+      el.style.padding = '1.5rem';
+      function closeStandalone() {
+        var o = document.getElementById('callme-modal-overlay');
+        if (o) o.remove();
+        el.classList.remove('callme-modal--open');
+        el.style.display = '';
+        el.style.visibility = '';
+        el.style.position = '';
+        el.style.left = '';
+        el.style.top = '';
+        el.style.transform = '';
+        el.style.zIndex = '';
+        el.style.minWidth = '';
+        el.style.minHeight = '';
+        el.style.maxWidth = '';
+        el.style.maxHeight = '';
+        el.style.overflow = '';
+        el.style.background = '';
+        el.style.padding = '';
+      }
+      el.addEventListener('click', function(e) {
+        if (e.target.matches && e.target.matches('[data-fancybox-close]')) { e.preventDefault(); closeStandalone(); }
+      });
+      if ($) $(document).one('click', '#callme-modal [data-fancybox-close]', function(e) { e.preventDefault(); closeStandalone(); });
+    }
     function initCallmeFallback() {
-      if (typeof $.fancybox !== 'undefined' && $.fancybox.open) return;
+      if (typeof $.fancybox !== 'undefined' && $.fancybox.open) {
+        if (window.location.hash === '#callme-modal') openCallmeModalStandalone();
+        return;
+      }
       var callmeModal = document.getElementById('callme-modal');
       if (!callmeModal) return;
       var overlay = null;
       function hideModal() {
         callmeModal.classList.remove('callme-modal--open');
+        callmeModal.style.minWidth = '';
+        callmeModal.style.minHeight = '';
+        callmeModal.style.background = '';
+        callmeModal.style.padding = '';
         if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
         overlay = null;
+        var o = document.getElementById('callme-modal-overlay');
+        if (o) o.remove();
         if (window.location.hash === '#callme-modal') {
           if (window.history && window.history.replaceState) {
             window.history.replaceState(null, '', window.location.pathname + window.location.search);
@@ -410,6 +476,10 @@
         }
         document.body.appendChild(overlay);
         callmeModal.classList.add('callme-modal--open');
+        callmeModal.style.minWidth = '320px';
+        callmeModal.style.minHeight = '120px';
+        callmeModal.style.background = '#fff';
+        callmeModal.style.padding = '1.5rem';
         if (window.history && window.history.replaceState) {
           window.history.replaceState(null, '', window.location.pathname + window.location.search + '#callme-modal');
         } else {
@@ -444,11 +514,59 @@
         e.preventDefault();
         hideModal();
       });
+      if (window.location.hash === '#callme-modal') {
+        showModal();
+      }
     }
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initCallmeFallback);
     } else {
       initCallmeFallback();
+    }
+  })();
+  </script>
+  <script>
+  (function() {
+    function openCallmeByHash() {
+      if (window.location.hash !== '#callme-modal') return;
+      var el = document.getElementById('callme-modal');
+      if (!el || el.classList.contains('callme-modal--open')) return;
+      var ov = document.getElementById('callme-modal-overlay');
+      if (ov) return;
+      ov = document.createElement('div');
+      ov.setAttribute('role', 'presentation');
+      ov.id = 'callme-modal-overlay';
+      ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9998;';
+      ov.addEventListener('click', function() {
+        ov.remove();
+        el.classList.remove('callme-modal--open');
+        el.style.cssText = '';
+        if (window.history && window.history.replaceState) window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      });
+      document.body.appendChild(ov);
+      el.classList.add('callme-modal--open');
+      el.style.display = 'block';
+      el.style.visibility = 'visible';
+      el.style.position = 'fixed';
+      el.style.left = '50%';
+      el.style.top = '50%';
+      el.style.transform = 'translate(-50%, -50%)';
+      el.style.zIndex = '9999';
+      el.style.minWidth = '320px';
+      el.style.minHeight = '120px';
+      el.style.maxWidth = '90vw';
+      el.style.maxHeight = '90vh';
+      el.style.overflow = 'auto';
+      el.style.background = '#fff';
+      el.style.padding = '1.5rem';
+      el.addEventListener('click', function(e) {
+        if (e.target.matches && e.target.matches('[data-fancybox-close]')) { e.preventDefault(); ov.remove(); el.classList.remove('callme-modal--open'); el.style.cssText = ''; }
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', openCallmeByHash);
+    } else {
+      openCallmeByHash();
     }
   })();
   </script>
