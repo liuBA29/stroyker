@@ -250,6 +250,7 @@ def update_product_quantity(request, product_pk):
             'total_price': price_format(cart.total_price),
             'total_weight': cart.total_weight,
             'total_volume': cart.total_volume,
+            'count': cart.total_count,
         }
     )
 

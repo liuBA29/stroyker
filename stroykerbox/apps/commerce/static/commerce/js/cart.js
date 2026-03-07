@@ -113,6 +113,19 @@
           $(".cart-total-weight").html(response.total_weight);
           $(".cart-total-volume").html(response.total_volume);
           $(element).parent().find("input.cart-qty-control-input").val(response.quantity);
+          var count = response.count;
+          if (typeof count !== "undefined") {
+            $(".cart-number").html(count);
+            $(".header-8march__cart-count").html(count);
+            var $badge = $(".mobile-bottom-nav-8march__badge");
+            if ($badge.length) {
+              $badge.text(count);
+            } else if (count && count !== "0") {
+              $(".mobile-bottom-nav-8march__icon--cart").append('<span class="mobile-bottom-nav-8march__badge">' + count + '</span>');
+            } else {
+              $(".mobile-bottom-nav-8march__badge").remove();
+            }
+          }
         }
       });
     }

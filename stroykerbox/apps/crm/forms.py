@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from constance import config
 
 from stroykerbox.apps.utils.forms import ReCaptchaFormMixin
+from stroykerbox.apps.utils.utils import clear_phone as clear_phone_util
 
 from .models import FeedbackMessageRequest, CallMeRequest, GiftForPhoneRequest
 
@@ -18,17 +19,35 @@ HIDDEN_EXT_FIELDS = dict(
 
 
 class CrmFormBase(ReCaptchaFormMixin, forms.ModelForm):
+    # Формат: +7/7/8 и 10 цифр; допускаются пробелы, скобки, дефисы или просто 11 цифр (89171234567).
+    PHONE_REGEX = r'^(\+?[78]\s?\(?\d{3}\)?\s?\d{3}[-\s]?\d{2}[-\s]?\d{2}|[78]\d{10})$'
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['phone'] = forms.RegexField(regex=r'^\+?[78]\s?\(?\d{3}\)?\s?\d{3}-\d{2}-\d{2}$',
-                                                error_messages={
-                                                    'invalid': _(
-                                                        'The phone number must begin with +7 or 7 or 8:'
-                                                        ' "+7 (999) 999-99-99 or 7 (999) 999-99-99 or'
-                                                        ' 8 (999) 999-99-99".')})
+        self.fields['phone'] = forms.RegexField(
+            regex=self.PHONE_REGEX,
+            error_messages={
+                'invalid': _(
+                    'Укажите номер в формате: +7 (999) 999-99-99 или 8 (999) 999-99-99'
+                ),
+            },
+        )
         for f in HIDDEN_EXT_FIELDS.values():
             if f in self.fields:
                 self.fields[f].widget = forms.HiddenInput()
+
+    def clean_phone(self):
+        """Нормализует телефон к формату 8 (XXX) XXX-XX-XX для сохранения."""
+        value = self.cleaned_data.get('phone')
+        if not value or not str(value).strip():
+            return value
+        raw = clear_phone_util(value, country_code=7)
+        if not raw or len(raw) < 10:
+            raise forms.ValidationError(
+                _('Укажите корректный номер телефона (10 цифр после кода страны).')
+            )
+        digits = raw[-10:]
+        return '8 ({}) {}-{}-{}'.format(digits[:3], digits[3:6], digits[6:8], digits[8:])
 
     class Media:
         js = ('crm/js/crm_forms.js',)

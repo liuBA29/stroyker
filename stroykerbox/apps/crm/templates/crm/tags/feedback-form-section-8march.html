@@ -21,7 +21,7 @@
                 </label>
                 <label class="feedback-form--8march-footer__field">
                     <span class="feedback-form--8march-footer__label" aria-hidden="true">Номер телефона</span>
-                    <input type="tel" name="phone" class="feedback-form--8march-footer__input feedback-form--8march-footer__input--phone" required autocomplete="tel" placeholder="Номер телефона">
+                    <input type="tel" name="phone" class="feedback-form--8march-footer__input feedback-form--8march-footer__input--phone phone" required autocomplete="tel" placeholder="+7 (999) 999-99-99">
                 </label>
                 <label class="feedback-form--8march-footer__field">
                     <span class="feedback-form--8march-footer__label" aria-hidden="true">Ваш вопрос</span>
@@ -42,4 +42,4 @@
         </form>
     </div>
 </section>
-{# crm_forms.js подключается в base.html при use_8march_header_footer #}
+{# crm_forms.js подключается в base.html при use_8march_header_footer — addtoblock из inclusion-тега внутри футера не всегда попадает в блок js #}
