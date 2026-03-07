@@ -85,7 +85,7 @@
         {{ config.PAGE_HEAD_CUSTOM_CODE|safe }}
     </head>
 
-    <body class="{% if request.path == '/' %}frontpage{% else %}inner-page{% endif %}">
+    <body class="{% if request.path == '/' %}frontpage{% else %}inner-page{% endif %}{% if use_8march_header_footer %} design-8march{% endif %}">
         <div class="page">
             <header>
                 {% block body_pre_header %}

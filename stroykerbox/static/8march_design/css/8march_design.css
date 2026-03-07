@@ -52,7 +52,31 @@
   --8march-section-gap: 4rem;
 }
 
-/* Убрать белые полосы по краям: сброс отступов и фон в тон сайта */
+/* Когда дизайн 8 марта включён — шрифты по всей странице, чтобы не перебивались другими стилями */
+body.design-8march,
+body.design-8march .page,
+body.design-8march main,
+body.design-8march .section,
+body.design-8march .container,
+body.design-8march .content-block,
+body.design-8march .section .container {
+  font-family: var(--8march-font-body);
+}
+body.design-8march h1,
+body.design-8march h2,
+body.design-8march h3,
+body.design-8march h4,
+body.design-8march h5,
+body.design-8march h6 {
+  font-family: var(--8march-font-heading);
+}
+body.design-8march input,
+body.design-8march button,
+body.design-8march textarea,
+body.design-8march select,
+body.design-8march label {
+  font-family: var(--8march-font-body);
+}
 html,
 body {
   margin: 0;
@@ -503,11 +527,20 @@ section.__header.__header--8march.header-8march {
 
 /* Мобильный хедер 8march: логотип, телефон без иконки, меню — только иконка; растянуть по ширине экрана */
 @media (max-width: 767px) {
+  /* Хедер всегда поверх героя и контента, содержимое видно */
+  section.__header.__header--8march.header-8march,
+  .header-8march {
+    position: relative;
+    z-index: 100;
+    background-color: #ffffff !important;
+    min-height: 0;
+  }
   .header-8march__bar {
     padding-left: 16px;
     padding-right: 16px;
     justify-content: space-between;
     gap: 0.5rem;
+    min-height: 56px;
   }
   .header-8march__center {
     position: static;
@@ -526,6 +559,10 @@ section.__header.__header--8march.header-8march {
   }
   .header-8march__phone {
     justify-content: center;
+    display: flex !important;
+  }
+  .header-8march__phone-inner {
+    display: inline !important;
   }
   .header-8march__phone-icon {
     display: none !important;
@@ -537,6 +574,10 @@ section.__header.__header--8march.header-8march {
     order: 3;
     flex: 0 0 auto;
     justify-content: flex-end;
+    display: flex !important;
+  }
+  .header-8march__menu-trigger {
+    display: inline-flex !important;
   }
   .header-8march__left .header-8march__label {
     display: none;
@@ -1993,7 +2034,7 @@ img[src*="placeholder"],
 .cookie-modal {
   position: fixed !important;
   bottom: 0 !important;
-  z-index: 9999 !important;
+  z-index: 2147483647 !important; /* выше всех блоков (каталог, формы, модалки) */
 }
 #cookie-modal,
 .cookie-modal {

@@ -6,19 +6,23 @@ from stroykerbox.apps.customization.models import MobileMenuButton
 
 def _use_8march_header_footer(request=None):
     """При request: если path = prod29 или совпадает с FORCE_OLD_DESIGN_PATH — показываем старый дизайн. Иначе — settings или Constance."""
-    if request is not None:
-        req_path = (request.path or '').strip('/')
-        # Всегда показывать старый дизайн на /prod29/ (скрытая страница «как у заказчика»)
-        if req_path == 'prod29':
-            return False
-        path_val = getattr(settings, 'FORCE_OLD_DESIGN_PATH', None)
-        if path_val:
-            check_path = (path_val if isinstance(path_val, str) else str(path_val)).strip('/')
-            if req_path == check_path:
+    try:
+        if request is not None:
+            req_path = (request.path or '').strip('/')
+            # Всегда показывать старый дизайн на /prod29/ (скрытая страница «как у заказчика»)
+            if req_path == 'prod29':
                 return False
-    if hasattr(settings, 'USE_8MARCH_HEADER_FOOTER'):
-        return bool(settings.USE_8MARCH_HEADER_FOOTER)
-    return getattr(config, 'USE_8MARCH_HEADER_FOOTER', False)
+            path_val = getattr(settings, 'FORCE_OLD_DESIGN_PATH', None)
+            if path_val:
+                check_path = (path_val if isinstance(path_val, str) else str(path_val)).strip('/')
+                if req_path == check_path:
+                    return False
+        if hasattr(settings, 'USE_8MARCH_HEADER_FOOTER'):
+            return bool(settings.USE_8MARCH_HEADER_FOOTER)
+        return getattr(config, 'USE_8MARCH_HEADER_FOOTER', False)
+    except Exception:
+        # Не ронять сайт при ошибке Constance/БД — по умолчанию новый дизайн
+        return True
 
 
 def get_email_logo_url():

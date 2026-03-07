@@ -982,6 +982,7 @@ section.feedback-form button {
   font-weight: 300 !important;
   line-height: 1 !important;
   display: inline-block;
+  color: #2d2d2d !important;
 }
 
 .index-promo-8march__carousel-wrap {
@@ -1279,6 +1280,9 @@ section.feedback-form button {
   }
   .index-promo-8march__title .pretty_numbers {
     font-size: 2em !important;
+  }
+  .index-promo-8march__title-line2 {
+    display: block;
   }
   .index-promo-8march__carousel-wrap {
     position: static;
