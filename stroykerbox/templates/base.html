@@ -75,6 +75,10 @@
         <script src="{% static 'custom_forms/js/custom_forms.js' %}?{{ current_version }}"></script>
         <script src="{% static 'commerce/js/cart.js' %}?{{ current_version }}"></script>
 
+        {% if use_8march_header_footer %}
+        <script src="{% static 'crm/js/crm_forms.js' %}?{{ current_version }}"></script>
+        {% endif %}
+
         {% if YCAPTCHA_ENABLED %}
         <script src="https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onloadFunction{{ widget_uuid }}" defer></script>
         <script src="{% static 'ycaptcha/ycaptcha-init.js' %}?{{ current_version }}"></script>
@@ -147,6 +151,19 @@
             {% if use_8march_header_footer %}
             {% include 'includes/footer_8march.html' %}
             {% include 'includes/mobile_bottom_nav_8march.html' %}
+            {# Шильдик cookie/privacy — вне футера, чтобы z-index работал поверх всех блоков #}
+            {% render_statictext_var 'cookie-modal__text' as cookie_modal_text %}
+            <div id="cookie-modal" class="cookie-modal" style="display: none;">
+                <div class="cookie-modal__content">
+                    {% if cookie_modal_text %}
+                    {{ cookie_modal_text|safe }}
+                    {% else %}
+                    <h4>Собираем cookie-файлы</h4>
+                    <p>Наш сайт использует cookie. Хотите продолжить?</p>
+                    <button>Ок</button>
+                    {% endif %}
+                </div>
+            </div>
             {% else %}
             {% config_value 'FOOTER_LOGO_FILE' as custom_footer_logo %}
             {% config_value 'FOOTER_USE_BG_IMG' as footer_use_bg_image %}

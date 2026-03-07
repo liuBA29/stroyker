@@ -15,6 +15,11 @@ from .forms import FeedbackMessageForm, CallMeForm, GiftForPhoneRequestForm
 logger = getLogger(__name__)
 
 
+def _request_wants_json(request):
+    """Проверка AJAX/JSON-запроса (совместимо с Django 4+, где убран is_ajax())."""
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+
 class CrmFormViewBase(View):
     form_class: Optional[Form] = None
 
@@ -33,7 +38,7 @@ class CrmFormViewBase(View):
                     result.save()
                 except Exception as e:
                     logger.error(e)
-            if request.is_ajax():
+            if _request_wants_json(request):
                 return JsonResponse({'success': success, 'errors': errors})
         return redirect(request.POST.get('page_url') or '/')
 
@@ -50,7 +55,7 @@ class GiftForPhoneRequestView(View):
     form_class = GiftForPhoneRequestForm
 
     def post(self, request, **kwargs):
-        if not request.is_ajax():
+        if not _request_wants_json(request):
             return HttpResponseBadRequest()
 
         form = self.form_class(request.POST)

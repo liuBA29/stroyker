@@ -22,6 +22,15 @@ $("#feedback-message-request-form").on("submit", function (event) {
     ajax_send_crm_form(form, "feedBackForm");
 });
 
+// форма «Остались вопросы?» в футере 8 марта — та же логика, AJAX-отправка.
+// Делегирование на document, чтобы сработало и когда скрипт в head грузится раньше футера.
+$(document).on("submit", "#feedback-message-request-form-8march", function (event) {
+    event.preventDefault();
+    var form = $(this);
+    form.find('input[name="page_url"]').val(window.location.href.split('?')[0]);
+    ajax_send_crm_form(form, "feedBackForm");
+});
+
 // форма «Букет по вашим желаниям» (8 марта): та же логика crm:feedback-message-request, AJAX + дата доставки в текст сообщения
 $("#feedback-bouquet-wish-form").on("submit", function (event) {
     event.preventDefault();

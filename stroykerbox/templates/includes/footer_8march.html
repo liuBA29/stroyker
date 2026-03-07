@@ -19,18 +19,7 @@
                 <div class="footer-8march-shift-block footer-8march-shift-block--right" aria-hidden="true"></div>
             </div>
         </div>
-        {% render_statictext_var 'cookie-modal__text' as cookie_modal_text %}
-        <div id="cookie-modal" class="cookie-modal" style="display: none;">
-            <div class="cookie-modal__content">
-                {% if cookie_modal_text %}
-                {{ cookie_modal_text|safe }}
-                {% else %}
-                <h4>Собираем cookie-файлы</h4>
-                <p>Наш сайт использует cookie. Хотите продолжить?</p>
-                <button>Ок</button>
-                {% endif %}
-            </div>
-        </div>
+        {% comment %}Шильдик cookie вынесен в base.html (вне футера), когда use_8march_header_footer{% endcomment %}
 
         <div class="footer-content footer-8march-content">
             <div class="footer-content__menu footer-8march-menu">
