@@ -311,7 +311,7 @@
   <div class="index-8march-map-wrap">
     <div class="index-8march-map-overlay" aria-hidden="false">
       <h2 class="index-8march-questions-wrap__title big-title" id="questions-8march-title">ГДЕ МЫ<br>НАХОДИМСЯ</h2>
-      <a href="https://yandex.ru/maps/?text=Самара,+ул.+Ново-Садовая,+179" target="_blank" rel="noopener noreferrer" class="index-8march-map-overlay__row index-8march-map-overlay__address">
+      <a href="#yamap_addresses" class="index-8march-map-overlay__row index-8march-map-overlay__address" data-scroll-to-map>
         <span class="index-8march-map-overlay__icon index-8march-map-overlay__icon--address" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
         </span>
@@ -326,7 +326,7 @@
       <a href="tel:+79179500606" class="index-8march-map-overlay__btn black-button">СВЯЗАТЬСЯ</a>
     </div>
     <div id="yamap_addresses" class="wide-map" aria-label="Карта проезда">
-      <iframe title="Карта: Самара, Ново-Садовая, 179" src="https://yandex.ru/map-widget/v1/?ll=50.162294%2C53.219360&z=16&pt=50.162294,53.219360,pm2rdm" width="100%" height="100%" frameborder="0" loading="lazy" allowfullscreen="true" style="border:0; display:block;"></iframe>
+      <iframe title="Карта: Самара, Ново-Садовая, 179" src="https://yandex.ru/map-widget/v1/?ll=50.162294%2C53.219360&amp;z=17&amp;pt=50.162294,53.219360,pm2rdm" width="100%" height="100%" frameborder="0" loading="lazy" allowfullscreen="true" style="border:0; display:block;"></iframe>
     </div>
   </div>
 </section>
@@ -359,6 +359,18 @@
       else if (heroIndex === 0) direction = 1;
       setHeroSlide(heroIndex + direction);
     }, 5000);
+  }
+})();
+</script>
+<script>
+(function() {
+  var link = document.querySelector('.index-8march-map-overlay__address[data-scroll-to-map]');
+  var mapEl = document.getElementById('yamap_addresses');
+  if (link && mapEl) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      mapEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
   }
 })();
 </script>

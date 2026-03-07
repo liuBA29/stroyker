@@ -244,7 +244,8 @@ admin.site.site_title = config.ADMIN_SITE_META_TITLE
 urlpatterns = [
     re_path(r'^$', CatalogFrontpageView.as_view(), name='frontpage'),
     # Главная в старом дизайне (как у заказчика). Когда задан FORCE_OLD_DESIGN_PATH='prod29' — на /prod29/ показывается старый вид; иначе /prod29/ = то же что /.
-    path('prod29/', CatalogFrontpageView.as_view(), name='frontpage-prod'),
+    # Раскомментировать для разработки, когда нужен старый дизайн на /prod29/
+    # path('prod29/', CatalogFrontpageView.as_view(), name='frontpage-prod'),
 ]
 # На проде можно не задавать FORCE_OLD_DESIGN_PATH — тогда /prod29/ просто дублирует главную.
 _prod_path = getattr(settings, 'FORCE_OLD_DESIGN_PATH', None)
@@ -300,8 +301,8 @@ urlpatterns += [
     path('fp/', include('django_drf_filepond.urls')),
     path('content-check/', StaffCheckPage.as_view(), name='staff-check-page'),
     path('dash/', DashboardPage.as_view(), name='dashboard'),
-    # Тестовая страница для проверки деплоя у заказчика. Удалить после запуска нового дизайна.
-    path('8march_design/', view_8march_design_test, name='8march-design-test'),
+    # Тестовая страница 8march — отключена. Раскомментировать при необходимости.
+    # path('8march_design/', view_8march_design_test, name='8march-design-test'),
 ]
 
 if 'stroykerbox.apps.portfolio' in settings.INSTALLED_APPS:
