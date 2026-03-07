@@ -29,6 +29,18 @@
         <link rel="stylesheet" href="{% static 'css/main.css' %}?{{ current_version }}" type="text/css">
         {% endaddtoblock %}
 
+        {% if use_8march_header_footer %}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700&family=Geologica:wght@400&family=Roboto:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static '8march_design/css/8march_base.css' %}">
+        <link rel="stylesheet" href="{% static '8march_design/css/8march_design.css' %}">
+        {% if request.path == '/' %}
+        <link rel="stylesheet" href="{% static '8march_design/css/8march_index_page_design.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" crossorigin="anonymous">
+        {% endif %}
+        {% endif %}
+
         {% render_block "css" %}
 
         {% addtoblock "js" %}
@@ -81,9 +93,13 @@
                 {% endblock body_pre_header %}
 
                 {% block body_header %}
+                {% if use_8march_header_footer %}
+                {% include 'includes/header_8march.html' %}
+                {% else %}
                 {% render_header %}
                 {% if config.CUSTOM_HEADER_ID and config.CUSTOM_HEADER_ID != '0' %}
                 {% render_mobile_header %}
+                {% endif %}
                 {% endif %}
                 {% endblock body_header %}
 
@@ -128,6 +144,10 @@
 
 
             {% block body_footer %}
+            {% if use_8march_header_footer %}
+            {% include 'includes/footer_8march.html' %}
+            {% include 'includes/mobile_bottom_nav_8march.html' %}
+            {% else %}
             {% config_value 'FOOTER_LOGO_FILE' as custom_footer_logo %}
             {% config_value 'FOOTER_USE_BG_IMG' as footer_use_bg_image %}
             {% config_value 'FOOTER_BG_IMG' as footer_bg_image %}
@@ -262,6 +282,7 @@
             </div>
         </div>
         {% endif %}
+        {% endif %}
         {% endblock body_footer %}
 
         {% addtoblock 'svg' %}
@@ -384,7 +405,11 @@
         {% endif %}
 
         {% block bottom %}
+        {% if use_8march_header_footer %}
+        {% include 'includes/callme-modal-8march.html' %}
+        {% else %}
         {% render_callme_request_form %}
+        {% endif %}
         {% endblock bottom %}
 
 

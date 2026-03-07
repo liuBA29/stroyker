@@ -102,6 +102,7 @@ _constance_defaults = {
     'RECAPTCHA_CALLME_FORM': False,
     'RECAPTCHA_CART_FORM': False,
     'CAPTCHA_USE_FOR_BOOKING_FORM': False,
+    'USE_8MARCH_HEADER_FOOTER': False,
 }
 import json
 import os as _os

@@ -19,4 +19,5 @@ def custom_context(request):
         'USE_CUSTOM_HEADERS': config.CUSTOM_HEADER_ID not in ('0', 0),
         'EMAIL_LOGO_URL': get_email_logo_url(),
         'main_buttons': tuple(main_buttons),
+        'use_8march_header_footer': getattr(config, 'USE_8MARCH_HEADER_FOOTER', False),
     }

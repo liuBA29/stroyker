@@ -4,23 +4,19 @@
 
 Когда заказчик одобрит дизайн и нужно будет включить хэдер и футер 8march **на всех страницах**:
 
-1. **Вариант A (рекомендуется)**  
-   Добавить в Constance (или в settings) флаг, например `USE_8MARCH_HEADER_FOOTER`.  
-   В основном базовом шаблоне сайта (например `base.html`):
-   - в блоке header: если флаг включён — `{% include 'includes/header_8march.html' %}`, иначе текущий хэдер;
-   - в блоке footer: если флаг включён — `{% include 'includes/footer_8march.html' %}`, иначе текущий футер.
+1. **Включение по флагу (реализовано)**  
+   В Constance добавлен флаг `USE_8MARCH_HEADER_FOOTER` (в dev — в `settings/dev.py`, _constance_defaults; по умолчанию `False`).  
+   Для продакшена (например, settings заказчика): добавить ключ `USE_8MARCH_HEADER_FOOTER` в CONSTANCE_CONFIG (значение по умолчанию `False`), либо выставить значение в админке Constance после добавления ключа в конфиг.  
+   В `base.html`: при включённом флаге подключаются `includes/header_8march.html`, `includes/footer_8march.html`, мобильное меню 8march и модалка «Перезвоните мне» 8march; иначе — текущий хэдер/футер. Восстановление: выставить флаг в False.
 
 2. **Шаблоны для всех страниц**  
-   Создать полные версии с тегами заказчика:
-   - `includes/header_8march.html` — на основе `header_8march_standalone.html`, но с `{% render_custom_header_phone %}`, `{% render_catalog_dropdown_menu %}`, `config`, `cart` из context processor и т.д.
-   - `includes/footer_8march.html` — на основе `footer_8march_standalone.html`, но с `{% render_catalog_categories_menu_simple %}`, `{% render_menu_footer_split %}`, `{% location_contact_phone %}`, `config` и т.д.
-
-   Эти шаблоны можно взять из проекта luciano-site-light (`custom_headers/header-8march.html`, `includes/footer_8march.html`) и при необходимости подправить пути к статике.
+   Созданы полные версии:
+   - `includes/header_8march.html` — на основе standalone, с `{% location_contact_phone %}`, `{% cart_count_products %}`, config (логотип, SITE_NAME).
+   - `includes/footer_8march.html` — на основе standalone, с `{% render_catalog_categories_menu_simple %}`, `{% render_menu 'footer_customer_menu' %}`, `{% location_contact_phone %}`, config.
+   - `includes/mobile_bottom_nav_8march.html` — нижнее мобильное меню 8march.
 
 3. **Статика и CSS**  
-   На всех страницах при включённом 8march нужно подключать те же стили, что и на тестовой:  
-   `8march_design/css/8march_design.css` (и при показе главной — `8march_index_page_design.css`).  
-   Это можно делать в base-шаблоне по тому же флагу.
+   При включённом 8march в base подключаются: шрифты эталона, `8march_design/css/8march_base.css`, `8march_design/css/8march_design.css`. На главной (`request.path == '/'`) дополнительно: `8march_index_page_design.css`, flatpickr CSS. Главная при флаге рендерится шаблоном `catalog/frontpage_8march.html` с контентом 8march (герой, категории, акции, букеты, форма «Букет по желаниям» и т.д.).
 
 ## Чекбоксы согласия (2 шт) и одинаковый текст
 

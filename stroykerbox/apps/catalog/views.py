@@ -1,4 +1,4 @@
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 import os
 from collections import OrderedDict, defaultdict
 
@@ -53,6 +53,137 @@ LIST_VIEW_MODE_CLASSES = {
 }
 
 
+def get_8march_index_context(request):
+    """
+    Контекст для главной страницы в дизайне 8march (категории-кружки, акции, сборные букеты).
+    Используется в CatalogFrontpageView при USE_8MARCH_HEADER_FOOTER и в view_8march_design_test.
+    """
+    from django.urls import reverse
+
+    location = getattr(request, 'location', None)
+
+    def _format_price(value):
+        if value in (None, ''):
+            return ''
+        try:
+            amount = Decimal(value).quantize(Decimal('1'))
+        except (InvalidOperation, TypeError, ValueError):
+            return ''
+        return f"{int(amount):,}".replace(',', ' ') + ' P'
+
+    category_slots = (
+        ('images/gotovaya-vitrina.png', 'Готовая витрина', 'ГОТОВАЯ<br>ВИТРИНА', 'gotovaya-vitrina'),
+        ('images/monoduo-bukety.png', 'Моно букеты', 'МОНО<br>БУКЕТЫ', 'monoduo-bukety'),
+        ('images/kompozicii.png', 'Композиции', 'КОМПОЗИЦИИ', 'kompozicii'),
+        ('images/wow-effect.png', 'Эффектные букеты', 'ЭФФЕКТНЫЕ<br>БУКЕТЫ', 'wow-bukety'),
+        ('images/fresh-buketi.png', 'Интерьерные букеты', 'ИНТЕРЬЕРНЫЕ<br>БУКЕТЫ', 'fresh-bukety'),
+        ('images/podarki.png', 'Подарки', 'ПОДАРКИ', 'podarki'),
+    )
+    categories_8march = []
+    for img, alt, label, slug in category_slots:
+        try:
+            url = reverse('catalog:category', kwargs={'category_slug': slug})
+        except Exception:
+            url = reverse('catalog:index')
+        categories_8march.append({
+            'url': url,
+            'image': img,
+            'alt': alt,
+            'label': label,
+        })
+
+    promo_qs = Product.objects.filter(
+        published=True, categories__slug='8-marta'
+    ).prefetch_related('images').distinct()
+    promo_products = []
+    for product in promo_qs.order_by('-updated_at'):
+        price_obj = product.location_price_object(location)
+        main_price = (
+            getattr(price_obj, 'currency_price', None)
+            or getattr(price_obj, 'price', None)
+            or product.currency_price
+            or product.price
+        )
+        old_price = (
+            getattr(price_obj, 'currency_old_price', None)
+            or getattr(price_obj, 'old_price', None)
+            or product.currency_old_price
+            or product.old_price
+        )
+        main_price_fmt = _format_price(main_price)
+        old_price_fmt = _format_price(old_price)
+        image_url = ''
+        if product.main_image and getattr(product.main_image, 'image', None):
+            try:
+                image_url = product.main_image.image.url
+            except Exception:
+                image_url = ''
+        if not image_url:
+            image_url = '/static/images/empty-product.svg'
+        promo_products.append({
+            'url': product.get_absolute_url() or reverse('catalog:index'),
+            'image': image_url,
+            'alt': product.name or 'Товар',
+            'price': main_price_fmt,
+            'old_price': old_price_fmt,
+        })
+        if len(promo_products) >= 24:
+            break
+
+    bouquets_qs = Product.objects.filter(
+        published=True, images__isnull=False
+    ).prefetch_related('images').distinct()
+    bouquet_base = list(bouquets_qs.order_by('?')[:9])
+    if not bouquet_base:
+        bouquet_base = list(
+            Product.objects.filter(published=True)
+            .prefetch_related('images')
+            .order_by('-updated_at')[:9]
+        )
+    bouquet_products = []
+    if bouquet_base:
+        while len(bouquet_products) < 9:
+            for product in bouquet_base:
+                price_obj = product.location_price_object(location)
+                main_price = (
+                    getattr(price_obj, 'currency_price', None)
+                    or getattr(price_obj, 'price', None)
+                    or product.currency_price
+                    or product.price
+                )
+                image_url = ''
+                if product.main_image and getattr(product.main_image, 'image', None):
+                    try:
+                        image_url = product.main_image.image.url
+                    except Exception:
+                        image_url = ''
+                if not image_url:
+                    image_url = '/static/images/empty-product.svg'
+                bouquet_products.append({
+                    'url': product.get_absolute_url() or reverse('catalog:index'),
+                    'image': image_url,
+                    'alt': product.name or 'Сборный букет',
+                    'name': product.name or 'Сборный букет',
+                    'price': _format_price(main_price),
+                })
+                if len(bouquet_products) >= 9:
+                    break
+    else:
+        bouquet_products = [{
+            'url': reverse('catalog:index'),
+            'image': '/static/images/empty-product.svg',
+            'alt': 'Сборный букет',
+            'name': 'Сборный букет',
+            'price': '',
+        } for _ in range(9)]
+
+    return {
+        'categories_8march': categories_8march,
+        'promo_products': promo_products,
+        'bouquet_products': bouquet_products,
+    }
+
+
 class CatalogFrontpageView(TemplateView):
     """
     Site frontpage.
@@ -60,12 +191,20 @@ class CatalogFrontpageView(TemplateView):
 
     template_name = 'catalog/frontpage.html'
 
+    def get_template_names(self):
+        if getattr(config, 'USE_8MARCH_HEADER_FOOTER', False):
+            return ['catalog/frontpage_8march.html']
+        return [self.template_name]
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['products'] = (
             Product.objects.published().exclude_by_modification_code()[:12]
         )
         context['show_breadcrumbs'] = False
+
+        if getattr(config, 'USE_8MARCH_HEADER_FOOTER', False):
+            context.update(get_8march_index_context(self.request))
 
         if hasattr(self.request, 'seo'):
             self.request.seo.title.append(config.SITE_NAME)
