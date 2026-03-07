@@ -352,6 +352,14 @@
   setHeroSlide(0);
   if (heroPrev) heroPrev.addEventListener('click', function() { setHeroSlide(heroIndex - 1); });
   if (heroNext) heroNext.addEventListener('click', function() { setHeroSlide(heroIndex + 1); });
+  var direction = 1;
+  if (totalHeroSlides > 1) {
+    setInterval(function() {
+      if (heroIndex === totalHeroSlides - 1) direction = -1;
+      else if (heroIndex === 0) direction = 1;
+      setHeroSlide(heroIndex + direction);
+    }, 5000);
+  }
 })();
 </script>
 <script>
