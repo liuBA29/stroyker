@@ -243,6 +243,16 @@ admin.site.site_title = config.ADMIN_SITE_META_TITLE
 
 urlpatterns = [
     re_path(r'^$', CatalogFrontpageView.as_view(), name='frontpage'),
+    # Главная в старом дизайне (как у заказчика). Когда задан FORCE_OLD_DESIGN_PATH='prod29' — на /prod29/ показывается старый вид; иначе /prod29/ = то же что /.
+    path('prod29/', CatalogFrontpageView.as_view(), name='frontpage-prod'),
+]
+# На проде можно не задавать FORCE_OLD_DESIGN_PATH — тогда /prod29/ просто дублирует главную.
+_prod_path = getattr(settings, 'FORCE_OLD_DESIGN_PATH', None)
+if _prod_path:
+    _segment = (_prod_path if isinstance(_prod_path, str) else str(_prod_path)).strip('/')
+    if _segment and _segment != 'prod29':
+        urlpatterns.append(path(_segment + '/', CatalogFrontpageView.as_view(), name='frontpage-prod-alt'))
+urlpatterns += [
     path('i18n/', include('django.conf.urls.i18n')),
     path('robots.txt', robots_txt, name='robots_txt'),
     path('admin/clear-cache/', clear_cache, name='clear_cache'),

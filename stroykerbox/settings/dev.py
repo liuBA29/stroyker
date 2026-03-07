@@ -1,10 +1,19 @@
 # mypy: ignore-errors
 # flake8: noqa
 from .base import *
+
 from django.utils.translation import ugettext_lazy as _
 
 
 DEBUG = True
+
+# Переключение дизайна 8 марта (шапка, подвал, главная).
+# По умолчанию включено в base.py. Чтобы ВЫКЛЮЧИТЬ у себя — раскомментируй строку ниже.
+# USE_8MARCH_HEADER_FOOTER = False
+
+# Страница «как у заказчика»: localhost/prod29/ показывает главную в СТАРОМ дизайне (без 8 марта).
+# Нужна, чтобы смотреть меню/контент из админки и переносить в дизайн 8 марта. На проде не задавать — тогда /prod29/ будет дублировать главную в новом дизайне.
+FORCE_OLD_DESIGN_PATH = 'prod29'
 
 BASE_URL = 'http://stroykerbox.local'
 

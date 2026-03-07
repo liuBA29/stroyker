@@ -192,7 +192,8 @@ class CatalogFrontpageView(TemplateView):
     template_name = 'catalog/frontpage.html'
 
     def get_template_names(self):
-        if getattr(config, 'USE_8MARCH_HEADER_FOOTER', False):
+        from stroykerbox.apps.customization.context_processors import _use_8march_header_footer
+        if _use_8march_header_footer(self.request):
             return ['catalog/frontpage_8march.html']
         return [self.template_name]
 
@@ -203,7 +204,8 @@ class CatalogFrontpageView(TemplateView):
         )
         context['show_breadcrumbs'] = False
 
-        if getattr(config, 'USE_8MARCH_HEADER_FOOTER', False):
+        from stroykerbox.apps.customization.context_processors import _use_8march_header_footer
+        if _use_8march_header_footer(self.request):
             context.update(get_8march_index_context(self.request))
 
         if hasattr(self.request, 'seo'):

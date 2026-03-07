@@ -14,6 +14,10 @@ os.makedirs(LOG_DIR, exist_ok=True)
 
 BASE_URL = ''
 
+# Дизайн 8 марта: при True — шапка, подвал и главная в стиле 8march. Включено по умолчанию для всех (и у заказчика без админки).
+# Чтобы выключить: в своём settings (dev.py или у заказчика) задать USE_8MARCH_HEADER_FOOTER = False.
+USE_8MARCH_HEADER_FOOTER = True
+
 SECRET_KEY = 'xkz)zl=o@8^_h45+ympuf)53emok@k9f1_brg1b(26py)^r2fg'
 
 TESTING_MODE = 'test' in sys.argv

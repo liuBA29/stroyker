@@ -1,5 +1,5 @@
-{% load static statictext_tags utils_tags seo_tags crm_tags common_tags menu_tags catalog_tags location_tags %}
-{# Полная версия футера 8march для всех страниц: меню каталога/покупателям из конфига, телефон из location. #}
+{% load static statictext_tags utils_tags seo_tags crm_tags common_tags location_tags %}
+{# Футер 8march: фиксированные колонки КАТАЛОГ и ПОКУПАТЕЛЯМ как на эталоне/тестовой странице. #}
 <footer class="footer--8march">
     {% schema_org_organization %}
     <div class="container">
@@ -38,13 +38,37 @@
                 <div class="footer-content__column footer-content__column--lg">
                     <span class="footer-content__title">КАТАЛОГ</span>
                     <div class="footer-content__ul-content">
-                        {% render_catalog_categories_menu_simple config.CATALOG_MENU_FOOTER_ITEMS_PER_COL %}
+                        <ul>
+                            <li><a href="{% url 'catalog:category' '8-marta' %}">Букет на 8 марта</a></li>
+                            <li><a href="{% url 'catalog:category' 'gotovaya-vitrina' %}">Готовая витрина</a></li>
+                            <li><a href="{% url 'catalog:category' 'avtorskie' %}">Авторские букеты</a></li>
+                            <li><a href="{% url 'catalog:category' 'monoduo-bukety' %}">Моно/дуо букеты</a></li>
+                            <li><a href="{% url 'catalog:category' 'wow-bukety' %}">Wow букеты</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="{% url 'catalog:category' 'fresh-bukety' %}">Fresh букеты</a></li>
+                            <li><a href="{% url 'catalog:category' 'kompozicii' %}">Цветочные композиции</a></li>
+                            <li><a href="{% url 'catalog:category' 'podarki' %}">Подарки</a></li>
+                            <li><a href="{% url 'catalog:category' 'sezonnye-cvety' %}">Сезонные цветы</a></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="footer-content__column footer-content__column--lg">
                     <span class="footer-content__title">ПОКУПАТЕЛЯМ</span>
                     <div class="footer-content__ul-content">
-                        {% render_menu 'footer_customer_menu' %}
+                        <ul>
+                            <li><a href="{% url 'staticpages:staticpage' 'about' %}">О студии</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'services' %}">Услуги</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'bouquet-care' %}">Совет по уходу</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'reviews' %}">Отзывы</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'requisites' %}">Реквизиты</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="{% url 'staticpages:staticpage' 'delivery' %}">Доставка</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'privacy-policy' %}">Политика конфиденциальности</a></li>
+                            <li><a href="{% url 'staticpages:staticpage' 'public-offer' %}">Публичная оферта</a></li>
+                            <li><a href="{% url 'contacts-page' %}">Контакты</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
