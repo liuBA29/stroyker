@@ -582,7 +582,7 @@ section.__header.__header--8march.header-8march {
     padding-right: 16px;
     justify-content: space-between;
     gap: 0.5rem;
-    min-height: 56px;
+    height: 50px;
   }
   .header-8march__center {
     position: static;
@@ -1611,6 +1611,13 @@ section.feedback-form--8march-footer button[type="submit"].black-button:hover {
   flex-wrap: wrap;
   gap: 2rem 3rem;
 }
+
+@media (min-width: 992px) {
+  .footer--8march .footer-8march-menu {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+}
 .footer--8march .footer-8march-menu .footer-content__column--lg {
   flex: 0 0 auto;
 }
@@ -2473,6 +2480,13 @@ body.design-8march .delivery-total--cart li {
   width: 24px;
   height: 24px;
   flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+}
+.mobile-bottom-nav-8march__icon svg circle,
+.mobile-bottom-nav-8march__icon svg path {
+  fill: none;
+  stroke: currentColor;
 }
 
 .mobile-bottom-nav-8march__icon--cart {
@@ -2585,3 +2599,40 @@ body.design-8march .footer--8march .footer-8march-menu .footer-content__column--
   }
 }
 
+/* Прод: хедер 8march — высота и номер телефона (чтобы не перебивались общими стилями) */
+body.design-8march section.__header.__header--8march,
+body.design-8march section.__header.__header--8march.header-8march,
+body.design-8march .header-8march {
+  min-height: 0 !important;
+  height: auto !important;
+}
+body.design-8march .header-8march__bar {
+  min-height: 63px !important;
+  height: auto !important;
+  padding: 0 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+body.design-8march .header-8march__phone-inner,
+body.design-8march .header-8march__phone-inner a {
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: #2d2d2d !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+body.design-8march .header-8march__phone {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+}
+@media (max-width: 767px) {
+  body.design-8march .header-8march__bar {
+    height: 50px !important;
+    min-height: 50px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}

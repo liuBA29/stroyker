@@ -1300,7 +1300,9 @@ section.feedback-form button {
 
 .index-promo-8march__btn-catalog {
   display: block;
-  width: 100%;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
   padding: 0.75rem 1.75rem;
   font-size: 0.95rem;
   font-weight: 600;
@@ -1327,8 +1329,9 @@ section.feedback-form button {
   .index-promo-8march__title {
     padding-left: 1rem;
     padding-right: 1rem;
+    padding-top: 0.2em;
     font-size: 34px !important;
-    margin-top: -2.5rem !important;
+    margin-top: -1.75rem !important;
   }
   .index-promo-8march__title .pretty_numbers {
     font-size: 1.5em !important;
@@ -1888,7 +1891,9 @@ section.feedback-form button {
 
 .index-bouquets-8march__btn-catalog {
   display: block;
-  width: 100%;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
   padding: 0.75rem 1.75rem;
   font-size: 0.95rem;
   font-weight: 600;

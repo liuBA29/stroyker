@@ -26,6 +26,13 @@
         <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}?v5" type="text/css">
         <link rel="stylesheet" href="{% static 'css/tippy.css' %}?v5" type="text/css">
         <link rel="stylesheet" href="{% static 'css/main.css' %}?{{ current_version }}" type="text/css">
+        {% if use_8march_header_footer %}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700&family=Geologica:wght@400&family=Roboto:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static '8march_design/css/8march_base.css' %}">
+        <link rel="stylesheet" href="{% static '8march_design/css/8march_design.css' %}">
+        {% endif %}
         {% endaddtoblock %}
 
         {% render_block "css" %}
@@ -60,7 +67,7 @@
         {{ config.PAGE_HEAD_CUSTOM_CODE|safe }}
     </head>
 
-    <body class="{% if request.path == '/' %}frontpage{% else %}inner-page{% endif %}">
+    <body class="{% if request.path == '/' %}frontpage{% else %}inner-page{% endif %}{% if use_8march_header_footer %} design-8march{% endif %}">
         <div class="page">
             <header>
                 {% block body_pre_header %}{% endblock body_pre_header %}
@@ -81,7 +88,11 @@
             </main>
 
 
-            {% block body_footer %}{% endblock body_footer %}
+            {% block body_footer %}
+            {% if use_8march_header_footer %}
+            {% include 'includes/mobile_bottom_nav_8march.html' %}
+            {% endif %}
+            {% endblock body_footer %}
 
         {% addtoblock 'svg' %}
         <symbol id="exit" stroke="none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 21.4 18">
