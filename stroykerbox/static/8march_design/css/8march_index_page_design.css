@@ -975,6 +975,14 @@ section.feedback-form button {
 .index-promo-8march__title {
   position: relative;
   z-index: 1;
+  color: #2d2d2d !important;
+}
+/* «МАРТА» — тот же цвет и размер, что и «КОЛЛЕКЦИЯ», без синего и без уменьшения */
+.index-promo-8march__title-line2 {
+  color: #2d2d2d !important;
+  font-size: 1em !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
 }
 /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: шрифт и размер цифры «8» в заголовке «8 МАРТА» НИ В КОЕМ СЛУЧАЕ не менять без прямого письменного согласования с заказчиком. */
 .index-promo-8march__title .pretty_numbers {
