@@ -2661,9 +2661,9 @@ body.design-8march .index-8march-map-wrap #yamap_addresses {
   border-radius: 0;
 }
 @media (min-width: 768px) {
-  /* Большой экран: смещение карточки влево. Неизменяемо без согласования. */
+  /* Большой экран: смещение карточки влево. Увеличено смещение — карточка левее. */
   .index-8march-map-overlay {
-    left: calc(50% - 220px);
+    left: calc(50% - 320px);
   }
 }
 

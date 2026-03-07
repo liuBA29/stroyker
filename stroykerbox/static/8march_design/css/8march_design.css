@@ -2540,4 +2540,48 @@ body.design-8march .delivery-total--cart li {
   }
 }
 
+/* ═══ Прод: футер — шрифты и колонки КАТАЛОГ/ПОКУПАТЕЛЯМ (чтобы не перебивались style.css/new.css и подгружались шрифты) ═══ */
+body.design-8march .footer--8march,
+body.design-8march .footer--8march .footer-content__title,
+body.design-8march .footer--8march .footer-content__column a,
+body.design-8march .footer--8march .footer-content__ul-content a,
+body.design-8march .footer--8march .footer-8march-call__phone,
+body.design-8march .footer--8march .footer-copyright,
+body.design-8march .footer--8march .footer-bottom,
+body.design-8march .footer--8march .copy {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+body.design-8march .footer--8march .footer-content__title,
+body.design-8march .footer--8march .footer-8march-questions__title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+}
+body.design-8march .footer--8march .footer-8march-menu {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 2rem 3rem !important;
+}
+body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg {
+  flex: 0 0 auto !important;
+  width: auto !important;
+}
+body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content {
+  display: flex !important;
+  gap: 0 2rem !important;
+}
+body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content ul {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+@media (max-width: 991px) {
+  body.design-8march .footer--8march .footer-8march-menu {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5rem !important;
+  }
+  body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content {
+    flex-direction: column !important;
+  }
+}
 
