@@ -73,7 +73,15 @@
           if (window.location.pathname == URLS.cart) {
             window.location.reload(true);
           } else {
-            $(".cart-number").html(response.count);
+            var count = response.count;
+            $(".cart-number").html(count);
+            $(".header-8march__cart-count").html(count);
+            var $badge = $(".mobile-bottom-nav-8march__badge");
+            if ($badge.length) {
+              $badge.text(count);
+            } else if (count && count !== "0") {
+              $(".mobile-bottom-nav-8march__icon--cart").append('<span class="mobile-bottom-nav-8march__badge">' + count + '</span>');
+            }
           }
         }
       });
