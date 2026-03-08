@@ -2806,6 +2806,11 @@ body.design-8march header {
   position: relative !important;
 }
 
+/* Убрать зелёную полоску под хедером на главной: new.css даёт main { padding-top: 160px/80px/60px }, хедер 8march уже в потоке — обнуляем. Вернуть: удалить блок ниже. */
+body.design-8march main {
+  padding-top: 0 !important;
+}
+
 /* ========== Переопределение new.css для футера .footer--8march (футеру не нужны стили из new.css) ========== */
 .footer--8march .footer-content__menu {
   margin-right: 0 !important;
