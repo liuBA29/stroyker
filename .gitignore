@@ -54,3 +54,6 @@ LOCAL_APT_UPDATE_NUANCES.txt
 # Инструкции переключения дизайна 8 марта (не пушить)
 INSTRUCTION_SWITCH_TO_8MARCH_DESIGN.txt
 INSTRUCTION_REVERT_FROM_8MARCH_DESIGN.txt
+
+# Описания зашитой логики (new.css, header .fixed JS и т.д.) — не пушить, только для справки
+описания_зашитой_логики/

@@ -1344,6 +1344,13 @@ section.feedback-form button {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+  /* Трек — явная ширина и min-width: 0, чтобы контент (все карточки) давал горизонтальный скролл, а не только первые 2 */
+  .index-promo-8march__carousel .index-promo-8march__track {
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
   .index-promo-8march__arrow {
     display: flex;
     position: absolute;

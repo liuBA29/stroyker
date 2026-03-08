@@ -29,6 +29,8 @@
         <link rel="stylesheet" href="{% static 'css/main.css' %}?{{ current_version }}" type="text/css">
         {% endaddtoblock %}
 
+        {% render_block "css" %}
+
         {% if use_8march_header_footer %}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,8 +42,6 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" crossorigin="anonymous">
         {% endif %}
         {% endif %}
-
-        {% render_block "css" %}
 
         {% addtoblock "js" %}
         <script type="text/javascript">
@@ -91,7 +91,7 @@
 
     <body class="{% if request.path == '/' or request.path == '' %}frontpage{% else %}inner-page{% endif %}{% if use_8march_header_footer %} design-8march{% endif %}">
         <div class="page">
-            <header>
+            <header{% if use_8march_header_footer %} class="header_landing"{% endif %}>
                 {% block body_pre_header %}
                 {% render_tag_container 'pre_header' wrapper_main_class="additional-section" %}
                 {% endblock body_pre_header %}

@@ -61,10 +61,6 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-right footer-8march-copyright">
-                <p class="footer-copyright">© «{{ config.SITE_NAME|default:"LUCIANO" }}», {% now "Y" %}</p>
-                <div class="footer-8march-shift-block footer-8march-shift-block--right" aria-hidden="true"></div>
-            </div>
         </div>
         <div class="footer-bottom">
             <div class="footer-bottom__left">
@@ -73,6 +69,10 @@
             {% render_footer_social_links %}
             {% render_recaptcha_terms_text %}
             {% render_lang_switcher %}
+        </div>
+        <div class="footer-right footer-8march-copyright footer-8march-copyright--mobile-last">
+            <p class="footer-copyright">© «LUCIANO», {% now "Y" %}</p>
+            <div class="footer-8march-shift-block footer-8march-shift-block--right" aria-hidden="true"></div>
         </div>
     </div>
 </footer>
