@@ -1512,6 +1512,19 @@ section.feedback-form--8march-footer button[type="submit"].black-button:hover {
     margin-left: auto;
     margin-right: auto;
   }
+  /* Малый экран: кнопка ОТПРАВИТЬ — на всю ширину, чекбокс и подпись — строго под кнопкой */
+  .footer--8march .feedback-form--8march-footer__row {
+    flex-wrap: wrap;
+  }
+  .footer--8march .feedback-form--8march-footer__row .feedback-form--8march-footer__submit {
+    flex-basis: 100%;
+    width: 100%;
+  }
+  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy {
+    flex-basis: 100%;
+    width: 100%;
+    min-width: 100%;
+  }
 }
 
 .footer--8march .footer-8march-questions-col .feedback-form {

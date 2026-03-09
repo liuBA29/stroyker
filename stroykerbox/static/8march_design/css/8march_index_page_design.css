@@ -2273,6 +2273,15 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   cursor: pointer;
 }
 
+.index-bouquet-wish-8march .form-group.privacy-policy a {
+  color: #2d2d2d !important;
+  text-decoration: underline !important;
+}
+
+.index-bouquet-wish-8march .form-group.privacy-policy a:hover {
+  color: #2d2d2d !important;
+}
+
 /* Класс зелёного чекбокса — скруглённый квадрат, при отмеченном состоянии зелёный фон и белая галочка */
 .green-checkbox {
   appearance: none !important;
@@ -3180,12 +3189,12 @@ body.design-8march .index-8march-map-wrap #yamap_addresses {
 }
 
 .callme-8march__form .form-group.privacy-policy a {
-  color: #5a7a5e;
-  text-decoration: underline;
+  color: #2d2d2d !important;
+  text-decoration: underline !important;
 }
 
 .callme-8march__form .form-group.privacy-policy a:hover {
-  color: #4a6a4e;
+  color: #2d2d2d !important;
 }
 
 .callme-8march__form input[type="checkbox"] {
