@@ -2104,14 +2104,29 @@ img[src*="placeholder"],
   left: 0 !important;
   right: auto !important;
 }
+/* На всех экранах — отступ от краёв, чтобы шильдик не прятался и шёл поверх контента (как на малом) */
+body.design-8march #cookie-modal,
+body.design-8march .cookie-modal {
+  bottom: 20px !important;
+  left: 20px !important;
+}
+@media screen and (max-width: 575px) {
+  body.design-8march #cookie-modal,
+  body.design-8march .cookie-modal {
+    bottom: 15px !important;
+    left: 15px !important;
+  }
+}
 .safety-message-fixed {
   left: 20px !important;
   right: auto !important;
 }
-/* Блок шильдика: бежевый фон (как в дизайне 8 марта), не прозрачный */
+/* Шильдик: полупрозрачный с блюром (как на малом экране) — на большом тот же вид, поверх контента */
 #cookie-modal .cookie-modal__content,
 .cookie-modal .cookie-modal__content {
-  background: #F9F3EE !important;
+  background: rgba(255, 255, 252, 0.78) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: none !important;
   box-shadow: none !important;
 }
@@ -2866,8 +2881,9 @@ body.design-8march main {
   }
 }
 
-/* Копирайт 8march на мобильной прижат влево (перебиваем new.css, style.css, footer .footer-right) */
+/* Копирайт 8march на мобильной прижат влево (перебиваем new.css, style.css; на главной — тот же вид, что на тестовой) */
 @media (max-width: 991px) {
+  body.design-8march .footer--8march > .container > .footer-right.footer-8march-copyright,
   .footer--8march > .container > .footer-right.footer-8march-copyright {
     text-align: left !important;
     justify-content: flex-start !important;
@@ -2875,6 +2891,7 @@ body.design-8march main {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
+  body.design-8march .footer--8march > .container > .footer-right.footer-8march-copyright .footer-copyright,
   .footer--8march > .container > .footer-right.footer-8march-copyright .footer-copyright {
     text-align: left !important;
     margin-left: 0 !important;
@@ -2882,6 +2899,7 @@ body.design-8march main {
   }
 }
 @media (max-width: 767px) {
+  body.design-8march .footer--8march > .container > .footer-right.footer-8march-copyright,
   .footer--8march > .container > .footer-right.footer-8march-copyright {
     width: 100% !important;
     max-width: 100% !important;
@@ -2892,6 +2910,7 @@ body.design-8march main {
     align-items: flex-start !important;
     order: unset !important;
   }
+  body.design-8march .footer--8march > .container > .footer-right.footer-8march-copyright .footer-copyright,
   .footer--8march > .container > .footer-right.footer-8march-copyright .footer-copyright {
     text-align: left !important;
     margin-left: 0 !important;

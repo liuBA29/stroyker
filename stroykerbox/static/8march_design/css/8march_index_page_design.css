@@ -74,7 +74,8 @@
  * Подписи категорий, кнопки: sans-serif, полужирный/обычный, ВЕРХНИЙ РЕГИСТР.
  * Описания: sans-serif, regular. Цены: актуальная — bold, старая — regular + зачёркивание + серый.
  */
-.page-index-8march .index-social-8march__title {
+.page-index-8march .index-social-8march__title,
+.page-index-8march-content .index-social-8march__title {
   font-family: var(--8march-font-heading, 'Inter', system-ui, sans-serif);
   font-weight: var(--8march-heading-weight, 600);
   letter-spacing: var(--8march-heading-letter-spacing, 0.05em);
@@ -102,6 +103,7 @@
 
 /* Заголовки секций главной 8march — Roboto Light (кроме .big-title: АКЦИИ, СБОРНЫЕ БУКЕТЫ, ОТЗЫВЫ, ГДЕ МЫ НАХОДИМСЯ) */
 .page-index-8march .index-social-8march__title,
+.page-index-8march-content .index-social-8march__title,
 .page-index-8march .index-info-8march__heading,
 .page-index-8march .index-hero-8march__text {
   font-family: 'Roboto', sans-serif;
@@ -115,6 +117,7 @@
 .page-index-8march .index-bouquets-8march__btn-catalog,
 .page-index-8march .index-bouquet-wish-8march__submit,
 .page-index-8march .index-social-8march__link,
+.page-index-8march-content .index-social-8march__link,
 .page-index-8march .index-reviews-8march__btn-leave,
 .page-index-8march .index-reviews-8march__more-link {
   font-family: var(--8march-font-body, 'Inter', system-ui, sans-serif);
@@ -129,6 +132,7 @@
 }
 .page-index-8march .index-bouquets-8march__desc,
 .page-index-8march .index-social-8march__text,
+.page-index-8march-content .index-social-8march__text,
 .page-index-8march .index-reviews-8march__stats,
 .page-index-8march .index-reviews-8march__text {
   font-family: var(--8march-font-body, 'Inter', system-ui, sans-serif);
@@ -630,9 +634,10 @@ section.feedback-form button {
   pointer-events: auto;
 }
 
-.index-hero-8march__arrow {
-  width: 40px;
-  height: 40px;
+/* Общий класс для всех круглых стрелок промотки (герой, категории, коллекция 8 марта) */
+.pink-arrows {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: none !important;
   background: #FBE3E1 !important;
@@ -640,31 +645,36 @@ section.feedback-form button {
   cursor: pointer;
   padding: 0;
   flex-shrink: 0;
-  position: relative;
-  z-index: 1;
-  pointer-events: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #FBE3E1;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
+.pink-arrows:hover {
+  background: #f5d5d2 !important;
+  background-color: #f5d5d2 !important;
+}
+
+.index-hero-8march__arrow {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+  color: #FBE3E1;
+}
 .index-hero-8march__arrow svg {
-  width: 50%;
-  height: auto;
+  width: 22px;
+  height: 22px;
   display: block;
-  color: #2d2d2d;
-  stroke: #2d2d2d;
+  color: #B8736E;
+  stroke: #B8736E;
 }
 
 .index-hero-8march__arrow:hover {
-  background: #f5d5d2 !important;
-  background-color: #f5d5d2 !important;
   color: #f5d5d2;
 }
 .index-hero-8march__arrow:hover svg {
-  color: #2d2d2d;
-  stroke: #2d2d2d;
+  color: #B8736E;
+  stroke: #B8736E;
 }
 
 .index-hero-8march__arrow--prev {
@@ -916,31 +926,19 @@ section.feedback-form button {
 }
 
 .index-categories-8march__arrow {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: none;
-  background: #e8e0d5;
-  cursor: pointer;
-  padding: 0;
-  flex-shrink: 0;
-  transition: background-color 0.2s ease;
-}
-
-.index-categories-8march__arrow:hover {
-  background: #ddd5ca;
+  /* общий вид — из .pink-arrows */
 }
 
 .index-categories-8march__arrow--prev {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c49a9a' stroke-width='2'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E");
-  background-size: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B8736E' stroke-width='2'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E");
+  background-size: 22px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .index-categories-8march__arrow--next {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c49a9a' stroke-width='2'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
-  background-size: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B8736E' stroke-width='2'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
+  background-size: 22px;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -1254,34 +1252,22 @@ section.feedback-form button {
   position: absolute;
   top: 35%;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  background: #FBE3E1;
-  cursor: pointer;
-  padding: 0;
   z-index: 3;
-  transition: background-color 0.2s ease;
-  flex-shrink: 0;
-}
-
-.index-promo-8march__arrow:hover {
-  background: #f5d5d2;
+  /* общий вид — из .pink-arrows */
 }
 
 .index-promo-8march__arrow--prev {
   left: 0.5rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d2d2d' stroke-width='2'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E");
-  background-size: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B8736E' stroke-width='2'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E");
+  background-size: 22px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .index-promo-8march__arrow--next {
   right: 0.5rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d2d2d' stroke-width='2'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
-  background-size: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B8736E' stroke-width='2'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
+  background-size: 22px;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -1377,7 +1363,7 @@ section.feedback-form button {
     transform: none;
   }
   .index-promo-8march__footer {
-    margin-top: 5rem;
+    margin-top: 0.75rem;
   }
 }
 
@@ -2295,6 +2281,105 @@ section.feedback-form button {
   color: #6b6363 !important;
 }
 
+/* Главная: переопределить чекбокс «Букет по вашим желаниям» как в тестовой версии (main/style.css не должен перебивать) */
+/* style.css рисует чекбокс через label:before/after — не показываем наш input, перекрашиваем их псевдоэлементы в зелёный */
+body.design-8march .page-index-8march-content .index-bouquet-wish-8march .green-checkbox {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  -webkit-border-radius: 6px !important;
+  background: #e8e6e4 !important;
+  cursor: pointer;
+  box-sizing: border-box !important;
+  outline: none !important;
+  transition: background-color 0.2s ease;
+}
+body.design-8march .page-index-8march-content .index-bouquet-wish-8march .green-checkbox:checked {
+  background: #cfdcab !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6 L5 9 L10 3'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 10px 10px !important;
+  border-radius: 6px !important;
+  -webkit-border-radius: 6px !important;
+}
+body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem;
+  padding-left: 0 !important;
+}
+body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement label {
+  margin: 0 !important;
+  font-size: 0.8rem !important;
+  color: #6b6363 !important;
+}
+/* Перекрасить псевдо-чекбокс style.css в зелёный: не скрываем, а переопределяем фон и галочку */
+body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:not(:checked) + label::before,
+body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:checked + label::before,
+body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:not(:checked) + label:before,
+body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:checked + label:before {
+  background: #e8e6e4 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  -webkit-border-radius: 6px !important;
+  width: 18px !important;
+  height: 18px !important;
+  left: 0 !important;
+}
+body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:not(:checked) + label::after,
+body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:not(:checked) + label:after {
+  opacity: 0 !important;
+  transform: scale(0) !important;
+  -webkit-transform: scale(0) !important;
+}
+body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:checked + label::after,
+body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:checked + label:after {
+  background: #cfdcab !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6 L5 9 L10 3'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 10px 10px !important;
+  border-radius: 6px !important;
+  -webkit-border-radius: 6px !important;
+  width: 18px !important;
+  height: 18px !important;
+  left: 0 !important;
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  -webkit-transform: scale(1) !important;
+}
+
+@media (max-width: 767px) {
+  .index-bouquet-wish-8march__form {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: wrap;
+  }
+  .index-bouquet-wish-8march__form .index-bouquet-wish-8march__field {
+    order: 0;
+    width: 100%;
+  }
+  .index-bouquet-wish-8march__form .index-bouquet-wish-8march__submit {
+    order: 1;
+    width: 100%;
+    align-self: flex-start;
+  }
+  .index-bouquet-wish-8march__form .index-bouquet-wish-8march__agreement {
+    order: 2;
+    width: 100%;
+    flex-basis: 100%;
+    margin-top: 0.5rem;
+    display: block !important;
+  }
+}
+
 @media (max-width: 767px) {
   .index-bouquet-wish-8march__inner {
     flex-direction: column;
@@ -2311,12 +2396,15 @@ section.feedback-form button {
 }
 
 /* --- LUCIANO В СОЦСЕТЯХ (светло-розовая полоса по эталону). НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! --- */
+/* На главной контент в .page-index-8march-content — дублируем с повышенной специфичностью, чтобы не перебивалось main.css */
+body.design-8march .page-index-8march-content .index-social-8march,
 .index-social-8march {
   width: 100%;
   padding: 1.75rem 1rem;
   background: #fce8e9;
 }
 
+body.design-8march .page-index-8march-content .index-social-8march__inner,
 .index-social-8march__inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -2326,6 +2414,7 @@ section.feedback-form button {
   gap: 1rem 1.5rem;
 }
 
+body.design-8march .page-index-8march-content .index-social-8march__title,
 .index-social-8march__title {
   margin: 0;
   font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
@@ -2336,6 +2425,7 @@ section.feedback-form button {
   flex: 0 0 auto;
 }
 
+body.design-8march .page-index-8march-content .index-social-8march__text,
 .index-social-8march__text {
   margin: 0;
   font-size: 0.9rem;
@@ -2346,6 +2436,7 @@ section.feedback-form button {
 }
 
 /* --- LUCIANO В СОЦСЕТЯХ. Рубрика неизменяема без согласования: ссылки TELEGRAM/VK, выравнивание на малом экране. --- */
+body.design-8march .page-index-8march-content .index-social-8march__links,
 .index-social-8march__links {
   display: flex;
   gap: 1rem;
@@ -2355,12 +2446,14 @@ section.feedback-form button {
 }
 
 @media (max-width: 767px) {
+  body.design-8march .page-index-8march-content .index-social-8march__links,
   .index-social-8march__links {
     margin-left: 0;
     justify-content: flex-start;
   }
 }
 
+body.design-8march .page-index-8march-content .index-social-8march__link,
 .index-social-8march__link {
   font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
   font-weight: 300 !important;
@@ -2371,6 +2464,7 @@ section.feedback-form button {
   transition: color 0.2s ease;
 }
 
+body.design-8march .page-index-8march-content .index-social-8march__link:hover,
 .index-social-8march__link:hover {
   color: #a06660;
 }
