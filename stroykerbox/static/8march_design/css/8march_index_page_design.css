@@ -788,10 +788,32 @@ section.feedback-form button {
   background-repeat: no-repeat;
   background-position: 50% var(--pink-vector-y, 0);
 }
+/* ОТКАТ: удалить блок до конца комментария — общий фон pink_bg1 для овалов и «КОЛЛЕКЦИЯ 8 МАРТА» (как в эталоне), перекрывает pink_vector1 */
+.index-8march-pink-vector::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  top: 0;
+  bottom: 0;
+  background-image: url("../images/pink_bg1.png");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center -50px;
+  pointer-events: none;
+}
+/* конец блока для отката */
 .index-8march-pink-vector .index-categories-8march,
 .index-8march-pink-vector .index-promo-8march {
   background: transparent;
   background-color: transparent;
+}
+/* ОТКАТ: удалить следующие 4 строки — фон гарантии/рейтинга в зоне pink_bg1 */
+.index-8march-pink-vector .index-info-8march {
+  background: transparent !important;
+  background-color: transparent !important;
 }
 
 /* Одна диагональная линия: от конца категорий (справа сверху) до начала «Сборные букеты» (слева внизу). Параметры по Figma. */
@@ -1012,23 +1034,7 @@ section.feedback-form button {
   z-index: 0;
 }
 
-/* ОТКАТ: удалить весь блок ниже до конца комментария — фон pink_bg1.png в районе карусели на всю ширину экрана */
-.index-promo-8march::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  top: 0;
-  bottom: 0;
-  background-image: url("../images/pink_bg1.png");
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-position: center -50px;
-  pointer-events: none;
-}
-/* конец блока для отката фона pink_bg1 */
+/* ОТКАТ фона: вернуть .index-promo-8march::before с url("../images/pink_bg1.png") и background-position center -50px */
 
 .index-promo-8march__title {
   position: relative;
