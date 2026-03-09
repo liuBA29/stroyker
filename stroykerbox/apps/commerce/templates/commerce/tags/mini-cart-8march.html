@@ -1,0 +1,77 @@
+{% load static catalog_tags commerce_tags utils_tags thumbnail %}
+{# Шаблон мини-корзины 8 марта (до 2 товаров с фото). Подключается через includes/mini_cart_8march.html. Чтобы отключить мини-корзину — см. комментарии там и в base.html, header_8march.html. #}
+<div class="mini-cart-8march" id="mini-cart-8march-panel" aria-hidden="true">
+  <div class="mini-cart-8march__overlay" data-mini-cart-8march-close aria-label="Закрыть"></div>
+  <div class="mini-cart-8march__drawer">
+    <div class="mini-cart-8march__head">
+      <h2 class="mini-cart-8march__title">Корзина</h2>
+      <button type="button" class="mini-cart-8march__close" data-mini-cart-8march-close aria-label="Закрыть">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="mini-cart-8march__body">
+      {% if mini_cart_items %}
+        <ul class="mini-cart-8march__list">
+          {% for product, quantity in mini_cart_items %}
+          {% product_cart_price product as product_price %}
+          <li class="mini-cart-8march__item">
+            {% if product.main_image %}
+            <span class="mini-cart-8march__img">
+              {% thumbnail product.main_image.image '120x120' as im %}
+              <img src="{{ im.url }}" alt="{{ product.name }}" loading="lazy">
+              {% endthumbnail %}
+            </span>
+            {% endif %}
+            <span class="mini-cart-8march__info">
+              <span class="mini-cart-8march__name">{{ product.name }}</span>
+              <span class="mini-cart-8march__qty">{{ quantity }} × {{ product_price|price_format }} {{ currency_symbol }}</span>
+              <span class="mini-cart-8march__row-total">{{ product_price|multiplication:quantity|price_format }} {{ currency_symbol }}</span>
+            </span>
+          </li>
+          {% endfor %}
+        </ul>
+        <p class="mini-cart-8march__total">
+          <span>Итого:</span>
+          <strong>{{ cart.total_price|price_format }} {{ currency_symbol }}</strong>
+        </p>
+        {% if cart.total_count > 2 %}
+        <p class="mini-cart-8march__more">и ещё {{ cart.total_count|add:"-2" }} в корзине</p>
+        {% endif %}
+      {% else %}
+        <p class="mini-cart-8march__empty">Корзина пуста</p>
+      {% endif %}
+    </div>
+    <div class="mini-cart-8march__footer">
+      <a href="{% url 'cart:cart' %}" class="mini-cart-8march__btn black-button">В корзину</a>
+    </div>
+  </div>
+</div>
+<script>
+(function() {
+  var panel = document.getElementById('mini-cart-8march-panel');
+  if (!panel) return;
+  function openMiniCart(e) {
+    if (e) e.preventDefault();
+    panel.classList.add('mini-cart-8march--open');
+    panel.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMiniCart() {
+    panel.classList.remove('mini-cart-8march--open');
+    panel.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  function init() {
+    var openBtn = document.querySelector('[data-mini-cart-8march-open]');
+    if (openBtn) openBtn.addEventListener('click', openMiniCart);
+    panel.querySelectorAll('[data-mini-cart-8march-close]').forEach(function(btn) {
+      btn.addEventListener('click', closeMiniCart);
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && panel.classList.contains('mini-cart-8march--open')) closeMiniCart();
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>

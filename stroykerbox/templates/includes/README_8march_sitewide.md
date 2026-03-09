@@ -18,6 +18,8 @@
 3. **Статика и CSS**  
    При включённом 8march в base подключаются: шрифты эталона, `8march_design/css/8march_base.css`, `8march_design/css/8march_design.css`. На главной (`request.path == '/'`) дополнительно: `8march_index_page_design.css`, flatpickr CSS. Главная при флаге рендерится шаблоном `catalog/frontpage_8march.html` с контентом 8march (герой, категории, акции, букеты, форма «Букет по желаниям» и т.д.).
 
+   **Мини-корзина (опционально):** отдельный файл `8march_design/css/8march_mini_cart.css` и шаблон `includes/mini_cart_8march.html` (подключается из `header_8march.html`). По клику на иконку корзины открывается выдвижная панель с до 2 товаров. Если заказчик не захочет мини-корзину — в файлах есть комментарии, как отключить (удалить подключение CSS в base, убрать include и атрибут у ссылки корзины).
+
 ## Чекбоксы согласия (2 шт) и одинаковый текст
 
 Тег `{% render_form_agreement form %}` рендерит `common/tags/form-agreement.html` и может выводить **2 чекбокса**:
