@@ -798,7 +798,7 @@ section.feedback-form button {
   width: 100vw;
   top: 0;
   bottom: 0;
-  background-image: url("../images/pink_bg1.png");
+  background-image: url("/static/8march_design/images/pink_bg1.png");
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center -50px;
@@ -807,8 +807,13 @@ section.feedback-form button {
 /* конец блока для отката */
 .index-8march-pink-vector .index-categories-8march,
 .index-8march-pink-vector .index-promo-8march {
-  background: transparent;
-  background-color: transparent;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+/* ОТКАТ: удалить следующие 5 строк — футер с кнопкой каталога прозрачный в зоне pink_bg1 */
+.index-8march-pink-vector .index-promo-8march__footer {
+  background: transparent !important;
+  background-color: transparent !important;
 }
 /* ОТКАТ: удалить следующие 4 строки — фон гарантии/рейтинга в зоне pink_bg1 */
 .index-8march-pink-vector .index-info-8march {
@@ -1357,7 +1362,8 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   text-align: center;
   padding-top: 2.5rem;
   margin: 0 auto 2rem;
-  background: #fff !important;
+  background: transparent !important;
+  background-color: transparent !important;
   position: relative;
   z-index: 1;
   max-width: 1200px;
