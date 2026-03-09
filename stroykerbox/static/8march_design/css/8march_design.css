@@ -1732,6 +1732,17 @@ section.feedback-form--8march-footer button[type="submit"].black-button:hover {
     background: var(--8march-footer-btn-bg, #1a1a1a) !important;
     border: none !important;
   }
+  /* Мобилка: «ПЕРЕЗВОНИТЕ МНЕ» должен быть чёрным (его перебивает общий сброс background: transparent) */
+  .footer--8march .footer-8march-call__btn.black-button {
+    background-color: #1a1a1a !important;
+    background: #1a1a1a !important;
+    color: #fff !important;
+  }
+  .footer--8march .footer-8march-call__btn.black-button:hover {
+    background-color: #2d2d2d !important;
+    background: #2d2d2d !important;
+    color: #FBE3E1 !important;
+  }
   .footer--8march .container .form-group.privacy-policy .checkbox,
   .footer--8march .container input[type="checkbox"] {
     background-color: #fff !important;
@@ -2936,6 +2947,7 @@ body.design-8march main {
   .footer--8march > .container > .footer-right.footer-8march-copyright {
     width: 100% !important;
     max-width: 100% !important;
+    padding-left: 2.5rem !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
     text-align: left !important;

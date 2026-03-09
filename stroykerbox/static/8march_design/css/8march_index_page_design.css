@@ -1272,7 +1272,8 @@ section.feedback-form button {
 
 .index-promo-8march__footer {
   text-align: center;
-  margin: 0.75rem auto 3rem;
+  padding-top: 2rem;
+  margin: 0 auto 2rem;
   background: #fff !important;
   position: relative;
   z-index: 1;
@@ -1363,7 +1364,16 @@ section.feedback-form button {
     transform: none;
   }
   .index-promo-8march__footer {
-    margin-top: 0.75rem;
+    padding-top: 2rem;
+    margin-top: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .index-bouquets-8march__footer {
+    padding-top: 2rem;
+    margin-top: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
@@ -1877,9 +1887,12 @@ section.feedback-form button {
 
 .index-bouquets-8march__footer {
   text-align: center;
-  margin-top: 2rem;
-  padding: 0 1rem;
+  padding-top: 2rem;
+  margin: 0 0 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
   background: #fff !important;
+  box-sizing: border-box;
 }
 
 .index-bouquets-8march__btn-catalog {
