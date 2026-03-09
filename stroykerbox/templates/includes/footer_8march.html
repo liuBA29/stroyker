@@ -3,6 +3,7 @@
 <footer class="footer--8march">
     {% schema_org_organization %}
     <div class="container">
+        {% if request.resolver_match.url_name == 'frontpage' %}
         <div class="footer-8march-questions-row">
             <div class="footer-8march-questions-col">
                 <div class="footer-8march-shift-block" aria-hidden="true"></div>
@@ -19,6 +20,7 @@
                 <div class="footer-8march-shift-block footer-8march-shift-block--right" aria-hidden="true"></div>
             </div>
         </div>
+        {% endif %}
         {% comment %}Шильдик cookie вынесен в base.html (вне футера), когда use_8march_header_footer{% endcomment %}
 
         <div class="footer-content footer-8march-content">
