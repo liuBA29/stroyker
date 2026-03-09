@@ -1221,6 +1221,33 @@ section.feedback-form button {
   font-variant-numeric: lining-nums proportional-nums;
   text-transform: uppercase !important;
 }
+/* Главная: те же правила для цен в .page-index-8march-content */
+body.design-8march .page-index-8march-content span.index-promo-8march__price-old,
+body.design-8march .page-index-8march-content span.index-promo-8march__price-new,
+body.design-8march .page-index-8march-content p.index-bouquets-8march__price {
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif) !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-size: 24px !important;
+  leading-trim: none;
+  line-height: 100% !important;
+  letter-spacing: 0 !important;
+  font-variant-numeric: lining-nums proportional-nums;
+  text-transform: uppercase !important;
+}
+
+/* Цены в «Сборные букеты» — как pretty_numbers (как в карусели «Коллекция 8 марта») */
+body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bouquets-8march__price,
+.page-index-8march .index-bouquets-8march p.index-bouquets-8march__price {
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia), serif !important;
+  font-weight: 300 !important;
+  font-size: 24px !important;
+  line-height: 100% !important;
+  letter-spacing: 0 !important;
+  font-variant-numeric: lining-nums proportional-nums;
+  text-transform: uppercase !important;
+  color: #2d2d2d;
+}
 
 .index-promo-8march__card:hover {
   box-shadow: none !important;
