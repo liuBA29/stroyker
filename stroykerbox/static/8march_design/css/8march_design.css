@@ -1277,6 +1277,29 @@ footer .footer-bottom .footer-bottom__left {
   .footer-8march-shift-block {
     display: none;
   }
+  /* Мобильный футер: прижать меню «КАТАЛОГ/ПОКУПАТЕЛЯМ» к левому краю.
+     Дальше нужный отступ можно задать одним padding-left на .footer--8march .footer-content__menu */
+  .footer--8march .footer-content__menu,
+  .footer--8march .footer-8march-menu,
+  .footer--8march .footer-8march-menu .footer-content__column--lg,
+  .footer--8march .footer-8march-menu .footer-content__ul-content,
+  .footer--8march .footer-8march-menu .footer-content__ul-content ul {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding-inline-start: 0 !important;
+  }
+  /* Правильный отступ меню футера на мобильном (вровень с остальными элементами) */
+  .footer--8march .footer-content__menu {
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
+    box-sizing: border-box;
+  }
+  .footer--8march .footer-8march-menu ul,
+  .footer--8march .footer-8march-menu li {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
   .footer--8march .footer-8march-call__phone,
   .footer--8march .footer-8march-call__btn,
   .footer--8march .footer-8march-copyright .footer-copyright {
@@ -2873,6 +2896,16 @@ body.design-8march main {
   }
   .footer--8march .footer-content__ul-content ul {
     margin: 0 !important;
+    padding-left: 0 !important;
+    padding-inline-start: 0 !important;
+    list-style: none !important;
+  }
+  /* Фикс: на мобильном у списков в колонках не должно быть визуального отступа слева */
+  .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content > ul {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding-inline-start: 0 !important;
+    text-indent: 0 !important;
   }
   .footer--8march .footer-content__column:first-child,
   .footer--8march .footer-content__column:last-child {
