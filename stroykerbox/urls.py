@@ -248,7 +248,7 @@ urlpatterns = [
     *([path('8march_design/', view_8march_design_test, name='8march-design-test')] if getattr(settings, 'DEBUG', False) else []),
     # Главная в старом дизайне (как у заказчика). Когда задан FORCE_OLD_DESIGN_PATH='prod29' — на /prod29/ показывается старый вид; иначе /prod29/ = то же что /.
     # Раскомментировать для разработки, когда нужен старый дизайн на /prod29/
-    # path('prod29/', CatalogFrontpageView.as_view(), name='frontpage-prod'),
+    path('prod29/', CatalogFrontpageView.as_view(), name='frontpage-prod'),
 ]
 # На проде можно не задавать FORCE_OLD_DESIGN_PATH — тогда /prod29/ просто дублирует главную.
 _prod_path = getattr(settings, 'FORCE_OLD_DESIGN_PATH', None)
