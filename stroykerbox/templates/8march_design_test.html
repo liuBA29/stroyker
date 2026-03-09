@@ -18,6 +18,10 @@
   <link rel="stylesheet" href="{% static '8march_design/css/8march_base.css' %}">
   <link rel="stylesheet" href="{% static '8march_design/css/8march_design.css' %}">
   <link rel="stylesheet" href="{% static '8march_design/css/8march_index_page_design.css' %}">
+  <!-- Кнопки «СМОТРЕТЬ ВЕСЬ КАТАЛОГ» — стили в 8march_manipulators.css -->
+  <link rel="stylesheet" href="{% static '8march_design/css/8march_manipulators.css' %}">
+  <!-- Раздел «LUCIANO в соцсетях» — стили в 8march_redistribusion.css -->
+  <link rel="stylesheet" href="{% static '8march_design/css/8march_redistribusion.css' %}">
   <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}?v5" type="text/css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" crossorigin="anonymous">
   {% render_block "css" %}
@@ -213,7 +217,7 @@
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.0.name }}</p>
                   {% if bouquet_products.0.price %}<p class="index-bouquets-8march__price pretty_numbers">{{ bouquet_products.0.price }}</p>{% endif %}
-                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.0.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
                 </a>
               </div>
               <div class="index-bouquets-8march__grid-rest">
@@ -223,7 +227,7 @@
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.1.name }}</p>
                   {% if bouquet_products.1.price %}<p class="index-bouquets-8march__price pretty_numbers">{{ bouquet_products.1.price }}</p>{% endif %}
-                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.1.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
                 </a>
                 <a href="{{ bouquet_products.2.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
@@ -231,7 +235,7 @@
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.2.name }}</p>
                   {% if bouquet_products.2.price %}<p class="index-bouquets-8march__price pretty_numbers">{{ bouquet_products.2.price }}</p>{% endif %}
-                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.2.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
                 </a>
               </div>
             </div>
@@ -243,7 +247,7 @@
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.3.name }}</p>
                   {% if bouquet_products.3.price %}<p class="index-bouquets-8march__price pretty_numbers">{{ bouquet_products.3.price }}</p>{% endif %}
-                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.3.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
                 </a>
               </div>
               <div class="index-bouquets-8march__grid-rest">
@@ -253,7 +257,7 @@
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.4.name }}</p>
                   {% if bouquet_products.4.price %}<p class="index-bouquets-8march__price pretty_numbers">{{ bouquet_products.4.price }}</p>{% endif %}
-                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.4.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
                 </a>
                 <a href="{{ bouquet_products.5.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
@@ -261,7 +265,7 @@
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.5.name }}</p>
                   {% if bouquet_products.5.price %}<p class="index-bouquets-8march__price pretty_numbers">{{ bouquet_products.5.price }}</p>{% endif %}
-                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.5.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
                 </a>
               </div>
             </div>
@@ -273,7 +277,7 @@
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.6.name }}</p>
                   {% if bouquet_products.6.price %}<p class="index-bouquets-8march__price pretty_numbers">{{ bouquet_products.6.price }}</p>{% endif %}
-                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.6.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
                 </a>
               </div>
               <div class="index-bouquets-8march__grid-rest">
@@ -283,7 +287,7 @@
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.7.name }}</p>
                   {% if bouquet_products.7.price %}<p class="index-bouquets-8march__price pretty_numbers">{{ bouquet_products.7.price }}</p>{% endif %}
-                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.7.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
                 </a>
                 <a href="{{ bouquet_products.8.url }}" class="index-bouquets-8march__card">
                   <span class="index-bouquets-8march__img-wrap">
@@ -291,7 +295,7 @@
                   </span>
                   <p class="index-bouquets-8march__desc">{{ bouquet_products.8.name }}</p>
                   {% if bouquet_products.8.price %}<p class="index-bouquets-8march__price pretty_numbers">{{ bouquet_products.8.price }}</p>{% endif %}
-                  <span class="index-bouquets-8march__btn beige_button">ПОДРОБНЕЕ</span>
+                  <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.8.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
                 </a>
               </div>
             </div>
@@ -318,11 +322,12 @@
           </section>
         </div>
 
+        {# Это раздел «LUCIANO в соцсетях». div вместо h2/p — единая разметка с главной. #}
         <section class="index-social-8march">
           <!-- LUCIANO В СОЦСЕТЯХ: ссылки TELEGRAM/VK. Неизменяемо без согласования. -->
           <div class="index-social-8march__inner">
-            <h2 class="index-social-8march__title">LUCIANO В СОЦСЕТЯХ</h2>
-            <p class="index-social-8march__text">Присоединяйтесь к нашим социальным сетям, чтобы оставаться в курсе всех актуальных акций, скидок и розыгрышей!</p>
+            <div class="index-social-8march__title" role="heading" aria-level="2">LUCIANO В СОЦСЕТЯХ</div>
+            <div class="index-social-8march__text">Присоединяйтесь к нашим социальным сетям, чтобы оставаться в курсе всех актуальных акций, скидок и розыгрышей!</div>
             <div class="index-social-8march__links">
               <a href="https://t.me/+79179500606" class="index-social-8march__link" target="_blank" rel="noopener noreferrer">TELEGRAM</a>
               <a href="https://vk.com/luciano.flowers" class="index-social-8march__link" target="_blank" rel="noopener noreferrer">VK</a>

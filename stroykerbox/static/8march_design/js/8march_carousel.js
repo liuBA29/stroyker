@@ -40,6 +40,13 @@ function init8marchCarousel(wrapEl, options) {
 
   if (!track || !cards.length) return;
 
+  /* На малом экране прокрутка на контейнере карусели (.index-promo-8march__carousel), иначе — на треке */
+  function getScrollContainer() {
+    var s = getSizes();
+    if (s.largeW <= s.smallW && track.parentElement) return track.parentElement;
+    return track;
+  }
+
   function getScrollLeftForIndex(index) {
     if (index <= 0) return 0;
     var s = getSizes();
@@ -71,7 +78,7 @@ function init8marchCarousel(wrapEl, options) {
       }
       return;
     }
-    var scrollLeft = track.scrollLeft;
+    var scrollLeft = getScrollContainer().scrollLeft;
     var maxScroll = getScrollLeftForIndex(cards.length - 1);
     var i = 0;
     var progress = 0;
@@ -123,7 +130,7 @@ function init8marchCarousel(wrapEl, options) {
 
   function getCurrentIndex() {
     if (!track || !cards.length) return 0;
-    var scrollLeft = track.scrollLeft;
+    var scrollLeft = getScrollContainer().scrollLeft;
     var s = getSizes();
     if (s.largeW <= s.smallW) {
       var step = s.smallW + s.gap;
@@ -162,13 +169,14 @@ function init8marchCarousel(wrapEl, options) {
   function scrollToIndex(targetIndex) {
     if (targetIndex < 0 || targetIndex >= cards.length) return;
     isAnimating = true;
-    track.scrollLeft = getScrollLeftForIndex(targetIndex);
+    getScrollContainer().scrollLeft = getScrollLeftForIndex(targetIndex);
     setLargeByIndex(targetIndex);
     isAnimating = false;
   }
 
   runUpdate();
-  track.addEventListener('scroll', runUpdate);
+  var scrollEl = getScrollContainer();
+  scrollEl.addEventListener('scroll', runUpdate);
   window.addEventListener('resize', runUpdate);
   if (document.readyState !== 'complete') window.addEventListener('load', runUpdate);
 

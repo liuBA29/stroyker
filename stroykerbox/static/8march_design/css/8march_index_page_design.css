@@ -74,15 +74,7 @@
  * Подписи категорий, кнопки: sans-serif, полужирный/обычный, ВЕРХНИЙ РЕГИСТР.
  * Описания: sans-serif, regular. Цены: актуальная — bold, старая — regular + зачёркивание + серый.
  */
-.page-index-8march .index-social-8march__title,
-.page-index-8march-content .index-social-8march__title {
-  font-family: var(--8march-font-heading, 'Inter', system-ui, sans-serif);
-  font-weight: var(--8march-heading-weight, 600);
-  letter-spacing: var(--8march-heading-letter-spacing, 0.05em);
-  color: var(--8march-heading-color, #2d2d2d);
-  text-transform: uppercase;
-  text-align: left;
-}
+/* Стили раздела «LUCIANO в соцсетях» перенесены в 8march_redistribusion.css — здесь селекторы этого раздела убраны. */
 
 /* Крупные заголовки секций: АКЦИИ, СБОРНЫЕ БУКЕТЫ, ОТЗЫВЫ, ГДЕ МЫ НАХОДИМСЯ (и аналоги) */
 .big-title {
@@ -101,9 +93,7 @@
   box-sizing: border-box;
 }
 
-/* Заголовки секций главной 8march — Roboto Light (кроме .big-title: АКЦИИ, СБОРНЫЕ БУКЕТЫ, ОТЗЫВЫ, ГДЕ МЫ НАХОДИМСЯ) */
-.page-index-8march .index-social-8march__title,
-.page-index-8march-content .index-social-8march__title,
+/* Заголовки секций главной 8march — Roboto Light (кроме .big-title). Раздел «LUCIANO в соцсетях» — в 8march_redistribusion.css */
 .page-index-8march .index-info-8march__heading,
 .page-index-8march .index-hero-8march__text {
   font-family: 'Roboto', sans-serif;
@@ -116,25 +106,11 @@
 .page-index-8march .index-bouquets-8march__btn,
 .page-index-8march .index-bouquets-8march__btn-catalog,
 .page-index-8march .index-bouquet-wish-8march__submit,
-.page-index-8march .index-social-8march__link,
-.page-index-8march-content .index-social-8march__link,
 .page-index-8march .index-reviews-8march__btn-leave,
 .page-index-8march .index-reviews-8march__more-link {
   font-family: var(--8march-font-body, 'Inter', system-ui, sans-serif);
 }
-/* Кнопки «СМОТРЕТЬ ВЕСЬ КАТАЛОГ» — типографика по макету. НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! */
-.page-index-8march .index-promo-8march__btn-catalog,
-.page-index-8march .index-bouquets-8march__btn-catalog,
-body.design-8march .page-index-8march-content .index-promo-8march__btn-catalog,
-body.design-8march .page-index-8march-content .index-bouquets-8march__btn-catalog {
-  font-family: Inter, sans-serif !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-  font-size: 16px !important;
-  line-height: 100% !important;
-  letter-spacing: 0.09em !important;
-  text-transform: uppercase !important;
-}
+/* Стили кнопок «СМОТРЕТЬ ВЕСЬ КАТАЛОГ» перенесены в 8march_manipulators.css */
 .page-index-8march .index-hero-8march__btn,
 .page-index-8march .index-bouquet-wish-8march__submit {
   font-weight: var(--8march-btn-weight, 600);
@@ -142,8 +118,6 @@ body.design-8march .page-index-8march-content .index-bouquets-8march__btn-catalo
   text-transform: uppercase;
 }
 .page-index-8march .index-bouquets-8march__desc,
-.page-index-8march .index-social-8march__text,
-.page-index-8march-content .index-social-8march__text,
 .page-index-8march .index-reviews-8march__stats,
 .page-index-8march .index-reviews-8march__text {
   font-family: var(--8march-font-body, 'Inter', system-ui, sans-serif);
@@ -805,6 +779,21 @@ section.feedback-form button {
   background: #fff;
 }
 
+/* Фон pink_vector1.png на главной: начинается с раздела овальных картинок (категории), на всю ширину экрана пропорционально; заканчивается по высоте картинки.
+   Чтобы поднять/опустить фон: задать на .index-8march-pink-vector или на :root переменную --pink-vector-y, например 20px или -30px. */
+.index-8march-pink-vector {
+  position: relative;
+  background-image: url("../images/pink_vector1.png");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: 50% var(--pink-vector-y, 0);
+}
+.index-8march-pink-vector .index-categories-8march,
+.index-8march-pink-vector .index-promo-8march {
+  background: transparent;
+  background-color: transparent;
+}
+
 /* Одна диагональная линия: от конца категорий (справа сверху) до начала «Сборные букеты» (слева внизу). Параметры по Figma. */
 .index-8march__diagonal-line {
   position: absolute;
@@ -1022,6 +1011,24 @@ section.feedback-form button {
   overflow: visible;
   z-index: 0;
 }
+
+/* ОТКАТ: удалить весь блок ниже до конца комментария — фон pink_bg1.png в районе карусели на всю ширину экрана */
+.index-promo-8march::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  top: 0;
+  bottom: 0;
+  background-image: url("../images/pink_bg1.png");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center -50px;
+  pointer-events: none;
+}
+/* конец блока для отката фона pink_bg1 */
 
 .index-promo-8march__title {
   position: relative;
@@ -1353,34 +1360,7 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   box-sizing: border-box;
 }
 
-/* Кнопка «СМОТРЕТЬ ВЕСЬ КАТАЛОГ» (акции). Размеры и цвет. Типографика — в общем блоке выше. НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! */
-.index-promo-8march__btn-catalog {
-  display: block;
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(50% - 50vw);
-  padding: 0.75rem 1.75rem;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 100%;
-  letter-spacing: 0.09em;
-  color: #2d2d2d !important;
-  border: none !important;
-  border-radius: 0;
-  -webkit-border-radius: 0;
-  background: #FBE3E1 !important;
-  background-color: #FBE3E1 !important;
-  background-image: none !important;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  box-sizing: border-box;
-}
-
-.index-promo-8march__btn-catalog:hover {
-  background: #f5d5d3 !important;
-  background-color: #f5d5d3 !important;
-}
+/* Стили кнопки «СМОТРЕТЬ ВЕСЬ КАТАЛОГ» (акции) перенесены в 8march_manipulators.css */
 
 @media (max-width: 767px) {
   .index-promo-8march__title {
@@ -1401,13 +1381,26 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
     padding-left: 1rem;
     padding-right: 1rem;
     min-height: 120px;
+    height: auto;
   }
-  /* Трек — явная ширина и min-width: 0, чтобы контент (все карточки) давал горизонтальный скролл, а не только первые 2 */
-  .index-promo-8march__carousel .index-promo-8march__track {
-    width: 100%;
-    min-width: 0;
+  /* На малом экране прокрутка на контейнере карусели, трек — во всю ширину контента (все карточки), чтобы скролл доходил до третьей */
+  .index-promo-8march__carousel {
     overflow-x: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .index-promo-8march__carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .index-promo-8march__carousel .index-promo-8march__track {
+    width: max-content;
+    min-width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: visible;
+    overflow-y: visible;
   }
   /* Стрелки перемотки в кружках (pink-arrows) — поверх карусели на малом экране */
   .index-promo-8march__arrow {
@@ -1842,6 +1835,7 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   min-width: 0;
 }
 
+/* Первая карточка в ряду — крупнее (400px), остальные две — меньше (260px) */
 .index-bouquets-8march__card {
   display: flex;
   flex-direction: column;
@@ -1854,7 +1848,6 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   transition: none;
 }
 
-/* Первая карточка в ряду — крупнее (400px), остальные две — меньше (260px) */
 .index-bouquets-8march__card--first {
   width: 400px !important;
   min-width: 400px;
@@ -1957,6 +1950,11 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   margin-top: 0.25rem;
 }
 
+/* Текст кнопки «В КОРЗИНУ» / «УЗНАТЬ ЦЕНУ» — в одну строку, без переноса */
+.index-bouquets-8march__card .index-bouquets-8march__btn {
+  white-space: nowrap;
+}
+
 .index-bouquets-8march__footer {
   text-align: center;
   padding-top: 2.5rem;
@@ -1967,40 +1965,11 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   box-sizing: border-box;
 }
 
-/* Кнопка «СМОТРЕТЬ ВЕСЬ КАТАЛОГ» (сборные букеты). Размеры и цвет. Типографика — в общем блоке выше. НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! */
-.index-bouquets-8march__btn-catalog {
-  display: block;
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(50% - 50vw);
-  padding: 0.75rem 1.75rem;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 100%;
-  letter-spacing: 0.09em;
-  color: #2d2d2d !important;
-  border: none !important;
-  border-radius: 0;
-  -webkit-border-radius: 0;
-  box-shadow: none !important;
-  background: #FBE3E1 !important;
-  background-color: #FBE3E1 !important;
-  background-image: none !important;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  box-sizing: border-box;
-}
-
+/* Стили кнопки «СМОТРЕТЬ ВЕСЬ КАТАЛОГ» (сборные букеты) перенесены в 8march_manipulators.css */
 .index-bouquets-8march .index-bouquets-8march__btn {
   border-radius: 0 !important;
   -webkit-border-radius: 0 !important;
   box-shadow: none !important;
-}
-
-.index-bouquets-8march__btn-catalog:hover {
-  background: #f5d5d3 !important;
-  background-color: #f5d5d3 !important;
 }
 
 @media (min-width: 768px) {
@@ -2109,6 +2078,32 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
     width: 352px;
     min-width: 352px;
     flex: 0 0 352px;
+  }
+}
+
+/* Очень маленький экран (СБОРНЫЕ БУКЕТЫ): по эталону — две колонки, карточки помельче */
+@media (max-width: 480px) {
+  .index-bouquets-8march__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .index-bouquets-8march__grid-row,
+  .index-bouquets-8march__grid-first,
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-first,
+  .index-bouquets-8march__grid-rest,
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest {
+    display: contents;
+  }
+  .index-bouquets-8march__card--first,
+  .index-bouquets-8march__grid-rest .index-bouquets-8march__card,
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__card--first,
+  .index-bouquets-8march__grid-row--last-big .index-bouquets-8march__grid-rest .index-bouquets-8march__card {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
   }
 }
 
@@ -2491,79 +2486,7 @@ body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreem
   }
 }
 
-/* --- LUCIANO В СОЦСЕТЯХ (светло-розовая полоса по эталону). НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! --- */
-/* На главной контент в .page-index-8march-content — дублируем с повышенной специфичностью, чтобы не перебивалось main.css */
-body.design-8march .page-index-8march-content .index-social-8march,
-.index-social-8march {
-  width: 100%;
-  padding: 1.75rem 1rem;
-  background: #fce8e9;
-}
-
-body.design-8march .page-index-8march-content .index-social-8march__inner,
-.index-social-8march__inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 1.5rem;
-}
-
-body.design-8march .page-index-8march-content .index-social-8march__title,
-.index-social-8march__title {
-  margin: 0;
-  font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
-  font-weight: 300 !important;
-  font-size: 1.25rem;
-  letter-spacing: 0.02em;
-  color: #2d2d2d;
-  flex: 0 0 auto;
-}
-
-body.design-8march .page-index-8march-content .index-social-8march__text,
-.index-social-8march__text {
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  color: #5c4a4a;
-  flex: 1 1 280px;
-  max-width: 520px;
-}
-
-/* --- LUCIANO В СОЦСЕТЯХ. Рубрика неизменяема без согласования: ссылки TELEGRAM/VK, выравнивание на малом экране. --- */
-body.design-8march .page-index-8march-content .index-social-8march__links,
-.index-social-8march__links {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  flex: 0 0 auto;
-  margin-left: auto;
-}
-
-@media (max-width: 767px) {
-  body.design-8march .page-index-8march-content .index-social-8march__links,
-  .index-social-8march__links {
-    margin-left: 0;
-    justify-content: flex-start;
-  }
-}
-
-body.design-8march .page-index-8march-content .index-social-8march__link,
-.index-social-8march__link {
-  font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
-  font-weight: 300 !important;
-  font-size: 1.5rem;
-  letter-spacing: 0.03em;
-  color: #B8736E;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-body.design-8march .page-index-8march-content .index-social-8march__link:hover,
-.index-social-8march__link:hover {
-  color: #a06660;
-}
+/* Стили раздела «LUCIANO в соцсетях» перенесены в 8march_redistribusion.css */
 
 /* --- ОТЗЫВЫ. Рубрика неизменяема без согласования: фон pink_round, картинка otzyvy как фон, высота на малом экране, скругления. --- */
 /* --- ОТЗЫВЫ (эталон: карточка рейтинга, кнопка, список отзывов). НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ! --- */
@@ -2645,13 +2568,13 @@ body.design-8march .page-index-8march-content .index-social-8march__link:hover,
 
 .index-reviews-8march__source {
   font-size: 0.9rem;
-  color: #2563eb;
+  color: #000;
   text-decoration: none;
 }
 
 .index-reviews-8march__source:hover {
   text-decoration: underline;
-  color: #1d4ed8;
+  color: #333;
 }
 
 .index-reviews-8march__rating-block {
@@ -2689,6 +2612,7 @@ body.design-8march .page-index-8march-content .index-social-8march__link:hover,
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   background: #f0f0f0;
   border: 1px solid #ddd;
