@@ -144,7 +144,7 @@
 .page-index-8march .index-bouquets-8march__price {
   font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif);
   font-variant-numeric: lining-nums proportional-nums;
-  font-weight: 700;
+  font-weight: 400;
 }
 .page-index-8march .index-promo-8march__price-old {
   font-weight: 400;
@@ -1192,6 +1192,11 @@ section.feedback-form button {
   margin-bottom: 0.75rem;
 }
 
+/* Чуть меньше отступ под фото в карточке карусели — чтобы кнопка ПОДРОБНЕЕ не обрезалась снизу */
+.index-promo-8march__card .index-promo-8march__img-wrap {
+  margin-bottom: 0.25rem;
+}
+
 .index-promo-8march__price-old {
   font-size: 1.1rem;
   color: #888;
@@ -1200,14 +1205,14 @@ section.feedback-form button {
 
 .index-promo-8march__price-new {
   font-size: 1.4rem;
-  font-weight: 600;
+  font-weight: 400;
   color: #2d2d2d;
 }
 .page-index-8march .index-8march-content span.index-promo-8march__price-old,
 .page-index-8march .index-8march-content span.index-promo-8march__price-new,
 .page-index-8march .index-8march-content p.index-bouquets-8march__price {
   font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif) !important;
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   font-style: normal !important;
   font-size: 24px !important;
   leading-trim: none;
@@ -1224,17 +1229,33 @@ section.feedback-form button {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06) !important;
 }
 /* Общий стиль бежевых кнопок в карточках (ПОДРОБНЕЕ, В КОРЗИНУ, УЗНАТЬ ЦЕНУ) */
+/* НЕ МЕНЯТЬ: цвет фона бежевой кнопки — #F9F3EE (согласовано) */
+/* НЕ МЕНЯТЬ: типографика бежевой кнопки — Inter 400, 14px, 100% line-height, 0.17em letter-spacing, uppercase (согласовано) */
+/* НЕ МЕНЯТЬ: размеры и отступы бежевой кнопки — 141×41px, padding 12px 21px, gap 10px, border-bottom 1px (согласовано) */
 .beige_button {
-  display: inline-block;
-  padding: 0.5rem 1.25rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-sizing: border-box;
+  width: 141px;
+  height: 41px;
+  padding: 12px 21px;
+  font-family: 'Inter', var(--8march-font-body, system-ui, sans-serif) !important;
+  font-weight: 400 !important;
+  font-style: normal;
+  font-size: 14px !important;
+  leading-trim: none;
+  line-height: 100%;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
   border: none;
+  border-bottom: 1px solid rgba(45, 45, 45, 0.15);
   border-radius: 0 !important;
   -webkit-border-radius: 0 !important;
-  background: #e8e0d5;
+  background: #F9F3EE;
   color: #2d2d2d;
+  opacity: 1;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 .beige_button:hover {
@@ -1272,7 +1293,7 @@ section.feedback-form button {
 
 .index-promo-8march__footer {
   text-align: center;
-  padding-top: 2rem;
+  padding-top: 2.5rem;
   margin: 0 auto 2rem;
   background: #fff !important;
   position: relative;
@@ -1364,13 +1385,13 @@ section.feedback-form button {
     transform: none;
   }
   .index-promo-8march__footer {
-    padding-top: 2rem;
+    padding-top: 2.5rem;
     margin-top: 0;
     padding-left: 1rem;
     padding-right: 1rem;
   }
   .index-bouquets-8march__footer {
-    padding-top: 2rem;
+    padding-top: 2.5rem;
     margin-top: 0;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -1877,7 +1898,7 @@ section.feedback-form button {
 .index-bouquets-8march__price {
   margin: 0 0 0.75rem;
   font-size: 1.4rem;
-  font-weight: 600;
+  font-weight: 400;
   color: #2d2d2d;
 }
 
@@ -1887,7 +1908,7 @@ section.feedback-form button {
 
 .index-bouquets-8march__footer {
   text-align: center;
-  padding-top: 2rem;
+  padding-top: 2.5rem;
   margin: 0 0 2rem;
   padding-left: 3rem;
   padding-right: 3rem;
