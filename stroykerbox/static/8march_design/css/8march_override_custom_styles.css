@@ -1,0 +1,63 @@
+/**
+ * Щит от стилей заказчика (style.css / custom_styles).
+ * Подключается ПОСЛЕДНИМ на страницах с дизайном 8 марта, чтобы хедер и футер
+ * не «подсасывали» цвет/шрифт/подчёркивание из глобальных стилей.
+ * Логика (теги, config, location) не меняется — только визуал под наш дизайн.
+ */
+
+/* ═══ Хедер 8 марта: телефон и ссылки ═══ */
+body.design-8march .header-8march__phone-inner a,
+body.design-8march .header-8march__phone-inner a:hover,
+body.design-8march .header-8march__phone-inner a:focus,
+body.design-8march .header-8march__phone-inner a:active {
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: #2d2d2d !important;
+  text-decoration: none !important;
+  opacity: 1 !important;
+}
+body.design-8march .header-8march__phone-inner a:hover {
+  opacity: 0.85 !important;
+}
+
+body.design-8march .header-8march__phone,
+body.design-8march .header-8march__phone-icon,
+body.design-8march .header-8march__phone-inner {
+  font-family: 'Roboto', sans-serif !important;
+  color: #2d2d2d !important;
+}
+
+/* Логотип, кнопки меню/каталог, корзина — без синего и подчёркивания из глобальных a */
+body.design-8march .header-8march__logo,
+body.design-8march .header-8march__menu-trigger,
+body.design-8march .header-8march__label,
+body.design-8march .header-8march__label--catalog,
+body.design-8march .header-8march__cart {
+  color: #2d2d2d !important;
+  text-decoration: none !important;
+}
+body.design-8march .header-8march__menu-trigger:hover,
+body.design-8march .header-8march__label--catalog:hover,
+body.design-8march .header-8march__cart:hover {
+  text-decoration: none !important;
+  opacity: 0.85;
+}
+
+/* ═══ Футер 8 марта: телефон, ссылки, копирайт ═══ */
+body.design-8march .footer--8march .footer-8march-call__phone a,
+body.design-8march .footer--8march .footer-8march-call__phone a:hover,
+body.design-8march .footer--8march .footer-content__column a,
+body.design-8march .footer--8march .footer-content__ul-content a {
+  color: var(--8march-footer-text, #2d2d2d) !important;
+  text-decoration: none !important;
+}
+body.design-8march .footer--8march .footer-8march-call__phone a:hover,
+body.design-8march .footer--8march .footer-content__column a:hover,
+body.design-8march .footer--8march .footer-content__ul-content a:hover {
+  opacity: 0.85;
+}
+
+body.design-8march .footer--8march .footer-copyright {
+  color: var(--8march-footer-title, #2d2d2d) !important;
+}

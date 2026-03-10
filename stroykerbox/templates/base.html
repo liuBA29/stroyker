@@ -440,6 +440,11 @@
         {% render_custom_styles %}
         {% endaddtoblock %}
 
+        {# Щит от стилей заказчика: подключаем последним, чтобы хедер/футер 8 марта не подсасывали цвет/шрифт из style.css и custom_styles. Логика (теги, config) не трогаем. #}
+        {% if use_8march_header_footer %}
+        <link rel="stylesheet" href="{% static '8march_design/css/8march_override_custom_styles.css' %}">
+        {% endif %}
+
         {% render_block "js" %}
 
         {% block other_js %}{% endblock %}
