@@ -41,9 +41,10 @@
         <link rel="stylesheet" href="{% static '8march_design/css/8march_mini_cart.css' %}">
         {% if request.path == '/' or request.path == '' or request.resolver_match.url_name == 'frontpage' %}
         <link rel="stylesheet" href="{% static '8march_design/css/8march_index_page_design.css' %}">
-        <link rel="stylesheet" href="{% static '8march_design/css/8march_manipulators.css' %}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" crossorigin="anonymous">
         {% endif %}
+        {# Кнопки (бежевые .beige_button, чёрные .black-button и большие «СМОТРЕТЬ ВЕСЬ КАТАЛОГ») — на всех страницах дизайна 8 марта #}
+        <link rel="stylesheet" href="{% static '8march_design/css/8march_manipulators.css' %}">
         {# Раздел «LUCIANO в соцсетях» — подключаем ПОСЛЕ 8march_index_page_design.css, чтобы переопределения на главной не перебивались #}
         <link rel="stylesheet" href="{% static '8march_design/css/8march_redistribusion.css' %}">
         {% endif %}

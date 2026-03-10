@@ -679,32 +679,6 @@
   <script src="{% static '8march_design/js/8march_carousel.js' %}"></script>
   <script>
   (function() {
-    var heroTrack = document.getElementById('hero-carousel-track');
-    var heroSection = heroTrack && heroTrack.closest('.index-hero-8march');
-    var heroSlides = heroTrack ? heroTrack.querySelectorAll('.index-hero-8march__slide') : [];
-    var totalHeroSlides = heroSlides.length || 1;
-    var heroPrev = heroSection && heroSection.querySelector('.index-hero-8march__arrow--prev');
-    var heroNext = heroSection && heroSection.querySelector('.index-hero-8march__arrow--next');
-    var heroIndex = 0;
-    function setHeroSlide(i) {
-      heroIndex = Math.max(0, Math.min(i, totalHeroSlides - 1));
-      if (heroTrack) heroTrack.style.transform = 'translateX(-' + (heroIndex * 100 / totalHeroSlides) + '%)';
-    }
-    setHeroSlide(0);
-    if (heroPrev) heroPrev.addEventListener('click', function() { setHeroSlide(heroIndex - 1); });
-    if (heroNext) heroNext.addEventListener('click', function() { setHeroSlide(heroIndex + 1); });
-    var direction = 1;
-    if (totalHeroSlides > 1) {
-      setInterval(function() {
-        if (heroIndex === totalHeroSlides - 1) direction = -1;
-        else if (heroIndex === 0) direction = 1;
-        setHeroSlide(heroIndex + direction);
-      }, 5000);
-    }
-  })();
-  </script>
-  <script>
-  (function() {
     var link = document.querySelector('.index-8march-map-overlay__address[data-scroll-to-map]');
     var mapEl = document.getElementById('yamap_addresses');
     if (link && mapEl) {

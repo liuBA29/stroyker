@@ -257,20 +257,6 @@
   cursor: text;
 }
 
-/* Чекбоксы и формы (в т.ч. футер «Остались вопросы?») — кликабельны */
-.page-index-8march input[type="checkbox"],
-.page-index-8march input[type="checkbox"] + label,
-.page-index-8march .form-group.privacy-policy .checkbox,
-.page-index-8march .form-group.privacy-policy label,
-section.feedback-form input[type="checkbox"],
-section.feedback-form input[type="checkbox"] + label,
-section.feedback-form .checkbox,
-section.feedback-form .checkbox label,
-section.feedback-form a,
-section.feedback-form button {
-  pointer-events: auto !important;
-  cursor: pointer;
-}
 .page-index-8march footer a,
 .page-index-8march footer button {
   pointer-events: auto !important;
@@ -558,46 +544,7 @@ section.feedback-form button {
   color: #2d2d2d;
 }
 
-/* Общий стиль чёрных кнопок (В КАТАЛОГ, ВЫБРАТЬ БУКЕТ, ОТПРАВИТЬ): шрифт и цвет текста */
-.black-button {
-  display: inline-block;
-  font-family: Inter, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 100%;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: #FBE3E1 !important;
-  background-color: #1a1a1a !important;
-  background: #1a1a1a !important;
-  border: none;
-  border-radius: 0 !important;
-  text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-.black-button:hover {
-  background-color: #2d2d2d !important;
-  background: #2d2d2d !important;
-  color: #FBE3E1 !important;
-}
-
-/* Не менять без согласования! Единый шрифт и вид у всех чёрных кнопок: перебиваем более специфичные правила только по типографике, высоте 50px и цвету текста #FBE3E1. */
-.page-index-8march .black-button,
-.page-index-8march .index-hero-8march__right .index-hero-8march__btn.black-button,
-.page-index-8march .feedback-form--8march-footer__submit.black-button,
-.page-index-8march section.feedback-form--8march-footer button[type="submit"].black-button {
-  font-family: Inter, sans-serif !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-  font-size: 16px !important;
-  line-height: 100% !important;
-  letter-spacing: 0.09em !important;
-  text-transform: uppercase !important;
-  height: 50px !important;
-  color: #FBE3E1 !important;
-}
-
+/* Стили .black-button перенесены в 8march_manipulators.css (подключается после этого файла). */
 /* Кнопка В КАТАЛОГ / ВЫБРАТЬ БУКЕТ в герое — размеры */
 .page-index-8march .index-hero-8march__right .index-hero-8march__btn,
 .index-hero-8march__btn {
@@ -617,55 +564,6 @@ section.feedback-form button {
   gap: 0.5rem;
   z-index: 20;
   pointer-events: auto;
-}
-
-/* Общий класс для всех круглых стрелок промотки (герой, категории, коллекция 8 марта) */
-.pink-arrows {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none !important;
-  background-color: #FBE3E1 !important;
-  cursor: pointer;
-  padding: 0;
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-.pink-arrows:hover {
-  background-color: #f5d5d2 !important;
-}
-
-.index-hero-8march__arrow {
-  position: relative;
-  z-index: 1;
-  pointer-events: auto;
-  color: #FBE3E1;
-}
-.index-hero-8march__arrow svg {
-  width: 22px;
-  height: 22px;
-  display: block;
-  color: #B8736E;
-  stroke: #B8736E;
-}
-
-.index-hero-8march__arrow:hover {
-  color: #f5d5d2;
-}
-.index-hero-8march__arrow:hover svg {
-  color: #B8736E;
-  stroke: #B8736E;
-}
-
-.index-hero-8march__arrow--prev {
-  /* стрелка — встроенный SVG в разметке */
-}
-
-.index-hero-8march__arrow--next {
-  /* стрелка — встроенный SVG в разметке */
 }
 
 /*
@@ -765,11 +663,6 @@ section.feedback-form button {
     right: auto;
     bottom: 0;
     transform: translateX(-50%) translateY(12px);
-  }
-  /* Стрелки героя на малом экране — размер. НЕ МЕНЯТЬ. */
-  .index-hero-8march__arrow {
-    width: 40px;
-    height: 40px;
   }
 }
 
@@ -948,24 +841,6 @@ section.feedback-form button {
   right: 0.5rem;
   transform: translateY(-50%);
   gap: 0.5rem;
-}
-
-.index-categories-8march__arrow {
-  /* общий вид — из .pink-arrows */
-}
-
-.index-categories-8march__arrow--prev {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B8736E' stroke-width='2'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E");
-  background-size: 22px;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.index-categories-8march__arrow--next {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B8736E' stroke-width='2'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
-  background-size: 22px;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 @media (min-width: 768px) {
@@ -1180,9 +1055,6 @@ section.feedback-form button {
 
 /* Большой экран (8 марта): фото на всю ширину, три в ряд, стрелки скрыты. */
 @media (min-width: 992px) {
-  .index-promo-8march__arrow {
-    display: none !important;
-  }
   .index-promo-8march__carousel-wrap {
     max-width: 100%;
     width: 100%;
@@ -1295,67 +1167,9 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
 .index-promo-8march__card--large:hover {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06) !important;
 }
-/* Общий стиль бежевых кнопок в карточках (ПОДРОБНЕЕ, В КОРЗИНУ, УЗНАТЬ ЦЕНУ) */
-/* НЕ МЕНЯТЬ: цвет фона бежевой кнопки — #F9F3EE (согласовано) */
-/* НЕ МЕНЯТЬ: типографика бежевой кнопки — Inter 400, 14px, 100% line-height, 0.17em letter-spacing, uppercase (согласовано) */
-/* НЕ МЕНЯТЬ: размеры и отступы бежевой кнопки — 141×41px, padding 12px 21px, gap 10px, border-bottom 1px (согласовано) */
-.beige_button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  box-sizing: border-box;
-  width: 141px;
-  height: 41px;
-  padding: 12px 21px;
-  font-family: 'Inter', var(--8march-font-body, system-ui, sans-serif) !important;
-  font-weight: 400 !important;
-  font-style: normal;
-  font-size: 14px !important;
-  leading-trim: none;
-  line-height: 100%;
-  letter-spacing: 0.17em;
-  text-transform: uppercase;
-  border: none;
-  border-bottom: 1px solid rgba(45, 45, 45, 0.15);
-  border-radius: 0 !important;
-  -webkit-border-radius: 0 !important;
-  background: #F9F3EE;
-  color: #2d2d2d;
-  opacity: 1;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-.beige_button:hover {
-  background: #f5d5d3;
-  color: #2d2d2d;
-}
-
+/* Стили .beige_button перенесены в 8march_manipulators.css (подключается после этого файла). */
 .index-promo-8march__btn {
   /* размеры унаследованы от .beige_button */
-}
-
-.index-promo-8march__arrow {
-  position: absolute;
-  top: 35%;
-  transform: translateY(-50%);
-  z-index: 3;
-  /* общий вид — из .pink-arrows */
-}
-
-.index-promo-8march__arrow--prev {
-  left: 0.5rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B8736E' stroke-width='2'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E");
-  background-size: 22px;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.index-promo-8march__arrow--next {
-  right: 0.5rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B8736E' stroke-width='2'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");
-  background-size: 22px;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .index-promo-8march__footer {
@@ -1413,23 +1227,6 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
     flex-wrap: nowrap;
     overflow-x: visible;
     overflow-y: visible;
-  }
-  /* Стрелки перемотки в кружках (pink-arrows) — поверх карусели на малом экране */
-  .index-promo-8march__arrow {
-    display: flex;
-    position: absolute;
-    top: -3.75rem;
-    margin-top: 0;
-    transform: none;
-    width: 40px;
-    height: 40px;
-  }
-  .index-promo-8march__arrow--prev {
-    left: auto;
-    right: 4rem;
-  }
-  .index-promo-8march__arrow--next {
-    right: 1rem;
   }
   .index-promo-8march__card,
   .index-promo-8march__card--large {
@@ -1773,34 +1570,6 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   display: none;
 }
 
-.index-bouquets-8march__arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  background: #e8e0d5;
-  cursor: pointer;
-  padding: 0;
-  z-index: 3;
-  transition: background-color 0.2s ease;
-  flex-shrink: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d2d2d' stroke-width='2'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E");
-  background-size: 50%;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.index-bouquets-8march__arrow:hover {
-  background-color: #ddd5ca;
-}
-
-.index-bouquets-8march__arrow--prev {
-  left: 0.5rem;
-}
-
 .index-bouquets-8march__track .index-bouquets-8march__card {
   flex: 0 0 auto;
   width: 260px;
@@ -2079,9 +1848,6 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  .index-bouquets-8march__arrow {
-    display: none;
-  }
   .index-bouquets-8march__track .index-bouquets-8march__card {
     width: 242px;
     min-width: 242px;
@@ -2237,14 +2003,6 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   cursor: pointer;
 }
 
-/* Все поля формы — без скруглений (имя, телефон, дата, пожелания); чекбокс .green-checkbox не трогаем */
-.index-bouquet-wish-8march__form input:not(.green-checkbox):not(.white-checkbox),
-.index-bouquet-wish-8march__form textarea,
-.index-bouquet-wish-8march__input {
-  border-radius: 0 !important;
-  -webkit-border-radius: 0 !important;
-}
-
 .index-bouquet-wish-8march__input {
   width: 100%;
   padding: 0.6rem 0.75rem;
@@ -2313,150 +2071,6 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
 
 .index-bouquet-wish-8march .form-group.privacy-policy a:hover {
   color: #2d2d2d !important;
-}
-
-/* Класс зелёного чекбокса — скруглённый квадрат, при отмеченном состоянии зелёный фон и белая галочка */
-.green-checkbox {
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  width: 18px !important;
-  height: 18px !important;
-  min-width: 18px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  border-radius: 6px !important;
-  -webkit-border-radius: 6px !important;
-  background: #e8e6e4 !important;
-  cursor: pointer;
-  box-sizing: border-box !important;
-  outline: none !important;
-  transition: background-color 0.2s ease;
-}
-.green-checkbox:checked {
-  background: #cfdcab !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6 L5 9 L10 3'/%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  background-size: 10px 10px !important;
-  border-radius: 6px !important;
-  -webkit-border-radius: 6px !important;
-}
-
-/* Класс белого чекбокса — скруглённый квадрат, белый фон; при отмеченном состоянии зелёный фон и белая галочка (как у .green-checkbox) */
-.white-checkbox {
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  width: 18px !important;
-  height: 18px !important;
-  min-width: 18px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 1px solid rgba(0, 0, 0, 0.15) !important;
-  border-radius: 6px !important;
-  -webkit-border-radius: 6px !important;
-  background: #ffffff !important;
-  cursor: pointer;
-  box-sizing: border-box !important;
-  outline: none !important;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-.white-checkbox:checked {
-  background: #cfdcab !important;
-  border-color: #cfdcab !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6 L5 9 L10 3'/%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  background-size: 10px 10px !important;
-  border-radius: 6px !important;
-  -webkit-border-radius: 6px !important;
-}
-
-/* Чекбокс согласия в блоке «Букет по вашим желаниям» — использует .green-checkbox */
-.index-bouquet-wish-8march__agreement .checkbox {
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.5rem;
-}
-.index-bouquet-wish-8march__agreement label {
-  margin: 0 !important;
-  font-size: 0.8rem !important;
-  color: #6b6363 !important;
-}
-
-/* Главная: переопределить чекбокс «Букет по вашим желаниям» как в тестовой версии (main/style.css не должен перебивать) */
-/* style.css рисует чекбокс через label:before/after — не показываем наш input, перекрашиваем их псевдоэлементы в зелёный */
-body.design-8march .page-index-8march-content .index-bouquet-wish-8march .green-checkbox {
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  width: 18px !important;
-  height: 18px !important;
-  min-width: 18px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  border-radius: 6px !important;
-  -webkit-border-radius: 6px !important;
-  background: #e8e6e4 !important;
-  cursor: pointer;
-  box-sizing: border-box !important;
-  outline: none !important;
-  transition: background-color 0.2s ease;
-}
-body.design-8march .page-index-8march-content .index-bouquet-wish-8march .green-checkbox:checked {
-  background: #cfdcab !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6 L5 9 L10 3'/%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  background-size: 10px 10px !important;
-  border-radius: 6px !important;
-  -webkit-border-radius: 6px !important;
-}
-body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox {
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.5rem;
-  padding-left: 0 !important;
-}
-body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement label {
-  margin: 0 !important;
-  font-size: 0.8rem !important;
-  color: #6b6363 !important;
-}
-/* Перекрасить псевдо-чекбокс style.css в зелёный: не скрываем, а переопределяем фон и галочку */
-body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:not(:checked) + label::before,
-body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:checked + label::before,
-body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:not(:checked) + label:before,
-body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:checked + label:before {
-  background: #e8e6e4 !important;
-  border: none !important;
-  border-radius: 6px !important;
-  -webkit-border-radius: 6px !important;
-  width: 18px !important;
-  height: 18px !important;
-  left: 0 !important;
-}
-body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:not(:checked) + label::after,
-body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:not(:checked) + label:after {
-  opacity: 0 !important;
-  transform: scale(0) !important;
-  -webkit-transform: scale(0) !important;
-}
-body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:checked + label::after,
-body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type=checkbox]:checked + label:after {
-  background: #cfdcab !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6 L5 9 L10 3'/%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  background-size: 10px 10px !important;
-  border-radius: 6px !important;
-  -webkit-border-radius: 6px !important;
-  width: 18px !important;
-  height: 18px !important;
-  left: 0 !important;
-  opacity: 1 !important;
-  transform: scale(1) !important;
-  -webkit-transform: scale(1) !important;
 }
 
 @media (max-width: 767px) {
@@ -3137,31 +2751,6 @@ body.design-8march .index-8march-map-wrap #yamap_addresses {
   font-size: 0.8rem;
   line-height: 1.45;
   color: #6b6363;
-}
-
-.callme-8march__form .form-group.privacy-policy .checkbox {
-  display: flex !important;
-  align-items: flex-start !important;
-  gap: 0.5rem;
-}
-
-.callme-8march__form .form-group.privacy-policy label {
-  margin: 0 !important;
-  cursor: pointer;
-}
-
-.callme-8march__form .form-group.privacy-policy a {
-  color: #2d2d2d !important;
-  text-decoration: underline !important;
-}
-
-.callme-8march__form .form-group.privacy-policy a:hover {
-  color: #2d2d2d !important;
-}
-
-.callme-8march__form input[type="checkbox"] {
-  margin-top: 0.2rem !important;
-  flex-shrink: 0;
 }
 
 .callme-8march__submit {
