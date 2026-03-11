@@ -1,0 +1,1065 @@
+/* 8march footer — вынесено из 8march_design.css */
+
+.footer--8march,
+.footer--8march a,
+.footer--8march span,
+.footer--8march p,
+.footer--8march .footer-content__title,
+.footer--8march .footer-phone,
+.footer--8march .footer-contact,
+.footer--8march .footer-copyright,
+.footer--8march .footer-bottom,
+.footer--8march .copy {
+  font-family: var(--8march-font-body);
+}
+
+.footer--8march {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer--8march__logo--desktop {
+  display: block;
+}
+
+.footer--8march .footer-content__menu,
+.footer--8march .footer-content__column,
+.footer--8march .footer-content__columns-split .footer-content__column--first,
+.footer--8march .footer-content__columns-split .footer-content__column--second {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.footer--8march,
+.footer--8march .container,
+.footer--8march .footer-content,
+.footer--8march .footer-first-column,
+.footer--8march .footer-content__menu,
+.footer--8march .footer-content__columns-split,
+.footer--8march .footer-content__columns-split .footer-content__column--first,
+.footer--8march .footer-content__columns-split .footer-content__column--second,
+.footer--8march .footer-content__column,
+.footer--8march .footer-content__ul-content,
+.footer--8march .footer-right,
+.footer--8march .footer-bottom,
+.footer--8march .footer-bottom__left {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+@media (max-width: 767px) {
+  .footer--8march__logo--desktop {
+    display: none !important;
+  }
+}
+
+.footer--8march .footer-first-column {
+  display: none !important;
+}
+
+.footer--8march .footer-bottom__left {
+  display: block !important;
+}
+
+.footer--8march .footer-bottom {
+  border-top: none !important;
+}
+
+.footer--8march::before {
+  top: auto;
+  bottom: 0;
+  background-color: #FBE3E1;
+}
+
+@media (max-width: 767px) {
+  /* НЕ МЕНЯТЬ: малый футер 8march (мобильная версия) — стили подобраны вручную, без согласования не трогать. */
+  .footer--8march::before {
+    top: 0;
+    bottom: auto;
+    mask-image: url("/static/8march_design/images/luciano_logo_90.svg");
+    -webkit-mask-image: url("/static/8march_design/images/luciano_logo_90.svg");
+    /* contain — чтобы весь логотип помещался и не обрезался по краям */
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    mask-position: right top !important;
+    -webkit-mask-position: right top !important;
+    
+  }
+}
+
+.footer--8march .footer-8march-menu .footer-content__column a,
+.footer--8march .footer-8march-menu .footer-content__ul-content a {
+  line-height: 170% !important;
+}
+
+.footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__title {
+  margin-top: 1.25rem !important;
+  /* ВАЖНО/НЕ МЕНЯТЬ: отступ между заголовком колонки и пунктами меню (по согласованию) */
+  margin-bottom: 1.25rem !important;
+}
+
+.footer--8march .footer-8march-questions-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, auto);
+  gap: 2rem 1.25rem;
+  align-items: start;
+  margin-top: 2.5rem;
+  margin-bottom: var(--8march-section-gap);
+  padding-bottom: 2rem;
+  border-bottom: none !important;
+}
+
+@media (min-width: 992px) {
+  .footer--8march .footer-8march-questions-row {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+  }
+  .footer--8march .footer-8march-content {
+    gap: 1.5rem;
+  }
+}
+
+.footer-8march-shift-block {
+  width: 3px;
+  min-width: 3px;
+  height: 1px;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.footer-8march-shift-block--right {
+  width: 12px;
+  min-width: 12px;
+}
+
+@media (min-width: 992px) {
+  .footer--8march .footer-8march-call-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .footer--8march .footer-8march-shift-block--right {
+    display: block;
+  }
+  .footer--8march .footer-8march-call__phone,
+  .footer--8march .footer-8march-call__btn,
+  .footer--8march .footer-8march-copyright .footer-copyright {
+    margin-right: 12px;
+  }
+  .footer--8march .footer-8march-call__phone {
+    margin-right: 0 !important;
+    position: relative;
+    left: -16px;
+  }
+}
+
+@media (min-width: 992px) {
+  /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: стили большого футера (>=992px) в этом блоке финально утверждены.
+     НИ В КОЕМ СЛУЧАЕ не менять без прямого письменного согласования с заказчиком. */
+  .footer--8march .footer-8march-questions-col {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem 3rem;
+  }
+  .footer--8march .footer-8march-questions-col .footer-8march-questions__title,
+  .footer--8march .footer-8march-questions-col .feedback-form--8march-footer {
+    margin: 0;
+  }
+  .footer--8march .footer-8march-questions-col .feedback-form--8march-footer {
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Малый футер 8march — не менять. */
+  .footer-8march-shift-block {
+    display: none;
+  }
+  /* Мобильный футер: прижать меню «КАТАЛОГ/ПОКУПАТЕЛЯМ» к левому краю.
+     Дальше нужный отступ можно задать одним padding-left на .footer--8march .footer-content__menu */
+  .footer--8march .footer-content__menu,
+  .footer--8march .footer-8march-menu,
+  .footer--8march .footer-8march-menu .footer-content__column--lg,
+  .footer--8march .footer-8march-menu .footer-content__ul-content,
+  .footer--8march .footer-8march-menu .footer-content__ul-content ul {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding-inline-start: 0 !important;
+  }
+  /* Правильный отступ меню футера на мобильном (вровень с остальными элементами) */
+  .footer--8march .footer-content__menu {
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
+    box-sizing: border-box;
+  }
+  .footer--8march .footer-8march-menu ul,
+  .footer--8march .footer-8march-menu li {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .footer--8march .footer-8march-call__phone,
+  .footer--8march .footer-8march-call__btn,
+  .footer--8march .footer-8march-copyright .footer-copyright {
+    margin-right: 0 !important;
+  }
+  .footer--8march .footer-8march-call-col,
+  .footer--8march .footer-8march-call__phone {
+    text-align: left !important;
+  }
+}
+
+.footer-8march-questions__title {
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif);
+  font-weight: 300;
+  font-style: normal;
+  font-size: 32px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--8march-footer-title, #2d2d2d);
+  margin: 0 0 1rem;
+  line-height: 100%;
+  font-variant-numeric: lining-nums proportional-nums;
+}
+
+@media (min-width: 768px) {
+  .footer-8march-questions__title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Малый футер 8march — размер заголовка «Остались вопросы», не менять. */
+  .footer-8march-questions__title {
+    font-size: 44px;
+  }
+}
+
+.feedback-form--8march-footer {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.feedback-form--8march-footer__inner {
+  max-width: none;
+}
+
+.feedback-form--8march-footer__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.feedback-form--8march-footer__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.75rem 1rem;
+  max-width: 520px;
+}
+
+.feedback-form--8march-footer__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  cursor: text;
+}
+
+.feedback-form--8march-footer__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.feedback-form--8march-footer__input,
+.feedback-form--8march-footer__textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--8march-footer-input-border, #e0e0e0);
+  background: var(--8march-footer-input-bg, #fff);
+  font-size: 1rem;
+  font-family: inherit;
+  color: #2d2d2d;
+  box-sizing: border-box;
+  border-radius: 0;
+  resize: none;
+}
+
+.feedback-form--8march-footer__input:focus,
+.feedback-form--8march-footer__textarea:focus {
+  outline: none;
+  border-color: #b0b0b0;
+}
+
+.feedback-form--8march-footer__textarea {
+  min-height: 48px;
+  height: 48px;
+  resize: vertical;
+  overflow: auto;
+}
+
+.feedback-form--8march-footer__row {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem 1.5rem;
+}
+
+.feedback-form--8march-footer__row .feedback-form--8march-footer__submit {
+  flex-shrink: 0;
+}
+
+.feedback-form--8march-footer__row .form-group.privacy-policy {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
+}
+
+.feedback-form--8march-footer__submit {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.feedback-form--8march-footer__submit.black-button,
+section.feedback-form--8march-footer button[type="submit"].black-button {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-weight: 400 !important;
+  background-color: #1a1a1a !important;
+  background: #1a1a1a !important;
+  color: #fff !important;
+}
+
+.feedback-form--8march-footer__submit.black-button:hover,
+section.feedback-form--8march-footer button[type="submit"].black-button:hover {
+  background-color: #2d2d2d !important;
+  background: #2d2d2d !important;
+  color: #FBE3E1 !important;
+}
+
+.feedback-form--8march-footer__row .form-group.privacy-policy .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feedback-form--8march-footer__row .form-group.privacy-policy label {
+  font-size: 0.8rem;
+  color: #6b6363;
+  font-weight: 400;
+}
+
+.footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy input[type="checkbox"] {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  min-height: 18px !important;
+  max-width: 18px !important;
+  max-height: 18px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 0 0 18px !important;
+  display: inline-block !important;
+  line-height: 18px !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  border-radius: 6px !important;
+  -webkit-border-radius: 6px !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  cursor: pointer;
+  box-sizing: border-box !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy input[type="checkbox"]:checked {
+  /* белый всегда; при выборе показываем только цветную галочку */
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border-color: #cfdcab !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23cfdcab' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6 L5 9 L10 3'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 10px 10px !important;
+  border-radius: 6px !important;
+  -webkit-border-radius: 6px !important;
+}
+
+@media (max-width: 575px) {
+  .feedback-form--8march-footer__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  /* НЕ МЕНЯТЬ: малый футер 8march — ширина блоков 80vw, выравнивание по форме «Остались вопросы». Без согласования не трогать. */
+  .footer--8march .feedback-form--8march-footer__form,
+  .footer--8march .feedback-form--8march-footer__grid {
+    width: 80vw;
+    max-width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer--8march .feedback-form--8march-footer__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .footer--8march .footer-8march-questions-col,
+  .footer--8march .footer-8march-call-col,
+  .footer--8march .footer-8march-menu,
+  .footer--8march .footer-8march-copyright {
+    width: 80vw;
+    max-width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* Малый экран: кнопка ОТПРАВИТЬ — на всю ширину, чекбокс и подпись — строго под кнопкой */
+  .footer--8march .feedback-form--8march-footer__row {
+    flex-wrap: wrap;
+  }
+  .footer--8march .feedback-form--8march-footer__row .feedback-form--8march-footer__submit {
+    flex-basis: 100%;
+    width: 100%;
+  }
+  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy {
+    flex-basis: 100%;
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+.footer--8march .footer-8march-questions-col .feedback-form {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.footer--8march .footer-8march-questions-col .feedback-form .container {
+  max-width: none;
+  padding: 0;
+}
+
+.footer--8march .footer-8march-questions-col .feedback-form .content-title.center.h2 {
+  display: none !important;
+}
+
+.footer--8march .footer-8march-questions-col .question-form {
+  max-width: none;
+  margin: 0;
+}
+
+.footer--8march .footer-8march-questions-col .question-form form {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 0.75rem 1rem;
+  max-width: none;
+}
+
+.footer--8march .footer-8march-questions-col .question-form__column {
+  display: contents;
+}
+
+.footer--8march .footer-8march-questions-col .question-form__column:nth-child(1) .form-group:nth-child(1) { grid-column: 1 !important; grid-row: 1 !important; }
+
+.footer--8march .footer-8march-questions-col .question-form__column:nth-child(1) .form-group:nth-child(2) { grid-column: 1 !important; grid-row: 2 !important; }
+
+.footer--8march .footer-8march-questions-col .question-form__column:nth-child(1) .form-group:nth-child(3) { grid-column: 2 !important; grid-row: 1 !important; }
+
+.footer--8march .footer-8march-questions-col .question-form__column:nth-child(2) .form-group:nth-child(1) { grid-column: 2 !important; grid-row: 2 !important; }
+
+.footer--8march .footer-8march-questions-col .question-form__column:nth-child(2) button[type="submit"] {
+  grid-column: 1 !important;
+  grid-row: 3 !important;
+  justify-self: start;
+}
+
+.footer--8march .footer-8march-questions-col .question-form__column:nth-child(2) .form-group.privacy-policy {
+  grid-column: 2 !important;
+  grid-row: 3 !important;
+  justify-self: start;
+  align-self: center;
+}
+
+.footer--8march .footer-8march-questions-col form input[type="hidden"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.footer--8march .footer-8march-questions-col .form-group:not(.privacy-policy) {
+  display: flex !important;
+  flex-direction: column-reverse !important;
+  align-items: stretch !important;
+  gap: 0.35rem;
+}
+
+.footer--8march .footer-8march-questions-col .form-group:not(.privacy-policy) .label-name,
+.footer--8march .footer-8march-questions-col .form-group:not(.privacy-policy) .content-name {
+  position: static !important;
+  display: block !important;
+  font-size: 0.9rem;
+  color: var(--8march-footer-title, #2d2d2d);
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.footer--8march .footer-8march-questions-col .form-group:not(.privacy-policy) input.form-control,
+.footer--8march .footer-8march-questions-col .form-group:not(.privacy-policy) textarea.form-control {
+  width: 100% !important;
+  min-height: 48px !important;
+  height: auto !important;
+  padding: 0.6rem 0.75rem !important;
+  border: 1px solid var(--8march-footer-input-border, #e0e0e0) !important;
+  background: #fff !important;
+  font-size: 1rem;
+}
+
+.footer--8march .footer-8march-questions-col .form-group:not(.privacy-policy) textarea.form-control {
+  min-height: 90px !important;
+  height: 90px !important;
+  resize: vertical;
+  overflow: auto;
+}
+
+.footer-8march-call-col {
+  text-align: right;
+}
+
+.footer--8march .footer-8march-call__phone {
+  margin: 0 0 0.75rem;
+  text-align: right;
+  overflow-wrap: break-word;
+}
+
+.footer--8march .footer-8march-call__phone a {
+  color: var(--8march-footer-title, #2d2d2d);
+  text-decoration: none;
+}
+
+.footer--8march a,
+.footer--8march a:hover,
+.footer--8march a:focus {
+  text-decoration: none !important;
+}
+
+.footer-8march-call__btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 48px;
+  height: 48px;
+  line-height: 1 !important;
+  text-align: center !important;
+  white-space: nowrap;
+  padding: 0 1.25rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.footer--8march .footer-8march-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: end;
+}
+
+@media (min-width: 992px) {
+  .footer--8march .footer-8march-content {
+    gap: 1.5rem;
+  }
+}
+
+.footer--8march .footer-8march-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
+}
+
+@media (min-width: 992px) {
+  .footer--8march .footer-8march-menu {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+}
+
+.footer--8march .footer-8march-menu .footer-content__column--lg {
+  flex: 0 0 auto;
+}
+
+.footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content {
+  display: flex;
+  gap: 0 2rem;
+}
+
+.footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content ul {
+  display: block;
+  grid: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer--8march .footer-8march-menu .footer-content__column--links-only .footer-content__title {
+  display: none;
+}
+
+.footer--8march .footer-8march-copyright {
+  text-align: right;
+  justify-content: flex-end;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.footer--8march .footer-8march-copyright .footer-copyright {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+@media (max-width: 991px) {
+  .footer--8march .footer-8march-questions-row {
+    grid-template-columns: 1fr;
+  }
+  .footer-8march-call-col {
+    text-align: left;
+  }
+  .footer--8march .footer-8march-call__phone {
+    text-align: left !important;
+  }
+  .footer--8march .footer-8march-content {
+    grid-template-columns: 1fr;
+  }
+  .footer--8march .footer-8march-copyright {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  .footer--8march .footer-8march-copyright .footer-copyright {
+    text-align: left !important;
+  }
+  /* Мобильная версия: блоки меню футера один под другим (как в эталоне) */
+  .footer--8march .footer-8march-menu {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content {
+    flex-direction: column;
+    gap: 0;
+  }
+  /* Малый экран: у всего содержимого футера убираем заливки, рамки, тени — водяной знак проходит сквозь, не обрезается */
+  .footer--8march .container,
+  .footer--8march .container * {
+    background-color: transparent !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .footer--8march .container input:not([type="hidden"]):not([type="checkbox"]),
+  .footer--8march .container textarea,
+  .footer--8march .container .form-control {
+    background-color: var(--8march-footer-input-bg, #fff) !important;
+    background: var(--8march-footer-input-bg, #fff) !important;
+    border: 1px solid var(--8march-footer-input-border, #e0e0e0) !important;
+  }
+  .footer--8march .container button,
+  .footer--8march .container .black-button,
+  .footer--8march .container [type="submit"] {
+    background-color: var(--8march-footer-btn-bg, #1a1a1a) !important;
+    background: var(--8march-footer-btn-bg, #1a1a1a) !important;
+    border: none !important;
+  }
+  /* Мобилка: «ПЕРЕЗВОНИТЕ МНЕ» должен быть чёрным (его перебивает общий сброс background: transparent) */
+  .footer--8march .footer-8march-call__btn.black-button {
+    background-color: #1a1a1a !important;
+    background: #1a1a1a !important;
+    color: #fff !important;
+  }
+  .footer--8march .footer-8march-call__btn.black-button:hover {
+    background-color: #2d2d2d !important;
+    background: #2d2d2d !important;
+    color: #FBE3E1 !important;
+  }
+  .footer--8march .container .form-group.privacy-policy .checkbox,
+  .footer--8march .container input[type="checkbox"] {
+    background-color: #fff !important;
+    border: 1px solid var(--8march-footer-input-border, #e0e0e0) !important;
+  }
+  /* Чекбокс формы «Остались вопросы»: как на большом экране (без белой рамочки), подпись чуть мельче */
+  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy .checkbox {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+  }
+  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy input[type="checkbox"] {
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy label {
+    font-size: 0.75rem !important;
+  }
+  /* Малый футер: заканчивается условно двумя строчками после копирайта — сильно уменьшаем нижний отступ */
+  .footer--8march {
+    padding-bottom: 2rem !important;
+  }
+  .footer--8march .footer-8march-questions-row {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  .footer--8march .footer-8march-content {
+    gap: 1rem !important;
+  }
+  .footer--8march .footer-bottom {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy .checkbox label {
+    font-size: 0.6rem !important;
+  }
+}
+
+body.design-8march .footer--8march,
+body.design-8march .footer--8march .footer-content__title,
+body.design-8march .footer--8march .footer-content__column a,
+body.design-8march .footer--8march .footer-content__ul-content a,
+body.design-8march .footer--8march .footer-8march-call__phone,
+body.design-8march .footer--8march .footer-copyright,
+body.design-8march .footer--8march .footer-bottom,
+body.design-8march .footer--8march .copy {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+body.design-8march .footer--8march .footer-content__title,
+body.design-8march .footer--8march .footer-8march-questions__title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+}
+
+body.design-8march .footer--8march .footer-8march-menu {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 2rem 3rem !important;
+}
+
+body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg {
+  flex: 0 0 auto !important;
+  width: auto !important;
+}
+
+body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content {
+  display: flex !important;
+  gap: 0 2rem !important;
+}
+
+body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content ul {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+@media (max-width: 991px) {
+  body.design-8march .footer--8march .footer-8march-menu {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5rem !important;
+  }
+  body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content {
+    flex-direction: column !important;
+  }
+}
+
+body.design-8march .footer--8march .footer-content__menu,
+body.design-8march .footer--8march .footer-8march-menu {
+  margin-right: 0 !important;
+}
+
+body.design-8march .footer--8march .footer-8march-menu .footer-content__column,
+body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  max-width: none !important;
+}
+
+@media (min-width: 992px) {
+  body.design-8march .footer--8march .footer-8march-menu {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    display: flex !important;
+    gap: 2rem 3rem !important;
+    width: auto !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    justify-content: flex-start !important;
+  }
+  body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+}
+
+body.design-8march .footer--8march .footer-8march-content {
+  display: grid !important;
+  grid-template-columns: 1fr auto !important;
+  gap: 2rem !important;
+  align-items: end !important;
+}
+
+body.design-8march .footer--8march .footer-8march-copyright,
+body.design-8march .footer--8march .footer-right.footer-8march-copyright {
+  display: flex !important;
+  flex: 0 0 auto !important;
+  text-align: right !important;
+  justify-content: flex-end !important;
+  align-items: flex-end !important;
+}
+
+body.design-8march .footer--8march .footer-content__title {
+  color: var(--8march-footer-title, #2d2d2d) !important;
+}
+
+body.design-8march .footer--8march .footer-content__column a,
+body.design-8march .footer--8march .footer-content__ul-content a {
+  color: var(--8march-footer-text, #2d2d2d) !important;
+  opacity: 1 !important;
+}
+
+body.design-8march .footer--8march .footer-content__column a:hover,
+body.design-8march .footer--8march .footer-content__ul-content a:hover {
+  color: var(--8march-footer-text, #2d2d2d) !important;
+}
+
+body.design-8march .footer--8march footer > .container {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox {
+  position: relative !important;
+  padding-left: 28px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+}
+
+body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox [type="checkbox"] {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0.2em !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 !important;
+  opacity: 1 !important;
+  accent-color: #2d2d2d;
+}
+
+body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox [type="checkbox"]:not(:checked) + label::before,
+body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox [type="checkbox"]:checked + label::before {
+  content: none !important;
+}
+
+body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox [type="checkbox"]:not(:checked) + label::after,
+body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox [type="checkbox"]:checked + label::after {
+  content: none !important;
+}
+
+body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox label {
+  font-size: 0.8rem !important;
+  line-height: 1.35 !important;
+  color: var(--8march-footer-text, #2d2d2d) !important;
+  cursor: pointer !important;
+  padding-left: 0 !important;
+}
+
+body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox label a {
+  color: var(--8march-footer-text, #2d2d2d) !important;
+  text-decoration: underline !important;
+}
+
+@media (min-width: 992px) {
+  body.design-8march .footer--8march .footer-8march-content {
+    gap: 1.5rem !important;
+  }
+}
+
+@media (max-width: 991px) {
+  body.design-8march .footer--8march .footer-8march-content {
+    grid-template-columns: 1fr !important;
+  }
+  body.design-8march .footer--8march .footer-8march-copyright {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  body.design-8march .footer--8march .footer-8march-copyright .footer-copyright {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .footer--8march .container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
+  }
+  .footer--8march .footer-8march-questions-row {
+    grid-column: 1 / -1;
+  }
+  .footer--8march .footer-8march-content {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .footer--8march .footer-8march-copyright {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: end;
+  }
+  .footer--8march .footer-bottom {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+}
+
+.footer--8march .footer-content__menu {
+  margin-right: 0 !important;
+}
+
+.footer--8march .footer-content__column {
+  flex: 0 0 auto !important;
+  width: auto !important;
+}
+
+.footer--8march .footer-content__column--lg {
+  width: auto !important;
+  flex: 0 0 auto !important;
+}
+
+.footer--8march .footer-content__ul-content ul {
+  flex: none !important;
+  margin-right: 0 !important;
+}
+
+.footer--8march > .container {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.footer--8march > img {
+  display: block !important;
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  top: 0 !important;
+  left: 0 !important;
+  object-fit: cover !important;
+}
+
+.footer--8march .footer-content__title {
+  color: var(--8march-footer-title, #2d2d2d) !important;
+}
+
+.footer--8march .footer-content__column a,
+.footer--8march .footer-content__ul-content a {
+  opacity: 1 !important;
+  color: var(--8march-footer-text, #2d2d2d) !important;
+}
+
+.footer--8march .footer-content__column a:hover,
+.footer--8march .footer-content__ul-content a:hover {
+  color: var(--8march-footer-text, #2d2d2d) !important;
+}
+
+@media (max-width: 991px) {
+  .footer--8march .footer-content__ul-content {
+    flex-direction: column !important;
+  }
+  .footer--8march .footer-content__ul-content ul {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-inline-start: 0 !important;
+    list-style: none !important;
+  }
+  /* Фикс: на мобильном у списков в колонках не должно быть визуального отступа слева */
+  .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content > ul {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding-inline-start: 0 !important;
+    text-indent: 0 !important;
+  }
+  .footer--8march .footer-content__column:first-child,
+  .footer--8march .footer-content__column:last-child {
+    margin-right: 0 !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+@media (max-width: 991px) {
+  body.design-8march .footer--8march > .container > .footer-right.footer-8march-copyright,
+  .footer--8march > .container > .footer-right.footer-8march-copyright {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  body.design-8march .footer--8march > .container > .footer-right.footer-8march-copyright .footer-copyright,
+  .footer--8march > .container > .footer-right.footer-8march-copyright .footer-copyright {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.design-8march .footer--8march > .container > .footer-right.footer-8march-copyright,
+  .footer--8march > .container > .footer-right.footer-8march-copyright {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 2.5rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    order: unset !important;
+  }
+  body.design-8march .footer--8march > .container > .footer-right.footer-8march-copyright .footer-copyright,
+  .footer--8march > .container > .footer-right.footer-8march-copyright .footer-copyright {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}

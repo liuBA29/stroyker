@@ -1,17 +1,13 @@
 /* 8march_design — по макету Figma (design/figma-export.json, figma-vs-json-comparison.md)
  *
- * ХЭДЕР И ФУТЕР: стили рассчитаны на конкретную разметку. В продакшене в Constance обязательно:
- *   — Десктоп-хэдер:  CUSTOM_HEADER_ID = 2.1 (или 0, тогда подставится 2.1)
- *   — Мобильный хэдер: CUSTOM_MOBILE_HEADER_ID = 2 (или 0, тогда подставится 2)
- * Иначе разметка хэдера будет от другой шаблонки и 8march-стили к ней не подойдут.
- * Футер в 8march тоже завязан на свою разметку — при смене шаблона футера стили могут не совпасть.
+ * Стили хэдера и футера 8 марта вынесены в 8march_header.css и 8march_footer.css.
+ * Здесь остаются: общие токены (:root), шрифты, базовые стили страницы, контент главной и т.д.
  *
  * ═══════════════════════════════════════════════════════════════════════════════
  * НЕ МЕНЯТЬ КОД БЕЗ КОНКРЕТНОГО ЗАПРОСА ЗАКАЗЧИКА. Делать только то, что просят.
  * ═══════════════════════════════════════════════════════════════════════════════
  */
 
-/* Cormorant Garamond 700 — самозагрузка из CSS, чтобы «8» и «марта» в герое отображались на проде даже при блокировке/отсутствии ссылки на Google Fonts в HTML */
 @font-face {
   font-family: 'Cormorant Garamond';
   font-style: normal;
@@ -20,6 +16,7 @@
   src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7abI26QOD_hg9KnnOiss4.woff2) format('woff2');
   unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
+
 @font-face {
   font-family: 'Cormorant Garamond';
   font-style: normal;
@@ -28,6 +25,7 @@
   src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7abI26QOD_hg9KnDOiss4.woff2) format('woff2');
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
+
 @font-face {
   font-family: 'Cormorant Garamond';
   font-style: normal;
@@ -36,6 +34,7 @@
   src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7abI26QOD_hg9KnvOiss4.woff2) format('woff2');
   unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
 }
+
 @font-face {
   font-family: 'Cormorant Garamond';
   font-style: normal;
@@ -44,6 +43,7 @@
   src: url(https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7abI26QOD_hg9KnrOiss4.woff2) format('woff2');
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
+
 @font-face {
   font-family: 'Cormorant Garamond';
   font-style: normal;
@@ -53,7 +53,6 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* ========== Токены из Figma (без картинок — заглушки) ========== */
 :root {
   /* Шрифты из Figma-макета: Inter, Cormorant Garamond, Geologica (Blacker Sans Text в макете — заменён на Inter, т.к. нет в Google Fonts) */
   --8march-font-heading: 'Inter', 'Segoe UI', system-ui, sans-serif;
@@ -94,7 +93,6 @@
   --8march-section-gap: 4rem;
 }
 
-/* Когда дизайн 8 марта включён — шрифты по всей странице, чтобы не перебивались другими стилями */
 body.design-8march,
 body.design-8march .page,
 body.design-8march main,
@@ -104,6 +102,7 @@ body.design-8march .content-block,
 body.design-8march .section .container {
   font-family: var(--8march-font-body);
 }
+
 body.design-8march h1,
 body.design-8march h2,
 body.design-8march h3,
@@ -112,6 +111,7 @@ body.design-8march h5,
 body.design-8march h6 {
   font-family: var(--8march-font-heading);
 }
+
 body.design-8march input,
 body.design-8march button,
 body.design-8march textarea,
@@ -119,40 +119,18 @@ body.design-8march select,
 body.design-8march label {
   font-family: var(--8march-font-body);
 }
+
 html,
 body {
   margin: 0;
   padding: 0;
   background-color: var(--8march-footer-bg, #cfdcab);
 }
+
 body {
   overflow-x: hidden;
 }
 
-/* Шрифты макета — хэдер и футер 8march */
-.__header--8march,
-.__header--8march a,
-.__header--8march button,
-.__header--8march span,
-.__header--8march .catalog-btn__label,
-.__header--8march .contact-box,
-.__header--8march .login-register {
-  font-family: var(--8march-font-body);
-}
-.footer--8march,
-.footer--8march a,
-.footer--8march span,
-.footer--8march p,
-.footer--8march .footer-content__title,
-.footer--8march .footer-phone,
-.footer--8march .footer-contact,
-.footer--8march .footer-copyright,
-.footer--8march .footer-bottom,
-.footer--8march .copy {
-  font-family: var(--8march-font-body);
-}
-
-/* Общий стиль чёрных кнопок (хэдер, футер, главная — В КАТАЛОГ, ПЕРЕЗВОНИТЕ МНЕ, ОТПРАВИТЬ и т.д.) */
 .black-button {
   display: inline-block;
   font-family: 'Inter', system-ui, sans-serif;
@@ -171,13 +149,13 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.09em;
 }
+
 .black-button:hover {
   background-color: #2d2d2d !important;
   background: #2d2d2d !important;
   color: #FBE3E1 !important;
 }
 
-/* Красивые цифры: Cormorant Garamond Light, lining/proportional nums — можно вешать на телефон, цены и т.д. */
 .pretty_numbers {
   font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif) !important;
   font-weight: 300 !important;
@@ -188,6 +166,7 @@ body {
   text-transform: uppercase;
   font-variant-numeric: lining-nums proportional-nums;
 }
+
 .pretty_numbers a {
   font-family: inherit !important;
   font-weight: inherit !important;
@@ -197,60 +176,6 @@ body {
   text-transform: inherit;
 }
 
-/* Футер 8march: два логотипа — на десктопе обычный, на мобильном вертикальный (как в хэдере); прозрачность чтобы логотип не прятался */
-.footer--8march {
-  position: relative;
-  overflow: hidden;
-}
-
-/* На десктопе — логотип футера; на мобильном — скрыт */
-.footer--8march__logo--desktop {
-  display: block;
-}
-
-/* Рубрики Каталог и Покупателям в футере — прозрачный фон */
-.footer--8march .footer-content__menu,
-.footer--8march .footer-content__column,
-.footer--8march .footer-content__columns-split .footer-content__column--first,
-.footer--8march .footer-content__columns-split .footer-content__column--second {
-  background: transparent !important;
-  background-color: transparent !important;
-}
-
-/* Пока что весь футер 8march — прозрачный */
-.footer--8march,
-.footer--8march .container,
-.footer--8march .footer-content,
-.footer--8march .footer-first-column,
-.footer--8march .footer-content__menu,
-.footer--8march .footer-content__columns-split,
-.footer--8march .footer-content__columns-split .footer-content__column--first,
-.footer--8march .footer-content__columns-split .footer-content__column--second,
-.footer--8march .footer-content__column,
-.footer--8march .footer-content__ul-content,
-.footer--8march .footer-right,
-.footer--8march .footer-bottom,
-.footer--8march .footer-bottom__left {
-  background: transparent !important;
-  background-color: transparent !important;
-}
-
-@media (max-width: 767px) {
-  .footer--8march__logo--desktop {
-    display: none !important;
-  }
-}
-
-/* 8march: первая колонка футера (телефон, лого) — скрыть, как в макете; каталог и остальное идут с начала */
-.footer--8march .footer-first-column {
-  display: none !important;
-}
-.footer--8march .footer-bottom__left {
-  display: block !important;
-}
-.footer--8march .footer-bottom {
-  border-top: none !important;
-}
 button,
 .btn,
 input[type="submit"],
@@ -258,6 +183,7 @@ a.button,
 [class*="button"] {
   
 }
+
 button:hover,
 .btn:hover,
 input[type="submit"]:hover,
@@ -266,10 +192,6 @@ a.button:hover,
   box-shadow: 0 4px 14px #FBE3E1 !important;
 }
 
-/* АКЦИИ/BTN-CATALOG (ORIGINAL) — НЕ МЕНЯТЬ.
-   Раскомментировать только по прямой команде заказчика.
-*/
-/*
 a.index-promo-8march__btn-catalog,
 a.index-bouquets-8march__btn-catalog {
   background: #FBE3E1 !important;
@@ -280,25 +202,7 @@ a.index-bouquets-8march__btn-catalog {
   border-radius: 0 !important;
   -webkit-border-radius: 0 !important;
 }
-a.index-promo-8march__btn-catalog:hover,
-a.index-bouquets-8march__btn-catalog:hover {
-  background: #f5d5d3 !important;
-  background-color: #f5d5d3 !important;
-  color: #a06660 !important;
-}
-*/
 
-/* АКЦИИ/BTN-CATALOG (ACTIVE DUPLICATE) — НЕ МЕНЯТЬ. */
-a.index-promo-8march__btn-catalog,
-a.index-bouquets-8march__btn-catalog {
-  background: #FBE3E1 !important;
-  background-color: #FBE3E1 !important;
-  background-image: none !important;
-  color: #B8736E !important;
-  border: none !important;
-  border-radius: 0 !important;
-  -webkit-border-radius: 0 !important;
-}
 a.index-promo-8march__btn-catalog:hover,
 a.index-bouquets-8march__btn-catalog:hover {
   background: #f5d5d3 !important;
@@ -306,27 +210,25 @@ a.index-bouquets-8march__btn-catalog:hover {
   color: #a06660 !important;
 }
 
-/* Кнопки ПОДРОБНЕЕ на карточках акций — как в сборных букетах, без скруглений */
 .index-promo-8march__btn,
 .index-promo-8march__card .index-promo-8march__btn {
   border-radius: 0 !important;
   -webkit-border-radius: 0 !important;
 }
 
-/* Основные акцентные элементы — розовый тон */
 a,
 .link,
 [style*="--main-elements-color"] {
   transition: color 0.2s ease, opacity 0.2s ease !important;
 }
 
-/* Карточки товаров — лёгкая тень, без розовой подсветки при наведении (квадратики героя с логотипом и «8 марта» не трогаем). Карточки акций — без скруглений. */
 .product-teaser,
 .product-preview,
 [class*="product-preview"],
 [class*="card"]:not(.index-hero-8march__logo-box):not(.index-hero-8march__8march-card):not(.index-promo-8march__card) {
   
 }
+
 .product-teaser:hover,
 .product-preview:hover,
 [class*="product-preview"]:hover,
@@ -334,419 +236,30 @@ a,
   
 }
 
-/* Карточки акций и кнопка ПОДРОБНЕЕ — без скруглений */
 .index-promo-8march__card {
   border-radius: 0 !important;
   -webkit-border-radius: 0 !important;
 }
 
-/* Шапка 8march — белая; зелёный только у кружка с цифрой корзины */
 header,
 section.__header {
   background-color: #ffffff !important;
 }
-section.__header.__header--8march,
-section.__header.__header--8march.header-8march,
-.header-8march {
-  background-color: #ffffff !important;
-}
 
-/* 8march: хедер на всю ширину экрана (без зелёной полоски снизу — margin-bottom убран) */
-section.__header.__header--8march,
-section.__header.__header--8march.header-8march {
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-bottom: 0;
-  box-sizing: border-box;
-}
-
-/* ========== 8march: самописный хеддер (флекс, без Bootstrap-сетки), фон белый ========== */
-.header-8march {
-  position: relative;
-  background-color: #ffffff !important;
-}
-.header-8march__bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-  min-height: 63px;
-  box-sizing: border-box;
-  position: relative;
-  font-family: 'Roboto', sans-serif;
-}
-/* Левая зона: иконка+МЕНЮ, затем КАТАЛОГ — как в эталоне */
-.header-8march__left {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  flex: 1 1 0;
-  min-width: 0;
-  justify-content: flex-start;
-}
-.header-8march__menu-trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  text-decoration: none;
-  color: #2d2d2d;
-  cursor: pointer;
-  padding: 0.5rem 0;
-}
-.header-8march__menu-trigger:hover {
-  opacity: 0.85;
-}
-/* Бургер: три одинаковые полоски (классическая иконка меню) */
-.header-8march__burger,
-.header-8march__burger::before,
-.header-8march__burger::after {
-  display: block;
-  height: 2px;
-  background-color: #2d2d2d;
-  border: none;
-  border-radius: 0;
-  margin: 0;
-  padding: 0;
-  content: "";
-  box-sizing: border-box;
-}
-.header-8march__burger {
-  position: relative;
-  flex-shrink: 0;
-  width: 18px;
-  /* Контейнер по высоте под три полоски (-6px, 0, +6px), средняя полоска — градиент */
-  height: 14px;
-  background: linear-gradient(to bottom, transparent 0, transparent 5px, #2d2d2d 6px, #2d2d2d 8px, transparent 9px, transparent 14px);
-}
-.header-8march__burger::before {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 18px;
-}
-.header-8march__burger::after {
-  position: absolute;
-  left: 0;
-  top: 12px;
-  width: 18px;
-}
-.header-8march__label {
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  color: #2d2d2d;
-  text-transform: uppercase;
-}
-.header-8march__label--catalog {
-  margin-left: 0.125rem;
-  text-decoration: none !important;
-}
-.header-8march__label--catalog:hover,
-.header-8march__label--catalog:focus {
-  text-decoration: none !important;
-}
-/* Центр: логотип в хэдере */
-.header-8march__center {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-.header-8march__logo {
-  display: block;
-}
-.header-8march__logo img {
-  display: block;
-  max-width: 95px;
-  height: auto;
-}
-/* Правая зона: иконка+телефон, корзина — прижато к правому краю */
-.header-8march__right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex: 1 1 0;
-  min-width: 0;
-  justify-content: flex-end;
-}
-.header-8march__phone {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-.header-8march__phone-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #2d2d2d;
-  flex-shrink: 0;
-}
-.header-8march__phone-icon svg {
-  width: 1rem;
-  height: 1rem;
-}
-.header-8march__phone-inner {
-  display: inline-flex;
-  align-items: center;
-}
-.header-8march__phone-inner p {
-  margin: 0;
-  padding: 0;
-  display: inline;
-}
-.header-8march__phone-inner a {
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #2d2d2d;
-  text-decoration: none;
-}
-.header-8march__phone-inner a:hover {
-  opacity: 0.85;
-}
-.header-8march__cart {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  text-decoration: none;
-  color: #2d2d2d;
-  flex-shrink: 0;
-}
-.header-8march__cart:hover {
-  opacity: 0.85;
-}
-.header-8march__cart-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #2d2d2d;
-}
-.header-8march__cart-icon svg {
-  width: 24px;
-  height: 24px;
-  display: block;
-}
-.header-8march__cart .header-8march__cart-count {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  min-width: 16px;
-  height: 16px;
-  padding: 0 4px;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 16px;
-  text-align: center;
-  color: #2d2d2d !important;
-  background-color: #cfdcab !important;
-  border-radius: 8px;
-  box-sizing: border-box;
-}
-/* Скрытая кнопка каталога для JS */
-.header-8march .catalog-btn--hidden-trigger {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-/* Мобильный хедер 8march: логотип, телефон без иконки, меню — только иконка; растянуть по ширине экрана */
-@media (max-width: 767px) {
-  /* Хедер всегда поверх героя и контента, содержимое видно */
-  section.__header.__header--8march.header-8march,
-  .header-8march {
-    position: relative;
-    z-index: 100;
-    background-color: #ffffff !important;
-    min-height: 0;
-  }
-  .header-8march__bar {
-    padding-left: 16px;
-    padding-right: 16px;
-    justify-content: space-between;
-    gap: 0.5rem;
-    height: 50px;
-  }
-  .header-8march__center {
-    position: static;
-    transform: none;
-    order: 1;
-    margin-right: 0;
-    justify-content: flex-start;
-    flex: 0 0 auto;
-  }
-  .header-8march__right {
-    order: 2;
-    display: flex !important;
-    flex: 1 1 0;
-    min-width: 0;
-    justify-content: center;
-  }
-  .header-8march__phone {
-    justify-content: center;
-    display: flex !important;
-  }
-  .header-8march__phone-inner {
-    display: inline !important;
-  }
-  .header-8march__phone-icon {
-    display: none !important;
-  }
-  .header-8march__cart {
-    display: none !important;
-  }
-  .header-8march__left {
-    order: 3;
-    flex: 0 0 auto;
-    justify-content: flex-end;
-    display: flex !important;
-  }
-  .header-8march__menu-trigger {
-    display: inline-flex !important;
-  }
-  .header-8march__left .header-8march__label {
-    display: none;
-  }
-  .header-8march__label--catalog {
-    display: none !important;
-  }
-}
-
-/* Логотип по центру хэдера */
 section.__header {
   position: relative;
 }
+
 section.__header .row {
   position: relative;
 }
-/* 8march: логотип строго по центру шапки (относительно section.__header), а не строки */
-/* Симметричная раскладка: содержимое равномерно вдоль ширины — две боковые колонки растягиваются одинаково, логотип по центру */
-section.__header.__header--8march .row--8march-symmetric {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  position: static;
-  width: 100%;
-}
-/* Порядок в разметке: логотип, левый блок, правый — задаём визуальный порядок [левый][лого][правый] */
-section.__header.__header--8march .row--8march-symmetric > .col-lg-2 {
-  order: 2;
-  flex: 0 0 auto;
-}
-section.__header.__header--8march .row--8march-symmetric > .col-lg-5:first-child {
-  order: 1;
-  flex: 1 1 0;
-  min-width: 0;
-  padding-left: 0 !important;
-  padding-right: 1.25rem !important;
-  display: flex !important;
-  justify-content: flex-start !important;
-  position: relative;
-  z-index: 1;
-}
-section.__header.__header--8march .row--8march-symmetric > .col-lg-5:last-child,
-section.__header.__header--8march .row--8march-symmetric > .header__right-col {
-  order: 3;
-  flex: 1 1 0;
-  min-width: 0;
-  padding-right: 0 !important; /* перебиваем .row > * из сетки (padding-right: 20px) */
-  padding-left: 1.25rem !important;
-  display: flex !important;
-  justify-content: flex-end !important;
-  align-items: center !important;
-  position: relative;
-  z-index: 1;
-}
-section.__header.__header--8march .row--8march-symmetric > .col-lg-5:last-child .header__right-group {
-  margin-left: 0 !important;
-  width: 100% !important;
-}
-section.__header.__header--8march .row--8march-symmetric .header__left-group {
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.5rem !important;
-  justify-content: flex-start;
-}
-section.__header.__header--8march .row--8march-symmetric .header__right-group {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 0.5rem !important;
-  flex: 1 1 0 !important;
-  min-width: 0 !important;
-  width: 100% !important;
-  max-width: 100%;
-}
-section.__header.__header--8march .row--8march-symmetric .header__right-group .contact-box,
-section.__header.__header--8march .row--8march-symmetric .header__right-group .options-box {
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  border-bottom: none !important;
-}
-section.__header.__header--8march .row--8march-symmetric .header__right-group .contact-box {
-  flex-shrink: 0 !important;
-}
-/* Корзина прижата к правому краю: перебиваем любой margin-left из других стилей */
-section.__header.__header--8march .row--8march-symmetric .header__right-group .options-box--header-8march,
-section.__header.__header--8march .row--8march-symmetric .header__right-group .options-box {
-  margin-top: 0 !important;
-  margin-right: 0 !important;
-  margin-bottom: 0 !important;
-  margin-left: auto !important;
-  padding-left: 1rem !important;
-}
-section.__header.__header--8march .contact-box--with-phone-icon {
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.35rem !important;
-  flex-shrink: 0 !important;
-  white-space: nowrap !important;
-}
-section.__header.__header--8march .contact-box--with-phone-icon p {
-  white-space: nowrap !important;
-  margin: 0 !important;
-}
-section.__header.__header--8march .contact-box__phone-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #2d2d2d;
-  flex-shrink: 0;
-}
-section.__header.__header--8march .contact-box__phone-icon svg {
-  width: 1rem;
-  height: 1rem;
-}
-section.__header.__header--8march .row--8march-symmetric .header__right-group .option-items {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
+
 section.__header .row:not(.row--8march-symmetric) .col-lg-2:first-child {
   width: 0;
   padding: 0;
   overflow: visible;
 }
+
 section.__header .logo {
   position: absolute;
   left: 50%;
@@ -754,33 +267,17 @@ section.__header .logo {
   transform: translate(-50%, -50%);
   z-index: 2;
 }
+
 section.__header .logo img {
   max-width: 95px;
   height: auto;
   display: block;
 }
+
 section.__header .row .col-lg-6 {
   padding-left: 220px;
 }
-@media (max-width: 991px) {
-  section.__header .row .col-lg-2:first-child {
-    width: 100%;
-    padding: 0 15px;
-  }
-  section.__header .logo {
-    position: static;
-    transform: none;
-    text-align: center;
-  }
-  section.__header .row .col-lg-6 {
-    padding-left: 15px;
-  }
-  section.__header.__header--8march .row--8march-symmetric .header__right-group {
-    justify-content: flex-start !important;
-  }
-}
 
-/* В хэдере — без тяжёлых кнопок и теней, всё лёгкое */
 section.__header .catalog-btn,
 section.__header .btn,
 section.__header .custom-block input,
@@ -788,172 +285,31 @@ section.__header .custom-block .form-control {
   box-shadow: none !important;
   border-radius: 4px !important;
 }
-/* 8march: каталог — только лёгкий значок, без кнопки и обводки */
-section.__header.__header--8march .custom-block--icon-only,
-section.__header.__header--8march .catalog-btn--icon-only {
-  border: none !important;
-  background: none !important;
-  box-shadow: none !important;
-  padding: 0.5rem !important;
-  min-height: auto !important;
-}
-section.__header.__header--8march .catalog-btn--icon-only:hover {
-  background: transparent !important;
-  opacity: 0.75;
-}
-/* Кнопка бургера: область клика и выравнивание иконки */
-section.__header.__header--8march .catalog-btn--burger-8march {
-  min-width: 2rem;
-  min-height: 2rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-section.__header.__header--8march .catalog-btn--burger-8march .catalog-btn__burger {
-  position: relative;
-  top: 0;
-  display: block;
-  width: 18px;
-  height: 2px;
-  background-color: #2d2d2d !important;
-  border: none;
-  border-radius: 0;
-  margin: 0;
-  padding: 0;
-}
-section.__header.__header--8march .catalog-btn--burger-8march .catalog-btn__burger::before,
-section.__header.__header--8march .catalog-btn--burger-8march .catalog-btn__burger::after {
-  display: block;
-  width: 18px;
-  height: 2px;
-  background-color: #2d2d2d !important;
-  border: none;
-  border-radius: 0;
-  position: absolute;
-  left: 0;
-  margin: 0;
-  padding: 0;
-  content: "";
-}
-section.__header.__header--8march .catalog-btn--burger-8march .catalog-btn__burger::before {
-  top: -6px;
-}
-section.__header.__header--8march .catalog-btn--burger-8march .catalog-btn__burger::after {
-  top: 6px;
-}
-/* Убрать старые стили полосок для этого бургера (если были от .catalog-btn span) */
-section.__header.__header--8march .catalog-btn--icon-only span,
-section.__header.__header--8march .catalog-btn--icon-only span::before,
-section.__header.__header--8march .catalog-btn--icon-only span::after {
-  background-color: #2d2d2d !important;
-}
-section.__header.__header--8march .custom-block--icon-only {
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.5rem !important;
-  position: relative !important;
-}
-section.__header.__header--8march .catalog-btn__label {
-  font-size: 0.75rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.08em !important;
-  color: #2d2d2d !important;
-  text-transform: uppercase !important;
-}
-/* Отступ между МЕНЮ и КАТАЛОГ */
-section.__header.__header--8march .catalog-btn__label--menu {
-  margin-right: 0.25rem;
-}
-/* Ссылка «Меню»: иконка + текст объединены, без отступа */
-section.__header.__header--8march .header__menu-link-8march {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 0.25rem !important;
-  text-decoration: none !important;
-  border: none !important;
-  background: none !important;
-  padding: 0.5rem 0 !important;
-  cursor: pointer;
-}
-section.__header.__header--8march .header__menu-link-8march:hover {
-  opacity: 0.85;
-}
-/* Иконка бургера внутри ссылки (те же три полоски) */
-section.__header.__header--8march .header__menu-link-8march .catalog-btn__burger,
-section.__header.__header--8march .header__menu-link-8march .catalog-btn__burger::before,
-section.__header.__header--8march .header__menu-link-8march .catalog-btn__burger::after {
-  display: block;
-  width: 18px;
-  height: 2px;
-  background-color: #2d2d2d !important;
-  border: none;
-  border-radius: 0;
-  margin: 0;
-  padding: 0;
-  content: "";
-}
-section.__header.__header--8march .header__menu-link-8march .catalog-btn__burger {
-  position: relative;
-  flex-shrink: 0;
-}
-section.__header.__header--8march .header__menu-link-8march .catalog-btn__burger::before {
-  position: absolute;
-  left: 0;
-  top: -6px;
-}
-section.__header.__header--8march .header__menu-link-8march .catalog-btn__burger::after {
-  position: absolute;
-  left: 0;
-  top: 6px;
-}
-/* Скрытая кнопка для открытия каталога по клику на ссылку */
-section.__header.__header--8march .catalog-btn--hidden-trigger {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  border: 0 !important;
-}
+
 section.__header .catalog-btn,
 section.__header .custom-block {
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   background-color: #fafafa !important;
 }
+
 section.__header .catalog-btn:hover,
 section.__header .custom-block input:focus {
   background-color: #fff !important;
   border-color: rgba(0, 0, 0, 0.15) !important;
 }
+
 section.__header .option-items a,
 section.__header .contact-box a,
 section.__header .contact-box .footer-phone {
   color: #2d2d2d !important;
   text-decoration: none !important;
 }
-/* Только иконка + число, без подписи «Корзина» */
-section.__header .option-items li a,
-section.__header.__header--8march .option-items li a {
-  font-size: 0;
-  line-height: 0;
-}
-section.__header .option-items li a img,
-section.__header .option-items li a .cart-number,
-section.__header.__header--8march .option-items li a img,
-section.__header.__header--8march .option-items li a .cart-number {
-  font-size: 12px;
-  line-height: normal;
-}
-section.__header .option-items li a::after,
-section.__header.__header--8march .option-items li a::after {
-  display: none !important;
-}
+
 section.__header .option-items a:hover,
 section.__header .contact-box a:hover {
   opacity: 0.75;
 }
+
 section.__header .catalog-box {
   background-color: #fff !important;
   border: 1px solid rgba(0, 0, 0, 0.06) !important;
@@ -961,19 +317,16 @@ section.__header .catalog-box {
   box-shadow: none !important;
 }
 
-/* Контент под хэдером — поверх логотипа при наложении (логотип с z-index: 0) */
 main {
   position: relative;
   z-index: 1;
 }
 
-/* Подвал — по Figma Rectangle 19 (#cfdcab) */
 footer,
 [class*="footer"] {
   background-color: var(--8march-footer-bg, #cfdcab) !important;
 }
 
-/* Формы — скруглённые поля */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -983,7 +336,6 @@ select {
   border-color: var(--8march-mint, #a7d9c9) !important;
 }
 
-/* ========== Футер по макету Figma (светло-зелёный #cfdcab, колонки, LUCIANO пудровый) ========== */
 :root {
   --8march-watermark-powder: #dcc8c8;
 }
@@ -1022,34 +374,6 @@ footer::before {
   -webkit-mask-position: center bottom;
   -webkit-mask-repeat: no-repeat;
 }
-/* Пудровый логотип LUCIANO в футере 8march — опустить на самый низ, оттенок #FBE3E1 */
-.footer--8march::before {
-  top: auto;
-  bottom: 0;
-  background-color: #FBE3E1;
-}
-
-/*
- * МАЛЫЙ ФУТЕР 8MARCH — НЕИЗМЕНЯЕМ!
- * Все стили малого футера (мобильная/планшетная версия: @media max-width: 767px и max-width: 991px
- * для .footer--8march и связанных блоков) подобраны вручную и утверждены.
- * Без письменного согласования с заказчиком не менять.
- */
-@media (max-width: 767px) {
-  /* НЕ МЕНЯТЬ: малый футер 8march (мобильная версия) — стили подобраны вручную, без согласования не трогать. */
-  .footer--8march::before {
-    top: 0;
-    bottom: auto;
-    mask-image: url("/static/8march_design/images/luciano_logo_90.svg");
-    -webkit-mask-image: url("/static/8march_design/images/luciano_logo_90.svg");
-    /* contain — чтобы весь логотип помещался и не обрезался по краям */
-    mask-size: contain;
-    -webkit-mask-size: contain;
-    mask-position: right top !important;
-    -webkit-mask-position: right top !important;
-    
-  }
-}
 
 footer .container {
   position: relative;
@@ -1080,33 +404,18 @@ footer .footer-contact {
   color: var(--8march-footer-text) !important;
 }
 
-/* Колонки КАТАЛОГ и ПОКУПАТЕЛЯМ — увеличенный межстрочный интервал */
-.footer--8march .footer-8march-menu .footer-content__column a,
-.footer--8march .footer-8march-menu .footer-content__ul-content a {
-  line-height: 170% !important;
-}
-
-/* Футер 8march: заголовки КАТАЛОГ и ПОКУПАТЕЛЯМ. Рубрика неизменяема без согласования (отступы заголовок–пункты). */
-/* Заголовки КАТАЛОГ и ПОКУПАТЕЛЯМ — отступ сверху, опустить ниже */
-.footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__title {
-  margin-top: 1.25rem !important;
-  /* ВАЖНО/НЕ МЕНЯТЬ: отступ между заголовком колонки и пунктами меню (по согласованию) */
-  margin-bottom: 1.25rem !important;
-}
-
 footer .footer-content__column a:hover,
 footer .footer-content__ul-content a:hover {
   opacity: 0.8;
 }
 
-/* КАТАЛОГ и ПОКУПАТЕЛЯМ — два столбика как в эталоне: второй столбец начинается с 6-го пункта (Fresh букеты / Доставка) */
 footer .footer-content__ul-content {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem 2rem;
   align-items: start;
 }
-/* Один список (Покупателям): grid — первые 5 пунктов слева, остальные справа */
+
 footer .footer-content__ul-content ul:only-child {
   display: grid !important;
   grid-template-columns: 1fr 1fr;
@@ -1118,17 +427,18 @@ footer .footer-content__ul-content ul:only-child {
   padding: 0;
   list-style: none;
 }
+
 footer .footer-content__ul-content ul:only-child li {
   margin: 0;
 }
-/* Покупателям: меню рендерится без .footer-content__ul-content — ul сразу в колонке */
-/* При 8march используется render_menu_footer_split — две отдельные колонки (Покупателям | Доставка…) */
+
 footer .footer-content__columns-split {
   display: flex;
   gap: 2rem;
   flex: 0 0 auto;
   min-width: 0;
 }
+
 footer .footer-content__columns-split .footer-content__column--first,
 footer .footer-content__columns-split .footer-content__column--second {
   display: flex;
@@ -1137,28 +447,32 @@ footer .footer-content__columns-split .footer-content__column--second {
   margin: 0;
   padding: 0;
 }
-/* Колонка «Доставка» — спустить на уровень первого пункта (как Fresh букеты) */
+
 footer .footer-content__columns-split .footer-content__column--second {
   padding-top: 2.25rem;
 }
+
 footer .footer-content__columns-split .footer-content__title {
   margin-bottom: 0.75rem;
 }
+
 footer .footer-content__columns-split ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
+
 footer .footer-content__columns-split ul li {
   margin: 0 0 0.25rem 0;
 }
-/* Два списка (Каталог при CATALOG_MENU_FOOTER_ITEMS_PER_COL=5): два ul рядом */
+
 footer .footer-content__ul-content ul:not(:only-child) {
   margin: 0;
   padding: 0;
   list-style: none;
   flex: 0 0 auto;
 }
+
 footer .footer-content__ul-content ul:not(:only-child) li {
   margin: 0 0 0.25rem 0;
 }
@@ -1174,12 +488,12 @@ footer .footer-bottom .footer-text {
   color: var(--8march-footer-text) !important;
 }
 
-/* Вместо «ОСТАВАЙТЕСЬ НА СВЯЗИ» — только копирайт в правой колонке */
 footer .footer-right {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
+
 footer .footer-right .footer-copyright {
   margin: 0;
   margin-top: auto;
@@ -1187,611 +501,18 @@ footer .footer-right .footer-copyright {
   font-size: 0.95rem;
   letter-spacing: 0.02em;
 }
-/* Убрать дублирование: в footer-bottom слева не показывать версию и footer_text */
+
 footer .footer-bottom .footer-bottom__left {
   display: none !important;
 }
-/* Только для 8march: скрыть служебную контактную строку из общего футера, если она подмешивается */
+
 .page-index-8march .footer-contact {
   display: none !important;
 }
-/* Только для 8march: скрыть мобильный текст-копирайт/контакты из общего футера, если подмешивается */
+
 .page-index-8march .footer-first-column .mobile-show,
 .page-index-8march .footer-bottom__left .footer-text {
   display: none !important;
-}
-
-/* ========== Футер 8march по эталону: ряд «Остались вопросы?» + телефон/ПЕРЕЗВОНИТЕ МНЕ, колонки ссылок, копирайт справа ========== */
-.footer--8march .footer-8march-questions-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, auto);
-  gap: 2rem 1.25rem;
-  align-items: start;
-  margin-top: 2.5rem;
-  margin-bottom: var(--8march-section-gap);
-  padding-bottom: 2rem;
-  border-bottom: none !important;
-}
-@media (min-width: 992px) {
-  .footer--8march .footer-8march-questions-row {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-  }
-  .footer--8march .footer-8march-content {
-    gap: 1.5rem;
-  }
-}
-.footer-8march-shift-block {
-  width: 3px;
-  min-width: 3px;
-  height: 1px;
-  background: transparent;
-  flex-shrink: 0;
-}
-.footer-8march-shift-block--right {
-  width: 12px;
-  min-width: 12px;
-}
-@media (min-width: 992px) {
-  .footer--8march .footer-8march-call-col {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  .footer--8march .footer-8march-shift-block--right {
-    display: block;
-  }
-  .footer--8march .footer-8march-call__phone,
-  .footer--8march .footer-8march-call__btn,
-  .footer--8march .footer-8march-copyright .footer-copyright {
-    margin-right: 12px;
-  }
-  .footer--8march .footer-8march-call__phone {
-    margin-right: 0 !important;
-    position: relative;
-    left: -16px;
-  }
-}
-/* На больших экранах: заголовок слева, форма справа */
-@media (min-width: 992px) {
-  /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: стили большого футера (>=992px) в этом блоке финально утверждены.
-     НИ В КОЕМ СЛУЧАЕ не менять без прямого письменного согласования с заказчиком. */
-  .footer--8march .footer-8march-questions-col {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 2rem 3rem;
-  }
-  .footer--8march .footer-8march-questions-col .footer-8march-questions__title,
-  .footer--8march .footer-8march-questions-col .feedback-form--8march-footer {
-    margin: 0;
-  }
-  .footer--8march .footer-8march-questions-col .feedback-form--8march-footer {
-    margin-left: auto;
-    flex-shrink: 0;
-  }
-}
-@media (max-width: 767px) {
-  /* Малый футер 8march — не менять. */
-  .footer-8march-shift-block {
-    display: none;
-  }
-  /* Мобильный футер: прижать меню «КАТАЛОГ/ПОКУПАТЕЛЯМ» к левому краю.
-     Дальше нужный отступ можно задать одним padding-left на .footer--8march .footer-content__menu */
-  .footer--8march .footer-content__menu,
-  .footer--8march .footer-8march-menu,
-  .footer--8march .footer-8march-menu .footer-content__column--lg,
-  .footer--8march .footer-8march-menu .footer-content__ul-content,
-  .footer--8march .footer-8march-menu .footer-content__ul-content ul {
-    margin-left: 0 !important;
-    padding-left: 0 !important;
-    padding-inline-start: 0 !important;
-  }
-  /* Правильный отступ меню футера на мобильном (вровень с остальными элементами) */
-  .footer--8march .footer-content__menu {
-    padding-left: 2.5rem !important;
-    padding-right: 2.5rem !important;
-    box-sizing: border-box;
-  }
-  .footer--8march .footer-8march-menu ul,
-  .footer--8march .footer-8march-menu li {
-    list-style: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  .footer--8march .footer-8march-call__phone,
-  .footer--8march .footer-8march-call__btn,
-  .footer--8march .footer-8march-copyright .footer-copyright {
-    margin-right: 0 !important;
-  }
-  .footer--8march .footer-8march-call-col,
-  .footer--8march .footer-8march-call__phone {
-    text-align: left !important;
-  }
-}
-.footer-8march-questions__title {
-  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif);
-  font-weight: 300;
-  font-style: normal;
-  font-size: 32px;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: var(--8march-footer-title, #2d2d2d);
-  margin: 0 0 1rem;
-  line-height: 100%;
-  font-variant-numeric: lining-nums proportional-nums;
-}
-@media (min-width: 768px) {
-  .footer-8march-questions__title {
-    font-size: 32px;
-  }
-}
-@media (max-width: 767px) {
-  /* Малый футер 8march — размер заголовка «Остались вопросы», не менять. */
-  .footer-8march-questions__title {
-    font-size: 44px;
-  }
-}
-/* Новая форма 8 марта: 4 одинаковых поля ввода, симметричная сетка 2×2 */
-.feedback-form--8march-footer {
-  background: transparent !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-.feedback-form--8march-footer__inner {
-  max-width: none;
-}
-.feedback-form--8march-footer__form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.feedback-form--8march-footer__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 0.75rem 1rem;
-  max-width: 520px;
-}
-.feedback-form--8march-footer__field {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin: 0;
-  cursor: text;
-}
-/* Подсказки только внутри полей (placeholder), подпись над полем скрыта */
-.feedback-form--8march-footer__label {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-.feedback-form--8march-footer__input,
-.feedback-form--8march-footer__textarea {
-  width: 100%;
-  min-height: 48px;
-  padding: 0.6rem 0.75rem;
-  border: 1px solid var(--8march-footer-input-border, #e0e0e0);
-  background: var(--8march-footer-input-bg, #fff);
-  font-size: 1rem;
-  font-family: inherit;
-  color: #2d2d2d;
-  box-sizing: border-box;
-  border-radius: 0;
-  resize: none;
-}
-.feedback-form--8march-footer__input:focus,
-.feedback-form--8march-footer__textarea:focus {
-  outline: none;
-  border-color: #b0b0b0;
-}
-.feedback-form--8march-footer__textarea {
-  min-height: 48px;
-  height: 48px;
-  resize: vertical;
-  overflow: auto;
-}
-.feedback-form--8march-footer__row {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem 1.5rem;
-}
-.feedback-form--8march-footer__row .feedback-form--8march-footer__submit {
-  flex-shrink: 0;
-}
-.feedback-form--8march-footer__row .form-group.privacy-policy {
-  margin: 0;
-  flex: 1 1 auto;
-  min-width: 0;
-  max-width: none;
-}
-.feedback-form--8march-footer__submit {
-  padding: 0.6rem 1.25rem;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-/* Кнопка ОТПРАВИТЬ в форме 8 марта — чёрная, как на главной (.black-button); переопределяем общее правило section.feedback-form button */
-.feedback-form--8march-footer__submit.black-button,
-section.feedback-form--8march-footer button[type="submit"].black-button {
-  font-family: 'Inter', system-ui, sans-serif !important;
-  font-weight: 400 !important;
-  background-color: #1a1a1a !important;
-  background: #1a1a1a !important;
-  color: #fff !important;
-}
-.feedback-form--8march-footer__submit.black-button:hover,
-section.feedback-form--8march-footer button[type="submit"].black-button:hover {
-  background-color: #2d2d2d !important;
-  background: #2d2d2d !important;
-  color: #FBE3E1 !important;
-}
-.feedback-form--8march-footer__row .form-group.privacy-policy .checkbox {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.feedback-form--8march-footer__row .form-group.privacy-policy label {
-  font-size: 0.8rem;
-  color: #6b6363;
-  font-weight: 400;
-}
-/* Белый чекбокс, как на главной (.white-checkbox), но применяем локально в футерной форме */
-.footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy input[type="checkbox"] {
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  width: 18px !important;
-  height: 18px !important;
-  min-width: 18px !important;
-  min-height: 18px !important;
-  max-width: 18px !important;
-  max-height: 18px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  flex: 0 0 18px !important;
-  display: inline-block !important;
-  line-height: 18px !important;
-  border: 1px solid rgba(0, 0, 0, 0.15) !important;
-  border-radius: 6px !important;
-  -webkit-border-radius: 6px !important;
-  background: #ffffff !important;
-  background-color: #ffffff !important;
-  cursor: pointer;
-  box-sizing: border-box !important;
-  outline: none !important;
-  box-shadow: none !important;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-.footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy input[type="checkbox"]:checked {
-  /* белый всегда; при выборе показываем только цветную галочку */
-  background: #ffffff !important;
-  background-color: #ffffff !important;
-  border-color: #cfdcab !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23cfdcab' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 6 L5 9 L10 3'/%3E%3C/svg%3E") !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  background-size: 10px 10px !important;
-  border-radius: 6px !important;
-  -webkit-border-radius: 6px !important;
-}
-@media (max-width: 575px) {
-  .feedback-form--8march-footer__grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-}
-@media (max-width: 767px) {
-  /* НЕ МЕНЯТЬ: малый футер 8march — ширина блоков 80vw, выравнивание по форме «Остались вопросы». Без согласования не трогать. */
-  .footer--8march .feedback-form--8march-footer__form,
-  .footer--8march .feedback-form--8march-footer__grid {
-    width: 80vw;
-    max-width: 80vw;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .footer--8march .feedback-form--8march-footer__grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-  .footer--8march .footer-8march-questions-col,
-  .footer--8march .footer-8march-call-col,
-  .footer--8march .footer-8march-menu,
-  .footer--8march .footer-8march-copyright {
-    width: 80vw;
-    max-width: 80vw;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  /* Малый экран: кнопка ОТПРАВИТЬ — на всю ширину, чекбокс и подпись — строго под кнопкой */
-  .footer--8march .feedback-form--8march-footer__row {
-    flex-wrap: wrap;
-  }
-  .footer--8march .feedback-form--8march-footer__row .feedback-form--8march-footer__submit {
-    flex-basis: 100%;
-    width: 100%;
-  }
-  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy {
-    flex-basis: 100%;
-    width: 100%;
-    min-width: 100%;
-  }
-}
-
-.footer--8march .footer-8march-questions-col .feedback-form {
-  background: transparent !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-.footer--8march .footer-8march-questions-col .feedback-form .container {
-  max-width: none;
-  padding: 0;
-}
-.footer--8march .footer-8march-questions-col .feedback-form .content-title.center.h2 {
-  display: none !important;
-}
-.footer--8march .footer-8march-questions-col .question-form {
-  max-width: none;
-  margin: 0;
-}
-/* Форма в футере — сетка 2x2 как в эталоне: Имя, Телефон | e-mail, Комментарий; затем кнопка и чекбокс */
-.footer--8march .footer-8march-questions-col .question-form form {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto;
-  gap: 0.75rem 1rem;
-  max-width: none;
-}
-.footer--8march .footer-8march-questions-col .question-form__column {
-  display: contents;
-}
-/* Явно задаём позиции в сетке с !important, чтобы не перебивались общими правилами section.feedback-form */
-.footer--8march .footer-8march-questions-col .question-form__column:nth-child(1) .form-group:nth-child(1) { grid-column: 1 !important; grid-row: 1 !important; }
-.footer--8march .footer-8march-questions-col .question-form__column:nth-child(1) .form-group:nth-child(2) { grid-column: 1 !important; grid-row: 2 !important; }
-.footer--8march .footer-8march-questions-col .question-form__column:nth-child(1) .form-group:nth-child(3) { grid-column: 2 !important; grid-row: 1 !important; }
-.footer--8march .footer-8march-questions-col .question-form__column:nth-child(2) .form-group:nth-child(1) { grid-column: 2 !important; grid-row: 2 !important; }
-.footer--8march .footer-8march-questions-col .question-form__column:nth-child(2) button[type="submit"] {
-  grid-column: 1 !important;
-  grid-row: 3 !important;
-  justify-self: start;
-}
-.footer--8march .footer-8march-questions-col .question-form__column:nth-child(2) .form-group.privacy-policy {
-  grid-column: 2 !important;
-  grid-row: 3 !important;
-  justify-self: start;
-  align-self: center;
-}
-.footer--8march .footer-8march-questions-col form input[type="hidden"] {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Все 4 поля — именно поля ввода: подпись сверху, поле под ней; «Ваш вопрос» — многострочное */
-.footer--8march .footer-8march-questions-col .form-group:not(.privacy-policy) {
-  display: flex !important;
-  flex-direction: column-reverse !important;
-  align-items: stretch !important;
-  gap: 0.35rem;
-}
-.footer--8march .footer-8march-questions-col .form-group:not(.privacy-policy) .label-name,
-.footer--8march .footer-8march-questions-col .form-group:not(.privacy-policy) .content-name {
-  position: static !important;
-  display: block !important;
-  font-size: 0.9rem;
-  color: var(--8march-footer-title, #2d2d2d);
-  transform: none !important;
-  opacity: 1 !important;
-}
-.footer--8march .footer-8march-questions-col .form-group:not(.privacy-policy) input.form-control,
-.footer--8march .footer-8march-questions-col .form-group:not(.privacy-policy) textarea.form-control {
-  width: 100% !important;
-  min-height: 48px !important;
-  height: auto !important;
-  padding: 0.6rem 0.75rem !important;
-  border: 1px solid var(--8march-footer-input-border, #e0e0e0) !important;
-  background: #fff !important;
-  font-size: 1rem;
-}
-.footer--8march .footer-8march-questions-col .form-group:not(.privacy-policy) textarea.form-control {
-  min-height: 90px !important;
-  height: 90px !important;
-  resize: vertical;
-  overflow: auto;
-}
-.footer-8march-call-col {
-  text-align: right;
-}
-/* Номер телефона — использует .pretty_numbers, здесь только отступы и выравнивание */
-.footer--8march .footer-8march-call__phone {
-  margin: 0 0 0.75rem;
-  text-align: right;
-  overflow-wrap: break-word;
-}
-.footer--8march .footer-8march-call__phone a {
-  color: var(--8march-footer-title, #2d2d2d);
-  text-decoration: none;
-}
-.footer--8march a,
-.footer--8march a:hover,
-.footer--8march a:focus {
-  text-decoration: none !important;
-}
-.footer-8march-call__btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-height: 48px;
-  height: 48px;
-  line-height: 1 !important;
-  text-align: center !important;
-  white-space: nowrap;
-  padding: 0 1.25rem;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.footer--8march .footer-8march-content {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2rem;
-  align-items: end;
-}
-@media (min-width: 992px) {
-  .footer--8march .footer-8march-content {
-    gap: 1.5rem;
-  }
-}
-.footer--8march .footer-8march-menu {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem 3rem;
-}
-
-@media (min-width: 992px) {
-  .footer--8march .footer-8march-menu {
-    flex-direction: row;
-    flex-wrap: nowrap;
-  }
-}
-.footer--8march .footer-8march-menu .footer-content__column--lg {
-  flex: 0 0 auto;
-}
-.footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content {
-  display: flex;
-  gap: 0 2rem;
-}
-.footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content ul {
-  display: block;
-  grid: none;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.footer--8march .footer-8march-menu .footer-content__column--links-only .footer-content__title {
-  display: none;
-}
-.footer--8march .footer-8march-copyright {
-  text-align: right;
-  justify-content: flex-end;
-  background: transparent !important;
-  background-color: transparent !important;
-}
-.footer--8march .footer-8march-copyright .footer-copyright {
-  background: transparent !important;
-  background-color: transparent !important;
-}
-/* МАЛЫЙ ФУТЕР 8MARCH — НЕИЗМЕНЯЕМ (см. комментарий выше). Стили ниже — без согласования не трогать. */
-@media (max-width: 991px) {
-  .footer--8march .footer-8march-questions-row {
-    grid-template-columns: 1fr;
-  }
-  .footer-8march-call-col {
-    text-align: left;
-  }
-  .footer--8march .footer-8march-call__phone {
-    text-align: left !important;
-  }
-  .footer--8march .footer-8march-content {
-    grid-template-columns: 1fr;
-  }
-  .footer--8march .footer-8march-copyright {
-    text-align: left !important;
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-  }
-  .footer--8march .footer-8march-copyright .footer-copyright {
-    text-align: left !important;
-  }
-  /* Мобильная версия: блоки меню футера один под другим (как в эталоне) */
-  .footer--8march .footer-8march-menu {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    gap: 1.5rem;
-    align-items: stretch;
-  }
-  .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content {
-    flex-direction: column;
-    gap: 0;
-  }
-  /* Малый экран: у всего содержимого футера убираем заливки, рамки, тени — водяной знак проходит сквозь, не обрезается */
-  .footer--8march .container,
-  .footer--8march .container * {
-    background-color: transparent !important;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
-  .footer--8march .container input:not([type="hidden"]):not([type="checkbox"]),
-  .footer--8march .container textarea,
-  .footer--8march .container .form-control {
-    background-color: var(--8march-footer-input-bg, #fff) !important;
-    background: var(--8march-footer-input-bg, #fff) !important;
-    border: 1px solid var(--8march-footer-input-border, #e0e0e0) !important;
-  }
-  .footer--8march .container button,
-  .footer--8march .container .black-button,
-  .footer--8march .container [type="submit"] {
-    background-color: var(--8march-footer-btn-bg, #1a1a1a) !important;
-    background: var(--8march-footer-btn-bg, #1a1a1a) !important;
-    border: none !important;
-  }
-  /* Мобилка: «ПЕРЕЗВОНИТЕ МНЕ» должен быть чёрным (его перебивает общий сброс background: transparent) */
-  .footer--8march .footer-8march-call__btn.black-button {
-    background-color: #1a1a1a !important;
-    background: #1a1a1a !important;
-    color: #fff !important;
-  }
-  .footer--8march .footer-8march-call__btn.black-button:hover {
-    background-color: #2d2d2d !important;
-    background: #2d2d2d !important;
-    color: #FBE3E1 !important;
-  }
-  .footer--8march .container .form-group.privacy-policy .checkbox,
-  .footer--8march .container input[type="checkbox"] {
-    background-color: #fff !important;
-    border: 1px solid var(--8march-footer-input-border, #e0e0e0) !important;
-  }
-  /* Чекбокс формы «Остались вопросы»: как на большом экране (без белой рамочки), подпись чуть мельче */
-  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy .checkbox {
-    background: transparent !important;
-    background-color: transparent !important;
-    border: none !important;
-  }
-  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy input[type="checkbox"] {
-    border: 1px solid rgba(0, 0, 0, 0.15) !important;
-    background: #ffffff !important;
-    background-color: #ffffff !important;
-  }
-  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy label {
-    font-size: 0.75rem !important;
-  }
-  /* Малый футер: заканчивается условно двумя строчками после копирайта — сильно уменьшаем нижний отступ */
-  .footer--8march {
-    padding-bottom: 2rem !important;
-  }
-  .footer--8march .footer-8march-questions-row {
-    margin-top: 1.5rem !important;
-    margin-bottom: 1rem !important;
-    padding-bottom: 1rem !important;
-  }
-  .footer--8march .footer-8march-content {
-    gap: 1rem !important;
-  }
-  .footer--8march .footer-bottom {
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
-    margin-bottom: 0 !important;
-  }
 }
 
 section.feedback-form .form-control,
@@ -1803,6 +524,7 @@ section.feedback-form textarea {
   outline: none !important;
   box-shadow: none !important;
 }
+
 section.feedback-form .form-control:focus,
 section.feedback-form input:focus,
 section.feedback-form textarea:focus {
@@ -1823,6 +545,7 @@ section.feedback-form button[type="submit"] {
   letter-spacing: 0.03em !important;
   box-shadow: none !important;
 }
+
 section.feedback-form button[type="submit"]:focus {
   outline: none !important;
   box-shadow: none !important;
@@ -1834,7 +557,6 @@ section.feedback-form .content-title.h2 {
   letter-spacing: 0.02em !important;
 }
 
-/* ========== Блок «Остались вопросы?» — как в первом варианте: на зелёном фоне, без белой карточки, прямые углы ========== */
 section.feedback-form .question-form {
   display: flex !important;
   flex-wrap: wrap;
@@ -1848,6 +570,7 @@ section.feedback-form .question-form {
   padding: 0 !important;
   border-radius: 0 !important;
 }
+
 section.feedback-form .question-form .content-title.h2,
 section.feedback-form .question-form .content-title.center.h2 {
   flex: 0 0 auto;
@@ -1863,6 +586,7 @@ section.feedback-form .question-form .content-title.center.h2 {
   font-family: 'Roboto', sans-serif !important;
   font-weight: 300 !important;
 }
+
 section.feedback-form .question-form form {
   flex: 1 1 400px;
   display: grid !important;
@@ -1872,18 +596,24 @@ section.feedback-form .question-form form {
   max-width: 520px;
   position: relative !important;
 }
+
 section.feedback-form .question-form form .question-form__column {
   display: contents;
 }
+
 section.feedback-form form .question-form__column:nth-child(2) .form-group:nth-child(1) { grid-column: 1; grid-row: 1; }
+
 section.feedback-form form .question-form__column:nth-child(2) .form-group:nth-child(2) { grid-column: 1; grid-row: 2; }
+
 section.feedback-form form .question-form__column:nth-child(2) .form-group:nth-child(3) { grid-column: 2; grid-row: 1; }
+
 section.feedback-form form .question-form__column:nth-child(3) .form-group:nth-child(1) { grid-column: 2; grid-row: 2; }
-/* «Ваш вопрос» (textarea) — строго в своей колонке, без растягивания */
+
 section.feedback-form form .question-form__column:nth-child(3) .form-group:nth-child(1) {
   grid-column: 2 / 3 !important;
   max-width: 100% !important;
 }
+
 section.feedback-form form button[type="submit"] {
   grid-column: 1;
   grid-row: 3;
@@ -1897,7 +627,7 @@ section.feedback-form form button[type="submit"] {
   letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
 }
-/* Кнопка и чекбокс в одной строке (связаны): флекс-ряд через grid, без absolute */
+
 section.feedback-form form .form-group.privacy-policy {
   grid-column: 2;
   grid-row: 3;
@@ -1909,12 +639,14 @@ section.feedback-form form .form-group.privacy-policy {
   margin: 0 !important;
   white-space: nowrap;
 }
+
 section.feedback-form form .form-group.privacy-policy .checkbox {
   display: flex !important;
   align-items: flex-end !important;
   gap: 0.5rem;
   margin: 0 !important;
 }
+
 section.feedback-form form .form-group.privacy-policy input[type="checkbox"] {
   appearance: none !important;
   -webkit-appearance: none !important;
@@ -1931,10 +663,12 @@ section.feedback-form form .form-group.privacy-policy input[type="checkbox"] {
   outline: none !important;
   box-shadow: none !important;
 }
+
 section.feedback-form form .form-group.privacy-policy input[type="checkbox"]:focus {
   outline: none !important;
   box-shadow: none !important;
 }
+
 section.feedback-form form .form-group.privacy-policy input[type="checkbox"]:checked {
   border-radius: 8px !important;
   -webkit-border-radius: 8px !important;
@@ -1945,6 +679,7 @@ section.feedback-form form .form-group.privacy-policy input[type="checkbox"]:che
   background-position: center !important;
   background-size: 10px 10px !important;
 }
+
 section.feedback-form form .form-group.privacy-policy .checkbox label {
   margin: 0 !important;
   padding-bottom: 2px !important;
@@ -1956,14 +691,6 @@ section.feedback-form form .form-group.privacy-policy .checkbox label {
   white-space: nowrap !important;
 }
 
-/* Малый футер 8march: подпись чекбокса «Остались вопросы» — уменьшенный шрифт (перебивает правило выше) */
-@media (max-width: 991px) {
-  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy .checkbox label {
-    font-size: 0.6rem !important;
-  }
-}
-
-/* На малом экране: чекбокс переносится вниз, ровно под кнопку */
 @media (max-width: 767px) {
   section.feedback-form form button[type="submit"] {
     grid-column: 1;
@@ -1984,6 +711,7 @@ section.feedback-form form input[type="hidden"] {
   grid-column: 1;
   grid-row: 4;
 }
+
 section.feedback-form .form-control,
 section.feedback-form input,
 section.feedback-form textarea {
@@ -1995,32 +723,36 @@ section.feedback-form textarea {
   max-width: 100% !important;
   box-sizing: border-box !important;
 }
+
 section.feedback-form .question-form form .form-group {
   width: 100% !important;
   min-width: 0 !important;
   margin: 0 !important;
 }
+
 section.feedback-form textarea.form-control {
   min-height: 48px;
   height: 48px;
   resize: none;
   overflow: hidden;
 }
+
 section.feedback-form .form-group.privacy-policy label,
 section.feedback-form .form-group.privacy-policy .checkbox label {
   color: var(--8march-footer-text) !important;
   font-size: 0.9rem;
   opacity: 0.9;
 }
+
 section.feedback-form form input[type="hidden"] {
   grid-column: 1;
   grid-row: 4;
 }
 
-/* ========== Телефон + «Перезвоните мне» справа над формой (как в Figma) ========== */
 section.feedback-form .question-main {
   position: relative;
 }
+
 section.feedback-form .feedback-form__phone-call {
   display: flex !important;
   flex-direction: column;
@@ -2031,6 +763,7 @@ section.feedback-form .feedback-form__phone-call {
   top: 0;
   margin-top: -2.75rem;
 }
+
 section.feedback-form .feedback-form__phone-link {
   font-size: 1.1rem;
   font-weight: 600;
@@ -2038,9 +771,11 @@ section.feedback-form .feedback-form__phone-link {
   text-decoration: none;
   letter-spacing: 0.02em;
 }
+
 section.feedback-form .feedback-form__phone-link:hover {
   opacity: 0.85;
 }
+
 section.feedback-form .feedback-form__callme-btn {
   background-color: var(--8march-footer-btn-bg) !important;
   color: var(--8march-footer-btn-color) !important;
@@ -2053,9 +788,11 @@ section.feedback-form .feedback-form__callme-btn {
   text-decoration: none !important;
   display: inline-block;
 }
+
 section.feedback-form .feedback-form__callme-btn:hover {
   opacity: 0.9;
 }
+
 @media screen and (max-width: 991px) {
   section.feedback-form .feedback-form__phone-call {
     position: static;
@@ -2065,19 +802,16 @@ section.feedback-form .feedback-form__callme-btn:hover {
   }
 }
 
-/* Обёртка «Остались вопросы?» на 8march: один видимый заголовок, дубликат из тега скрыт */
 .index-8march-questions-wrap__title {
   margin: 0 0 1rem 0;
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
 }
+
 .index-8march-questions-wrap section.feedback-form .content-title.h2,
 .index-8march-questions-wrap section.feedback-form .content-title.center.h2 {
   display: none !important;
 }
 
-
-/* ========== Заглушки вместо картинок (по Figma, пока без изображений) ========== */
-/* Картинки внутри героя главной 8march не трогаем — там свои фоны */
 img[src=""],
 img[src*="placeholder"],
 .placeholder-image,
@@ -2092,33 +826,34 @@ img[src*="placeholder"],
   min-height: 120px;
   object-fit: none;
 }
-/* Исключение: картинки в герое 8march (фоновая и лого) — без серой заглушки */
+
 .index-hero-8march .index-hero-8march__img,
 .index-hero-8march .index-hero-8march__logo {
   background-color: transparent !important;
   background: transparent !important;
 }
-/* Исключение: картинки в блоке Акции 8march — нормальное отображение (object-fit: cover) */
+
 .index-promo-8march .index-promo-8march__img {
   background-color: transparent !important;
   background: transparent !important;
   object-fit: cover !important;
   min-height: 0 !important;
 }
-/* Герой 8march: кнопки-стрелки как в акциях — нежный розовый #FBE3E1 */
+
 .index-hero-8march .index-hero-8march__arrow,
 .index-hero-8march button.index-hero-8march__arrow {
   background: #FBE3E1 !important;
   background-color: #FBE3E1 !important;
   border-color: #FBE3E1 !important;
 }
+
 .index-hero-8march .index-hero-8march__arrow:hover,
 .index-hero-8march button.index-hero-8march__arrow:hover {
   background: #f5d5d2 !important;
   background-color: #f5d5d2 !important;
   border-color: #f5d5d2 !important;
 }
-/* Блоки-обёртки под картинки (hero, слайдеры) — нейтральный фон (без героя главной 8march: там своя картинка и квадратик с лого) */
+
 .section-dark.bg-image,
 [class*="hero"]:not(.hero-banner):not(.index-hero-8march__logo-box):not([class*="index-hero-8march"]),
 [class*="slider"]:not([class*="slider-set"]),
@@ -2127,7 +862,7 @@ img[src*="placeholder"],
   background-color: var(--figma-placeholder-bg, #e8e6e4) !important;
   background-image: none !important;
 }
-/* Текст на заглушке (если есть подпись) */
+
 .placeholder-image::after,
 [data-placeholder]::after {
   content: attr(data-placeholder);
@@ -2138,7 +873,6 @@ img[src*="placeholder"],
   padding: 0.5rem;
 }
 
-/* ========== Шильдик «Политика» / privacy notice — всегда внизу экрана поверх всего ========== */
 #cookie-modal,
 .safety-message-fixed,
 .cookie-modal {
@@ -2146,17 +880,19 @@ img[src*="placeholder"],
   bottom: 0 !important;
   z-index: 2147483647 !important; /* выше всех блоков (каталог, формы, модалки) */
 }
+
 #cookie-modal,
 .cookie-modal {
   left: 0 !important;
   right: auto !important;
 }
-/* На всех экранах — отступ от краёв, чтобы шильдик не прятался и шёл поверх контента (как на малом) */
+
 body.design-8march #cookie-modal,
 body.design-8march .cookie-modal {
   bottom: 20px !important;
   left: 20px !important;
 }
+
 @media screen and (max-width: 575px) {
   body.design-8march #cookie-modal,
   body.design-8march .cookie-modal {
@@ -2164,11 +900,12 @@ body.design-8march .cookie-modal {
     left: 15px !important;
   }
 }
+
 .safety-message-fixed {
   left: 20px !important;
   right: auto !important;
 }
-/* Шильдик: полупрозрачный с блюром (как на малом экране) — на большом тот же вид, поверх контента */
+
 #cookie-modal .cookie-modal__content,
 .cookie-modal .cookie-modal__content {
   background: rgba(255, 255, 252, 0.78) !important;
@@ -2177,18 +914,22 @@ body.design-8march .cookie-modal {
   border: none !important;
   box-shadow: none !important;
 }
+
 .safety-message-fixed__popup {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
 }
+
 .safety-message-fixed__btn {
   background-color: transparent !important;
   color: var(--8march-footer-text, #2d2d2d) !important;
 }
+
 .safety-message-fixed__btn .icon {
   color: var(--8march-footer-text, #2d2d2d) !important;
 }
+
 @media screen and (max-width: 575px) {
   .safety-message-fixed {
     left: 15px !important;
@@ -2196,108 +937,18 @@ body.design-8march .cookie-modal {
   }
 }
 
-/* Скрыть версию v.1.2 в футере */
 .footer-bottom .version {
   display: none !important;
 }
 
-/* Скрыть нижнее мобильное меню (Главная, Каталог, Доставка, Клиентам, Корзина) */
 .bottom-mobile-menu {
   display: none !important;
 }
 
-/* На маленьких экранах не показывать «Заказать звонок» в мобильном хэдере */
 .header--mob .tel-mob {
   display: none !important;
 }
 
-/* На малом экране убрать поиск из второго блока хэдера (оставить только корзину) */
-@media (max-width: 991px) {
-  .header--bottom-mob .row > .col-8 {
-    display: none !important;
-  }
-  .header--bottom-mob .row {
-    display: flex !important;
-  }
-  .header--bottom-mob .row > .col-4 {
-    margin-left: auto;
-  }
-
-  /* Убрать корзину из мобильного хэдера (видимую и невидимую) — в 8march на малом экране только логотип, телефон, бургер */
-  .header--bottom-mob .custom-mob-cart,
-  .header--bottom-mob .row > .col-4 {
-    display: none !important;
-  }
-  /* Скрыть весь второй ряд хэдера, если после скрытия поиска и корзины он пустой */
-  .header--bottom-mob {
-    display: none !important;
-  }
-
-  /* Скрыть только старый десктопный хедер 8march с Bootstrap-сеткой (.row). Наш хедер с .header-8march__bar не трогаем. */
-  /* Раньше использовали :not(:has(.header-8march__bar)) — в части браузеров это скрывало весь хедер на мобильных. */
-  section.__header.__header--8march:has(.row),
-  section.header--8march:has(.row) {
-    display: none !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    min-height: 0 !important;
-  }
-
-  /* Явно показываем хедер 8 марта с .header-8march__bar на малом экране (на случай старых браузеров или конфликта стилей) */
-  section.__header.__header--8march.header-8march,
-  section.__header.header-8march {
-    display: block !important;
-    visibility: visible !important;
-    height: auto !important;
-    min-height: auto !important;
-    overflow: visible !important;
-  }
-  section.__header.__header--8march.header-8march .header-8march__bar,
-  section.__header.header-8march .header-8march__bar {
-    display: flex !important;
-  }
-  body.design-8march header {
-    display: block !important;
-    visibility: visible !important;
-  }
-
-  /* Вертикальный логотип перенесён в футер — в мобильном хэдере не показывать (убираем чёрный маленький логотип) */
-  .header--mob .logo,
-  .header--mob .logo a,
-  .header--mob .logo img {
-    display: none !important;
-  }
-
-  /* Иконка меню (бургер) в мобильном хэдере — чёрная, лёгкая, без теней и обводки, как на большом экране */
-  .header--mob .burger-box .btn,
-  .header--mob .burger-box button,
-  .header--mob #my-button {
-    color: #2d2d2d !important;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0.5rem !important;
-    min-height: auto !important;
-  }
-  .header--mob .burger-box .btn:hover,
-  .header--mob .burger-box button:hover,
-  .header--mob #my-button:hover {
-    background: transparent !important;
-    box-shadow: none !important;
-    opacity: 0.85;
-  }
-  .header--mob .burger-box .btn svg,
-  .header--mob .burger-box button svg,
-  .header--mob #my-button svg {
-    fill: currentColor;
-    color: #2d2d2d !important;
-  }
-}
-
-/* Мобильное меню (бургер) — пункты чёрные, без синего; панель меню лёгкая, без теней — как на большом экране */
 @media (max-width: 991px) {
   /* Панель выезжающего меню — без теней и тяжёлых эффектов */
   .mm-wrapper,
@@ -2335,21 +986,23 @@ body.design-8march .cookie-modal {
   }
 }
 
-/* ========== Страница корзины: корректное отображение товаров при дизайне 8 марта ========== */
 body.design-8march .delivery-container {
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
 }
+
 body.design-8march .delivery-content {
   width: calc(100% - 300px);
   min-width: 0;
 }
+
 @media (max-width: 992px) {
   body.design-8march .delivery-content {
     width: calc(100% - 250px);
   }
 }
+
 @media (max-width: 767px) {
   body.design-8march .delivery-container {
     width: 100%;
@@ -2366,6 +1019,7 @@ body.design-8march .shopping-cart {
   background: #fff;
   border-radius: 0;
 }
+
 body.design-8march .shopping-cart-list {
   margin-bottom: 25px;
   display: block;
@@ -2380,6 +1034,7 @@ body.design-8march .shopping-cart-item {
   flex-wrap: wrap;
   gap: 10px;
 }
+
 @media (max-width: 767px) {
   body.design-8march .shopping-cart-item {
     flex-wrap: wrap;
@@ -2390,15 +1045,18 @@ body.design-8march .shopping-cart-item__delete {
   margin-right: 20px;
   flex-shrink: 0;
 }
+
 body.design-8march .shopping-cart-item__delete a {
   cursor: pointer;
   display: inline-flex;
 }
+
 body.design-8march .shopping-cart-item__delete svg {
   width: 18px;
   height: 18px;
   color: #999;
 }
+
 body.design-8march .shopping-cart-item__delete svg:hover {
   color: #1a1a1a;
 }
@@ -2409,11 +1067,13 @@ body.design-8march .shopping-cart-item__img {
   margin-right: 15px;
   display: block;
 }
+
 body.design-8march .shopping-cart-item__img img {
   max-width: 100%;
   height: auto;
   display: block;
 }
+
 @media (max-width: 767px) {
   body.design-8march .shopping-cart-item__img {
     width: 60px;
@@ -2428,12 +1088,14 @@ body.design-8march .shopping-cart-item__name {
   line-height: 1.3;
   color: #1a1a1a;
 }
+
 body.design-8march .shopping-cart-item__name span {
   display: block;
   font-size: 11px;
   color: #6b7280;
   margin-bottom: 2px;
 }
+
 @media (max-width: 767px) {
   body.design-8march .shopping-cart-item__name {
     width: calc(100% - 100px);
@@ -2448,10 +1110,12 @@ body.design-8march .shopping-cart-item__total-cost {
   text-align: right;
   color: #1a1a1a;
 }
+
 body.design-8march .shopping-cart-item__total-cost {
   font-weight: 600;
   margin-left: 15px;
 }
+
 @media (max-width: 767px) {
   body.design-8march .shopping-cart-item__cost,
   body.design-8march .shopping-cart-item__total-cost {
@@ -2463,12 +1127,14 @@ body.design-8march .shopping-cart-item__numbers {
   flex-shrink: 0;
   margin-right: 15px;
 }
+
 body.design-8march .shopping-cart-item__numbers .input-number {
   display: inline-flex;
   align-items: center;
   width: auto;
   min-width: 100px;
 }
+
 body.design-8march .shopping-cart-item__uom {
   font-size: 12px;
   color: #6b7280;
@@ -2480,6 +1146,7 @@ body.design-8march .delivery-total--cart {
   background: #fafafa;
   border-top: 1px solid #f0f0f0;
 }
+
 body.design-8march .delivery-total--cart ul {
   list-style: none;
   margin: 0;
@@ -2488,14 +1155,13 @@ body.design-8march .delivery-total--cart ul {
   flex-wrap: wrap;
   gap: 15px 30px;
 }
+
 body.design-8march .delivery-total--cart li {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-/* ========== Мобильное нижнее меню 8 марта: на ВСЕХ страницах (не только главная), иначе на проде в корзине/каталоге меню без стилей --- */
-/* Не менять без согласования! Высота 80px, фон #FBE3E1, иконки и подписи #B8736E. Только на экране <768px. */
 .mobile-bottom-nav-8march {
   display: flex;
   position: fixed;
@@ -2513,6 +1179,7 @@ body.design-8march .delivery-total--cart li {
   align-items: flex-start;
   transition: transform 0.25s ease;
 }
+
 .mobile-bottom-nav-8march--hidden {
   transform: translateY(100%);
 }
@@ -2559,6 +1226,7 @@ body.design-8march .delivery-total--cart li {
   fill: none;
   stroke: currentColor;
 }
+
 .mobile-bottom-nav-8march__icon svg circle,
 .mobile-bottom-nav-8march__icon svg path {
   fill: none;
@@ -2601,10 +1269,12 @@ body.design-8march .delivery-total--cart li {
 .mobile-bottom-nav-8march__item--main .mobile-bottom-nav-8march__icon--home-smile {
   color: #B8736E;
 }
+
 .mobile-bottom-nav-8march__item--main .mobile-bottom-nav-8march__icon--home-smile svg {
   width: 24px;
   height: 24px;
 }
+
 .mobile-bottom-nav-8march__item--main .mobile-bottom-nav-8march__label {
   font-family: Inter, sans-serif;
   font-weight: 300;
@@ -2630,350 +1300,6 @@ body.design-8march .delivery-total--cart li {
   }
 }
 
-/* ═══ Прод: футер — шрифты и колонки КАТАЛОГ/ПОКУПАТЕЛЯМ (чтобы не перебивались style.css/new.css и подгружались шрифты) ═══ */
-body.design-8march .footer--8march,
-body.design-8march .footer--8march .footer-content__title,
-body.design-8march .footer--8march .footer-content__column a,
-body.design-8march .footer--8march .footer-content__ul-content a,
-body.design-8march .footer--8march .footer-8march-call__phone,
-body.design-8march .footer--8march .footer-copyright,
-body.design-8march .footer--8march .footer-bottom,
-body.design-8march .footer--8march .copy {
-  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-}
-body.design-8march .footer--8march .footer-content__title,
-body.design-8march .footer--8march .footer-8march-questions__title {
-  font-family: 'Cormorant Garamond', Georgia, serif !important;
-}
-body.design-8march .footer--8march .footer-8march-menu {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 2rem 3rem !important;
-}
-body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg {
-  flex: 0 0 auto !important;
-  width: auto !important;
-}
-body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content {
-  display: flex !important;
-  gap: 0 2rem !important;
-}
-body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content ul {
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  list-style: none !important;
-}
-@media (max-width: 991px) {
-  body.design-8march .footer--8march .footer-8march-menu {
-    flex-direction: column !important;
-    flex-wrap: nowrap !important;
-    gap: 1.5rem !important;
-  }
-  body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content {
-    flex-direction: column !important;
-  }
-}
-
-/* Переопределение new.css/style.css для футера 8 марта: раскладка (Каталог, Покупателям, копирайт) и чекбокс */
-body.design-8march .footer--8march .footer-content__menu,
-body.design-8march .footer--8march .footer-8march-menu {
-  margin-right: 0 !important;
-}
-body.design-8march .footer--8march .footer-8march-menu .footer-content__column,
-body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg {
-  flex: 0 0 auto !important;
-  width: auto !important;
-  max-width: none !important;
-}
-@media (min-width: 992px) {
-  body.design-8march .footer--8march .footer-8march-menu {
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    display: flex !important;
-    gap: 2rem 3rem !important;
-    width: auto !important;
-    min-width: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    justify-content: flex-start !important;
-  }
-  body.design-8march .footer--8march .footer-8march-menu .footer-content__column--lg {
-    flex: 0 0 auto !important;
-    width: auto !important;
-    max-width: none !important;
-    min-width: 0 !important;
-  }
-}
-body.design-8march .footer--8march .footer-8march-content {
-  display: grid !important;
-  grid-template-columns: 1fr auto !important;
-  gap: 2rem !important;
-  align-items: end !important;
-}
-body.design-8march .footer--8march .footer-8march-copyright,
-body.design-8march .footer--8march .footer-right.footer-8march-copyright {
-  display: flex !important;
-  flex: 0 0 auto !important;
-  text-align: right !important;
-  justify-content: flex-end !important;
-  align-items: flex-end !important;
-}
-body.design-8march .footer--8march .footer-content__title {
-  color: var(--8march-footer-title, #2d2d2d) !important;
-}
-body.design-8march .footer--8march .footer-content__column a,
-body.design-8march .footer--8march .footer-content__ul-content a {
-  color: var(--8march-footer-text, #2d2d2d) !important;
-  opacity: 1 !important;
-}
-body.design-8march .footer--8march .footer-content__column a:hover,
-body.design-8march .footer--8march .footer-content__ul-content a:hover {
-  color: var(--8march-footer-text, #2d2d2d) !important;
-}
-body.design-8march .footer--8march footer > .container {
-  position: relative !important;
-  z-index: 2 !important;
-}
-/* Чекбокс формы «Остались вопросы»: переопределяем style.css, чтобы не был синий/старый вид */
-body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox {
-  position: relative !important;
-  padding-left: 28px !important;
-  display: flex !important;
-  align-items: flex-start !important;
-}
-body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox [type="checkbox"] {
-  position: absolute !important;
-  left: 0 !important;
-  top: 0.2em !important;
-  width: 16px !important;
-  height: 16px !important;
-  margin: 0 !important;
-  opacity: 1 !important;
-  accent-color: #2d2d2d;
-}
-body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox [type="checkbox"]:not(:checked) + label::before,
-body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox [type="checkbox"]:checked + label::before {
-  content: none !important;
-}
-body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox [type="checkbox"]:not(:checked) + label::after,
-body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox [type="checkbox"]:checked + label::after {
-  content: none !important;
-}
-body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox label {
-  font-size: 0.8rem !important;
-  line-height: 1.35 !important;
-  color: var(--8march-footer-text, #2d2d2d) !important;
-  cursor: pointer !important;
-  padding-left: 0 !important;
-}
-body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox label a {
-  color: var(--8march-footer-text, #2d2d2d) !important;
-  text-decoration: underline !important;
-}
-@media (min-width: 992px) {
-  body.design-8march .footer--8march .footer-8march-content {
-    gap: 1.5rem !important;
-  }
-}
-@media (max-width: 991px) {
-  body.design-8march .footer--8march .footer-8march-content {
-    grid-template-columns: 1fr !important;
-  }
-  body.design-8march .footer--8march .footer-8march-copyright {
-    text-align: left !important;
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  body.design-8march .footer--8march .footer-8march-copyright .footer-copyright {
-    text-align: left !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-}
-
-/* Копирайт после footer-bottom на мобильном (внизу); на десктопе — в одну строку с меню */
-@media (min-width: 992px) {
-  .footer--8march .container {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto auto;
-  }
-  .footer--8march .footer-8march-questions-row {
-    grid-column: 1 / -1;
-  }
-  .footer--8march .footer-8march-content {
-    grid-column: 1;
-    grid-row: 2;
-  }
-  .footer--8march .footer-8march-copyright {
-    grid-column: 2;
-    grid-row: 2;
-    align-self: end;
-  }
-  .footer--8march .footer-bottom {
-    grid-column: 1 / -1;
-    grid-row: 3;
-  }
-}
-
-/* Прод: хедер 8march — высота и номер телефона (чтобы не перебивались общими стилями) */
-body.design-8march section.__header.__header--8march,
-body.design-8march section.__header.__header--8march.header-8march,
-body.design-8march .header-8march {
-  min-height: 0 !important;
-  height: auto !important;
-}
-body.design-8march .header-8march__bar {
-  min-height: 63px !important;
-  height: auto !important;
-  padding: 0 24px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-}
-body.design-8march .header-8march__phone-inner,
-body.design-8march .header-8march__phone-inner a {
-  font-family: 'Roboto', sans-serif !important;
-  font-size: 0.95rem !important;
-  font-weight: 700 !important;
-  color: #2d2d2d !important;
-  text-decoration: none !important;
-  white-space: nowrap !important;
-}
-body.design-8march .header-8march__phone {
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.35rem !important;
-}
-@media (max-width: 767px) {
-  body.design-8march .header-8march__bar {
-    height: 50px !important;
-    min-height: 50px !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-}
-
-/* Переопределение new.css только для хэдера 8 марта: отключаем липкое поведение (header.fixed) */
-body.design-8march header.fixed {
-  position: relative !important;
-  transform: none !important;
-  box-shadow: none !important;
-  top: auto !important;
-}
 body.design-8march header {
   position: relative !important;
 }
-
-/* Убрать зелёную полоску под хедером на главной: new.css даёт main { padding-top: 160px/80px/60px }, хедер 8march уже в потоке — обнуляем. Вернуть: удалить блок ниже. */
-body.design-8march main {
-  padding-top: 0 !important;
-}
-
-/* ========== Переопределение new.css для футера .footer--8march (футеру не нужны стили из new.css) ========== */
-.footer--8march .footer-content__menu {
-  margin-right: 0 !important;
-}
-.footer--8march .footer-content__column {
-  flex: 0 0 auto !important;
-  width: auto !important;
-}
-.footer--8march .footer-content__column--lg {
-  width: auto !important;
-  flex: 0 0 auto !important;
-}
-.footer--8march .footer-content__ul-content ul {
-  flex: none !important;
-  margin-right: 0 !important;
-}
-.footer--8march > .container {
-  position: relative !important;
-  z-index: 2 !important;
-}
-.footer--8march > img {
-  display: block !important;
-  position: absolute !important;
-  width: 100% !important;
-  height: 100% !important;
-  top: 0 !important;
-  left: 0 !important;
-  object-fit: cover !important;
-}
-.footer--8march .footer-content__title {
-  color: var(--8march-footer-title, #2d2d2d) !important;
-}
-.footer--8march .footer-content__column a,
-.footer--8march .footer-content__ul-content a {
-  opacity: 1 !important;
-  color: var(--8march-footer-text, #2d2d2d) !important;
-}
-.footer--8march .footer-content__column a:hover,
-.footer--8march .footer-content__ul-content a:hover {
-  color: var(--8march-footer-text, #2d2d2d) !important;
-}
-@media (max-width: 991px) {
-  .footer--8march .footer-content__ul-content {
-    flex-direction: column !important;
-  }
-  .footer--8march .footer-content__ul-content ul {
-    margin: 0 !important;
-    padding-left: 0 !important;
-    padding-inline-start: 0 !important;
-    list-style: none !important;
-  }
-  /* Фикс: на мобильном у списков в колонках не должно быть визуального отступа слева */
-  .footer--8march .footer-8march-menu .footer-content__column--lg .footer-content__ul-content > ul {
-    margin-left: 0 !important;
-    padding-left: 0 !important;
-    padding-inline-start: 0 !important;
-    text-indent: 0 !important;
-  }
-  .footer--8march .footer-content__column:first-child,
-  .footer--8march .footer-content__column:last-child {
-    margin-right: 0 !important;
-    flex: 0 0 auto !important;
-  }
-}
-
-/* Копирайт 8march на мобильной прижат влево (перебиваем new.css, style.css; на главной — тот же вид, что на тестовой) */
-@media (max-width: 991px) {
-  body.design-8march .footer--8march > .container > .footer-right.footer-8march-copyright,
-  .footer--8march > .container > .footer-right.footer-8march-copyright {
-    text-align: left !important;
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  body.design-8march .footer--8march > .container > .footer-right.footer-8march-copyright .footer-copyright,
-  .footer--8march > .container > .footer-right.footer-8march-copyright .footer-copyright {
-    text-align: left !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-}
-@media (max-width: 767px) {
-  body.design-8march .footer--8march > .container > .footer-right.footer-8march-copyright,
-  .footer--8march > .container > .footer-right.footer-8march-copyright {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding-left: 2.5rem !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    text-align: left !important;
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-    order: unset !important;
-  }
-  body.design-8march .footer--8march > .container > .footer-right.footer-8march-copyright .footer-copyright,
-  .footer--8march > .container > .footer-right.footer-8march-copyright .footer-copyright {
-    text-align: left !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-}
-
-/* Стили раздела «LUCIANO в соцсетях» перенесены в 8march_redistribusion.css */

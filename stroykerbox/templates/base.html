@@ -37,9 +37,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700&family=Geologica:wght@400&family=Roboto:wght@300&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{% static '8march_design/css/8march_base.css' %}">
         <link rel="stylesheet" href="{% static '8march_design/css/8march_design.css' %}">
+        <link rel="stylesheet" href="{% static '8march_design/css/8march_header.css' %}">
+        <link rel="stylesheet" href="{% static '8march_design/css/8march_footer.css' %}">
         {# Мини-корзина 8 марта (выдвижная панель по клику на иконку). Если заказчик не хочет — удалите эту строку и см. комментарии в header_8march.html и 8march_mini_cart.css #}
         <link rel="stylesheet" href="{% static '8march_design/css/8march_mini_cart.css' %}">
-        {% if request.path == '/' or request.path == '' or request.resolver_match.url_name == 'frontpage' %}
+        {% if request.path == '/' or request.path == '' or request.resolver_match.url_name == 'frontpage' or request.resolver_match.url_name == '8march-design-test' %}
         <link rel="stylesheet" href="{% static '8march_design/css/8march_index_page_design.css' %}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" crossorigin="anonymous">
         {% endif %}
@@ -95,7 +97,7 @@
         {{ config.PAGE_HEAD_CUSTOM_CODE|safe }}
     </head>
 
-    <body class="{% if request.path == '/' or request.path == '' %}frontpage{% else %}inner-page{% endif %}{% if use_8march_header_footer %} design-8march{% endif %}">
+    <body class="{% if request.path == '/' or request.path == '' %}frontpage{% else %}inner-page{% endif %}{% if use_8march_header_footer %} design-8march{% if request.path == '/' or request.path == '' or request.resolver_match.url_name == 'frontpage' or request.resolver_match.url_name == '8march-design-test' %} page-index-8march{% endif %}{% endif %}">
         <div class="page">
             <header{% if use_8march_header_footer %} class="header_landing"{% endif %}>
                 {% block body_pre_header %}

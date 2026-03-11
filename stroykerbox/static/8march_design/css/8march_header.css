@@ -1,0 +1,746 @@
+/* 8march header — вынесено из 8march_design.css */
+
+.__header--8march,
+.__header--8march a,
+.__header--8march button,
+.__header--8march span,
+.__header--8march .catalog-btn__label,
+.__header--8march .contact-box,
+.__header--8march .login-register {
+  font-family: var(--8march-font-body);
+}
+
+section.__header.__header--8march,
+section.__header.__header--8march.header-8march,
+.header-8march {
+  background-color: #ffffff !important;
+}
+
+section.__header.__header--8march,
+section.__header.__header--8march.header-8march {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+
+.header-8march {
+  position: relative;
+  background-color: #ffffff !important;
+}
+
+.header-8march__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  min-height: 63px;
+  box-sizing: border-box;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+}
+
+.header-8march__left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex: 1 1 0;
+  min-width: 0;
+  justify-content: flex-start;
+}
+
+.header-8march__menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: #2d2d2d;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+
+.header-8march__menu-trigger:hover {
+  opacity: 0.85;
+}
+
+.header-8march__burger,
+.header-8march__burger::before,
+.header-8march__burger::after {
+  display: block;
+  height: 2px;
+  background-color: #2d2d2d;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  content: "";
+  box-sizing: border-box;
+}
+
+.header-8march__burger {
+  position: relative;
+  flex-shrink: 0;
+  width: 18px;
+  /* Контейнер по высоте под три полоски (-6px, 0, +6px), средняя полоска — градиент */
+  height: 14px;
+  background: linear-gradient(to bottom, transparent 0, transparent 5px, #2d2d2d 6px, #2d2d2d 8px, transparent 9px, transparent 14px);
+}
+
+.header-8march__burger::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+}
+
+.header-8march__burger::after {
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 18px;
+}
+
+.header-8march__label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: #2d2d2d;
+  text-transform: uppercase;
+}
+
+.header-8march__label--catalog {
+  margin-left: 0.125rem;
+  text-decoration: none !important;
+}
+
+.header-8march__label--catalog:hover,
+.header-8march__label--catalog:focus {
+  text-decoration: none !important;
+}
+
+.header-8march__center {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.header-8march__logo {
+  display: block;
+}
+
+.header-8march__logo img {
+  display: block;
+  max-width: 95px;
+  height: auto;
+}
+
+.header-8march__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1 1 0;
+  min-width: 0;
+  justify-content: flex-end;
+}
+
+.header-8march__phone {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.header-8march__phone-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #2d2d2d;
+  flex-shrink: 0;
+}
+
+.header-8march__phone-icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.header-8march__phone-inner {
+  display: inline-flex;
+  align-items: center;
+}
+
+.header-8march__phone-inner p {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+.header-8march__phone-inner a {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #2d2d2d;
+  text-decoration: none;
+}
+
+.header-8march__phone-inner a:hover {
+  opacity: 0.85;
+}
+
+.header-8march__cart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-decoration: none;
+  color: #2d2d2d;
+  flex-shrink: 0;
+}
+
+.header-8march__cart:hover {
+  opacity: 0.85;
+}
+
+.header-8march__cart-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #2d2d2d;
+}
+
+.header-8march__cart-icon svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.header-8march__cart .header-8march__cart-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+  color: #2d2d2d !important;
+  background-color: #cfdcab !important;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.header-8march .catalog-btn--hidden-trigger {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 767px) {
+  /* Хедер всегда поверх героя и контента, содержимое видно */
+  section.__header.__header--8march.header-8march,
+  .header-8march {
+    position: relative;
+    z-index: 100;
+    background-color: #ffffff !important;
+    min-height: 0;
+  }
+  .header-8march__bar {
+    padding-left: 16px;
+    padding-right: 16px;
+    justify-content: space-between;
+    gap: 0.5rem;
+    height: 50px;
+  }
+  .header-8march__center {
+    position: static;
+    transform: none;
+    order: 1;
+    margin-right: 0;
+    justify-content: flex-start;
+    flex: 0 0 auto;
+  }
+  .header-8march__right {
+    order: 2;
+    display: flex !important;
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+  }
+  .header-8march__phone {
+    justify-content: center;
+    display: flex !important;
+  }
+  .header-8march__phone-inner {
+    display: inline !important;
+  }
+  .header-8march__phone-icon {
+    display: none !important;
+  }
+  .header-8march__cart {
+    display: none !important;
+  }
+  .header-8march__left {
+    order: 3;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    display: flex !important;
+  }
+  .header-8march__menu-trigger {
+    display: inline-flex !important;
+  }
+  .header-8march__left .header-8march__label {
+    display: none;
+  }
+  .header-8march__label--catalog {
+    display: none !important;
+  }
+}
+
+section.__header.__header--8march .row--8march-symmetric {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  position: static;
+  width: 100%;
+}
+
+section.__header.__header--8march .row--8march-symmetric > .col-lg-2 {
+  order: 2;
+  flex: 0 0 auto;
+}
+
+section.__header.__header--8march .row--8march-symmetric > .col-lg-5:first-child {
+  order: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  padding-left: 0 !important;
+  padding-right: 1.25rem !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  position: relative;
+  z-index: 1;
+}
+
+section.__header.__header--8march .row--8march-symmetric > .col-lg-5:last-child,
+section.__header.__header--8march .row--8march-symmetric > .header__right-col {
+  order: 3;
+  flex: 1 1 0;
+  min-width: 0;
+  padding-right: 0 !important; /* перебиваем .row > * из сетки (padding-right: 20px) */
+  padding-left: 1.25rem !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  position: relative;
+  z-index: 1;
+}
+
+section.__header.__header--8march .row--8march-symmetric > .col-lg-5:last-child .header__right-group {
+  margin-left: 0 !important;
+  width: 100% !important;
+}
+
+section.__header.__header--8march .row--8march-symmetric .header__left-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  justify-content: flex-start;
+}
+
+section.__header.__header--8march .row--8march-symmetric .header__right-group {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.5rem !important;
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: 100%;
+}
+
+section.__header.__header--8march .row--8march-symmetric .header__right-group .contact-box,
+section.__header.__header--8march .row--8march-symmetric .header__right-group .options-box {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-bottom: none !important;
+}
+
+section.__header.__header--8march .row--8march-symmetric .header__right-group .contact-box {
+  flex-shrink: 0 !important;
+}
+
+section.__header.__header--8march .row--8march-symmetric .header__right-group .options-box--header-8march,
+section.__header.__header--8march .row--8march-symmetric .header__right-group .options-box {
+  margin-top: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: auto !important;
+  padding-left: 1rem !important;
+}
+
+section.__header.__header--8march .contact-box--with-phone-icon {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+section.__header.__header--8march .contact-box--with-phone-icon p {
+  white-space: nowrap !important;
+  margin: 0 !important;
+}
+
+section.__header.__header--8march .contact-box__phone-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #2d2d2d;
+  flex-shrink: 0;
+}
+
+section.__header.__header--8march .contact-box__phone-icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+section.__header.__header--8march .row--8march-symmetric .header__right-group .option-items {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 991px) {
+  section.__header .row .col-lg-2:first-child {
+    width: 100%;
+    padding: 0 15px;
+  }
+  section.__header .logo {
+    position: static;
+    transform: none;
+    text-align: center;
+  }
+  section.__header .row .col-lg-6 {
+    padding-left: 15px;
+  }
+  section.__header.__header--8march .row--8march-symmetric .header__right-group {
+    justify-content: flex-start !important;
+  }
+}
+
+section.__header.__header--8march .custom-block--icon-only,
+section.__header.__header--8march .catalog-btn--icon-only {
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  padding: 0.5rem !important;
+  min-height: auto !important;
+}
+
+section.__header.__header--8march .catalog-btn--icon-only:hover {
+  background: transparent !important;
+  opacity: 0.75;
+}
+
+section.__header.__header--8march .catalog-btn--burger-8march {
+  min-width: 2rem;
+  min-height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section.__header.__header--8march .catalog-btn--burger-8march .catalog-btn__burger {
+  position: relative;
+  top: 0;
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: #2d2d2d !important;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+}
+
+section.__header.__header--8march .catalog-btn--burger-8march .catalog-btn__burger::before,
+section.__header.__header--8march .catalog-btn--burger-8march .catalog-btn__burger::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: #2d2d2d !important;
+  border: none;
+  border-radius: 0;
+  position: absolute;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  content: "";
+}
+
+section.__header.__header--8march .catalog-btn--burger-8march .catalog-btn__burger::before {
+  top: -6px;
+}
+
+section.__header.__header--8march .catalog-btn--burger-8march .catalog-btn__burger::after {
+  top: 6px;
+}
+
+section.__header.__header--8march .catalog-btn--icon-only span,
+section.__header.__header--8march .catalog-btn--icon-only span::before,
+section.__header.__header--8march .catalog-btn--icon-only span::after {
+  background-color: #2d2d2d !important;
+}
+
+section.__header.__header--8march .custom-block--icon-only {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  position: relative !important;
+}
+
+section.__header.__header--8march .catalog-btn__label {
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  color: #2d2d2d !important;
+  text-transform: uppercase !important;
+}
+
+section.__header.__header--8march .catalog-btn__label--menu {
+  margin-right: 0.25rem;
+}
+
+section.__header.__header--8march .header__menu-link-8march {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  text-decoration: none !important;
+  border: none !important;
+  background: none !important;
+  padding: 0.5rem 0 !important;
+  cursor: pointer;
+}
+
+section.__header.__header--8march .header__menu-link-8march:hover {
+  opacity: 0.85;
+}
+
+section.__header.__header--8march .header__menu-link-8march .catalog-btn__burger,
+section.__header.__header--8march .header__menu-link-8march .catalog-btn__burger::before,
+section.__header.__header--8march .header__menu-link-8march .catalog-btn__burger::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: #2d2d2d !important;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  content: "";
+}
+
+section.__header.__header--8march .header__menu-link-8march .catalog-btn__burger {
+  position: relative;
+  flex-shrink: 0;
+}
+
+section.__header.__header--8march .header__menu-link-8march .catalog-btn__burger::before {
+  position: absolute;
+  left: 0;
+  top: -6px;
+}
+
+section.__header.__header--8march .header__menu-link-8march .catalog-btn__burger::after {
+  position: absolute;
+  left: 0;
+  top: 6px;
+}
+
+section.__header.__header--8march .catalog-btn--hidden-trigger {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  border: 0 !important;
+}
+
+section.__header .option-items li a,
+section.__header.__header--8march .option-items li a {
+  font-size: 0;
+  line-height: 0;
+}
+
+section.__header .option-items li a img,
+section.__header .option-items li a .cart-number,
+section.__header.__header--8march .option-items li a img,
+section.__header.__header--8march .option-items li a .cart-number {
+  font-size: 12px;
+  line-height: normal;
+}
+
+section.__header .option-items li a::after,
+section.__header.__header--8march .option-items li a::after {
+  display: none !important;
+}
+
+@media (max-width: 991px) {
+  .header--bottom-mob .row > .col-8 {
+    display: none !important;
+  }
+  .header--bottom-mob .row {
+    display: flex !important;
+  }
+  .header--bottom-mob .row > .col-4 {
+    margin-left: auto;
+  }
+
+  /* Убрать корзину из мобильного хэдера (видимую и невидимую) — в 8march на малом экране только логотип, телефон, бургер */
+  .header--bottom-mob .custom-mob-cart,
+  .header--bottom-mob .row > .col-4 {
+    display: none !important;
+  }
+  /* Скрыть весь второй ряд хэдера, если после скрытия поиска и корзины он пустой */
+  .header--bottom-mob {
+    display: none !important;
+  }
+
+  /* Скрыть только старый десктопный хедер 8march с Bootstrap-сеткой (.row). Наш хедер с .header-8march__bar не трогаем. */
+  /* Раньше использовали :not(:has(.header-8march__bar)) — в части браузеров это скрывало весь хедер на мобильных. */
+  section.__header.__header--8march:has(.row),
+  section.header--8march:has(.row) {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    min-height: 0 !important;
+  }
+
+  /* Явно показываем хедер 8 марта с .header-8march__bar на малом экране (на случай старых браузеров или конфликта стилей) */
+  section.__header.__header--8march.header-8march,
+  section.__header.header-8march {
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+  section.__header.__header--8march.header-8march .header-8march__bar,
+  section.__header.header-8march .header-8march__bar {
+    display: flex !important;
+  }
+  body.design-8march header {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  /* Вертикальный логотип перенесён в футер — в мобильном хэдере не показывать (убираем чёрный маленький логотип) */
+  .header--mob .logo,
+  .header--mob .logo a,
+  .header--mob .logo img {
+    display: none !important;
+  }
+
+  /* Иконка меню (бургер) в мобильном хэдере — чёрная, лёгкая, без теней и обводки, как на большом экране */
+  .header--mob .burger-box .btn,
+  .header--mob .burger-box button,
+  .header--mob #my-button {
+    color: #2d2d2d !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0.5rem !important;
+    min-height: auto !important;
+  }
+  .header--mob .burger-box .btn:hover,
+  .header--mob .burger-box button:hover,
+  .header--mob #my-button:hover {
+    background: transparent !important;
+    box-shadow: none !important;
+    opacity: 0.85;
+  }
+  .header--mob .burger-box .btn svg,
+  .header--mob .burger-box button svg,
+  .header--mob #my-button svg {
+    fill: currentColor;
+    color: #2d2d2d !important;
+  }
+}
+
+body.design-8march section.__header.__header--8march,
+body.design-8march section.__header.__header--8march.header-8march,
+body.design-8march .header-8march {
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+body.design-8march .header-8march__bar {
+  min-height: 63px !important;
+  height: auto !important;
+  padding: 0 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+body.design-8march .header-8march__phone-inner,
+body.design-8march .header-8march__phone-inner a {
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: #2d2d2d !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+body.design-8march .header-8march__phone {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+}
+
+@media (max-width: 767px) {
+  body.design-8march .header-8march__bar {
+    height: 50px !important;
+    min-height: 50px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+body.design-8march header.fixed {
+  position: relative !important;
+  transform: none !important;
+  box-shadow: none !important;
+  top: auto !important;
+}
+
+body.design-8march main {
+  padding-top: 0 !important;
+}
