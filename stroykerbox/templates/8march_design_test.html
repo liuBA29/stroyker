@@ -1,4 +1,4 @@
-{% load static crm_tags common_tags address_tags sekizai_tags statictext_tags utils_tags commerce_tags %}
+{% load static crm_tags common_tags address_tags sekizai_tags statictext_tags utils_tags commerce_tags customization_tags %}
 {% get_media_prefix as MEDIA_URL %}
 {% config_value 'FAVICON_FILE' as favicon %}
 <!DOCTYPE html>
@@ -171,6 +171,9 @@
             </div>
           </section>
         </div>
+
+        {# Блоки из админки: «Блоки главной страницы» (middle). На проде заказчик добавляет сюда слайдеры, текст и т.д. #}
+        {% render_tag_container 'middle' wrapper_main_class="additional-section" %}
 
         <section class="index-info-8march">
           <div class="index-info-8march__watermark" aria-hidden="true"></div>
@@ -410,6 +413,9 @@
             </div>
           </div>
         </section>
+
+        {# Блоки из админки: «Блоки нижней части страницы» (bottom). Только на тестовой /8march_design. #}
+        {% render_tag_container 'bottom' wrapper_main_class="additional-section" %}
       </div>
     </main>
 
