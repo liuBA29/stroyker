@@ -148,7 +148,7 @@ TEMPLATES = [
 ]
 
 STATICFILES_DIRS = [
-    path(BASE_DIR, '..', 'stroyker-k1-html-dev'),
+    ('k1', path(BASE_DIR, '..', 'stroyker-k1-html-dev')),
     path(BASE_DIR, 'static'),
 ]
 STATIC_ROOT = path('static_collected')

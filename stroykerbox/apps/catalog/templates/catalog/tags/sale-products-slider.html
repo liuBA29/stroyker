@@ -1,18 +1,22 @@
 {% load static catalog_tags i18n %}
-{% if products %}
-<span class="content-title h2">{% trans "Распродажа" %}</span>
-<div class="product-slider product-slider--4">
+<div class="product-slider-wrap product-slider-wrap--sales">
+  {% if custom_block_title %}<span class="content-title h2">{{ custom_block_title }}</span>{% else %}<span class="content-title h2">{% trans "Распродажа" %}</span>{% endif %}
+  {% if products %}
+  <div class="product-slider product-slider--4">
     <div class="slider-constructor" {% slider_constructor_dataset %}>
-        {% for product in products %}
-        {% render_product_teaser_new product %}
-        {% endfor %}
+      {% for product in products %}
+      {% render_product_teaser_new product %}
+      {% endfor %}
     </div>
     <div class="btn-center mobile-show">
-        <a class="btn btn-download btn-download-2">
-            <span class="icon">
-                <img src="{% static 'images/download-productions.svg' %}" alt="">
-            </span>{% trans "Ещё" %}
-        </a>
+      <a class="btn btn-download btn-download-2">
+        <span class="icon">
+          <img src="{% static 'images/download-productions.svg' %}" alt="">
+        </span>{% trans "Ещё" %}
+      </a>
     </div>
+  </div>
+  {% else %}
+  <p class="product-slider-empty">{% trans "В этой категории пока нет товаров." %}</p>
+  {% endif %}
 </div>
-{% endif %}

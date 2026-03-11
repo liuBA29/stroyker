@@ -1,0 +1,42 @@
+{% load static catalog_tags i18n %}
+{# Блок «Акции» в стиле нового весеннего дизайна (8 марта). Своя разметка — не трогаем старый sale-products-slider. #}
+<section class="index-promo-8march index-promo-8march--from-tag new_spring_design_sales_slider">
+  <h2 class="index-promo-8march__title big-title">{% if custom_block_title %}{{ custom_block_title }}{% else %}{% trans "Акции" %}{% endif %}</h2>
+  {% if products %}
+  <div class="index-promo-8march__carousel-wrap">
+    <button type="button" class="index-promo-8march__arrow pink-arrows index-promo-8march__arrow--prev" title="Назад" aria-label="Назад"></button>
+    <div class="index-promo-8march__carousel" data-promo-carousel>
+      <div class="index-promo-8march__track">
+        {% for product in products %}
+          {% product_location_price product as price %}
+          {% product_location_old_price product as old_price %}
+          <a href="{{ product.get_absolute_url }}" class="index-promo-8march__card{% if forloop.first %} index-promo-8march__card--large{% endif %}">
+            <span class="index-promo-8march__img-wrap">
+              {% if product.main_image %}
+                <img src="{{ product.main_image.image.url }}" alt="{{ product.name|default:'' }}" class="index-promo-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
+              {% else %}
+                <img src="{% static 'images/empty-product.svg' %}" alt="" class="index-promo-8march__img" loading="lazy" decoding="async">
+              {% endif %}
+            </span>
+            <span class="index-promo-8march__prices">
+              {% if price %}
+                {% if old_price %}<span class="index-promo-8march__price-old">{{ old_price }}</span>{% endif %}
+                <span class="index-promo-8march__price-new">{{ price }}</span>
+              {% else %}
+                {% trans "По запросу" %}
+              {% endif %}
+            </span>
+            <span class="index-promo-8march__btn beige_button">{% trans "ПОДРОБНЕЕ" %}</span>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+    <button type="button" class="index-promo-8march__arrow pink-arrows index-promo-8march__arrow--next" title="Вперёд" aria-label="Вперёд"></button>
+  </div>
+  <div class="index-promo-8march__footer">
+    <a href="{% url 'catalog:index' %}" class="index-promo-8march__btn-catalog">{% trans "СМОТРЕТЬ ВЕСЬ КАТАЛОГ" %}</a>
+  </div>
+  {% else %}
+  <p class="index-promo-8march__empty">{% trans "В этой категории пока нет товаров." %}</p>
+  {% endif %}
+</section>

@@ -181,3 +181,14 @@
 .page-index-8march .additional-section.conditional-section_bg .container {
   color: #2d2d2d;
 }
+
+/* Блок акций из тега new_spring_design: сообщение «нет товаров» */
+.page-index-8march .index-promo-8march__empty,
+.page-index-8march .new_spring_design_sales_slider .index-promo-8march__empty {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  padding: 1.5rem;
+  margin: 0;
+}

@@ -37,6 +37,10 @@ MIDDLEWARE += ['stroykerbox.apps.utils.middleware.CustomRedirectFallbackMiddlewa
 
 ALLOWED_HOSTS = ['*', '127.0.0.1', 'stroykerbox.local']
 
+# Constance в dev: без кэша Redis при сохранении, иначе "signal only works in main thread"
+CACHES['constance_dummy'] = {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'}
+CONSTANCE_DATABASE_CACHE_BACKEND = 'constance_dummy'
+
 # Дефолты Constance для локального Docker (пустая БД до loaddata).
 # Используется только при settings.dev. У заказчика — settings.luciano, этот блок не трогаем.
 # Сначала явные значения, затем подгружаем остальные из фикстуры

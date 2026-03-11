@@ -29,7 +29,9 @@ def get_tag_classes(tag, tag_args=None):
 def get_html_for_container_tag(context, container):
     html = []
     sliders = container.sliders.filter(enabled=True)
-    if context['request'].path != '/':
+    path = (context.get('request') or {}).path or ''
+    # На главной (/) и на тестовой странице /8march_design/ показываем и блоки с frontpage_only=True
+    if path != '/' and not path.startswith('/8march_design'):
         sliders = sliders.filter(frontpage_only=False)
 
     for slider in sliders:

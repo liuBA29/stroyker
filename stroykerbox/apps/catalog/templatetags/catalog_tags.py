@@ -278,6 +278,24 @@ def render_sales_slider(context, num=12):
     return context
 
 
+@register.inclusion_tag('catalog/tags/new_spring_design_sale-products-slider.html', takes_context=True)
+def render_new_spring_design_sales_slider(context, num=12):
+    """
+    Слайдер товаров по акции в стиле «новый весенний дизайн» (8 марта).
+    Отдельный тег, чтобы не трогать старый render_sales_slider на проде.
+    """
+    sale_products = (
+        Product.objects.published().filter(is_sale=True).exclude_by_modification_code()
+    )
+    if not config.PRODUCT_ALLOW_SALE_NOT_AVAIBLE:
+        sale_products = sale_products.filter(stocks_availability__available__gt=0)
+    location = get_context_location(context)
+    if location:
+        sale_products = [p for p in sale_products if p.is_available(location)]
+    context['products'] = list(sale_products[:num])
+    return context
+
+
 @register.inclusion_tag('catalog/tags/product-images-slider.html', takes_context=True)
 def render_product_images_slider(context):
     product = context.get('product')
