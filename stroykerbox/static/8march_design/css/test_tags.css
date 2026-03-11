@@ -5,48 +5,77 @@
  *
  * Подключается только в шаблоне 8march_design_test.html. Главная страница и остальной сайт не трогаем.
  * Селекторы начинаются с .page-index-8march — поэтому действуют только когда у body класс page-index-8march (только тестовая).
+ *
+ * Оформление — примерно как на /prod29/: карточки с светлым фоном, тёмный заголовок-баннер, сетка товаров, кнопки-фильтры.
  */
 
 /* ========== Блоки из контейнеров (middle, bottom): обёртка секции ========== */
 .page-index-8march .additional-section {
-  /* Отступы сверху и снизу между блоками */
   padding-top: 2rem;
   padding-bottom: 2rem;
+  /* Светлый фон блока, как на скрине с карточками */
+  background-color: #fafafa;
+  margin-bottom: 1.5rem;
 }
 
 .page-index-8march .additional-section .container {
-  /* Ограничиваем ширину текста для удобства чтения */
-  max-width: 800px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
 
-/* ========== Заголовки внутри вставленного контента ========== */
+/* Текстовые блоки без классов сетки — можно сузить для удобства чтения (если нужна узкая колонка, раскомментировать) */
+/* .page-index-8march .additional-section .container { max-width: 800px; } */
+
+/* ========== Заголовок-баннер в стиле «КОЛЛЕКЦИЯ 8 МАРТА»: тёмный фон, белый текст ========== */
+.page-index-8march .additional-section .container > h2:first-child,
+.page-index-8march .additional-section .container > .content-title.h2:first-child,
+.page-index-8march .additional-section .container > h1:first-child {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background-color: #4a4a4a;
+  margin: -0.5rem -1.25rem 1.5rem -1.25rem;
+  padding: 1rem 1.25rem;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ========== Остальные заголовки внутри блока (как «ГАРАНТИЯ КАЧЕСТВА») ========== */
 .page-index-8march .additional-section h1,
 .page-index-8march .additional-section h2,
 .page-index-8march .additional-section h3 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Inter', system-ui, sans-serif;
   color: #2d2d2d;
   margin-top: 0;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   line-height: 1.25;
+  font-weight: 700;
 }
 
-.page-index-8march .additional-section h1 { font-size: 1.75rem; font-weight: 700; }
-.page-index-8march .additional-section h2 { font-size: 1.5rem; font-weight: 600; }
-.page-index-8march .additional-section h3 { font-size: 1.25rem; font-weight: 600; }
+.page-index-8march .additional-section h1 { font-size: 1.25rem; }
+.page-index-8march .additional-section h2 { font-size: 1.1rem; }
+.page-index-8march .additional-section h3 { font-size: 1rem; }
 
-/* ========== Обычный текст и параграфы ========== */
+/* Не дублируем тёмный стиль для первого h2 — он уже выше */
+.page-index-8march .additional-section .container > h2:first-child,
+.page-index-8march .additional-section .container > .content-title.h2:first-child { color: #fff; }
+
+/* ========== Описание под заголовком — мельче и серое ========== */
 .page-index-8march .additional-section p,
+.page-index-8march .additional-section .category-card__title + *,
 .page-index-8march .additional-section div {
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #2d2d2d;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #555;
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .page-index-8march .additional-section p:last-child,
@@ -65,13 +94,81 @@
   opacity: 0.85;
 }
 
-/* ========== Списки (если заказчик вставил список) ========== */
+/* ========== Кнопки/фильтры в стиле скрина: тёмный фон, скругление ========== */
+.page-index-8march .additional-section .btn,
+.page-index-8march .additional-section a.btn,
+.page-index-8march .additional-section button,
+.page-index-8march .additional-section input[type="submit"],
+.page-index-8march .additional-section .form-control + a,
+.page-index-8march .additional-section [class*="filter"] a,
+.page-index-8march .additional-section [class*="button"] {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #4a4a4a;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.page-index-8march .additional-section .btn:hover,
+.page-index-8march .additional-section a.btn:hover,
+.page-index-8march .additional-section button:hover {
+  opacity: 0.9;
+}
+
+/* ========== Сетка карточек / ряд блоков (row, grid, owl-carousel) ========== */
+.page-index-8march .additional-section .row,
+.page-index-8march .additional-section .grid,
+.page-index-8march .additional-section .owl-carousel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.page-index-8march .additional-section .row > *,
+.page-index-8march .additional-section .grid__block,
+.page-index-8march .additional-section .category-card,
+.page-index-8march .additional-section .owl-carousel > * {
+  flex: 1 1 180px;
+  min-width: 0;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* Заголовок внутри карточки ========== */
+.page-index-8march .additional-section .category-card__title,
+.page-index-8march .additional-section .card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2d2d2d;
+  margin-bottom: 0.5rem;
+}
+
+/* ========== Картинки внутри блока ========== */
+.page-index-8march .additional-section img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-radius: 6px;
+}
+
+/* ========== Списки ========== */
 .page-index-8march .additional-section ul,
 .page-index-8march .additional-section ol {
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #2d2d2d;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #555;
   margin: 0 0 1rem 0;
   padding-left: 1.5rem;
 }
@@ -80,16 +177,7 @@
   margin-bottom: 0.35rem;
 }
 
-/* ========== Картинки внутри блока (чтобы не разъезжались) ========== */
-.page-index-8march .additional-section img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* ========== Если у блока задан зелёный фон в админке — чуть смягчаем контраст текста ========== */
+/* ========== Если у блока задан свой фон в админке ========== */
 .page-index-8march .additional-section.conditional-section_bg .container {
   color: #2d2d2d;
 }

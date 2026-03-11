@@ -16,6 +16,8 @@ pip-cache/
 src/
 # *.mo
 htmlcov
+# Инструкция по блокам из админки на тестовой странице — только для себя, не коммитить
+/docs/INSTRUCTION_admin_blocks_test_page.md
 docker_data/
 docker_data*/
 static_collected/
