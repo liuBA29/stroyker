@@ -10,6 +10,7 @@ from stroykerbox.settings.constants import INVOICING, PAYMENT_METHODS_CHOICES
 from stroykerbox.apps.catalog.models import Stock
 from stroykerbox.apps.commerce import models
 from stroykerbox.apps.utils.forms import ReCaptchaFormMixin
+from stroykerbox.apps.utils.constance_helpers import get_config_list
 from constance import config
 
 from .models import Order, OrderExtraField, TransportCompany
@@ -38,7 +39,7 @@ class OrderForm(OrderFormBase):
         content_types = [
             ContentType.objects.get_for_model(m)
             for m in models.Order.DELIVERY_MODELS
-            if m.__name__ in config.DELIVERY_METHODS
+            if m.__name__ in get_config_list('DELIVERY_METHODS')
         ]
         self.fields['delivery_type'].choices = [
             (t.pk, t.model_class().get_display_name()) for t in content_types
@@ -80,13 +81,13 @@ class SimpleOrderForm(OrderFormBase):
         content_types = [
             ContentType.objects.get_for_model(m)
             for m in models.Order.DELIVERY_MODELS
-            if m.__name__ in config.DELIVERY_METHODS
+            if m.__name__ in get_config_list('DELIVERY_METHODS')
         ]
         delivery_variant_choices = []
         payment_mapping = {
-            settings.DELIVERY_PICKUP_MODEL_NAME.lower(): config.DELIVERY_PICUP_PAYMENT_METHODS,
-            settings.DELIVERY_TOADDRESS_MODEL_NAME.lower(): config.DELIVERY_TOADDRESS_PAYMENT_METHODS,
-            settings.DELIVERY_TOTC_MODEL_NAME.lower(): config.DELIVERY_TOTC_PAYMENT_METHODS,
+            settings.DELIVERY_PICKUP_MODEL_NAME.lower(): get_config_list('DELIVERY_PICUP_PAYMENT_METHODS'),
+            settings.DELIVERY_TOADDRESS_MODEL_NAME.lower(): get_config_list('DELIVERY_TOADDRESS_PAYMENT_METHODS'),
+            settings.DELIVERY_TOTC_MODEL_NAME.lower(): get_config_list('DELIVERY_TOTC_PAYMENT_METHODS'),
         }
         self.delivery_payment_mapping = {}
         for t in content_types:
@@ -104,7 +105,7 @@ class SimpleOrderForm(OrderFormBase):
         payment_variant_choices = [
             (key, payment_names_dict[key])
             for key, name in PAYMENT_METHODS_CHOICES
-            if str(key) in config.PAYMENT_METHODS
+            if str(key) in get_config_list('PAYMENT_METHODS')
         ]
         if payment_variant_choices:
             self.fields['payment_variant'].choices = payment_variant_choices
@@ -169,7 +170,7 @@ def create_delivery_forms(delivery_type_class=None, *args, **kwargs):
     delivery_forms = {}
     active_form = None
     for delivery_class in models.Order.DELIVERY_MODELS:
-        if delivery_class.__name__ not in config.DELIVERY_METHODS:
+        if delivery_class.__name__ not in get_config_list('DELIVERY_METHODS'):
             continue
         c_args = args[:]
         c_kwargs = kwargs.copy()

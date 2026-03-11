@@ -14,6 +14,7 @@ from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from constance import config
+from stroykerbox.apps.utils.constance_helpers import get_config_list
 
 from stroykerbox.apps.catalog.models import Product, Stock
 from stroykerbox.apps.locations.helpers import LocationModelManager
@@ -135,7 +136,7 @@ class PickUpDelivery(DeliveryBase):
     @classmethod
     def available_payment_methods(cls):
         return list(
-            set(config.DELIVERY_PICUP_PAYMENT_METHODS) & set(config.PAYMENT_METHODS)
+            set(get_config_list('DELIVERY_PICUP_PAYMENT_METHODS')) & set(get_config_list('PAYMENT_METHODS'))
         )
 
     @classmethod
@@ -181,7 +182,7 @@ class ToAddressDelivery(DeliveryBase):
     @classmethod
     def available_payment_methods(cls):
         return list(
-            set(config.DELIVERY_TOADDRESS_PAYMENT_METHODS) & set(config.PAYMENT_METHODS)
+            set(get_config_list('DELIVERY_TOADDRESS_PAYMENT_METHODS')) & set(get_config_list('PAYMENT_METHODS'))
         )
 
     @classmethod
@@ -215,7 +216,7 @@ class ToTCDelivery(DeliveryBase):
     @classmethod
     def available_payment_methods(cls):
         return list(
-            set(config.DELIVERY_TOTC_PAYMENT_METHODS) & set(config.PAYMENT_METHODS)
+            set(get_config_list('DELIVERY_TOTC_PAYMENT_METHODS')) & set(get_config_list('PAYMENT_METHODS'))
         )
 
     @classmethod

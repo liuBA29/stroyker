@@ -3,6 +3,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from constance import config
 from mptt.admin import DraggableMPTTAdmin
 from stroykerbox.apps.customization import DEFAULT_TAG_CONTAINERS
+from stroykerbox.apps.utils.constance_helpers import get_config_list
 
 from .models import (SliderTagContainer, SliderTagContainerItem, ColorScheme,
                      CustomFont, CustomStyle, CustomScript, CustomTemplateBlock, MobileMenuButton)
@@ -20,11 +21,7 @@ class SliderTagContainerAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        curr_containers = set()
-        if isinstance(config.DISPLAY_TAG_CONTAINERS, (list, tuple)):
-            curr_containers = set(config.DISPLAY_TAG_CONTAINERS)
-        else:
-            curr_containers.add(config.DISPLAY_TAG_CONTAINERS)
+        curr_containers = set(get_config_list('DISPLAY_TAG_CONTAINERS'))
 
         excluded_keys = set(DEFAULT_TAG_CONTAINERS.keys()) - curr_containers
 

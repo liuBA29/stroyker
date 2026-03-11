@@ -17,6 +17,7 @@ from stroykerbox.settings.constants import YOOKASSA
 # from django.contrib.admin.views.decorators import staff_member_required
 from pytils.numeral import choose_plural
 from constance import config
+from stroykerbox.apps.utils.constance_helpers import get_config_list
 
 from stroykerbox.apps.catalog.models import Product, Stock
 from stroykerbox.apps.catalog.templatetags.catalog_tags import price_format
@@ -352,7 +353,7 @@ def cart_delivery(request):
         }
 
         delivery_extra_fields_filter = {
-            'binded_to__in': [delivery_config_map[k] for k in config.DELIVERY_METHODS]
+            'binded_to__in': [delivery_config_map[k] for k in get_config_list('DELIVERY_METHODS')]
         }
         common_extra_fields_filter = {
             'binded_to__in': [
@@ -434,7 +435,7 @@ def cart_payment(request):
     }
 
     payment_extra_fields_filter = {
-        'binded_to__in': [payment_config_map[k] for k in config.PAYMENT_METHODS]
+        'binded_to__in': [payment_config_map[k] for k in get_config_list('PAYMENT_METHODS')]
     }
 
     payment_extra_fields = OrderExtraField.objects.filter(
