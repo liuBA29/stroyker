@@ -1,4 +1,5 @@
 import uuid
+import logging
 
 from django import template
 from django.core.cache import cache
@@ -8,6 +9,9 @@ from constance import config
 from stroykerbox.apps.customization.models import SliderTagContainer
 from stroykerbox.apps.menu.models import Menu
 from stroykerbox.apps.commerce.cart import Cart
+
+
+logger = logging.getLogger(__name__)
 
 
 register = template.Library()
@@ -53,7 +57,11 @@ def get_html_for_container_tag(context, container):
                 }
             )
             code = template.Template(load_tag_line + code_line).render(context)
-        except Exception:
+        except Exception as e:
+            logger.exception(
+                'Tag container item failed: container=%s tag_line=%s: %s',
+                container.key, slider.tag_line, e
+            )
             pass
         else:
             if not code.strip():
@@ -207,4 +215,16 @@ def render_mobile_header(context, **kwargs):
 @register.inclusion_tag('custom_headers/logo-image.html', takes_context=True)
 def render_logo_image(context, mobile=False):
     context['mobile_mode'] = mobile
+    return context
+
+
+@register.inclusion_tag('customization/tags/new_design_info_block.html', takes_context=True)
+def render_new_design_info_block(context):
+    """new_design: гарантия качества / доставка / подарки + рейтинги 2ГИС и Яндекс."""
+    return context
+
+
+@register.inclusion_tag('customization/tags/new_design_social_block.html', takes_context=True)
+def render_new_design_social_block(context):
+    """new_design: соцсети (Telegram, VK)."""
     return context
