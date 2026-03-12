@@ -182,6 +182,13 @@
   color: #2d2d2d;
 }
 
+/* Блок «Акции» из тега — белый фон (как у сборных букетов), перебивает серый. Только тестовая страница. */
+.page-index-8march .index-promo-8march.index-promo-8march--from-tag,
+.page-index-8march .new_spring_design_sales_slider.index-promo-8march {
+  background: #fff !important;
+  background-color: #fff !important;
+}
+
 /* Блок акций из тега new_spring_design: сообщение «нет товаров» */
 .page-index-8march .index-promo-8march__empty,
 .page-index-8march .new_spring_design_sales_slider .index-promo-8march__empty {
