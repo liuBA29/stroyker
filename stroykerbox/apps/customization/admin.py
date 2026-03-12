@@ -49,6 +49,16 @@ class SliderTagContainerItemInline(admin.TabularInline):
     formset = SliderTagContainerItemFormSet
     extra = 0
 
+    def get_formset(self, request, obj=None, **kwargs):
+        """
+        На контейнерах нового дизайна ограничиваем выпадающий список tag_line только new_design-тегами.
+        Делаем это на уровне formset, чтобы работало и для пустых (extra) строк.
+        """
+        formset = super().get_formset(request, obj, **kwargs)
+        if obj and getattr(obj, 'key', None) in NEW_DESIGN_CONTAINER_KEYS:
+            formset.form.base_fields['tag_line'].choices = get_new_design_template_tags_list()
+        return formset
+
 
 @admin.register(SliderTagContainer)
 class SliderTagContainerAdmin(admin.ModelAdmin):

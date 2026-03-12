@@ -228,3 +228,106 @@ def render_new_design_info_block(context):
 def render_new_design_social_block(context):
     """new_design: соцсети (Telegram, VK)."""
     return context
+
+
+@register.inclusion_tag('customization/tags/new_design_reviews_block.html', takes_context=True)
+def render_new_design_reviews_block(context):
+    """new_design: отзывы."""
+    return context
+
+
+@register.inclusion_tag('customization/tags/new_design_map_block.html', takes_context=True)
+def render_new_design_map_block(context):
+    """new_design: карта / контакты."""
+    return context
+
+
+@register.inclusion_tag('customization/tags/new_design_bouquets_block.html', takes_context=True)
+def render_new_design_bouquets_block(context):
+    """new_design: сборные букеты."""
+    return context
+
+
+@register.inclusion_tag('customization/tags/new_design_bouquet_wish_block.html', takes_context=True)
+def render_new_design_bouquet_wish_block(context):
+    """new_design: букет по вашим желаниям (форма)."""
+    return context
+
+
+@register.inclusion_tag('customization/tags/new_design_collection_block.html', takes_context=True)
+def render_new_design_collection_block(context):
+    """new_design: коллекция (карусель)."""
+    return context
+
+
+@register.inclusion_tag('customization/tags/new_design_categories_block.html', takes_context=True)
+def render_new_design_categories_block(context):
+    """new_design: рубрики (овальные картинки)."""
+    return context
+
+
+@register.inclusion_tag('customization/tags/new_design_hero_block.html', takes_context=True)
+def render_new_design_hero_block(context):
+    """new_design: герой (верхняя карусель)."""
+    return context
+
+
+@register.inclusion_tag(
+    'catalog/tags/new_spring_design_sale-products-slider.html', takes_context=True
+)
+def render_new_design_actions_block(context, limit=12):
+    """
+    new_design: АКЦИИ.
+
+    Логика отбора сохранена по блоку в view_8march_design_test:
+    - published=True
+    - сначала is_action=True
+    - если пусто -> categories__slug='8-marta'
+    - если пусто -> просто published=True
+    - обязательны обе цены (price + old_price) для текущей локации
+    """
+    try:
+        Product = apps.get_model('catalog', 'Product')
+    except Exception:
+        return {}
+
+    request = context.get('request')
+    location = getattr(request, 'location', None) if request else None
+
+    qs = (
+        Product.objects.filter(published=True, is_action=True)
+        .prefetch_related('images')
+        .distinct()
+    )
+    if not qs.exists():
+        qs = (
+            Product.objects.filter(published=True, categories__slug='8-marta')
+            .prefetch_related('images')
+            .distinct()
+        )
+    if not qs.exists():
+        qs = Product.objects.filter(published=True).prefetch_related('images').distinct()
+
+    products = []
+    for product in qs.order_by('-updated_at'):
+        price_obj = product.location_price_object(location)
+        main_price = (
+            getattr(price_obj, 'currency_price', None)
+            or getattr(price_obj, 'price', None)
+            or getattr(product, 'currency_price', None)
+            or getattr(product, 'price', None)
+        )
+        old_price = (
+            getattr(price_obj, 'currency_old_price', None)
+            or getattr(price_obj, 'old_price', None)
+            or getattr(product, 'currency_old_price', None)
+            or getattr(product, 'old_price', None)
+        )
+        if main_price in (None, '') or old_price in (None, ''):
+            continue
+
+        products.append(product)
+        if len(products) >= int(limit or 12):
+            break
+
+    return {'products': products}

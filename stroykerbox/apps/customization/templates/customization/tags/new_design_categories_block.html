@@ -1,0 +1,17 @@
+{% load static %}
+<section class="index-categories-8march">
+  <div class="index-categories-8march__inner">
+    {% for item in categories_8march %}
+    <a href="{{ item.url }}" class="index-categories-8march__item">
+      <span class="index-categories-8march__img-wrap">
+        <img src="{% static item.image %}" alt="{{ item.alt }}" class="index-categories-8march__img" loading="lazy" decoding="async">
+      </span>
+      <span class="index-categories-8march__label">{{ item.label|safe }}</span>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="index-categories-8march__nav" aria-hidden="true">
+    <button type="button" class="index-categories-8march__arrow pink-arrows index-categories-8march__arrow--prev" title="Назад"></button>
+    <button type="button" class="index-categories-8march__arrow pink-arrows index-categories-8march__arrow--next" title="Вперёд"></button>
+  </div>
+</section>

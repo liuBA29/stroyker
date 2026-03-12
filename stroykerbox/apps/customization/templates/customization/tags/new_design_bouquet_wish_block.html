@@ -1,0 +1,15 @@
+{% load static %}
+<section class="index-bouquet-wish-8march" aria-labelledby="index-bouquet-wish-8march-title">
+  <div class="index-bouquet-wish-8march__inner">
+    <div class="index-bouquet-wish-8march__left">
+      <img src="{% static '8march_design/images/LUCIANO/8.png' %}" alt="" class="index-bouquet-wish-8march__img" role="presentation" loading="lazy" decoding="async">
+    </div>
+    <div class="index-bouquet-wish-8march__right">
+      <h2 class="index-bouquet-wish-8march__title" id="index-bouquet-wish-8march-title">БУКЕТ ПО ВАШИМ<br>ЖЕЛАНИЯМ</h2>
+      {% autoescape off %}
+      <p class="index-bouquet-wish-8march__desc">Оставьте запрос на индивидуальный заказ.<br>Мы поможем выбрать идеальный букет для вашего события.</p>
+      {% endautoescape %}
+      {% include 'crm/tags/bouquet-wish-form-section-8march.html' %}
+    </div>
+  </div>
+</section>
