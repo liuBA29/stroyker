@@ -46,7 +46,16 @@ services:
       - .:/code
     environment:
       - DJANGO_SETTINGS_MODULE=stroykerbox.settings.dev
-    command: ./wait-for-it.sh db:5432 -- python manage.py runserver 0.0.0.0:8000
+    # На Windows bind-mount + autoreload иногда даёт I/O error при сканировании файлов.
+    # Поэтому используем --noreload и ждём готовности БД (порт открыт != БД готова).
+    command: >
+      bash -lc "
+      ./wait-for-it.sh db:5432 --timeout=60 --strict -- echo 'db port is open' &&
+      until python manage.py check --database default >/dev/null 2>&1; do
+        echo 'waiting for db to be ready...'; sleep 1;
+      done &&
+      python manage.py runserver 0.0.0.0:8000 --noreload
+      "
     ports:
       - "8001:8000"
     stdin_open: true
