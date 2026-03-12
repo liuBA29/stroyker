@@ -16,6 +16,13 @@ from .helpers import get_new_design_template_tags_list
 NEW_DESIGN_CONTAINER_KEYS = ('new_design_middle', 'new_design_bottom')
 
 
+class ReadOnlyImageWidget(forms.Widget):
+    """Виджет, который не рендерит input — только пустая ячейка (превью только из JS)."""
+
+    def render(self, name, value, attrs=None, renderer=None):
+        return ''
+
+
 class SliderTagContainerItemForm(forms.ModelForm):
     class Meta:
         model = SliderTagContainerItem
@@ -33,6 +40,10 @@ class SliderTagContainerItemForm(forms.ModelForm):
                 if not any(c[0] == tag_line for c in choices):
                     choices = [(tag_line, tag_line)] + list(choices)
             self.fields['tag_line'].choices = choices
+            # Превью только из ND_TAG_PREVIEWS в JS — скрываем виджет загрузки
+            if 'preview_image' in self.fields:
+                self.fields['preview_image'].widget = ReadOnlyImageWidget()
+                self.fields['preview_image'].required = False
 
 
 class SliderTagContainerItemFormSet(BaseInlineFormSet):
@@ -49,11 +60,21 @@ class SliderTagContainerItemInline(admin.TabularInline):
     formset = SliderTagContainerItemFormSet
     extra = 0
 
+    def get_fields(self, request, obj=None):
+        fields = list(super().get_fields(request, obj))
+        if obj and getattr(obj, 'key', None) in NEW_DESIGN_CONTAINER_KEYS:
+            fields = [f for f in fields if f != 'preview_image']
+        return fields
+
     def get_formset(self, request, obj=None, **kwargs):
         """
         На контейнерах нового дизайна ограничиваем выпадающий список tag_line только new_design-тегами.
-        Делаем это на уровне formset, чтобы работало и для пустых (extra) строк.
+        Явно передаём fields без preview_image (без вызова get_fields, чтобы не было рекурсии).
         """
+        if obj and getattr(obj, 'key', None) in NEW_DESIGN_CONTAINER_KEYS:
+            model = self.model
+            all_names = [f.name for f in model._meta.fields]
+            kwargs['fields'] = [n for n in all_names if n != 'preview_image']
         formset = super().get_formset(request, obj, **kwargs)
         if obj and getattr(obj, 'key', None) in NEW_DESIGN_CONTAINER_KEYS:
             formset.form.base_fields['tag_line'].choices = get_new_design_template_tags_list()

@@ -2,6 +2,22 @@
 // Keeps changes scoped and non-invasive.
 
 (function () {
+  // Превью для тегов нового дизайна: соответствие tag_line -> файл скриншота.
+  // Картинки лежат в static/8march_design/images/images_admin_panel/.
+  var ND_TAG_PREVIEW_BASE = "/static/8march_design/images/images_admin_panel/";
+  var ND_TAG_PREVIEWS = {
+    "customization_tags:render_new_design_hero_block": "hero.jpg",
+    "customization_tags:render_new_design_actions_block": "actions.jpg",
+    "customization_tags:render_new_design_bouquets_block": "sbornye-bukety.jpg",
+    "customization_tags:render_new_design_bouquet_wish_block": "your-wish-buquet.jpg",
+    "customization_tags:render_new_design_categories_block": "oval.jpg",
+    "customization_tags:render_new_design_collection_block": "8march_collection.jpg",
+    "customization_tags:render_new_design_info_block": "waranty_delivery_rating.jpg",
+    "customization_tags:render_new_design_social_block": "social.jpg",
+    "customization_tags:render_new_design_reviews_block": "otzyvy.jpg",
+    "customization_tags:render_new_design_map_block": "map.jpg"
+  };
+
   function isNewDesignContainerPage() {
     var keyInput = document.getElementById("id_key");
     var key = keyInput && keyInput.value;
@@ -52,6 +68,37 @@
       headRow.insertBefore(th, headRow.cells[0] || null);
     }
 
+    function getTagLabelFromRow(r) {
+      var sel = r.querySelector("select[name$='-tag_line']");
+      if (!sel || sel.selectedIndex < 0) return "";
+      var opt = sel.options[sel.selectedIndex];
+      return opt ? (opt.textContent || opt.text || "").trim() : "";
+    }
+
+    function getTagValueFromRow(r) {
+      var sel = r.querySelector("select[name$='-tag_line']");
+      return sel ? (sel.value || "") : "";
+    }
+
+    function setPreviewTooltip(previewSpan, r) {
+      previewSpan.title = getTagLabelFromRow(r) || "Выберите шаблонный тег";
+    }
+
+    function updatePreview(previewSpan, r) {
+      setPreviewTooltip(previewSpan, r);
+      var img = previewSpan.querySelector("img");
+      if (!img) return;
+      var tagValue = getTagValueFromRow(r);
+      var filename = ND_TAG_PREVIEWS[tagValue];
+      if (filename) {
+        img.src = ND_TAG_PREVIEW_BASE + filename;
+        img.style.display = "inline-block";
+      } else {
+        img.removeAttribute("src");
+        img.style.display = "none";
+      }
+    }
+
     Array.from(tbody.rows).forEach(function (row) {
       if (row.classList.contains("empty-form")) return;
       var td = document.createElement("td");
@@ -77,6 +124,22 @@
 
       td.appendChild(up);
       td.appendChild(down);
+
+      var previewSpan = document.createElement("span");
+      previewSpan.className = "nd-tag-preview";
+      previewSpan.setAttribute("aria-label", "Подсказка: какой тег");
+      var previewImg = document.createElement("img");
+      previewImg.className = "nd-tag-preview-img";
+      previewSpan.appendChild(previewImg);
+      updatePreview(previewSpan, row);
+      var sel = row.querySelector("select[name$='-tag_line']");
+      if (sel) {
+        sel.addEventListener("change", function () {
+          updatePreview(previewSpan, row);
+        });
+      }
+      td.appendChild(previewSpan);
+
       row.insertBefore(td, row.cells[0] || null);
     });
 

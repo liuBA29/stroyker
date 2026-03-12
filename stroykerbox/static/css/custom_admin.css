@@ -81,7 +81,7 @@ input.vTextField[name="name"] + .help {
 
 /* new_design: простая сортировка строк inline (только на страницах контейнеров new_design) */
 .nd-sort-col {
-    width: 60px;
+    width: 140px;
     white-space: nowrap;
 }
 .nd-sort-btn {
@@ -96,6 +96,41 @@ input.vTextField[name="name"] + .help {
 .nd-sort-btn:hover {
     background: #f2f2f2;
 }
+
+/* Превью-иконка тега: при наведении показывается подсказка с названием тега (только new_design) */
+.nd-tag-preview {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 0;
+    position: relative;
+    cursor: help;
+    vertical-align: middle;
+    opacity: 0.85;
+}
+.nd-tag-preview:hover {
+    opacity: 1;
+}
+
+.nd-tag-preview-img {
+    display: inline-block;
+    max-width: 120px;
+    max-height: 72px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background: #f5f5f5;
+    transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
+}
+
+.nd-tag-preview-img:hover {
+    transform: scale(1.8);
+    transform-origin: left top;
+    z-index: 9999;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
 #content.products-changelist {
     padding-top: 5px;
 }

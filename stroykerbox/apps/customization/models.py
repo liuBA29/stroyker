@@ -91,6 +91,13 @@ class SliderTagContainerItem(TagContainerItemAbstract):
     """
     container = models.ForeignKey(SliderTagContainer,
                                   on_delete=models.CASCADE, related_name='sliders')
+    preview_image = models.ImageField(
+        _('preview image (admin)'),
+        upload_to='customization/admin_tag_previews/',
+        blank=True,
+        null=True,
+        help_text=_('Optional: image for this block in the admin (new_design only).'),
+    )
 
     def __str__(self):
         return self.tag_line or ''
