@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django import forms
+from django.forms.models import BaseInlineFormSet
 from django.utils.translation import ugettext, ugettext_lazy as _
 from constance import config
 from mptt.admin import DraggableMPTTAdmin
@@ -7,11 +9,55 @@ from stroykerbox.apps.utils.constance_helpers import get_config_list
 
 from .models import (SliderTagContainer, SliderTagContainerItem, ColorScheme,
                      CustomFont, CustomStyle, CustomScript, CustomTemplateBlock, MobileMenuButton)
+from .helpers import get_new_design_template_tags_list
+
+
+# Контейнеры нового дизайна: в выпадающем списке тегов показываем только теги из get_new_design_template_tags_list().
+NEW_DESIGN_CONTAINER_KEYS = ('new_design_middle', 'new_design_bottom')
+
+
+class SliderTagContainerItemForm(forms.ModelForm):
+    class Meta:
+        model = SliderTagContainerItem
+        fields = '__all__'
+
+    def __init__(self, *args, container=None, **kwargs):
+        if 'container' in kwargs:
+            container = kwargs.pop('container')
+        super().__init__(*args, **kwargs)
+        if container and getattr(container, 'key', None) in NEW_DESIGN_CONTAINER_KEYS:
+            choices = get_new_design_template_tags_list()
+            # Чтобы уже сохранённый тег (если его убрали из списка) отображался и сохранялся
+            if self.instance and getattr(self.instance, 'tag_line', None):
+                tag_line = self.instance.tag_line
+                if not any(c[0] == tag_line for c in choices):
+                    choices = [(tag_line, tag_line)] + list(choices)
+            self.fields['tag_line'].choices = choices
+
+
+class SliderTagContainerItemFormSet(BaseInlineFormSet):
+    def get_form_kwargs(self, index):
+        kwargs = super().get_form_kwargs(index)
+        kwargs = dict(kwargs) if kwargs else {}
+        kwargs['container'] = self.instance
+        return kwargs
 
 
 class SliderTagContainerItemInline(admin.TabularInline):
     model = SliderTagContainerItem
+    form = SliderTagContainerItemForm
+    formset = SliderTagContainerItemFormSet
     extra = 0
+
+    def get_formset(self, request, obj=None, **kwargs):
+        """
+        На контейнерах нового дизайна ограничиваем выпадающий список tag_line только new_design-тегами.
+        Делаем это на уровне formset, чтобы работало и для пустых (extra) строк.
+        """
+        formset = super().get_formset(request, obj, **kwargs)
+        if obj and getattr(obj, 'key', None) in NEW_DESIGN_CONTAINER_KEYS:
+            formset.form.base_fields['tag_line'].choices = get_new_design_template_tags_list()
+        return formset
 
 
 @admin.register(SliderTagContainer)

@@ -78,6 +78,24 @@ input.vTextField[name="name"] + .help {
     border-radius: 15px;
     display: block;
 }
+
+/* new_design: простая сортировка строк inline (только на страницах контейнеров new_design) */
+.nd-sort-col {
+    width: 60px;
+    white-space: nowrap;
+}
+.nd-sort-btn {
+    margin-right: 4px;
+    padding: 2px 8px;
+    line-height: 1.2;
+    border-radius: 6px;
+    border: 1px solid #c9c9c9;
+    background: #fff;
+    cursor: pointer;
+}
+.nd-sort-btn:hover {
+    background: #f2f2f2;
+}
 #content.products-changelist {
     padding-top: 5px;
 }

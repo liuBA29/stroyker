@@ -92,6 +92,9 @@ class SliderTagContainerItem(TagContainerItemAbstract):
     container = models.ForeignKey(SliderTagContainer,
                                   on_delete=models.CASCADE, related_name='sliders')
 
+    def __str__(self):
+        return self.tag_line or ''
+
 
 class ColorScheme(models.Model):
     name = models.CharField(_('name'), max_length=128)

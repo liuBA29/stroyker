@@ -1,0 +1,39 @@
+{% load static %}
+<section class="index-promo-8march">
+  <h2 class="index-promo-8march__title big-title">КОЛЛЕКЦИЯ <span class="index-promo-8march__title-line2"><span class="pretty_numbers">8</span> МАРТА</span></h2>
+  <div class="index-promo-8march__carousel-wrap">
+    <button type="button" class="index-promo-8march__arrow pink-arrows index-promo-8march__arrow--prev" title="Назад" aria-label="Назад"></button>
+    <div class="index-promo-8march__carousel" data-promo-carousel>
+      <div class="index-promo-8march__track">
+        <a href="{% url 'catalog:category' '8-marta' %}" class="index-promo-8march__card index-promo-8march__card--large">
+          <span class="index-promo-8march__img-wrap">
+            <img src="{% static '8march_design/images/3.jpeg' %}" alt="" class="index-promo-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
+          </span>
+          <span class="index-promo-8march__prices">По запросу</span>
+          <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+        </a>
+        <a href="{% url 'catalog:category' '8-marta' %}" class="index-promo-8march__card">
+          <span class="index-promo-8march__img-wrap">
+            <img src="{% static '8march_design/images/1.jpeg' %}" alt="" class="index-promo-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
+          </span>
+          <span class="index-promo-8march__prices">
+            <span class="index-promo-8march__price-old">4 900</span>
+            <span class="index-promo-8march__price-new">4 250 р.</span>
+          </span>
+          <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+        </a>
+        <a href="{% url 'catalog:category' '8-marta' %}" class="index-promo-8march__card">
+          <span class="index-promo-8march__img-wrap">
+            <img src="{% static '8march_design/images/2.jpeg' %}" alt="" class="index-promo-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
+          </span>
+          <span class="index-promo-8march__prices">По запросу</span>
+          <span class="index-promo-8march__btn beige_button">ПОДРОБНЕЕ</span>
+        </a>
+      </div>
+    </div>
+    <button type="button" class="index-promo-8march__arrow pink-arrows index-promo-8march__arrow--next" title="Вперёд" aria-label="Вперёд"></button>
+  </div>
+  <div class="index-promo-8march__footer">
+    <a href="{% url 'catalog:index' %}" class="index-promo-8march__btn-catalog">СМОТРЕТЬ ВЕСЬ КАТАЛОГ</a>
+  </div>
+</section>

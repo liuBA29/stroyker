@@ -91,3 +91,29 @@ def get_slider_template_tags_list():
                     results.append((tag_line, tag_line))
 
     return results
+
+
+# Контейнеры «Новый дизайн: блоки главной страницы» и «Новый дизайн: блоки футера»
+# показывают только эти теги в выпадающем списке (см. admin SliderTagContainerItemInline).
+# Для заказчика везде используем префикс new_design (не 8march): имена тегов и подписи в админке.
+NEW_DESIGN_TAG_LINES = [
+    ('customization_tags:render_new_design_hero_block', 'new_design: герой (карусель)'),
+    ('customization_tags:render_new_design_actions_block', 'new_design: акции'),
+    ('customization_tags:render_new_design_bouquets_block', 'new_design: сборные букеты'),
+    ('customization_tags:render_new_design_bouquet_wish_block', 'new_design: букет по вашим желаниям'),
+    ('customization_tags:render_new_design_categories_block', 'new_design: рубрики (овальные)'),
+    ('customization_tags:render_new_design_collection_block', 'new_design: коллекция (карусель)'),
+    ('customization_tags:render_new_design_info_block', 'new_design: гарантия качества / доставка / подарки'),
+    ('customization_tags:render_new_design_social_block', 'new_design: соцсети'),
+    ('customization_tags:render_new_design_reviews_block', 'new_design: отзывы'),
+    ('customization_tags:render_new_design_map_block', 'new_design: карта / контакты'),
+]
+
+
+def get_new_design_template_tags_list():
+    """
+    Список тегов только для контейнеров new_design_middle и new_design_bottom.
+    В админке в этих контейнерах в выпадающем списке «Шаблонный тег» показываются только они.
+    """
+    # Важно: первая опция пустая, чтобы в админке новый элемент не выбирал первый тег автоматически.
+    return [('', '--------')] + list(NEW_DESIGN_TAG_LINES)
