@@ -59,11 +59,6 @@
        url('../fonts/BlackerSansText-Regular.woff') format('woff');
 }
 
-/* Заказчик просит скрыть блок «КОЛЛЕКЦИЯ 8 МАРТА» на главной (/). Тестовую /8march_design/ не трогаем. */
-body.frontpage.design-8march .index-promo-8march {
-  display: none !important;
-}
-
 /* Единый отступ между рубриками главной 8march */
 .page-index-8march {
   --8march-section-gap: 4rem;
@@ -955,6 +950,12 @@ body.frontpage.design-8march .index-promo-8march {
   position: relative;
   overflow: visible;
   z-index: 0;
+}
+/* Блок «Акции» из тега — принудительно белый фон (как у сборных букетов), перебивает серый из других правил */
+.index-promo-8march.index-promo-8march--from-tag,
+.new_spring_design_sales_slider.index-promo-8march {
+  background: #fff !important;
+  background-color: #fff !important;
 }
 
 /* ОТКАТ фона: вернуть .index-promo-8march::before с url("../images/pink_bg1.png") и background-position center -50px */
