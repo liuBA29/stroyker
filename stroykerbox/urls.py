@@ -243,8 +243,8 @@ admin.site.site_title = config.ADMIN_SITE_META_TITLE
 
 urlpatterns = [
     re_path(r'^$', CatalogFrontpageView.as_view(), name='frontpage'),
-    # Тестовая страница: только её трогаем. Главную (frontpage) не менять, пока явно не попросят.
-    path('8march_design/', view_8march_design_test, name='8march-design-test'),
+    # Тестовая страница отключена. Чтобы включить: раскомментировать path ниже.
+    # path('8march_design/', view_8march_design_test, name='8march-design-test'),
     # /prod29/ — старый дизайн главной (как у заказчика).
     path('prod29/', CatalogFrontpageView.as_view(), name='frontpage-prod'),
 ]
