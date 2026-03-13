@@ -13,7 +13,7 @@ from .helpers import get_new_design_template_tags_list
 
 
 # Контейнеры нового дизайна: в выпадающем списке тегов показываем только теги из get_new_design_template_tags_list().
-NEW_DESIGN_CONTAINER_KEYS = ('new_design_middle', 'new_design_bottom')
+NEW_DESIGN_CONTAINER_KEYS = ('new_design_middle', 'new_design_bottom', 'new_design_footer')
 
 
 class ReadOnlyImageWidget(forms.Widget):
@@ -33,7 +33,8 @@ class SliderTagContainerItemForm(forms.ModelForm):
             container = kwargs.pop('container')
         super().__init__(*args, **kwargs)
         if container and getattr(container, 'key', None) in NEW_DESIGN_CONTAINER_KEYS:
-            choices = get_new_design_template_tags_list()
+            container_key = getattr(container, 'key', None)
+            choices = get_new_design_template_tags_list(container_key)
             # Чтобы уже сохранённый тег (если его убрали из списка) отображался и сохранялся
             if self.instance and getattr(self.instance, 'tag_line', None):
                 tag_line = self.instance.tag_line
@@ -77,7 +78,9 @@ class SliderTagContainerItemInline(admin.TabularInline):
             kwargs['fields'] = [n for n in all_names if n != 'preview_image']
         formset = super().get_formset(request, obj, **kwargs)
         if obj and getattr(obj, 'key', None) in NEW_DESIGN_CONTAINER_KEYS:
-            formset.form.base_fields['tag_line'].choices = get_new_design_template_tags_list()
+            formset.form.base_fields['tag_line'].choices = get_new_design_template_tags_list(
+                getattr(obj, 'key', None)
+            )
         return formset
 
 

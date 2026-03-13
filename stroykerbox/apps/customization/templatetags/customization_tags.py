@@ -34,8 +34,12 @@ def get_html_for_container_tag(context, container):
     html = []
     sliders = container.sliders.filter(enabled=True)
     path = (context.get('request') or {}).path or ''
-    # На главной (/) и на тестовой странице /8march_design/ показываем и блоки с frontpage_only=True
-    if path != '/' and not path.startswith('/8march_design'):
+    # По умолчанию: frontpage_only=True показываем на главной (/) и на тестовой /8march_design/
+    # Для футера: frontpage_only=True только на главной (/), чтобы на тестовой не дублировалось.
+    if container.key == 'new_design_footer':
+        if path != '/':
+            sliders = sliders.filter(frontpage_only=False)
+    elif path != '/' and not path.startswith('/8march_design'):
         sliders = sliders.filter(frontpage_only=False)
 
     for slider in sliders:
@@ -239,6 +243,24 @@ def render_new_design_reviews_block(context):
 @register.inclusion_tag('customization/tags/new_design_map_block.html', takes_context=True)
 def render_new_design_map_block(context):
     """new_design: карта / контакты."""
+    return context
+
+
+@register.inclusion_tag('customization/tags/new_design_footer_questions_block.html', takes_context=True)
+def render_new_design_footer_questions_block(context):
+    """new_design: футер — «Остались вопросы?» (форма, телефон, Перезвоните мне)."""
+    return context
+
+
+@register.inclusion_tag('customization/tags/new_design_footer_menu_block.html', takes_context=True)
+def render_new_design_footer_menu_block(context):
+    """new_design: футер — колонки «Каталог» и «Покупателям». """
+    return context
+
+
+@register.inclusion_tag('customization/tags/new_design_footer_copyright_block.html', takes_context=True)
+def render_new_design_footer_copyright_block(context):
+    """new_design: футер — копирайт © «LUCIANO», YYYY."""
     return context
 
 

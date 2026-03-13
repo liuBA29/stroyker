@@ -61,11 +61,11 @@ def get_template_tags_full():
 
 def get_slider_template_tags_list():
     """
-    A list of template tags from custom apps that contain 'slider' in their name.
-    Example for the list item (str):
-        'some_tag_lib:tag_name'
+    A list of template tags from custom apps that contain 'render' in their name.
+    Включает также теги new_design (футер и тело), чтобы валидация модели их принимала.
     """
     results = []
+    seen = set()
     for app_config in apps.get_app_configs():
         app = app_config.name
 
@@ -88,15 +88,22 @@ def get_slider_template_tags_list():
             for tag in lib.tags:
                 if 'render' in tag:
                     tag_line = f'{taglib}:{tag}'
-                    results.append((tag_line, tag_line))
+                    if tag_line not in seen:
+                        results.append((tag_line, tag_line))
+                        seen.add(tag_line)
+
+    # Гарантированно добавляем теги new_design (футер и тело) в допустимые значения модели
+    for item in NEW_DESIGN_BODY_TAG_LINES + NEW_DESIGN_FOOTER_TAG_LINES:
+        if item[0] not in seen:
+            results.append(item)
+            seen.add(item[0])
 
     return results
 
 
-# Контейнеры «Новый дизайн: блоки главной страницы» и «Новый дизайн: блоки футера»
-# показывают только эти теги в выпадающем списке (см. admin SliderTagContainerItemInline).
-# Для заказчика везде используем префикс new_design (не 8march): имена тегов и подписи в админке.
-NEW_DESIGN_TAG_LINES = [
+# Контейнеры new_design: тело страницы (middle/bottom) и футер — разные списки тегов.
+# Футерные теги только в new_design_footer, чтобы «Остались вопросы?» не дублировались в теле.
+NEW_DESIGN_BODY_TAG_LINES = [
     ('customization_tags:render_new_design_hero_block', 'new_design: герой (карусель)'),
     ('customization_tags:render_new_design_actions_block', 'new_design: акции'),
     ('customization_tags:render_new_design_bouquets_block', 'new_design: сборные букеты'),
@@ -108,12 +115,21 @@ NEW_DESIGN_TAG_LINES = [
     ('customization_tags:render_new_design_reviews_block', 'new_design: отзывы'),
     ('customization_tags:render_new_design_map_block', 'new_design: карта / контакты'),
 ]
+NEW_DESIGN_FOOTER_TAG_LINES = [
+    ('customization_tags:render_new_design_footer_questions_block', 'new_design: футер — Остались вопросы?'),
+    ('customization_tags:render_new_design_footer_menu_block', 'new_design: футер — меню (Каталог/Покупателям)'),
+    ('customization_tags:render_new_design_footer_copyright_block', 'new_design: футер — копирайт ©'),
+]
 
 
-def get_new_design_template_tags_list():
+def get_new_design_template_tags_list(container_key=None):
     """
-    Список тегов только для контейнеров new_design_middle и new_design_bottom.
-    В админке в этих контейнерах в выпадающем списке «Шаблонный тег» показываются только они.
+    Список тегов для контейнеров new_design.
+    container_key == 'new_design_footer' → только футерные теги (вопросы, меню, копирайт).
+    Иначе (middle/bottom) → только теги тела страницы, без футерных (рубрика вопросов одна — в футере).
     """
-    # Важно: первая опция пустая, чтобы в админке новый элемент не выбирал первый тег автоматически.
-    return [('', '--------')] + list(NEW_DESIGN_TAG_LINES)
+    if container_key == 'new_design_footer':
+        lines = NEW_DESIGN_FOOTER_TAG_LINES
+    else:
+        lines = NEW_DESIGN_BODY_TAG_LINES
+    return [('', '--------')] + list(lines)

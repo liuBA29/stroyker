@@ -12,7 +12,7 @@ class Command(BaseCommand):
     help = 'Set DISPLAY_TAG_CONTAINERS (middle, bottom + new design containers) for local test'
 
     def handle(self, *args, **options):
-        value = '["middle", "bottom", "new_design_middle", "new_design_bottom"]'
+        value = '["middle", "bottom", "new_design_middle", "new_design_bottom", "new_design_footer"]'
         config.DISPLAY_TAG_CONTAINERS = value
         self.stdout.write(
             self.style.SUCCESS('DISPLAY_TAG_CONTAINERS = %s' % value)

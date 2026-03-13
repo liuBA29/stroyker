@@ -1,0 +1,42 @@
+{# Футер new_design: колонки меню «Каталог» и «Покупателям» (по эталону footer_8march.html) #}
+<div class="footer-content footer-8march-content">
+    <div class="footer-content__menu footer-8march-menu">
+        <div class="footer-8march-shift-block" aria-hidden="true"></div>
+        <div class="footer-content__column footer-content__column--lg">
+            <span class="footer-content__title">КАТАЛОГ</span>
+            <div class="footer-content__ul-content">
+                <ul>
+                    <li><a href="{% url 'catalog:category' 'gotovaya-vitrina' %}">Готовая витрина</a></li>
+                    <li><a href="{% url 'catalog:category' 'avtorskie' %}">Авторские букеты</a></li>
+                    <li><a href="{% url 'catalog:category' 'monoduo-bukety' %}">Моно/дуо букеты</a></li>
+                    <li><a href="{% url 'catalog:category' 'wow-bukety' %}">Wow букеты</a></li>
+                </ul>
+                <ul>
+                    <li><a href="{% url 'catalog:category' 'fresh-bukety' %}">Fresh букеты</a></li>
+                    <li><a href="{% url 'catalog:category' 'kompozicii' %}">Цветочные композиции</a></li>
+                    <li><a href="{% url 'catalog:category' 'podarki' %}">Подарки</a></li>
+                    <li><a href="{% url 'catalog:category' 'sezonnye-cvety' %}">Сезонные цветы</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-content__column footer-content__column--lg">
+            <span class="footer-content__title">ПОКУПАТЕЛЯМ</span>
+            <div class="footer-content__ul-content">
+                <ul>
+                    <li><a href="{% url 'staticpages:staticpage' 'about' %}">О студии</a></li>
+                    <li><a href="{% url 'staticpages:staticpage' 'services' %}">Услуги</a></li>
+                    <li><a href="{% url 'staticpages:staticpage' 'bouquet-care' %}">Совет по уходу</a></li>
+                    <li><a href="{% url 'staticpages:staticpage' 'reviews' %}">Отзывы</a></li>
+                    <li><a href="{% url 'staticpages:staticpage' 'requisites' %}">Реквизиты</a></li>
+                </ul>
+                <ul>
+                    <li><a href="{% url 'staticpages:staticpage' 'delivery' %}">Доставка</a></li>
+                    <li><a href="{% url 'staticpages:staticpage' 'privacy-policy' %}">Политика конфиденциальности</a></li>
+                    <li><a href="{% url 'staticpages:staticpage' 'public-offer' %}">Публичная оферта</a></li>
+                    <li><a href="{% url 'contacts-page' %}">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
