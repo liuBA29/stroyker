@@ -3,8 +3,8 @@
 
 (function () {
   // Превью для тегов нового дизайна: соответствие tag_line -> файл скриншота.
-  // Картинки лежат в static/8march_design/images/images_admin_panel/.
-  var ND_TAG_PREVIEW_BASE = "/static/8march_design/images/images_admin_panel/";
+  // Базовый путь задаётся из шаблона админки (STATIC_URL), иначе дефолт для локальной разработки.
+  var ND_TAG_PREVIEW_BASE = (typeof window.ND_TAG_PREVIEW_BASE !== "undefined" && window.ND_TAG_PREVIEW_BASE) || "/static/8march_design/images/images_admin_panel/";
   var ND_TAG_PREVIEWS = {
     "customization_tags:render_new_design_hero_block": "hero.jpg",
     "customization_tags:render_new_design_actions_block": "actions.jpg",
