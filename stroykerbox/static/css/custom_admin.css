@@ -125,8 +125,8 @@ input.vTextField[name="name"] + .help {
 }
 
 .nd-tag-preview-img:hover {
-    transform: scale(1.8);
-    transform-origin: left top;
+    transform: scale(2.2);
+    transform-origin: left center;
     z-index: 9999;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }

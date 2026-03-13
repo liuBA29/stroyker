@@ -15,7 +15,10 @@
     "customization_tags:render_new_design_info_block": "waranty_delivery_rating.jpg",
     "customization_tags:render_new_design_social_block": "social.jpg",
     "customization_tags:render_new_design_reviews_block": "otzyvy.jpg",
-    "customization_tags:render_new_design_map_block": "map.jpg"
+    "customization_tags:render_new_design_map_block": "map.jpg",
+    "customization_tags:render_new_design_footer_questions_block": "questions.jpg",
+    "customization_tags:render_new_design_footer_menu_block": "bottom-footer.jpg",
+    "customization_tags:render_new_design_footer_copyright_block": "copywright.jpg"
   };
 
   function isNewDesignContainerPage() {
