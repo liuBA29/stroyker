@@ -1128,6 +1128,62 @@
   .index-promo-8march__img {
     object-fit: cover;
   }
+
+  /* Рубрика «Акции»: крупнее карточки и прокрутка стрелками */
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__carousel-wrap {
+    width: 100%;
+    max-width: 1200px;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    min-height: 520px;
+    height: 520px;
+    box-sizing: border-box;
+  }
+  /* На десктопе прокручивается сама карусель, трек — контент на всю ширину */
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__carousel {
+    width: 100%;
+    max-width: 1020px;
+    margin: 0 auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    box-sizing: border-box;
+  }
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__track {
+    width: max-content;
+    min-width: 100%;
+    flex-wrap: nowrap;
+    gap: 1.25rem;
+    overflow: visible;
+    scroll-snap-type: none;
+    box-sizing: border-box;
+  }
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card,
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large {
+    flex: 0 0 auto;
+    width: 300px !important;
+    min-width: 300px !important;
+    scroll-snap-align: start;
+  }
+  /* На большом экране фокусная карточка увеличена */
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large {
+    width: 420px !important;
+    min-width: 420px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+  }
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__img-wrap {
+    aspect-ratio: 1;
+  }
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__arrow {
+    display: flex !important;
+  }
 }
 
 .index-promo-8march__prices {
@@ -1271,6 +1327,24 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
     flex-wrap: nowrap;
     overflow-x: visible;
     overflow-y: visible;
+  }
+  /* Рубрика «Акции» на малом экране: карусель ограничена по ширине, трек — на всю ширину контента; прокрутка по одной карточке, без увеличения фокусной */
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__carousel {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__carousel .index-promo-8march__track {
+    width: max-content;
+    min-width: 100%;
+  }
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card,
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large {
+    scroll-snap-align: start;
+  }
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large {
+    box-shadow: none;
+    transform: none;
   }
   .index-promo-8march__card,
   .index-promo-8march__card--large {

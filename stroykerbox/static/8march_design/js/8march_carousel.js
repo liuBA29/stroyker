@@ -40,8 +40,12 @@ function init8marchCarousel(wrapEl, options) {
 
   if (!track || !cards.length) return;
 
-  /* На малом экране прокрутка на контейнере карусели (.index-promo-8march__carousel), иначе — на треке */
+  /* На малом экране прокрутка на контейнере карусели (.index-promo-8march__carousel), иначе — на треке. Если задан scrollContainerSelector — используем его (для блока «Акции» на десктопе прокручиваем карусель). */
   function getScrollContainer() {
+    if (opts.scrollContainerSelector && wrapEl) {
+      var el = wrapEl.querySelector(opts.scrollContainerSelector);
+      if (el) return el;
+    }
     var s = getSizes();
     if (s.largeW <= s.smallW && track.parentElement) return track.parentElement;
     return track;
@@ -184,6 +188,68 @@ function init8marchCarousel(wrapEl, options) {
     scrollToIndex(Math.max(0, getCurrentIndex() - 1));
   });
   if (next) next.addEventListener('click', function() {
+    scrollToIndex(Math.min(cards.length - 1, getCurrentIndex() + 1));
+  });
+}
+
+/**
+ * Карусель «Акции»: простая логика только для .new_spring_design_sales_slider.
+ * Прокрутка по одной карточке, на десктопе фокусная карточка увеличена (card--large).
+ */
+function initSalesSliderCarousel(wrapEl) {
+  if (!wrapEl || typeof wrapEl.querySelector !== 'function') return;
+  var carousel = wrapEl.querySelector('.index-promo-8march__carousel');
+  var track = wrapEl.querySelector('.index-promo-8march__track');
+  var prev = wrapEl.querySelector('.index-promo-8march__arrow--prev');
+  var next = wrapEl.querySelector('.index-promo-8march__arrow--next');
+  var cards = track ? track.querySelectorAll('.index-promo-8march__card') : [];
+  if (!carousel || !track || !cards.length) return;
+
+  var largeClass = 'index-promo-8march__card--large';
+  var desktopMinWidth = 992;
+
+  function isDesktop() {
+    return window.innerWidth >= desktopMinWidth;
+  }
+
+  function getCurrentIndex() {
+    var scrollLeft = carousel.scrollLeft;
+    for (var i = cards.length - 1; i >= 0; i--) {
+      if (scrollLeft >= cards[i].offsetLeft - 5) return i;
+    }
+    return 0;
+  }
+
+  function setLargeCard(index) {
+    for (var j = 0; j < cards.length; j++) {
+      cards[j].classList.toggle(largeClass, isDesktop() && j === index);
+    }
+  }
+
+  function scrollToIndex(index) {
+    if (index < 0 || index >= cards.length) return;
+    setLargeCard(index);
+    requestAnimationFrame(function() {
+      carousel.scrollLeft = cards[index].offsetLeft;
+    });
+  }
+
+  function onScroll() {
+    setLargeCard(getCurrentIndex());
+  }
+
+  setLargeCard(getCurrentIndex());
+  carousel.addEventListener('scroll', onScroll);
+  window.addEventListener('resize', function() {
+    onScroll();
+  });
+
+  if (prev) prev.addEventListener('click', function(e) {
+    e.preventDefault();
+    scrollToIndex(Math.max(0, getCurrentIndex() - 1));
+  });
+  if (next) next.addEventListener('click', function(e) {
+    e.preventDefault();
     scrollToIndex(Math.min(cards.length - 1, getCurrentIndex() + 1));
   });
 }

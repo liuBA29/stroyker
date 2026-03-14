@@ -28,9 +28,15 @@
 (function() {
   function init() {
     var promoWraps = document.querySelectorAll('.index-promo-8march__carousel-wrap');
-    if (promoWraps.length && typeof init8marchCarousel === 'function') {
-      promoWraps.forEach(function(promoWrap) {
-        init8marchCarousel(promoWrap, {
+    if (!promoWraps.length) return;
+    promoWraps.forEach(function(promoWrap) {
+      var isSalesSlider = promoWrap.closest('.new_spring_design_sales_slider');
+      if (isSalesSlider && typeof initSalesSliderCarousel === 'function') {
+        initSalesSliderCarousel(promoWrap);
+        return;
+      }
+      if (typeof init8marchCarousel === 'function') {
+        var opts = {
           trackSelector: '.index-promo-8march__track',
           prevSelector: '.index-promo-8march__arrow--prev',
           nextSelector: '.index-promo-8march__arrow--next',
@@ -44,9 +50,10 @@
             { minWidth: 768, smallW: 260, largeW: 377 },
             { minWidth: 0, smallW: Math.max(220, window.innerWidth - 40), largeW: Math.max(220, window.innerWidth - 40) }
           ]
-        });
-      });
-    }
+        };
+        init8marchCarousel(promoWrap, opts);
+      }
+    });
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
