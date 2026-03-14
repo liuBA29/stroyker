@@ -1172,14 +1172,14 @@
   .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card,
   .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large {
     flex: 0 0 auto;
-    width: 380px !important;
-    min-width: 380px !important;
+    width: 361px !important; /* ~5% меньше 380px — справа виден краешек 4-й карточки */
+    min-width: 361px !important;
     scroll-snap-align: start;
   }
-  /* На большом экране фокусная карточка увеличена (пропорционально ширине блока) */
+  /* На большом экране фокусная карточка увеличена (пропорционально) */
   .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large {
-    width: 520px !important;
-    min-width: 520px !important;
+    width: 494px !important; /* ~5% меньше 520px */
+    min-width: 494px !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     transform: translateY(-4px);
   }
