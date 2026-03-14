@@ -347,13 +347,14 @@ body.design-8march .page-index-8march-content .index-bouquet-wish-8march .green-
   -webkit-border-radius: 6px !important;
 }
 
-/* Блок согласия «Букет по вашим желаниям» — общий селектор (убраны дубликаты) */
+/* Блок согласия «Букет по вашим желаниям» — общий селектор (убраны дубликаты).
+   padding-left задаёт отступ текста от чекбокса (18px), чтобы не наезжал. */
 .index-bouquet-wish-8march__agreement .checkbox,
 body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox {
   display: flex !important;
   align-items: center !important;
   gap: 0.5rem;
-  padding-left: 0 !important;
+  padding-left: 38px !important;
 }
 .index-bouquet-wish-8march__agreement label,
 body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement label {
@@ -376,7 +377,7 @@ body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreem
 /* «Букет по вашим желаниям»: как в футере — отключаем псевдо-чекбокс style.css и показываем реальный input с видом .green-checkbox */
 .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox {
   position: relative !important;
-  padding-left: 28px !important; /* место под чекбокс слева от текста */
+  padding-left: 38px !important; /* место под чекбокс, текст не наезжает */
   align-items: flex-start !important;
 }
 .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox [type="checkbox"] {
@@ -428,7 +429,7 @@ body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreem
    всё равно показываем реальный зелёный чекбокс и отключаем псевдо-элементы style.css. */
 .index-bouquet-wish-8march__agreement .checkbox {
   position: relative !important;
-  padding-left: 28px !important;
+  padding-left: 38px !important;
   align-items: flex-start !important;
 }
 .index-bouquet-wish-8march__agreement .checkbox input.green-checkbox[type="checkbox"] {

@@ -2091,6 +2091,7 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   letter-spacing: 0 !important;
   text-transform: uppercase !important;
   color: #000000 !important;
+  text-align: left;
 }
 
 .index-bouquet-wish-8march__phone {
@@ -2218,6 +2219,11 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   color: #6b6363;
 }
 
+/* Отступ от чекбокса: текст не наезжает на квадратик */
+body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement .checkbox,
+.index-bouquet-wish-8march .form-group.privacy-policy .checkbox {
+  padding-left: 38px !important;
+}
 .index-bouquet-wish-8march .form-group.privacy-policy label {
   cursor: pointer;
 }
