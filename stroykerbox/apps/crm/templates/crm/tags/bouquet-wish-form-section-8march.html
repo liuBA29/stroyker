@@ -35,4 +35,68 @@
       </div>
     </div>
   </form>
+  <script>
+  (function(){
+    var form = document.getElementById('feedback-bouquet-wish-form');
+    if (!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      var wrap = form.closest('.index-bouquet-wish-8march__form-wrap');
+      if (wrap) {
+        var old = wrap.querySelector('.form-message--success');
+        if (old) old.remove();
+        wrap.querySelectorAll('.error-text').forEach(function(n){ n.remove(); });
+        wrap.querySelectorAll('.form-group--error').forEach(function(n){ n.classList.remove('form-group--error'); });
+      }
+      var pageUrl = form.querySelector('input[name="page_url"]');
+      if (pageUrl) pageUrl.value = window.location.href.split('?')[0];
+      var msg = form.querySelector('[name="message"]');
+      var date = form.querySelector('[name="delivery_date"]');
+      if (msg && date && date.value) msg.value = 'Дата доставки: ' + date.value + '\n\n' + (msg.value || '').trim();
+      var body = new URLSearchParams(new FormData(form)).toString();
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'X-Requested-With': 'XMLHttpRequest', 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
+        body: body
+      }).then(function(r){
+        if (r.redirected && r.url !== form.action) { window.location = r.url; return null; }
+        return r.json().catch(function(){ return { success: false, errors: { __all__: ['Ошибка ответа сервера'] }; });
+      }).then(function(data){
+        if (!data) return;
+        if (data.success) {
+          form.querySelectorAll('input:not([type="hidden"]), textarea').forEach(function(el){ el.value = ''; });
+          var cb = form.querySelector('input[type="checkbox"]'); if (cb) cb.checked = false;
+          var text = data.msg || 'Ваше сообщение отправлено!';
+          if (wrap) {
+            var p = document.createElement('p');
+            p.className = 'form-message--success';
+            p.style.margin = '0 0 0.75rem'; p.style.color = '#2d7a2d';
+            p.textContent = text;
+            wrap.insertBefore(p, form);
+            wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        } else if (data.errors) {
+          for (var k in data.errors) {
+            var v = data.errors[k];
+            var errText = Array.isArray(v) ? v.join(' ') : String(v);
+            var input = form.querySelector('[name="'+k+'"]');
+            var group = input ? input.closest('.form-group') : form.querySelector('.form-group');
+            if (group) {
+              group.classList.add('form-group--error');
+              var s = document.createElement('span'); s.className = 'error-text'; s.textContent = errText;
+              group.appendChild(s);
+            }
+          }
+        }
+      }).catch(function(){
+        var group = form.querySelector('.form-group') || form;
+        group.classList.add('form-group--error');
+        var s = document.createElement('span'); s.className = 'error-text'; s.textContent = 'Ошибка отправки. Попробуйте позже или позвоните нам.';
+        group.appendChild(s);
+      });
+      return false;
+    }, true);
+  })();
+  </script>
 </div>

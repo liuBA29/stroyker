@@ -39,7 +39,14 @@ class CrmFormViewBase(View):
                 except Exception as e:
                     logger.error(e)
             if _request_wants_json(request):
-                return JsonResponse({'success': success, 'errors': errors})
+                # Сериализуем errors в обычный dict для JSON (Django ErrorDict не всегда напрямую сериализуется)
+                errors_serializable = None
+                if errors:
+                    errors_serializable = {k: list(v) for k, v in errors.items()}
+                payload = {'success': success, 'errors': errors_serializable}
+                if success:
+                    payload['msg'] = _('Ваше сообщение отправлено!')
+                return JsonResponse(payload)
         return redirect(request.POST.get('page_url') or '/')
 
 

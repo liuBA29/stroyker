@@ -272,7 +272,9 @@ def render_new_design_bouquets_block(context):
 
 @register.inclusion_tag('customization/tags/new_design_bouquet_wish_block.html', takes_context=True)
 def render_new_design_bouquet_wish_block(context):
-    """new_design: букет по вашим желаниям (форма)."""
+    """new_design: букет по вашим желаниям (форма). Контекст из тегов не содержит форму — добавляем здесь (как во view_8march_design_test и в crm_tags)."""
+    from stroykerbox.apps.crm.forms import FeedbackMessageForm
+    context['feedback_form'] = FeedbackMessageForm()
     return context
 
 

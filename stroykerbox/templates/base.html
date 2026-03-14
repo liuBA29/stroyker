@@ -82,10 +82,8 @@
 
         <script src="{% static 'custom_forms/js/custom_forms.js' %}?{{ current_version }}"></script>
         <script src="{% static 'commerce/js/cart.js' %}?{{ current_version }}"></script>
-
-        {% if use_8march_header_footer %}
+        {# Формы 8 марта (букет по желаниям, перезвоните и т.д.) — подключаем всегда, чтобы AJAX и success/error срабатывали на главной #}
         <script src="{% static 'crm/js/crm_forms.js' %}?{{ current_version }}"></script>
-        {% endif %}
 
         {% if YCAPTCHA_ENABLED %}
         <script src="https://smartcaptcha.yandexcloud.net/captcha.js?render=onload&onload=onloadFunction{{ widget_uuid }}" defer></script>

@@ -39,8 +39,10 @@ def render_callme_request_form(context, mobile=False):
             html = '<div id="callme-modal" class="modal">' + html + '</div>'
         return mark_safe(html)
     request = context.get('request')
-    is_8march = request and '/8march_design/' in (getattr(request, 'path', '') or '')
-    # На странице 8 марта при пустом конфиге показываем нашу форму в стиле 8 марта.
+    # Наша форма 8 марта: при включённом хедере/футере 8march (главная и т.д.) или на тестовой /8march_design/
+    use_8march = context.get('use_8march_header_footer', False)
+    path_8march = request and '/8march_design/' in (getattr(request, 'path', '') or '')
+    is_8march = use_8march or path_8march
     if is_8march:
         context['callme_form'] = CallMeForm()
         return render_to_string('crm/tags/callme-request-form-8march.html', context.flatten(), request=context.request)

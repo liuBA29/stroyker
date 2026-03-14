@@ -7,6 +7,8 @@ function ajax_send_crm_form(form, key, run_onsubmit = false) {
         dataType: "json",
     }).done(function (response) {
         formDoneAction(form, response, key);
+    }).fail(function (xhr) {
+        formDoneAction(form, { success: false, errors: { __all__: ["Ошибка отправки. Попробуйте позже или позвоните нам."] } }, key);
     });
     if (run_onsubmit && form.hasAttribute("onsubmit")) {
         eval(form.getAttribute("onsubmit")); // jshint ignore:line
@@ -31,8 +33,8 @@ $(document).on("submit", "#feedback-message-request-form-8march", function (even
     ajax_send_crm_form(form, "feedBackForm");
 });
 
-// форма «Букет по вашим желаниям» (8 марта): та же логика crm:feedback-message-request, AJAX + дата доставки в текст сообщения
-$("#feedback-bouquet-wish-form").on("submit", function (event) {
+// форма «Букет по вашим желаниям» (8 марта): делегирование на document, чтобы сработало при любом порядке загрузки; AJAX + дата доставки в текст сообщения
+$(document).on("submit", "#feedback-bouquet-wish-form", function (event) {
     event.preventDefault();
     var form = $(this);
     form.find('input[name="page_url"]').val(window.location.href.split('?')[0]);
@@ -51,6 +53,16 @@ function feedback_form_ajax_submit() {
     ajax_send_crm_form(form, 'feedBackForm', true);
 }
 
+// Кнопка «ПЕРЕЗВОНИТЕ МНЕ» (8march и др.): явно открываем #callme-modal через Fancybox,
+// т.к. при рендере футера через теги авто-привязка Fancybox к [data-fancybox] может не сработать.
+$(document).on("click", "a.callme-button[data-src='#callme-modal'], a[data-fancybox='callme-modal'][data-src='#callme-modal']", function (e) {
+    e.preventDefault();
+    var $modal = $("#callme-modal");
+    if ($modal.length && typeof $.fancybox !== "undefined" && $.fancybox.open) {
+        $.fancybox.open($modal);
+    }
+});
+
 // call-merequest form handler
 $("form.callme-request-form").on("submit", function (event) {
     event.preventDefault();
@@ -67,6 +79,7 @@ function formDoneAction(form, response, key) {
     form.find(".error-text").each(function () {
         $(this).remove();
     });
+    form.find(".form-message--success").remove();
     form.find(".form-group").each(function () {
         $(this).removeClass("form-group--error");
     });
@@ -75,18 +88,32 @@ function formDoneAction(form, response, key) {
             const obj = form.serializeArray().reduce((acc, item) => ((acc[item.name] = item.value), acc), {});
             roistat.event.send(key, obj);
         }
-        // дальше очистка полей, без понятия зачем если и так из dom удаляется модалка
         form.find("input, textarea").val("");
-        $.fancybox.close();
-        msg = response.msg ? response.msg : "<h3>Ваше сообщение отправлено!</h3>";
-        $.fancybox.open(msg);
+        form.find('input[type="checkbox"]').prop("checked", false);
+        msg = response.msg ? response.msg : "Ваше сообщение отправлено!";
+        if (typeof $.fancybox !== "undefined" && $.fancybox.open) {
+            $.fancybox.close();
+            $.fancybox.open("<h3>" + msg + "</h3>");
+        } else {
+            var wrap = form.closest(".index-bouquet-wish-8march__form-wrap");
+            if (wrap.length) {
+                wrap.prepend('<p class="form-message--success" style="margin:0 0 0.75rem; color:#2d7a2d;">' + msg + "</p>");
+                wrap[0].scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+        }
     } else {
-        for (var f in response.errors) {
-            msg = '<span class="error-text">' + response.errors[f] + "</span>";
-            var input = form.find('[name="' + f + '"]');
-            var formGroup = input.parent(".form-group");
-            formGroup.addClass("form-group--error");
-            formGroup.append(msg);
+        if (response.errors) {
+            for (var f in response.errors) {
+                var errVal = response.errors[f];
+                var errText = Array.isArray(errVal) ? errVal.join(" ") : errVal;
+                msg = '<span class="error-text">' + errText + "</span>";
+                var input = form.find('[name="' + f + '"]');
+                var formGroup = input.length ? input.closest(".form-group") : form.find(".form-group").first();
+                if (formGroup.length) {
+                    formGroup.addClass("form-group--error");
+                    formGroup.append(msg);
+                }
+            }
         }
     }
 }
