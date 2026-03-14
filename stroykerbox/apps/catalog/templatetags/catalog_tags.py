@@ -284,7 +284,7 @@ def render_sales_slider(context, num=12):
 def render_new_spring_design_sales_slider(context, num=12):
     """
     Слайдер товаров по акции в стиле «новый весенний дизайн» (8 марта).
-    Показ в случайном порядке для разнообразия (только подходящие по is_sale и условиям).
+    Показ в случайном порядке для разнообразия. Все акционные товары без ограничения по количеству.
     """
     sale_products = (
         Product.objects.published().filter(is_sale=True).exclude_by_modification_code()
@@ -295,9 +295,9 @@ def render_new_spring_design_sales_slider(context, num=12):
     if location:
         sale_products = [p for p in sale_products if p.is_available(location)]
         random.shuffle(sale_products)
-        context['products'] = sale_products[:num]
+        context['products'] = sale_products
     else:
-        context['products'] = list(sale_products.order_by('?')[:num])
+        context['products'] = list(sale_products.order_by('?'))
     return context
 
 
