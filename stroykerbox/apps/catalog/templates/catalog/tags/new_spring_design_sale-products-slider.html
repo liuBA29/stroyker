@@ -20,8 +20,8 @@
             </span>
             <span class="index-promo-8march__prices">
               {% if price %}
-                {% if old_price %}<span class="index-promo-8march__price-old index-bouquets-8march__price pretty_numbers">{{ old_price|stringformat:"s"|cut:",00"|cut:".00" }} Р</span>{% endif %}
-                <span class="index-promo-8march__price-new index-bouquets-8march__price pretty_numbers">{{ price|stringformat:"s"|cut:",00"|cut:".00" }} Р</span>
+                {% if old_price %}<span class="index-promo-8march__price-old normal_price_format price_format--old pretty_numbers">{{ old_price|stringformat:"s"|cut:",00"|cut:".00" }} Р</span>{% endif %}
+                <span class="index-promo-8march__price-new normal_price_format pretty_numbers">{{ price|stringformat:"s"|cut:",00"|cut:".00" }} Р</span>
               {% else %}
                 {% trans "По запросу" %}
               {% endif %}
