@@ -2948,6 +2948,11 @@ body.design-8march .page-index-8march-content section.additional-section:has(.ne
   background: transparent !important;
   background-color: transparent !important;
 }
+
+/* Зазор между героем и овальными картинками — 2.5rem; всё ниже (включая футер) сдвигается вниз */
+body.design-8march .page-index-8march-content .index-categories-8march {
+  margin-top: 2.5rem !important;
+}
 body.design-8march .page-index-8march-content::before {
   content: "";
   position: absolute;
