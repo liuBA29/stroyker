@@ -2990,16 +2990,20 @@ body.design-8march .page-index-8march-content .new_spring_design_sales_slider.in
   background-color: transparent !important;
 }
 .page-index-8march .index-promo-8march__footer,
-.page-index-8march .index-promo-8march__btn-catalog,
-body.design-8march .page-index-8march-content .index-promo-8march__footer,
-body.design-8march .page-index-8march-content .index-promo-8march__btn-catalog {
+body.design-8march .page-index-8march-content .index-promo-8march__footer {
   background: transparent !important;
   background-color: transparent !important;
 }
+/* Первая кнопка «Смотреть весь каталог» (под акциями) — того же цвета #FBE3E1, что и вторая (под букетами) */
+.page-index-8march .index-promo-8march__btn-catalog,
+body.design-8march .page-index-8march-content .index-promo-8march__btn-catalog {
+  background: #FBE3E1 !important;
+  background-color: #FBE3E1 !important;
+}
 .page-index-8march .index-promo-8march__btn-catalog:hover,
 body.design-8march .page-index-8march-content .index-promo-8march__btn-catalog:hover {
-  background: transparent !important;
-  background-color: transparent !important;
+  background: #f5d5d3 !important;
+  background-color: #f5d5d3 !important;
 }
 
 /* Стили мобильного нижнего меню .mobile-bottom-nav-8march перенесены в 8march_design.css, чтобы меню корректно отображалось на всех страницах (корзина, каталог и т.д.), а не только на главной. */
