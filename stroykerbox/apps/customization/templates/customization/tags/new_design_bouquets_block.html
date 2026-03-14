@@ -39,7 +39,7 @@
             <img src="{{ bouquet_products.3.image }}" alt="{{ bouquet_products.3.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
           </span>
           <p class="index-bouquets-8march__desc">{{ bouquet_products.3.name }}</p>
-          {% if bouquet_products.3.price %}<p class="index-bouquets-8march__price big_price_format pretty_numbers">{{ bouquet_products.3.price }}</p>{% endif %}
+          {% if bouquet_products.3.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.3.price }}</p>{% endif %}
           <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.3.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
         </a>
       </div>
@@ -57,7 +57,7 @@
             <img src="{{ bouquet_products.5.image }}" alt="{{ bouquet_products.5.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
           </span>
           <p class="index-bouquets-8march__desc">{{ bouquet_products.5.name }}</p>
-          {% if bouquet_products.5.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.5.price }}</p>{% endif %}
+          {% if bouquet_products.5.price %}<p class="index-bouquets-8march__price big_price_format pretty_numbers">{{ bouquet_products.5.price }}</p>{% endif %}
           <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.5.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
         </a>
       </div>

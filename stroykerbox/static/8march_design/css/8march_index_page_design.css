@@ -1284,9 +1284,9 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   color: #2d2d2d;
 }
 
-/* В больших карточках «Сборные букеты» — big_price_format (32px, 500) */
-.page-index-8march .index-bouquets-8march .index-bouquets-8march__card--first p.index-bouquets-8march__price.big_price_format,
-body.design-8march .page-index-8march-content .index-bouquets-8march .index-bouquets-8march__card--first p.index-bouquets-8march__price.big_price_format {
+/* В больших карточках «Сборные букеты» — big_price_format (32px, 500). Ряд 1 и 3 — первая карточка; ряд 2 — последняя. */
+.page-index-8march .index-bouquets-8march p.index-bouquets-8march__price.big_price_format,
+body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bouquets-8march__price.big_price_format {
   font-size: 32px !important;
   font-weight: 500 !important;
 }
