@@ -2937,6 +2937,32 @@ body.design-8march .index-8march-map-wrap #yamap_addresses {
   margin-top: 0.25rem;
 }
 
+/* Временно: прозрачный фон у блока с овальными картинками, акций и полосы с кнопкой «Смотреть весь каталог» — посмотреть как выглядит без фона. Удалить блок при откате. */
+.page-index-8march .index-categories-8march,
+body.design-8march .page-index-8march-content .index-categories-8march {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+.page-index-8march .index-promo-8march,
+.page-index-8march .new_spring_design_sales_slider.index-promo-8march,
+body.design-8march .page-index-8march-content .index-promo-8march,
+body.design-8march .page-index-8march-content .new_spring_design_sales_slider.index-promo-8march {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+.page-index-8march .index-promo-8march__footer,
+.page-index-8march .index-promo-8march__btn-catalog,
+body.design-8march .page-index-8march-content .index-promo-8march__footer,
+body.design-8march .page-index-8march-content .index-promo-8march__btn-catalog {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+.page-index-8march .index-promo-8march__btn-catalog:hover,
+body.design-8march .page-index-8march-content .index-promo-8march__btn-catalog:hover {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
 /* Стили мобильного нижнего меню .mobile-bottom-nav-8march перенесены в 8march_design.css, чтобы меню корректно отображалось на всех страницах (корзина, каталог и т.д.), а не только на главной. */
 @media (min-width: 768px) {
   .page-index-8march .page {
