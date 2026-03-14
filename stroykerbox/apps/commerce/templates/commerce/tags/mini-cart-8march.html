@@ -4,7 +4,7 @@
   <div class="mini-cart-8march__overlay" data-mini-cart-8march-close aria-label="Закрыть"></div>
   <div class="mini-cart-8march__drawer">
     <div class="mini-cart-8march__head">
-      <h2 class="mini-cart-8march__title">Корзина</h2>
+      <h2 class="mini-cart-8march__title big-title">КОРЗИНА</h2>
       <button type="button" class="mini-cart-8march__close" data-mini-cart-8march-close aria-label="Закрыть">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
@@ -32,11 +32,8 @@
         </ul>
         <p class="mini-cart-8march__total">
           <span>Итого:</span>
-          <strong>{{ cart.total_price|price_format }} {{ currency_symbol }}</strong>
+          <strong class="normal_price_format pretty_numbers">{{ cart.total_price|price_with_space }} {{ currency_symbol }}</strong>
         </p>
-        {% if cart.total_count > 2 %}
-        <p class="mini-cart-8march__more">и ещё {{ cart.total_count|add:"-2" }} в корзине</p>
-        {% endif %}
       {% else %}
         <p class="mini-cart-8march__empty">Корзина пуста</p>
       {% endif %}

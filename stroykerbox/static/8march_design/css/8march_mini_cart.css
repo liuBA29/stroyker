@@ -52,13 +52,16 @@
   border-bottom: 1px solid #eee;
   flex-shrink: 0;
 }
-.mini-cart-8march__title {
+.mini-cart-8march__title.big-title {
   margin: 0;
-  font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif);
-  font-weight: 500;
-  font-size: 1.25rem;
-  letter-spacing: 0.02em;
-  color: #2d2d2d;
+  padding: 0;
+  max-width: none;
+  font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
+  font-weight: 300 !important;
+  font-size: 24px !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+  color: #2d2d2d !important;
 }
 .mini-cart-8march__close {
   display: flex;
@@ -115,7 +118,9 @@
   min-width: 0;
 }
 .mini-cart-8march__name {
-  font-size: 0.9rem;
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia), serif;
+  font-weight: 300;
+  font-size: 16px;
   line-height: 1.3;
   color: #2d2d2d;
   display: -webkit-box;
@@ -123,13 +128,13 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.mini-cart-8march__qty {
-  font-size: 0.8rem;
-  color: #666;
+.mini-cart-8march__qty.normal_price_format {
+  font-size: 18px !important;
+  color: #2d2d2d;
 }
-.mini-cart-8march__row-total {
-  font-size: 0.95rem;
-  font-weight: 500;
+.mini-cart-8march__row-total.normal_price_format {
+  font-size: 20px !important;
+  font-weight: 400 !important;
   color: #2d2d2d;
 }
 .mini-cart-8march__total {
@@ -141,6 +146,10 @@
   align-items: center;
   font-size: 1rem;
   color: #2d2d2d;
+}
+.mini-cart-8march__total .normal_price_format {
+  font-size: 24px !important;
+  font-weight: 400 !important;
 }
 .mini-cart-8march__more {
   margin: 0.25rem 0 0;
@@ -158,12 +167,15 @@
   padding: 1rem 1.25rem;
   border-top: 1px solid #eee;
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
 }
 .mini-cart-8march__btn {
-  display: block;
-  width: 100%;
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
   text-align: center;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 1.5rem;
   text-decoration: none;
   box-sizing: border-box;
 }
