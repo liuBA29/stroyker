@@ -2937,6 +2937,24 @@ body.design-8march .index-8march-map-wrap #yamap_addresses {
   margin-top: 0.25rem;
 }
 
+/* Подложка pink_bg1.png в области овальных картинок, акций и кнопки «Смотреть весь каталог» (главная и тестовая). */
+body.design-8march .page-index-8march-content {
+  position: relative;
+}
+body.design-8march .page-index-8march-content::before {
+  content: "";
+  position: absolute;
+  top: 680px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  background-image: url("/static/8march_design/images/pink_bg1.png");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center -50px;
+  pointer-events: none;
+}
 /* Временно: прозрачный фон у блока с овальными картинками, акций и полосы с кнопкой «Смотреть весь каталог» — посмотреть как выглядит без фона. Удалить блок при откате. */
 .page-index-8march .index-categories-8march,
 body.design-8march .page-index-8march-content .index-categories-8march {
