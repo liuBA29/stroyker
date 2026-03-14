@@ -1184,6 +1184,12 @@
   .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__arrow {
     display: flex !important;
   }
+  /* Без hover по пожеланию заказчика (в т.ч. на большой карточке) */
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card:hover,
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large:hover {
+    box-shadow: none !important;
+    transform: none !important;
+  }
 }
 
 .index-promo-8march__prices {
@@ -1261,11 +1267,14 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   color: #2d2d2d;
 }
 
+/* Без hover по пожеланию заказчика (карусели промо 8 марта) */
 .index-promo-8march__card:hover {
   box-shadow: none !important;
+  transform: none !important;
 }
 .index-promo-8march__card--large:hover {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06) !important;
+  transform: translateY(-2px) !important;
 }
 /* Стили .beige_button перенесены в 8march_manipulators.css (подключается после этого файла). */
 .index-promo-8march__btn {

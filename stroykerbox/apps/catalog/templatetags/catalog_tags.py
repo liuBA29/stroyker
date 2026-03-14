@@ -1,3 +1,4 @@
+import random
 from typing import Sequence, Optional, Any
 from collections import defaultdict
 
@@ -282,7 +283,7 @@ def render_sales_slider(context, num=12):
 def render_new_spring_design_sales_slider(context, num=12):
     """
     Слайдер товаров по акции в стиле «новый весенний дизайн» (8 марта).
-    Отдельный тег, чтобы не трогать старый render_sales_slider на проде.
+    Показ в случайном порядке для разнообразия (только подходящие по is_sale и условиям).
     """
     sale_products = (
         Product.objects.published().filter(is_sale=True).exclude_by_modification_code()
@@ -292,7 +293,10 @@ def render_new_spring_design_sales_slider(context, num=12):
     location = get_context_location(context)
     if location:
         sale_products = [p for p in sale_products if p.is_available(location)]
-    context['products'] = list(sale_products[:num])
+        random.shuffle(sale_products)
+        context['products'] = sale_products[:num]
+    else:
+        context['products'] = list(sale_products.order_by('?')[:num])
     return context
 
 
