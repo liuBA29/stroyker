@@ -61,6 +61,9 @@ section.__header.__header--8march.header-8march {
   color: #2d2d2d;
   cursor: pointer;
   padding: 0.5rem 0;
+  border: none;
+  background: none;
+  font: inherit;
 }
 
 .header-8march__menu-trigger:hover {
@@ -121,6 +124,137 @@ section.__header.__header--8march.header-8march {
 .header-8march__label--catalog:hover,
 .header-8march__label--catalog:focus {
   text-decoration: none !important;
+}
+
+/* Выпадающий список при наведении на пункт МЕНЮ */
+.header-8march__dropdown-wrap {
+  position: relative;
+  display: inline-block;
+}
+.header-8march__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  margin-top: 0.25rem;
+  padding: 0.5rem 0;
+  list-style: none;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+  border-radius: 0;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+.header-8march__dropdown-wrap:hover .header-8march__dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+.header-8march__dropdown li {
+  margin: 0;
+  padding: 0;
+}
+.header-8march__dropdown a {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #2d2d2d;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.header-8march__dropdown a:hover {
+  background: #f5f5f5;
+  color: #2d2d2d;
+}
+
+/* Выдвижное меню на малом экране: только иконка гамбургера, по тапу — панель слева */
+.header-8march__drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  visibility: hidden;
+  pointer-events: none;
+}
+.header-8march__drawer--open {
+  visibility: visible;
+  pointer-events: auto;
+}
+.header-8march__drawer-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.header-8march__drawer--open .header-8march__drawer-overlay {
+  opacity: 1;
+}
+.header-8march__drawer-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  max-width: 85vw;
+  height: 100%;
+  background: #fff;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0 1.5rem;
+  box-sizing: border-box;
+}
+.header-8march__drawer--open .header-8march__drawer-panel {
+  transform: translateX(0);
+}
+.header-8march__drawer-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #2d2d2d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-8march__drawer-close:hover {
+  opacity: 0.8;
+}
+.header-8march__drawer-nav {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.5rem;
+  padding: 0 1.25rem;
+}
+.header-8march__drawer-nav a {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #2d2d2d;
+  text-decoration: none;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+}
+.header-8march__drawer-nav a:last-child {
+  border-bottom: none;
+}
+.header-8march__drawer-nav a:hover {
+  opacity: 0.85;
+}
+@media (min-width: 768px) {
+  .header-8march__drawer {
+    display: none;
+  }
 }
 
 .header-8march__center {

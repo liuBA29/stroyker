@@ -3,12 +3,23 @@
 <section class="__header __header--8march header-8march">
     <div class="header-8march__bar">
         <div class="header-8march__left">
-            <a href="{% url 'staticpages:staticpage' url='clients' %}" class="header-8march__menu-trigger" aria-label="Меню">
-                <svg class="header-8march__burger-icon" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <rect width="18" height="2" fill="currentColor"/><rect y="6" width="18" height="2" fill="currentColor"/><rect y="12" width="12" height="2" fill="currentColor"/>
-                </svg>
-                <span class="header-8march__label">МЕНЮ</span>
-            </a>
+            <div class="header-8march__dropdown-wrap">
+                <button type="button" class="header-8march__menu-trigger" aria-label="Меню" aria-haspopup="true" data-header-8march-drawer-open>
+                    <svg class="header-8march__burger-icon" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect width="18" height="2" fill="currentColor"/><rect y="6" width="18" height="2" fill="currentColor"/><rect y="12" width="12" height="2" fill="currentColor"/>
+                    </svg>
+                    <span class="header-8march__label">МЕНЮ</span>
+                </button>
+                <ul class="header-8march__dropdown" aria-label="Меню">
+                    <li><a href="{% url 'staticpages:staticpage' url='about' %}">О студии</a></li>
+                    <li><a href="{% url 'staticpages:staticpage' url='services' %}">Услуги</a></li>
+                    <li><a href="{% url 'staticpages:staticpage' url='delivery' %}">Доставка</a></li>
+                    <li><a href="{% url 'staticpages:staticpage' url='bouquet-care' %}">Совет по уходу</a></li>
+                    <li><a href="{% url 'staticpages:staticpage' url='reviews' %}">Отзывы</a></li>
+                    <li><a href="{% url 'staticpages:staticpage' url='contacts' %}">Контакты</a></li>
+                    <li><a href="{% url 'staticpages:staticpage' url='requisites' %}">Реквизиты</a></li>
+                </ul>
+            </div>
             <a href="{% url 'catalog:index' %}" class="header-8march__label header-8march__label--catalog">КАТАЛОГ</a>
         </div>
         <div class="header-8march__center">
@@ -43,6 +54,54 @@
             </a>
         </div>
     </div>
+    {# Выдвижное меню на малом экране: по тапу на иконку гамбургера #}
+    <div class="header-8march__drawer" id="header-8march-drawer" aria-hidden="true">
+        <div class="header-8march__drawer-overlay" data-header-8march-drawer-close></div>
+        <div class="header-8march__drawer-panel">
+            <button type="button" class="header-8march__drawer-close" aria-label="Закрыть меню" data-header-8march-drawer-close>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <nav class="header-8march__drawer-nav">
+                <a href="{% url 'staticpages:staticpage' url='about' %}">О студии</a>
+                <a href="{% url 'staticpages:staticpage' url='services' %}">Услуги</a>
+                <a href="{% url 'staticpages:staticpage' url='delivery' %}">Доставка</a>
+                <a href="{% url 'staticpages:staticpage' url='bouquet-care' %}">Совет по уходу</a>
+                <a href="{% url 'staticpages:staticpage' url='reviews' %}">Отзывы</a>
+                <a href="{% url 'staticpages:staticpage' url='contacts' %}">Контакты</a>
+                <a href="{% url 'staticpages:staticpage' url='requisites' %}">Реквизиты</a>
+                <a href="{% url 'staticpages:staticpage' url='clients' %}">Клиентам</a>
+            </nav>
+        </div>
+    </div>
 </section>
+<script>
+(function() {
+    var drawer = document.getElementById('header-8march-drawer');
+    if (!drawer) return;
+    var openBtn = document.querySelector('[data-header-8march-drawer-open]');
+    var closeBtns = document.querySelectorAll('[data-header-8march-drawer-close]');
+    function isMobile() { return window.innerWidth < 768; }
+    function openDrawer() {
+        drawer.classList.add('header-8march__drawer--open');
+        drawer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+        drawer.classList.remove('header-8march__drawer--open');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+    if (openBtn) {
+        openBtn.addEventListener('click', function(e) {
+            if (isMobile()) {
+                e.preventDefault();
+                openDrawer();
+            }
+        });
+    }
+    closeBtns.forEach(function(btn) { btn.addEventListener('click', closeDrawer); });
+    window.addEventListener('resize', function() { if (!isMobile()) closeDrawer(); });
+})();
+</script>
 {# Мини-корзина 8 марта (отдельный файл стилей: 8march_mini_cart.css). Чтобы отключить — см. комментарий выше у ссылки корзины и в includes/mini_cart_8march.html #}
 {% include 'includes/mini_cart_8march.html' %}
