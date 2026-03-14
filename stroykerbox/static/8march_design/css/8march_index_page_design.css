@@ -2968,6 +2968,14 @@ body.design-8march .page-index-8march-content::before {
   background-position: center top;
   pointer-events: none;
 }
+
+@media (max-width: 767px) {
+  /* На малом экране подложка в 3 раза крупнее */
+  body.design-8march .page-index-8march-content::before {
+    background-size: 300% auto;
+  }
+}
+
 /* Временно: прозрачный фон у блока с овальными картинками, акций и полосы с кнопкой «Смотреть весь каталог» — посмотреть как выглядит без фона. Удалить блок при откате. */
 .page-index-8march .index-categories-8march,
 body.design-8march .page-index-8march-content .index-categories-8march {
