@@ -2940,19 +2940,27 @@ body.design-8march .index-8march-map-wrap #yamap_addresses {
 /* Подложка pink_bg1.png в области овальных картинок, акций и кнопки «Смотреть весь каталог» (главная и тестовая). */
 body.design-8march .page-index-8march-content {
   position: relative;
+  overflow: visible;
+}
+/* Обёртка секции из админки (additional-section) не должна перекрывать подложку — делаем прозрачной для овалов и акций */
+body.design-8march .page-index-8march-content section.additional-section:has(.index-categories-8march),
+body.design-8march .page-index-8march-content section.additional-section:has(.new_spring_design_sales_slider) {
+  background: transparent !important;
+  background-color: transparent !important;
 }
 body.design-8march .page-index-8march-content::before {
   content: "";
   position: absolute;
-  top: 680px;
+  top: 42.5rem; /* ~680px при 16px — масштабируется с rem на разных экранах и Mac */
   left: 0;
   right: 0;
-  bottom: 0;
+  width: 100%;
+  min-height: 200vh;
   z-index: 0;
   background-image: url("/static/8march_design/images/pink_bg1.png");
   background-size: 100% auto;
   background-repeat: no-repeat;
-  background-position: center -50px;
+  background-position: center top;
   pointer-events: none;
 }
 /* Временно: прозрачный фон у блока с овальными картинками, акций и полосы с кнопкой «Смотреть весь каталог» — посмотреть как выглядит без фона. Удалить блок при откате. */
