@@ -1201,6 +1201,14 @@ body.design-8march .page-index-8march-content .new_spring_design_sales_slider.in
   gap: 0.5rem;
 }
 
+/* В большой карточке «Акции» (первая при пролистывании) — новая цена как big_price_format (32px, 500). Старую не трогаем. */
+.new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large .index-promo-8march__price-new,
+.page-index-8march .index-8march-content .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large .index-promo-8march__price-new,
+body.design-8march .page-index-8march-content .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large .index-promo-8march__price-new {
+  font-size: 32px !important;
+  font-weight: 500 !important;
+}
+
 .index-promo-8march__prices {
   display: flex;
   align-items: baseline;
