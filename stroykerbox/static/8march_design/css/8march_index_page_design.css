@@ -1271,11 +1271,11 @@ body.design-8march .page-index-8march-content p.index-bouquets-8march__price {
   text-transform: uppercase !important;
 }
 
-/* Цены в «Сборные букеты» — как pretty_numbers (как в карусели «Коллекция 8 марта») */
+/* Цены в «Сборные букеты» — как в «Акциях» (normal_price_format: 24px, 400). big_price_format переопределяет ниже. */
 body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bouquets-8march__price,
 .page-index-8march .index-bouquets-8march p.index-bouquets-8march__price {
   font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia), serif !important;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
   font-size: 24px !important;
   line-height: 100% !important;
   letter-spacing: 0 !important;
@@ -1284,11 +1284,13 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   color: #2d2d2d;
 }
 
-/* В больших карточках «Сборные букеты» — big_price_format (32px, 500). Ряд 1 и 3 — первая карточка; ряд 2 — последняя. */
-.page-index-8march .index-bouquets-8march p.index-bouquets-8march__price.big_price_format,
-body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bouquets-8march__price.big_price_format {
-  font-size: 32px !important;
-  font-weight: 500 !important;
+/* В больших карточках «Сборные букеты» — big_price_format (32px, 500) только на большом экране. На маленьком все цены как normal. */
+@media (min-width: 992px) {
+  .page-index-8march .index-bouquets-8march p.index-bouquets-8march__price.big_price_format,
+  body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bouquets-8march__price.big_price_format {
+    font-size: 32px !important;
+    font-weight: 500 !important;
+  }
 }
 
 /* Без hover по пожеланию заказчика (карусели промо 8 марта) */

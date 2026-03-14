@@ -1,4 +1,5 @@
 import random
+from decimal import Decimal, InvalidOperation
 from typing import Sequence, Optional, Any
 from collections import defaultdict
 
@@ -479,6 +480,20 @@ def price_format(price, use_intcomma=True):
     Return with or without pennies, depending on the current settings.
     """
     return get_formatted_price(price, use_intcomma)
+
+
+@register.filter
+def price_with_space(value):
+    """Формат цены с пробелом между разрядами (2 000), как в блоке «Сборные букеты»."""
+    if value is None or value == '':
+        return ''
+    try:
+        amount = Decimal(str(value)).quantize(Decimal('1'))
+    except (InvalidOperation, TypeError, ValueError):
+        return ''
+    return f"{int(amount):,}".replace(',', ' ')
+
+
 
 
 @register.inclusion_tag('catalog/tags/root-categories-slider.html', takes_context=True)
