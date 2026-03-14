@@ -830,17 +830,18 @@
 }
 
 .index-categories-8march__label {
-  margin-top: 0.5rem;
-  /* По Figma: Blacker Sans Text, 400, 16px, line-height 100%, letter-spacing 0, center, uppercase. НЕ МЕНЯТЬ БЕЗ СОГЛАСОВАНИЯ. */
-  font-family: 'Blacker Sans Text', 'Inter', system-ui, sans-serif !important;
+  margin-top: 0.75rem;
+  font-family: 'Blacker Sans Text', Inter, system-ui, sans-serif !important;
   font-weight: 400 !important;
-  font-size: 16px;
-  line-height: 100%;
+  font-style: normal;
+  font-size: 16px !important;
+  leading-trim: none;
+  line-height: 100% !important;
   letter-spacing: 0;
-  text-align: center;
-  text-transform: uppercase;
+  text-align: center !important;
+  text-transform: uppercase !important;
   max-width: 110px;
-  color: #c49a9a;
+  color: #CC9691;
 }
 .index-categories-8march__label-line {
   display: block;
@@ -879,7 +880,7 @@
     border-radius: 50px;
   }
   .index-categories-8march__label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     max-width: 120px;
   }
 }
@@ -926,7 +927,7 @@
     font-family: 'Blacker Sans Text', 'Inter', system-ui, sans-serif !important;
     font-weight: 400 !important;
     font-style: normal !important;
-    font-size: 10px !important;
+    font-size: 9px !important;
     line-height: 100% !important;
     letter-spacing: 0 !important;
     text-align: center !important;
