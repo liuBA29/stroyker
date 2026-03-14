@@ -2970,9 +2970,10 @@ body.design-8march .page-index-8march-content::before {
 }
 
 @media (max-width: 767px) {
-  /* На малом экране подложка в 3 раза крупнее */
+  /* На малом экране подложка в 3 раза крупнее и выше (на 7rem от базовых 42.5) */
   body.design-8march .page-index-8march-content::before {
     background-size: 300% auto;
+    top: 35.5rem;
   }
 }
 
