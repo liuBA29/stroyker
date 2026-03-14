@@ -1192,6 +1192,49 @@
   }
 }
 
+/* В карточке «Акции» — те же стили текста и цен, что в «Сборные букеты». Специфичность выше, чем у .page-index-8march-content span ниже. */
+.page-index-8march .index-8march-content .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__prices,
+.page-index-8march .index-8march-content .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__price-old,
+.page-index-8march .index-8march-content .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__price-new,
+body.design-8march .page-index-8march-content .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__prices,
+body.design-8march .page-index-8march-content .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__price-old,
+body.design-8march .page-index-8march-content .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__price-new {
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia), serif !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-size: 24px !important;
+  line-height: 100% !important;
+  letter-spacing: 0 !important;
+  font-variant-numeric: lining-nums proportional-nums;
+  text-transform: uppercase !important;
+  color: #2d2d2d;
+}
+.page-index-8march .index-8march-content .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__prices,
+body.design-8march .page-index-8march-content .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__prices {
+  margin: 0 0 0.75rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.page-index-8march .index-8march-content .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__price-old,
+body.design-8march .page-index-8march-content .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__price-old {
+  text-decoration: line-through;
+  color: #888 !important;
+}
+
+/* В «Акциях» используем ровно тот же класс цены, что в «Сборные букеты» */
+.page-index-8march .index-8march-content .new_spring_design_sales_slider.index-promo-8march span.index-bouquets-8march__price,
+body.design-8march .page-index-8march-content .new_spring_design_sales_slider.index-promo-8march span.index-bouquets-8march__price {
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia), serif !important;
+  font-weight: 300 !important;
+  font-size: 24px !important;
+  line-height: 100% !important;
+  letter-spacing: 0 !important;
+  font-variant-numeric: lining-nums proportional-nums;
+  text-transform: uppercase !important;
+  color: #2d2d2d;
+}
+
 .index-promo-8march__prices {
   display: flex;
   align-items: baseline;
