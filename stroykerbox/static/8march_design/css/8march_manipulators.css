@@ -362,8 +362,8 @@ body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreem
 .index-bouquet-wish-8march__agreement label,
 body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreement label {
   margin: 0 !important;
-  font-size: 0.8rem !important;
-  color: #6b6363 !important;
+  font-size: 0.7rem !important;
+  color: #5c5c5c !important;
 }
 
 /*
@@ -490,6 +490,8 @@ body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreem
 }
 .callme-8march__form .form-group.privacy-policy label {
   margin: 0 !important;
+  font-size: 0.7rem !important;
+  color: #5c5c5c !important;
   cursor: pointer;
 }
 .callme-8march__form .form-group.privacy-policy a {
@@ -502,6 +504,14 @@ body.design-8march .page-index-8march-content .index-bouquet-wish-8march__agreem
 .callme-8march__form input[type="checkbox"] {
   margin-top: 0.2rem !important;
   flex-shrink: 0;
+}
+
+/* Подпись чекбокса в футере «Остались вопросы?» — чуть мельче и светлее (селектор как в 8march_footer.css, чтобы перебить) */
+body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox label,
+.footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox label,
+section.feedback-form--8march-footer .form-group.privacy-policy .checkbox label {
+  font-size: 0.7rem !important;
+  color: #5c5c5c !important;
 }
 
 /* Чекбоксы и формы (главная, футер «Остались вопросы?») — кликабельны (перенесено из 8march_index_page_design.css) */
