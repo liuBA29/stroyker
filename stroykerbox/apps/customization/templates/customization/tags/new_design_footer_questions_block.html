@@ -23,40 +23,49 @@
   function openCallmeModal() {
     var modal = document.getElementById('callme-modal');
     if (!modal) return;
-    var opened = false;
-    if (typeof window.jQuery !== 'undefined' && window.jQuery.fancybox && window.jQuery.fancybox.open) {
-      try {
-        window.jQuery.fancybox.open(window.jQuery(modal));
-        opened = true;
-      } catch (err) {}
+    /* Всегда показываем модалку своим кодом: на проде Fancybox открывает оверлей, но контент не виден. Не вызываем Fancybox.open. */
+    if (typeof window.jQuery !== 'undefined' && window.jQuery.fancybox && window.jQuery.fancybox.close) {
+      try { window.jQuery.fancybox.close(); } catch (err) {}
     }
-    if (!opened) {
-      /* Закрываем Fancybox, если он успел открыться — убираем его контейнер/подложку. */
-      if (typeof window.jQuery !== 'undefined' && window.jQuery.fancybox && window.jQuery.fancybox.close) {
-        try { window.jQuery.fancybox.close(); } catch (err) {}
-      }
-      /* На проде Fancybox может успеть перенести #callme-modal в .fancybox-container — тогда модалка оказывается под нашим оверлеем. Переносим в body, чтобы была поверх. */
-      if (modal.parentNode !== document.body) {
-        document.body.appendChild(modal);
-      }
-      modal.classList.add('callme-modal--open');
-      var overlay = document.getElementById(overlayId);
-      if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.id = overlayId;
-        overlay.className = 'callme-modal-overlay-8march';
-        overlay.setAttribute('aria-hidden', 'true');
-        document.body.appendChild(overlay);
-        document.addEventListener('click', callmeFallbackCloseOnClick);
-      }
-      overlay.style.display = '';
-      overlay.classList.add('callme-modal-overlay-8march--visible');
-      document.body.classList.add('callme-modal-open');
+    if (modal.parentNode !== document.body) {
+      document.body.appendChild(modal);
     }
+    modal.classList.add('callme-modal--open');
+    /* Подстраховка на проде: критические стили инлайном, если CSS не применился (кэш, ошибка transform и т.д.) */
+    modal.style.setProperty('display', 'block', 'important');
+    modal.style.setProperty('position', 'fixed', 'important');
+    modal.style.setProperty('z-index', '100000', 'important');
+    modal.style.setProperty('left', '50%', 'important');
+    modal.style.setProperty('top', '50%', 'important');
+    modal.style.setProperty('transform', 'translate(-50%, -50%)', 'important');
+    modal.style.setProperty('visibility', 'visible', 'important');
+    modal.style.setProperty('opacity', '1', 'important');
+    var overlay = document.getElementById(overlayId);
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = overlayId;
+      overlay.className = 'callme-modal-overlay-8march';
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(overlay);
+      document.addEventListener('click', callmeFallbackCloseOnClick);
+    }
+    overlay.style.display = '';
+    overlay.classList.add('callme-modal-overlay-8march--visible');
+    document.body.classList.add('callme-modal-open');
   }
   function closeCallmeModalFallback() {
     var modal = document.getElementById('callme-modal');
-    if (modal) modal.classList.remove('callme-modal--open');
+    if (modal) {
+      modal.classList.remove('callme-modal--open');
+      modal.style.removeProperty('display');
+      modal.style.removeProperty('position');
+      modal.style.removeProperty('z-index');
+      modal.style.removeProperty('left');
+      modal.style.removeProperty('top');
+      modal.style.removeProperty('transform');
+      modal.style.removeProperty('visibility');
+      modal.style.removeProperty('opacity');
+    }
     var overlay = document.getElementById(overlayId);
     if (overlay) {
       overlay.style.display = 'none';
