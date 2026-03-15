@@ -514,6 +514,15 @@ section.feedback-form--8march-footer .form-group.privacy-policy .checkbox label 
   color: #5c5c5c !important;
 }
 
+@media (max-width: 767px) {
+  body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox label,
+  .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox label,
+  section.feedback-form--8march-footer .form-group.privacy-policy .checkbox label {
+    font-size: 0.55rem !important;
+    line-height: 1.3 !important;
+  }
+}
+
 /* Чекбоксы и формы (главная, футер «Остались вопросы?») — кликабельны (перенесено из 8march_index_page_design.css) */
 .page-index-8march input[type="checkbox"],
 .page-index-8march input[type="checkbox"] + label,

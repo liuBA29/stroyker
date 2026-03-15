@@ -759,6 +759,14 @@ section.feedback-form--8march-footer button[type="submit"].black-button:hover {
   }
 }
 
+@media (max-width: 767px) {
+  .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy .checkbox label,
+  body.design-8march .footer--8march .feedback-form--8march-footer .form-group.privacy-policy .checkbox label {
+    font-size: 0.55rem !important;
+    line-height: 1.3 !important;
+  }
+}
+
 body.design-8march .footer--8march,
 body.design-8march .footer--8march .footer-content__title,
 body.design-8march .footer--8march .footer-content__column a,
