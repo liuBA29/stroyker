@@ -2077,13 +2077,13 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
 .index-bouquet-wish-8march__right {
   flex: 1 1 50%;
   padding: 2rem;
-  background: #f8f6f3;
+  background: #F9F3EE;
   display: flex;
   flex-direction: column;
 }
 
 .index-bouquet-wish-8march__title {
-  margin: 0 0 0.5rem;
+  margin: 0 0 1.5rem;
   font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
   font-weight: 300 !important;
   font-size: 32px !important;
@@ -2109,7 +2109,7 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   text-decoration: underline;
 }
 
-/* Не менять без согласования! */
+/* Оставьте запрос на индивидуальный заказ… — по макету */
 .index-bouquet-wish-8march__desc {
   margin: 0 0 1.5rem;
   font-family: Inter, sans-serif;
@@ -2118,7 +2118,7 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   font-size: 16px;
   line-height: 140%;
   letter-spacing: 0;
-  color: #6b6363;
+  color: #3B3036;
 }
 
 .index-bouquet-wish-8march__form {
@@ -2158,44 +2158,55 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
 }
 
 .index-bouquet-wish-8march__field-icon--date-trigger {
+  color: #B8736E;
   pointer-events: auto;
   cursor: pointer;
 }
 
-.index-bouquet-wish-8march__input {
+/* Ваше имя, дата доставки, email, пожелания — по макету. Селектор с body.design-8march перебивает общее правило body.design-8march input/textarea из 8march_design.css. */
+.index-bouquet-wish-8march__input,
+body.design-8march .index-bouquet-wish-8march__input {
   width: 100%;
   padding: 0.6rem 0.75rem;
-  /* Не менять без согласования! */
-  font-family: Inter, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 140%;
-  letter-spacing: 0;
-  color: #3B3036;
+  font-family: Inter, sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-size: 16px !important;
+  line-height: 140% !important;
+  letter-spacing: 0 !important;
+  color: #3B3036 !important;
   background: #fff;
   border: none;
   border-radius: 0 !important;
   box-sizing: border-box;
   outline: none;
 }
-.index-bouquet-wish-8march__input:focus {
+.index-bouquet-wish-8march__input:focus,
+body.design-8march .index-bouquet-wish-8march__input:focus {
   outline: none;
 }
 
-/* Не менять без согласования! */
-.index-bouquet-wish-8march__input::placeholder {
-  font-family: Inter, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 140%;
-  letter-spacing: 0;
-  color: #3B3036;
+.index-bouquet-wish-8march__input::placeholder,
+body.design-8march .index-bouquet-wish-8march__input::placeholder {
+  font-family: Inter, sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-size: 16px !important;
+  line-height: 140% !important;
+  letter-spacing: 0 !important;
+  color: #3B3036 !important;
   opacity: 0.7;
 }
 
-.index-bouquet-wish-8march__textarea {
+.index-bouquet-wish-8march__textarea,
+body.design-8march .index-bouquet-wish-8march__textarea {
+  font-family: Inter, sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  font-size: 16px !important;
+  line-height: 140% !important;
+  letter-spacing: 0 !important;
+  color: #3B3036 !important;
   resize: none;
   min-height: 0;
   height: 2.6rem;
