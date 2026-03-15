@@ -1,13 +1,15 @@
 /**
  * Это раздел «LUCIANO в соцсетях» (светло-розовая полоса, заголовок, текст, ссылки TELEGRAM/VK).
  * Стили вынесены сюда из 8march_index_page_design.css и 8march_design.css.
+ *
+ * ВАЖНО: блок и его стили не менять без разрешения заказчика.
  */
 
 /* --- Базовые стили (тестовая страница .page-index-8march и главная в .page-index-8march-content) --- */
 .index-social-8march {
   width: 100%;
   padding: 1.75rem 1rem;
-  background: #fce8e9;
+  background: #FBE3E1;
 }
 
 .index-social-8march__inner {
@@ -16,15 +18,21 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem 1.5rem;
+  gap: 1rem 2rem;
+  padding-left: 0;
+  padding-right: 1rem;
+  box-sizing: border-box;
 }
 
 .index-social-8march__title {
   margin: 0;
-  font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif) !important;
   font-weight: 300 !important;
-  font-size: 1.25rem;
-  letter-spacing: 0.02em;
+  font-style: normal;
+  font-size: 28px !important;
+  line-height: 100% !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
   color: #2d2d2d;
   flex: 0 0 auto;
 }
@@ -77,7 +85,7 @@ body.design-8march .page-index-8march-content .index-social-8march {
   margin-left: calc(-50vw + 50%) !important;
   margin-right: calc(-50vw + 50%) !important;
   padding: 1.75rem 1rem !important;
-  background: #fce8e9 !important;
+  background: #FBE3E1 !important;
   box-sizing: border-box !important;
 }
 
@@ -89,8 +97,8 @@ body.design-8march .page-index-8march-content .index-social-8march__inner {
   display: flex !important;
   flex-wrap: wrap !important;
   align-items: center !important;
-  gap: 1rem 1.5rem !important;
-  padding-left: 1rem !important;
+  gap: 1rem 2rem !important;
+  padding-left: 0 !important;
   padding-right: 1rem !important;
   box-sizing: border-box !important;
 }
@@ -99,13 +107,15 @@ body.design-8march .index-social-8march__title,
 body.design-8march main .index-social-8march__title,
 body.design-8march .page-index-8march-content .index-social-8march__title {
   margin: 0 !important;
-  font-family: var(--8march-font-serif, 'Cormorant Garamond', Georgia, serif) !important;
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif) !important;
   font-weight: 300 !important;
-  font-size: 1.25rem !important;
-  letter-spacing: 0.02em !important;
+  font-style: normal !important;
+  font-size: 28px !important;
+  line-height: 100% !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
   color: #2d2d2d !important;
   flex: 0 0 auto !important;
-  text-transform: none !important;
 }
 
 body.design-8march .index-social-8march__text,
