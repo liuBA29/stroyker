@@ -2121,6 +2121,16 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   color: #3B3036;
 }
 
+/* Только на малом экране: br не переносит, одна строка; пробел перед «Мы» через ::after. На большом экране br и обычные пробелы без &nbsp; */
+@media (max-width: 767px) {
+  .index-bouquet-wish-8march__desc br {
+    display: inline;
+  }
+  .index-bouquet-wish-8march__desc br::after {
+    content: '\00a0';
+  }
+}
+
 .index-bouquet-wish-8march__form {
   max-width: 360px;
 }
