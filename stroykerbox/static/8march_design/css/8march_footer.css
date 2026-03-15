@@ -96,6 +96,14 @@
   margin-top: 1.25rem !important;
   /* ВАЖНО/НЕ МЕНЯТЬ: отступ между заголовком колонки и пунктами меню (по согласованию) */
   margin-bottom: 1.25rem !important;
+  font-family: 'Cormorant Garamond', var(--8march-font-serif, Georgia, serif) !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-size: 20px !important;
+  line-height: 100% !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+  font-variant-numeric: lining-nums proportional-nums !important;
 }
 
 .footer--8march .footer-8march-questions-row {
