@@ -17,6 +17,17 @@ logger = logging.getLogger(__name__)
 register = template.Library()
 
 
+@register.filter
+def rub_symbol(value):
+    """В ценах 8 марта: букву Р/р. заменить на знак рубля ₽ (только суффикс валюты)."""
+    if value is None:
+        return ''
+    s = str(value).strip()
+    if not s:
+        return s
+    return s.replace(' р.', ' ₽').replace(' Р', ' ₽')
+
+
 def get_tag_classes(tag, tag_args=None):
     tag_classes = tag.replace('render_', '')
     if tag_classes == 'statictext' and tag_args:
