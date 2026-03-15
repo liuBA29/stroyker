@@ -31,6 +31,14 @@
       } catch (err) {}
     }
     if (!opened) {
+      /* Закрываем Fancybox, если он успел открыться — убираем его контейнер/подложку. */
+      if (typeof window.jQuery !== 'undefined' && window.jQuery.fancybox && window.jQuery.fancybox.close) {
+        try { window.jQuery.fancybox.close(); } catch (err) {}
+      }
+      /* На проде Fancybox может успеть перенести #callme-modal в .fancybox-container — тогда модалка оказывается под нашим оверлеем. Переносим в body, чтобы была поверх. */
+      if (modal.parentNode !== document.body) {
+        document.body.appendChild(modal);
+      }
       modal.classList.add('callme-modal--open');
       var overlay = document.getElementById(overlayId);
       if (!overlay) {
