@@ -252,6 +252,12 @@ def render_new_design_footer_questions_block(context):
     return context
 
 
+@register.inclusion_tag('customization/tags/new_design_footer_callme_modal.html', takes_context=True)
+def render_new_design_footer_callme_modal(context):
+    """new_design: футер — модалка «ПЕРЕЗВОНИТЕ МНЕ» (отдельный пункт контейнера)."""
+    return context
+
+
 @register.inclusion_tag('customization/tags/new_design_footer_menu_block.html', takes_context=True)
 def render_new_design_footer_menu_block(context):
     """new_design: футер — колонки «Каталог» и «Покупателям». """

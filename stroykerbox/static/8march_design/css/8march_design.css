@@ -1366,3 +1366,40 @@ body.design-8march .delivery-total--cart li {
 body.design-8march header {
   position: relative !important;
 }
+
+/* Оверлей (затемнённый экран) при открытии модалки «ПЕРЕЗВОНИТЕ МНЕ» — Fancybox создаёт .fancybox-bg */
+body.design-8march .fancybox-bg {
+  background: rgba(0, 0, 0, 0.5) !important;
+  opacity: 1 !important;
+}
+body.design-8march .fancybox-container {
+  z-index: 99999;
+}
+
+/* Резервное открытие модалки «ПЕРЕЗВОНИТЕ МНЕ» без Fancybox (класс .callme-modal--open) */
+body.design-8march #callme-modal.callme-modal--open {
+  display: block !important;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100000;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  background: transparent !important;
+  padding: 0 !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+body.design-8march .callme-modal-overlay-8march {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99999;
+  cursor: pointer;
+}
+body.design-8march .callme-modal-overlay-8march--visible {
+  display: block;
+}

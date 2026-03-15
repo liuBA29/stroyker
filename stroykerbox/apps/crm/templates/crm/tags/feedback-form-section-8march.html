@@ -1,5 +1,5 @@
 {% load static sekizai_tags utils_tags i18n common_tags %}
-{# Форма «Остались вопросы?» для футера 8 марта: 4 одинаковых поля с подписями Ваше имя, Номер телефона, e-mail, Ваш вопрос. #}
+{# Форма «Остались вопросы?» для футера 8 марта: 4 поля (имя, телефон, e-mail, вопрос). #}
 <section class="feedback-form feedback-form--8march-footer" aria-labelledby="feedback-form-8march-title">
     <div class="feedback-form--8march-footer__inner">
         <form action="{% url 'crm:feedback-message-request' %}"

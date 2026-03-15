@@ -1,22 +1,4 @@
-{% load crm_tags location_tags %}
-{# Футер new_design: блок «Остались вопросы?» (по эталону footer_8march.html) — один раз. #}
-<div class="footer-8march-questions-row">
-    <div class="footer-8march-questions-col">
-        <div class="footer-8march-shift-block" aria-hidden="true"></div>
-        <h2 class="footer-8march-questions__title" id="feedback-form-8march-title">ОСТАЛИСЬ<br>ВОПРОСЫ?</h2>
-        {% render_feedback_form_section_8march %}
-    </div>
-    <div class="footer-8march-call-col">
-        {% location_contact_phone as footer_phone_obj %}
-        <p class="footer-8march-call__phone pretty_numbers">
-            {% if footer_phone_obj %}<a href="tel:{{ footer_phone_obj.phone_raw }}">{{ footer_phone_obj.phone }}</a>{% else %}<a href="tel:+79179500606">+7 (917) 950-06-06</a>{% endif %}
-        </p>
-        <div class="footer-8march-shift-block footer-8march-shift-block--right" aria-hidden="true"></div>
-        <a href="javascript:;" data-fancybox="callme-modal" data-src="#callme-modal" class="footer-8march-call__btn black-button callme-button">ПЕРЕЗВОНИТЕ МНЕ</a>
-        <div class="footer-8march-shift-block footer-8march-shift-block--right" aria-hidden="true"></div>
-    </div>
-</div>
-{# Скрипт открытия модалки «ПЕРЕЗВОНИТЕ МНЕ» — всегда в одном блоке с кнопкой, без отдельного пункта в админке #}
+{# Отдельный тег футера 8 марта: только скрипт открытия модалки по кнопке «ПЕРЕЗВОНИТЕ МНЕ». Сама модалка (#callme-modal) подключается в base.html в block bottom. #}
 <script>
 (function(){
   var overlayId = 'callme-modal-overlay-8march';

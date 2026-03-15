@@ -117,6 +117,7 @@ NEW_DESIGN_BODY_TAG_LINES = [
 ]
 NEW_DESIGN_FOOTER_TAG_LINES = [
     ('customization_tags:render_new_design_footer_questions_block', 'new_design: футер — Остались вопросы?'),
+    ('customization_tags:render_new_design_footer_callme_modal', 'new_design: футер — модалка Перезвоните мне'),
     ('customization_tags:render_new_design_footer_menu_block', 'new_design: футер — меню (Каталог/Покупателям)'),
     ('customization_tags:render_new_design_footer_copyright_block', 'new_design: футер — копирайт ©'),
 ]
