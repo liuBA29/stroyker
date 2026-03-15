@@ -37,6 +37,15 @@
   </form>
   <script>
   (function(){
+    function getCsrfToken() {
+      var name = 'csrftoken';
+      var cookies = document.cookie ? document.cookie.split(';') : [];
+      for (var i = 0; i < cookies.length; i++) {
+        var parts = cookies[i].split('=');
+        if (parts[0].trim() === name) return decodeURIComponent(parts.slice(1).join('=').trim());
+      }
+      return '';
+    }
     var form = document.getElementById('feedback-bouquet-wish-form');
     if (!form) return;
     form.addEventListener('submit', function(e){
@@ -55,9 +64,11 @@
       var date = form.querySelector('[name="delivery_date"]');
       if (msg && date && date.value) msg.value = 'Дата доставки: ' + date.value + '\n\n' + (msg.value || '').trim();
       var body = new URLSearchParams(new FormData(form)).toString();
+      var headers = { 'X-Requested-With': 'XMLHttpRequest', 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' };
+      var csrf = getCsrfToken(); if (csrf) headers['X-CSRFToken'] = csrf;
       fetch(form.action, {
         method: 'POST',
-        headers: { 'X-Requested-With': 'XMLHttpRequest', 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
+        headers: headers,
         body: body
       }).then(function(r){
         if (r.redirected && r.url !== form.action) { window.location = r.url; return null; }
