@@ -2677,19 +2677,20 @@ body.design-8march .index-8march-map-wrap #yamap_addresses {
 }
 
 .index-8march-map-overlay__btn {
-  display: inline-block;
+  /* display: inline-flex !important — иначе .black-button из 8march_manipulators перебивает и надпись прижимается к верху */
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
   width: 155px;
   height: 50px;
-  line-height: 50px;
+  margin-top: 0.25rem;
+  padding: 0 1.25rem;
   text-align: center;
   font-size: 1rem;
   font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.25rem;
-  padding: 0.6rem 1.25rem;
+  line-height: 1;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 @media (max-width: 767px) {
@@ -2777,7 +2778,7 @@ body.design-8march .index-8march-map-wrap #yamap_addresses {
   .index-8march-map-overlay__btn {
     width: 145px;
     height: 47px;
-    line-height: 47px;
+    line-height: 1;
   }
   .index-8march-map-overlay__icon svg {
     width: 20px;
