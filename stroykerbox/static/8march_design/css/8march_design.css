@@ -1376,14 +1376,16 @@ body.design-8march .fancybox-container {
   z-index: 99999;
 }
 
-/* Резервное открытие модалки «ПЕРЕЗВОНИТЕ МНЕ» без Fancybox (класс .callme-modal--open) */
-body.design-8march #callme-modal.callme-modal--open {
+/* Резервное открытие модалки «ПЕРЕЗВОНИТЕ МНЕ» без Fancybox (класс .callme-modal--open).
+   Два селектора: с body.design-8march и без — на проде body может не иметь этого класса. */
+body.design-8march #callme-modal.callme-modal--open,
+#callme-modal.callme-modal--open {
   display: block !important;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 100000;
+  position: fixed !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 100000 !important;
   max-width: 90vw;
   max-height: 90vh;
   overflow: auto;
@@ -1391,8 +1393,11 @@ body.design-8march #callme-modal.callme-modal--open {
   padding: 0 !important;
   min-width: 0 !important;
   min-height: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
-body.design-8march .callme-modal-overlay-8march {
+body.design-8march .callme-modal-overlay-8march,
+.callme-modal-overlay-8march {
   display: none;
   position: fixed;
   inset: 0;
@@ -1400,6 +1405,7 @@ body.design-8march .callme-modal-overlay-8march {
   z-index: 99999;
   cursor: pointer;
 }
-body.design-8march .callme-modal-overlay-8march--visible {
-  display: block;
+body.design-8march .callme-modal-overlay-8march--visible,
+.callme-modal-overlay-8march--visible {
+  display: block !important;
 }
