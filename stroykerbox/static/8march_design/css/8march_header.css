@@ -251,6 +251,14 @@ section.__header.__header--8march.header-8march {
 .header-8march__drawer-nav a:hover {
   opacity: 0.85;
 }
+/* На малом экране скрываем выпадающее меню справа (как на десктопе) — остаётся только выдвижная панель слева, иначе менюшка обрезается */
+@media (max-width: 767px) {
+  .header-8march__dropdown-wrap .header-8march__dropdown {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none;
+  }
+}
 @media (min-width: 768px) {
   .header-8march__drawer {
     display: none;
