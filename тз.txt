@@ -1,4 +1,4 @@
-Активных страниц (URL из sitemap): 342
+Активных страниц (URL из sitemap + найденные в проекте): 348
 
 https://lucianoflowers.ru/catalog/gotovaya-vitrina/
 https://lucianoflowers.ru/catalog/cvety-na-prazdniki/
@@ -342,3 +342,54 @@ https://lucianoflowers.ru/catalog/product/kustovye-rozy-21sht/
 https://lucianoflowers.ru/public-offer/
 https://lucianoflowers.ru/privacy-policy/
 https://lucianoflowers.ru/requisites/
+
+# Ниже страницы, которые используются в проекте (меню/роуты), но отсутствуют в sitemap.xml
+https://lucianoflowers.ru/about/
+https://lucianoflowers.ru/services/
+https://lucianoflowers.ru/delivery/
+https://lucianoflowers.ru/bouquet-care/
+https://lucianoflowers.ru/reviews/
+https://lucianoflowers.ru/contacts/
+
+
+========================================================================
+Оценка уникальных шаблонов (по проекту + sitemap)
+========================================================================
+
+Минимально: 6 шаблонов
+Консервативно: 6 шаблонов
+
+Группы URL (для понимания объёма):
+- Каталог: карточка товара (/catalog/product/…): 323 URL
+  - https://lucianoflowers.ru/catalog/product/avtoparfyum-chistyj-hlopok-286/
+  - https://lucianoflowers.ru/catalog/product/svecha-266/
+  - https://lucianoflowers.ru/catalog/product/svecha-265/
+  - https://lucianoflowers.ru/catalog/product/svecha-263/
+  - https://lucianoflowers.ru/catalog/product/svecha-banka-home/
+- Каталог: раздел (/catalog/<slug>/): 9 URL
+  - https://lucianoflowers.ru/catalog/gotovaya-vitrina/
+  - https://lucianoflowers.ru/catalog/cvety-na-prazdniki/
+  - https://lucianoflowers.ru/catalog/avtorskie/
+  - https://lucianoflowers.ru/catalog/monoduo-bukety/
+  - https://lucianoflowers.ru/catalog/wow-bukety/
+- Каталог: страница категории (/catalog/category/…): 7 URL
+  - https://lucianoflowers.ru/catalog/category/cvety-na-prazdniki/8-marta/
+  - https://lucianoflowers.ru/catalog/category/cvety-na-prazdniki/buket-na-14-fevralya/
+  - https://lucianoflowers.ru/catalog/category/cvety-na-prazdniki/bukety-na-1-sentyabrya/
+  - https://lucianoflowers.ru/catalog/category/cvety-na-prazdniki/den-materi/
+  - https://lucianoflowers.ru/catalog/category/cvety-na-prazdniki/new-year-collection/
+- Прочие/инфо страницы: 9 URL
+  - https://lucianoflowers.ru/public-offer/
+  - https://lucianoflowers.ru/privacy-policy/
+  - https://lucianoflowers.ru/requisites/
+  - https://lucianoflowers.ru/about/
+  - https://lucianoflowers.ru/services/
+  - https://lucianoflowers.ru/delivery/
+  - https://lucianoflowers.ru/bouquet-care/
+  - https://lucianoflowers.ru/reviews/
+  - https://lucianoflowers.ru/contacts/
+
+Инфо-страницы, найденные в sitemap (top-level):
+- /privacy-policy/
+- /public-offer/
+- /requisites/

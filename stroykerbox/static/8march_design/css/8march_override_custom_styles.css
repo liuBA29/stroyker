@@ -61,3 +61,11 @@ body.design-8march .footer--8march .footer-content__ul-content a:hover {
 body.design-8march .footer--8march .footer-copyright {
   color: var(--8march-footer-title, #2d2d2d) !important;
 }
+
+/* ═══ SmartCaptcha: privacy shield поверх всех блоков (десктоп) ═══
+   На некоторых страницах у сайта есть слои с высоким z-index, из-за чего
+   бейдж SmartCaptcha ("Privacy notice") уходит "под" контент. */
+#shield.SmartCaptcha-Shield,
+.SmartCaptcha-Shield {
+  z-index: 2147483647 !important;
+}

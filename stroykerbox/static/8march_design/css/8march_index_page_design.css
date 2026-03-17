@@ -103,6 +103,16 @@
   box-sizing: border-box;
 }
 
+/* Десктоп: у «Акций» заголовок вровень с карточками (левее, без внутренних паддингов) */
+@media (min-width: 992px) {
+  .index-promo-8march > .index-promo-8march__title.big-title {
+    margin-left: 0;
+    margin-right: auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
 /* Заголовки секций главной 8march — Roboto Light (кроме .big-title). Раздел «LUCIANO в соцсетях» — в 8march_redistribusion.css */
 .page-index-8march .index-info-8march__heading,
 .page-index-8march .index-hero-8march__text {
@@ -993,6 +1003,23 @@
   height: 500px;
 }
 
+/* Десктоп: «Акции» выравниваем по левому краю (без влияния на мобильные стили) */
+@media (min-width: 992px) {
+  .index-promo-8march__carousel-wrap {
+    margin-left: 0;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .index-promo-8march__footer {
+    margin-left: 0;
+    margin-right: auto;
+    text-align: left;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .index-promo-8march__carousel {
   overflow: hidden;
   position: relative;
@@ -1707,6 +1734,16 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   min-height: 380px;
 }
 
+/* Десктоп: «Сборные букеты» выравниваем по левому краю (без влияния на мобильные стили) */
+@media (min-width: 992px) {
+  .index-bouquets-8march__carousel-wrap {
+    margin-left: 0;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .index-bouquets-8march__carousel {
   overflow: hidden;
   position: relative;
@@ -1752,6 +1789,14 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   margin: 0;
   padding: 0 3rem;
   box-sizing: border-box;
+}
+
+/* Десктоп: сетка «Сборные букеты» вровень с заголовком (левее) */
+@media (min-width: 992px) {
+  .index-bouquets-8march__grid {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .index-bouquets-8march__grid-row {
