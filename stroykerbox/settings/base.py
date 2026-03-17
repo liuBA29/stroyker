@@ -401,6 +401,10 @@ GEOIP_LOCATION_MODEL = 'stroykerbox.apps.locations.models.Location'
 
 YANDEX_API_KEY = 'c3161078-41ce-4809-936f-dd4c9bcc8a50'
 
+# Luciano: Yandex Maps (used in templates via settings_value)
+YANDEX_MAPS_API_KEY = YANDEX_API_KEY
+YANDEX_MAP_ADDRESS = ''
+
 ADMINS = {
     ('Alex Jurow', 'ussria@gmail.com'),
     ('Luzhetskiy Dmitry', 'dmitry@fancymedia.ru'),
