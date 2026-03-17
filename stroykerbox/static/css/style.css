@@ -14337,8 +14337,10 @@ ul {
                           margin: 5px 18px 5px 0 !important;
                       }
 
-                      /* SmartCaptcha: privacy shield поверх всех блоков (десктоп) */
+                      /* Расскомментировать ПЕРВЫМ, когда будет оформлен заказ */
+                      /*
                       #shield.SmartCaptcha-Shield,
                       .SmartCaptcha-Shield {
                           z-index: 2147483647 !important;
                       }
+                      */
