@@ -107,6 +107,8 @@ _constance_defaults = {
     'PERSONAL_PRICE_LABEL': '',
     'PRODUCT_TEASER_VARIANT': '0',
     'DISPLAY_TAG_CONTAINERS': '[]',
+    'YANDEX_MAPS_API_KEY': '',
+    'YANDEX_MAP_ADDRESS': '',
     'CAPTCHA_MODE': 'google',
     'YCAPTCHA_CLIENT_KEY': '',
     'YCAPTCHA_SERVER_KEY': '',

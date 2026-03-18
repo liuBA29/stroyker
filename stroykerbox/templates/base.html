@@ -60,7 +60,11 @@
                 register: "{% url 'registration' %}",
             }
         </script>
+        {% if debug %}
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+        {% else %}
         <script src="{% static 'js/jquery.js' %}?v5"></script>
+        {% endif %}
         <script src="{% static 'js/inputmask.js' %}?v5"></script>
         <script src="{% static 'js/fancyapps.js' %}?v5"></script>
         <script src="{% static 'js/mmenu-js.js' %}?v5"></script>
