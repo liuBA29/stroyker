@@ -473,6 +473,13 @@ section.feedback-form--8march-footer button[type="submit"].black-button:hover {
     flex-basis: 100%;
     width: 100%;
   }
+  /* Малый экран: кнопка «ОТПРАВИТЬ» меньше (только футер «Остались вопросы?») */
+  .footer--8march .feedback-form--8march-footer__submit.black-button,
+  .footer--8march section.feedback-form--8march-footer button[type="submit"].black-button {
+    height: 40px !important;
+    padding: 0 1rem !important;
+    font-size: 0.8rem !important;
+  }
   .footer--8march .feedback-form--8march-footer__row .form-group.privacy-policy {
     flex-basis: 100%;
     width: 100%;

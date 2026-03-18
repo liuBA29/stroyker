@@ -90,6 +90,22 @@
   color: #FBE3E1 !important;
 }
 
+/* Малый экран: кнопка «ОТПРАВИТЬ» в футере ниже по высоте */
+@media (max-width: 767px) {
+  /* ВАЖНО: «Остались вопросы?» (кнопка ОТПРАВИТЬ) — согласовано. Не менять без согласования с заказчиком. */
+  .page-index-8march .feedback-form--8march-footer__submit.black-button,
+  .page-index-8march section.feedback-form--8march-footer button[type="submit"].black-button {
+    height: 40px !important;
+    width: 48% !important;
+    flex-basis: auto !important;
+    max-width: 48% !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
 /* --- Типографика кнопок «СМОТРЕТЬ ВЕСЬ КАТАЛОГ» (по макету) --- */
 .page-index-8march .index-promo-8march__btn-catalog,
 .page-index-8march .index-bouquets-8march__btn-catalog,
