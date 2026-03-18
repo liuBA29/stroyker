@@ -2600,7 +2600,12 @@ body.design-8march div[itemtype="http://schema.org/Organization"] {
 .index-8march-map-wrap {
   position: relative;
   width: 100%;
-  min-height: 80vh;
+  min-height: 655px;
+  height: 655px;
+  /* ВАЖНО: карта (ymaps) рисует много слоёв с z-index.
+     Ограничиваем их областью секции, чтобы ничего не налезало на футер/следующие блоки. */
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .page-index-8march .index-8march-map-wrap .conditional-section.ya-map,
@@ -2610,7 +2615,7 @@ body.design-8march div[itemtype="http://schema.org/Organization"] {
   top: 0;
   width: 100%;
   height: 100%;
-  min-height: 80vh;
+  min-height: 655px;
   padding: 0;
   margin: 0;
 }
@@ -2621,16 +2626,18 @@ body.design-8march .index-8march-map-wrap .wide-map,
 body.design-8march .index-8march-map-wrap #yamap_addresses {
   /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: размеры карты на большом экране (650x650) зафиксированы; без прямого письменного согласования с заказчиком НЕ менять. */
   width: 100% !important;
-  height: 650px !important;
-  min-height: 650px !important;
+  height: 655px !important;
+  min-height: 655px !important;
+  position: relative;
+  overflow: hidden;
 }
 
 .index-8march-map-overlay {
   /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: позиционирование и размеры карточки «ГДЕ МЫ НАХОДИМСЯ» на большом экране зафиксированы; без письменного согласования НЕ менять. */
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  left: 137px;
+  top: 85px;
+  transform: none;
   z-index: 2;
   width: 480px;
   height: 485px;
@@ -2642,13 +2649,6 @@ body.design-8march .index-8march-map-wrap #yamap_addresses {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   border-radius: 0;
 }
-@media (min-width: 768px) {
-  /* Большой экран: смещение карточки влево. Увеличено смещение — карточка левее. */
-  .index-8march-map-overlay {
-    left: calc(50% - 320px);
-  }
-}
-
 .index-8march-map-overlay .index-8march-questions-wrap__title {
   margin: 0 0 1.35rem;
   text-align: left;
@@ -2769,6 +2769,10 @@ body.design-8march .index-8march-map-wrap #yamap_addresses {
      - типографику/выравнивание заголовка и текста адреса/телефона,
      - высоту карты (.wide-map / #yamap_addresses).
   */
+  .index-8march-map-wrap {
+    height: 710px;
+    min-height: 710px;
+  }
   .index-8march-map-overlay__icon {
     width: 46px;
     height: 46px;
@@ -2778,12 +2782,12 @@ body.design-8march .index-8march-map-wrap #yamap_addresses {
   }
   .index-8march-map-overlay {
     /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: мобильные размеры и позиционирование карточки «ГДЕ МЫ НАХОДИМСЯ» зафиксированы; без письменного согласования НЕ менять. */
-    width: 80vw;
-    height: 82vw;
-    max-width: 80vw;
+    width: clamp(300px, 88vw, 342px);
+    height: clamp(315px, 92vw, 359px);
+    max-width: 342px;
     left: 50%;
     top: auto;
-    bottom: 2rem;
+    bottom: clamp(48px, 12vw, 72px);
     right: auto;
     transform: translateX(-50%);
     padding: 1.25rem 1rem;
@@ -2855,8 +2859,10 @@ body.design-8march .index-8march-map-wrap #yamap_addresses {
   body.design-8march .index-8march-map-wrap .wide-map,
   body.design-8march .index-8march-map-wrap #yamap_addresses {
     /* ВАЖНО/СТРОГИЙ ЗАПРЕТ: высота именно карты на телефоне зафиксирована 700px; без письменного согласования не менять. */
-    height: 700px !important;
-    min-height: 700px !important;
+    height: 2200px !important;
+    min-height: 2200px !important;
+    position: relative;
+    overflow: hidden;
   }
 }
 

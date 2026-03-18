@@ -1,3 +1,4 @@
+{% load static %}
 <section class="index-8march-questions-wrap" id="questions-section" aria-labelledby="questions-8march-title">
   <div class="index-8march-map-wrap">
     <div class="index-8march-map-overlay" aria-hidden="false">
@@ -6,7 +7,9 @@
         <span class="index-8march-map-overlay__icon index-8march-map-overlay__icon--address" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
         </span>
-        <span class="index-8march-map-overlay__text pretty_numbers">Г. САМАРА,<br>УЛ. НОВО-САДОВАЯ, Д. 179</span>
+        <span class="index-8march-map-overlay__text pretty_numbers">
+          {% if config.YANDEX_MAP_ADDRESS %}{{ config.YANDEX_MAP_ADDRESS|safe }}{% else %}Г. САМАРА,<br>УЛ. НОВО-САДОВАЯ, Д. 179{% endif %}
+        </span>
       </a>
       <a href="tel:+79179500606" class="index-8march-map-overlay__row index-8march-map-overlay__phone">
         <span class="index-8march-map-overlay__icon index-8march-map-overlay__icon--phone" aria-hidden="true">
@@ -16,8 +19,36 @@
       </a>
       <a href="tel:+79179500606" class="index-8march-map-overlay__btn black-button">СВЯЗАТЬСЯ</a>
     </div>
-    <div id="yamap_addresses" class="wide-map" aria-label="Карта проезда">
-      <iframe title="Карта: Самара, Ново-Садовая, 179" src="https://yandex.ru/map-widget/v1/?ll=50.15545%2C53.21567&amp;z=15&amp;pt=50.162294,53.219360,pm2rdm" width="100%" height="100%" frameborder="0" loading="lazy" allowfullscreen="true" style="border:0; display:block;"></iframe>
+    <div
+      class="conditional-section conditional-section_bg ya-map"
+      aria-label="Карта проезда"
+    >
+      {# Штатный маркер Яндекса для точки (временно). #}
+      <div
+        class="address-data"
+        data-latitude="53.219360"
+        data-longitude="50.162294"
+        data-hint-content="Г. Самара, ул. Ново-Садовая, д. 179"
+        data-balloon-content="Г. Самара, ул. Ново-Садовая, д. 179"
+        data-icon-preset="redDotIcon"
+      ></div>
+      <div
+        class="wide-map"
+        id="yamap_addresses"
+        data-center-latitude="53.21567"
+        data-center-longitude="50.15545"
+        data-center-zoom="15"
+        data-mobile-center-latitude="53.124419118174735"
+        data-mobile-center-longitude="50.16250501179298"
+        data-mobile-center-zoom="13"
+        {# Расскомментировать ВТОРЫМ, когда будет заказ #}
+        {# data-main-store-lat="53.219360" #}
+        {# data-main-store-lng="50.162294" #}
+        {# data-main-store-icon="{% static '8march_design/images/map_icon.png' %}" #}
+        {# data-main-store-icon-w="140" #}
+        {# data-main-store-icon-h="58" #}
+      ></div>
+      {% include 'addresses/include/addresses-common.html' with map_container_id='yamap_addresses' %}
     </div>
   </div>
 </section>
