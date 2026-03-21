@@ -1,0 +1,34 @@
+{% load static catalog_tags commerce_tags utils_tags thumbnail %}
+{# Тело + подвал мини-корзины 8 марта. Рендерится на сервере и отдаётся в JSON для AJAX-обновления. #}
+<div class="mini-cart-8march__body">
+  {% if mini_cart_items %}
+    <ul class="mini-cart-8march__list">
+      {% for product, quantity in mini_cart_items %}
+      {% product_cart_price product as product_price %}
+      <li class="mini-cart-8march__item">
+        {% if product.main_image %}
+        <span class="mini-cart-8march__img">
+          {% thumbnail product.main_image.image '120x120' as im %}
+          <img src="{{ im.url }}" alt="{{ product.name }}" loading="lazy">
+          {% endthumbnail %}
+        </span>
+        {% endif %}
+        <span class="mini-cart-8march__info">
+          <span class="mini-cart-8march__name">{{ product.name }}</span>
+          <span class="mini-cart-8march__qty">{{ quantity }} × {{ product_price|price_format }} {{ currency_symbol }}</span>
+          <span class="mini-cart-8march__row-total">{{ product_price|multiplication:quantity|price_format }} {{ currency_symbol }}</span>
+        </span>
+      </li>
+      {% endfor %}
+    </ul>
+    <p class="mini-cart-8march__total">
+      <span>Итого:</span>
+      <strong class="normal_price_format pretty_numbers">{{ cart.total_price|price_with_space }} {{ currency_symbol }}</strong>
+    </p>
+  {% else %}
+    <p class="mini-cart-8march__empty">Корзина пуста</p>
+  {% endif %}
+</div>
+<div class="mini-cart-8march__footer">
+  <a href="{% url 'cart:cart' %}" class="mini-cart-8march__btn black-button">В корзину</a>
+</div>

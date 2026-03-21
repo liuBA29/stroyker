@@ -52,12 +52,15 @@
         {% endif %}
 
         {% addtoblock "js" %}
+        {# reverse через именованный URL; при отсутствии маршрута (старый деплой) Django не падает — переменная пустая, см. default #}
+        {% url 'cart:ajax_mini_cart_8march' as url_ajax_mini_cart_8march %}
         <script type="text/javascript">
             // This url dictionary is used in js scripts instead of direct links.
             const URLS = {
                 static: "{% static '' %}",
                 cart: "{% url 'cart:cart' %}",
                 register: "{% url 'registration' %}",
+                miniCart8march: "{{ url_ajax_mini_cart_8march|default:'/cart/ajax/mini-cart-8march/' }}",
             }
         </script>
         {% if debug %}

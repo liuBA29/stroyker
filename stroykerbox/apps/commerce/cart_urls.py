@@ -7,6 +7,11 @@ app_name = 'cart'
 urlpatterns = [
     path('', cart_views.cart, name='cart'),
     path('add/<int:product_pk>', cart_views.add_to_cart, name='add_to_cart'),
+    path(
+        'ajax/mini-cart-8march/',
+        cart_views.ajax_mini_cart_8march,
+        name='ajax_mini_cart_8march',
+    ),
     path('ajax-add-to-cart-related/', cart_views.ajax_add_to_cart_related, name='ajax_add_to_cart_related'),
     path(
         'ajax_get_delivery_to_address_cost/',

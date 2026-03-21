@@ -9,37 +9,8 @@
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
-    <div class="mini-cart-8march__body">
-      {% if mini_cart_items %}
-        <ul class="mini-cart-8march__list">
-          {% for product, quantity in mini_cart_items %}
-          {% product_cart_price product as product_price %}
-          <li class="mini-cart-8march__item">
-            {% if product.main_image %}
-            <span class="mini-cart-8march__img">
-              {% thumbnail product.main_image.image '120x120' as im %}
-              <img src="{{ im.url }}" alt="{{ product.name }}" loading="lazy">
-              {% endthumbnail %}
-            </span>
-            {% endif %}
-            <span class="mini-cart-8march__info">
-              <span class="mini-cart-8march__name">{{ product.name }}</span>
-              <span class="mini-cart-8march__qty">{{ quantity }} × {{ product_price|price_format }} {{ currency_symbol }}</span>
-              <span class="mini-cart-8march__row-total">{{ product_price|multiplication:quantity|price_format }} {{ currency_symbol }}</span>
-            </span>
-          </li>
-          {% endfor %}
-        </ul>
-        <p class="mini-cart-8march__total">
-          <span>Итого:</span>
-          <strong class="normal_price_format pretty_numbers">{{ cart.total_price|price_with_space }} {{ currency_symbol }}</strong>
-        </p>
-      {% else %}
-        <p class="mini-cart-8march__empty">Корзина пуста</p>
-      {% endif %}
-    </div>
-    <div class="mini-cart-8march__footer">
-      <a href="{% url 'cart:cart' %}" class="mini-cart-8march__btn black-button">В корзину</a>
+    <div id="mini-cart-8march-sync" class="mini-cart-8march__sync">
+      {% include 'commerce/tags/mini-cart-8march-inner.html' %}
     </div>
   </div>
 </div>
@@ -59,8 +30,9 @@
     document.body.style.overflow = '';
   }
   function init() {
-    var openBtn = document.querySelector('[data-mini-cart-8march-open]');
-    if (openBtn) openBtn.addEventListener('click', openMiniCart);
+    document.querySelectorAll('[data-mini-cart-8march-open]').forEach(function(btn) {
+      btn.addEventListener('click', openMiniCart);
+    });
     panel.querySelectorAll('[data-mini-cart-8march-close]').forEach(function(btn) {
       btn.addEventListener('click', closeMiniCart);
     });

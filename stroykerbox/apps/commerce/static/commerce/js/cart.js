@@ -1,4 +1,26 @@
 (function ($) {
+  /**
+   * Обновляет содержимое выдвижной мини-корзины (8 march) с сервера (JSON + HTML).
+   * Счётчики в шапке не трогает — их обновляет ответ add_to_cart / update qty.
+   */
+  function refreshMiniCart8marchPanelHtml() {
+    var $sync = $("#mini-cart-8march-sync");
+    if (
+      !$sync.length ||
+      typeof URLS === "undefined" ||
+      typeof URLS.miniCart8march === "undefined"
+    ) {
+      return;
+    }
+    $.getJSON(URLS.miniCart8march, function (data) {
+      if (data && data.result === "success" && data.html) {
+        $sync.html(data.html);
+      }
+    });
+  }
+
+  window.refreshMiniCart8marchPanelHtml = refreshMiniCart8marchPanelHtml;
+
   $(document).ready(function () {
     $(".input-number").each(function () {
       let spinner = $(this),
@@ -82,6 +104,7 @@
             } else if (count && count !== "0") {
               $(".mobile-bottom-nav-8march__icon--cart").append('<span class="mobile-bottom-nav-8march__badge">' + count + '</span>');
             }
+            refreshMiniCart8marchPanelHtml();
           }
         }
       });
@@ -126,6 +149,7 @@
               $(".mobile-bottom-nav-8march__badge").remove();
             }
           }
+          refreshMiniCart8marchPanelHtml();
         }
       });
     }

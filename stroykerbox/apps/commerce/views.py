@@ -9,6 +9,7 @@ from django.utils.translation import ugettext as _
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django.http.response import HttpResponse, HttpResponseBadRequest
 from django.urls import reverse
+from django.template.loader import render_to_string
 from django.conf import settings
 from django.contrib import messages
 from django.db import IntegrityError
@@ -102,6 +103,33 @@ def add_to_cart(request, product_pk):
         return redirect(redirect_url)
 
     return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+def ajax_mini_cart_8march(request):
+    """
+    JSON для AJAX-обновления выдвижной мини-корзины (дизайн 8 march).
+    Возвращает готовый HTML (тело + подвал панели) и счётчики в том же формате, что add_to_cart.
+    """
+    cart = cart_tools.Cart.from_request(request)
+    mini_cart_items = []
+    for i, item in enumerate(cart):
+        if i >= 2:
+            break
+        mini_cart_items.append(item)
+
+    html = render_to_string(
+        'commerce/tags/mini-cart-8march-inner.html',
+        {'cart': cart, 'mini_cart_items': mini_cart_items},
+        request=request,
+    )
+    return JsonResponse(
+        {
+            'result': 'success',
+            'html': html,
+            'count': intcomma(len(cart)),
+            'total_count': intcomma(cart.total_count),
+        }
+    )
 
 
 def cart_simple_mode(request):
