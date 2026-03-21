@@ -1376,6 +1376,10 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
     min-height: 120px;
     height: auto;
   }
+  .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__carousel-wrap {
+    padding-left: 0;
+    padding-right: 0;
+  }
   /* На малом экране прокрутка на контейнере карусели, трек — во всю ширину контента (все карточки), чтобы скролл доходил до третьей */
   .index-promo-8march__carousel {
     overflow-x: auto;
@@ -1402,10 +1406,10 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
     box-sizing: border-box;
     overflow-x: auto !important;
     overflow-y: hidden !important;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    scroll-padding-left: 1rem;
-    scroll-padding-right: 1rem;
+    padding-left: 0;
+    padding-right: 0;
+    scroll-padding-left: 0;
+    scroll-padding-right: 0;
     /* Надежнее для длинного списка: без snap на мобильном исключаем залипание на 2-й карточке */
     scroll-snap-type: none;
   }
@@ -1419,9 +1423,9 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
   }
   .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card,
   .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large {
-    width: calc(100vw - 5rem);
-    min-width: calc(100vw - 5rem);
-    flex: 0 0 calc(100vw - 5rem);
+    width: calc(100vw - 2.5rem);
+    min-width: calc(100vw - 2.5rem);
+    flex: 0 0 calc(100vw - 2.5rem);
     scroll-snap-align: none !important;
   }
   .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large {

@@ -230,7 +230,12 @@ function initSalesSliderCarousel(wrapEl) {
     if (index < 0 || index >= cards.length) return;
     setLargeCard(index);
     requestAnimationFrame(function() {
-      carousel.scrollLeft = cards[index].offsetLeft;
+      if (isDesktop()) {
+        carousel.scrollLeft = cards[index].offsetLeft;
+        return;
+      }
+      var target = cards[index].offsetLeft - Math.max(0, (carousel.clientWidth - cards[index].offsetWidth) / 2);
+      carousel.scrollLeft = Math.max(0, target);
     });
   }
 
@@ -238,10 +243,31 @@ function initSalesSliderCarousel(wrapEl) {
     setLargeCard(getCurrentIndex());
   }
 
+  function setMobileCenteredStart() {
+    // На мобильном стартуем со 2-й карточки по центру,
+    // чтобы были видны "кусочки" соседних карточек с двух сторон.
+    if (isDesktop() || cards.length < 2) return;
+    var card = cards[1];
+    var target = card.offsetLeft - Math.max(0, (carousel.clientWidth - card.offsetWidth) / 2);
+    carousel.scrollLeft = Math.max(0, target);
+  }
+
   setLargeCard(getCurrentIndex());
   carousel.addEventListener('scroll', onScroll);
   window.addEventListener('resize', function() {
     onScroll();
+    setMobileCenteredStart();
+  });
+
+  requestAnimationFrame(function() {
+    setMobileCenteredStart();
+    setLargeCard(getCurrentIndex());
+  });
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      setMobileCenteredStart();
+      setLargeCard(getCurrentIndex());
+    }, 120);
   });
 
   if (prev) prev.addEventListener('click', function(e) {
