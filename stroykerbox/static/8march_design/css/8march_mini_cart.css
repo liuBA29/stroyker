@@ -1,5 +1,5 @@
 /**
- * Мини-корзина 8 марта (выдвижная панель по клику на иконку корзины, до 2 товаров с фото).
+ * Мини-корзина 8 марта (выдвижная панель по клику на иконку; список товаров со скроллом в теле).
  * Если заказчик не захочет мини-корзину: удалите этот файл и не подключайте его в base.html,
  * а в header_8march.html уберите data-mini-cart-8march-open у ссылки корзины и блок {% include 'includes/mini_cart_8march.html' %}.
  */
@@ -87,10 +87,22 @@
 .mini-cart-8march__close:hover {
   color: #2d2d2d;
 }
+/* Тело: колонка; без min-height:0 у flex-ребёнка overflow не работает */
 .mini-cart-8march__body {
   flex: 1;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
   padding: 1rem 1.25rem;
+}
+/* Прокрутка только списка товаров, когда их много (больше чем помещается в панель) */
+.mini-cart-8march__list-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 .mini-cart-8march__list {
   list-style: none;
@@ -146,6 +158,7 @@
   color: #2d2d2d;
 }
 .mini-cart-8march__total {
+  flex-shrink: 0;
   margin: 1rem 0 0;
   padding-top: 1rem;
   border-top: 1px solid #eee;

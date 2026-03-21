@@ -111,11 +111,7 @@ def ajax_mini_cart_8march(request):
     Возвращает готовый HTML (тело + подвал панели) и счётчики в том же формате, что add_to_cart.
     """
     cart = cart_tools.Cart.from_request(request)
-    mini_cart_items = []
-    for i, item in enumerate(cart):
-        if i >= 2:
-            break
-        mini_cart_items.append(item)
+    mini_cart_items = list(cart)
 
     html = render_to_string(
         'commerce/tags/mini-cart-8march-inner.html',

@@ -1,7 +1,9 @@
 {% load static catalog_tags commerce_tags utils_tags thumbnail %}
-{# Тело + подвал мини-корзины 8 марта. Рендерится на сервере и отдаётся в JSON для AJAX-обновления. #}
+{# Тело + подвал мини-корзины 8 марта. Все позиции; прокрутка — в .mini-cart-8march__body (CSS). Для AJAX см. ajax_mini_cart_8march. #}
 <div class="mini-cart-8march__body">
   {% if mini_cart_items %}
+    {# Прокрутка только у списка; «Итого» и кнопка остаются на месте #}
+    <div class="mini-cart-8march__list-scroll">
     <ul class="mini-cart-8march__list">
       {% for product, quantity in mini_cart_items %}
       {% product_cart_price product as product_price %}
@@ -21,6 +23,7 @@
       </li>
       {% endfor %}
     </ul>
+    </div>
     <p class="mini-cart-8march__total">
       <span>Итого:</span>
       <strong class="normal_price_format pretty_numbers">{{ cart.total_price|price_with_space }} {{ currency_symbol }}</strong>

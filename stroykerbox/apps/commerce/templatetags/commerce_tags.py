@@ -14,18 +14,13 @@ def render_cart(context):
 
 @register.inclusion_tag('commerce/tags/mini-cart-8march.html', takes_context=True)
 def render_mini_cart_8march(context):
-    """Мини-корзина 8 марта: до 2 товаров с фото для выдвижной панели. Чтобы отключить — см. includes/mini_cart_8march.html и base.html (8march_mini_cart.css)."""
+    """Мини-корзина 8 марта: все позиции в панели со скроллом в .mini-cart-8march__body. Чтобы отключить — см. includes/mini_cart_8march.html и base.html (8march_mini_cart.css)."""
     request = context.get('request')
     if not request:
         return {}
     cart = Cart.from_request(request)
-    items = []
-    for i, item in enumerate(cart):
-        if i >= 2:
-            break
-        items.append(item)
     context['cart'] = cart
-    context['mini_cart_items'] = items
+    context['mini_cart_items'] = list(cart)
     return context
 
 
