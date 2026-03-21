@@ -333,13 +333,8 @@ if settings.DEBUG or settings.TESTING_MODE:
     except (ImportError, ModuleNotFoundError):
         pass
     else:
-        urlpatterns = (
-            [
-                path('__debug__/', include(debug_toolbar.urls)),
-            ]
-            + urlpatterns
-            + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-        )
+        urlpatterns = [path('__debug__/', include(debug_toolbar.urls))] + urlpatterns
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 # Static pages. This must always be the last URL rule!

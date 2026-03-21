@@ -1400,14 +1400,29 @@ body.design-8march .page-index-8march-content .index-bouquets-8march p.index-bou
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    scroll-padding-left: 1rem;
+    scroll-padding-right: 1rem;
+    /* Надежнее для длинного списка: без snap на мобильном исключаем залипание на 2-й карточке */
+    scroll-snap-type: none;
   }
   .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__carousel .index-promo-8march__track {
     width: max-content;
-    min-width: 100%;
+    min-width: max-content;
+    gap: 0.75rem;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box;
   }
   .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card,
   .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large {
-    scroll-snap-align: start;
+    width: calc(100vw - 5rem);
+    min-width: calc(100vw - 5rem);
+    flex: 0 0 calc(100vw - 5rem);
+    scroll-snap-align: none !important;
   }
   .new_spring_design_sales_slider.index-promo-8march .index-promo-8march__card--large {
     box-shadow: none;
