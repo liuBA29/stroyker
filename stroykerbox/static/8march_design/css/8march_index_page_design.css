@@ -1261,7 +1261,7 @@ body.design-8march .page-index-8march-content .new_spring_design_sales_slider.in
 
 /* Чуть меньше отступ под фото в карточке карусели — чтобы кнопка ПОДРОБНЕЕ не обрезалась снизу */
 .index-promo-8march__card .index-promo-8march__img-wrap {
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.9rem;
 }
 
 .index-promo-8march__price-old {
