@@ -4,92 +4,128 @@
   <div class="index-bouquets-8march__grid">
     <div class="index-bouquets-8march__grid-row">
       <div class="index-bouquets-8march__grid-first">
-        <a href="{{ bouquet_products.0.url }}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
+        <div class="index-bouquets-8march__card index-bouquets-8march__card--first" onclick="window.location.href='{{ bouquet_products.0.url }}';" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='{{ bouquet_products.0.url }}';}">
           <span class="index-bouquets-8march__img-wrap">
             <img src="{{ bouquet_products.0.image }}" alt="{{ bouquet_products.0.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
           </span>
           <p class="index-bouquets-8march__desc">{{ bouquet_products.0.name }}</p>
           {% if bouquet_products.0.price %}<p class="index-bouquets-8march__price big_price_format pretty_numbers">{{ bouquet_products.0.price|rub_symbol }}</p>{% endif %}
-          <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.0.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
-        </a>
+          {% if bouquet_products.0.price %}
+          <a href="{{ bouquet_products.0.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+          {% else %}
+          <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
+          {% endif %}
+        </div>
       </div>
       <div class="index-bouquets-8march__grid-rest">
-        <a href="{{ bouquet_products.1.url }}" class="index-bouquets-8march__card">
+        <div class="index-bouquets-8march__card" onclick="window.location.href='{{ bouquet_products.1.url }}';" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='{{ bouquet_products.1.url }}';}">
           <span class="index-bouquets-8march__img-wrap">
             <img src="{{ bouquet_products.1.image }}" alt="{{ bouquet_products.1.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
           </span>
           <p class="index-bouquets-8march__desc">{{ bouquet_products.1.name }}</p>
           {% if bouquet_products.1.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.1.price|rub_symbol }}</p>{% endif %}
-          <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.1.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
-        </a>
-        <a href="{{ bouquet_products.2.url }}" class="index-bouquets-8march__card">
+          {% if bouquet_products.1.price %}
+          <a href="{{ bouquet_products.1.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+          {% else %}
+          <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
+          {% endif %}
+        </div>
+        <div class="index-bouquets-8march__card" onclick="window.location.href='{{ bouquet_products.2.url }}';" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='{{ bouquet_products.2.url }}';}">
           <span class="index-bouquets-8march__img-wrap">
             <img src="{{ bouquet_products.2.image }}" alt="{{ bouquet_products.2.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
           </span>
           <p class="index-bouquets-8march__desc">{{ bouquet_products.2.name }}</p>
           {% if bouquet_products.2.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.2.price|rub_symbol }}</p>{% endif %}
-          <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.2.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
-        </a>
+          {% if bouquet_products.2.price %}
+          <a href="{{ bouquet_products.2.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+          {% else %}
+          <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
+          {% endif %}
+        </div>
       </div>
     </div>
     <div class="index-bouquets-8march__grid-row index-bouquets-8march__grid-row--last-big">
       <div class="index-bouquets-8march__grid-first">
-        <a href="{{ bouquet_products.3.url }}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
+        <div class="index-bouquets-8march__card index-bouquets-8march__card--first" onclick="window.location.href='{{ bouquet_products.3.url }}';" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='{{ bouquet_products.3.url }}';}">
           <span class="index-bouquets-8march__img-wrap">
             <img src="{{ bouquet_products.3.image }}" alt="{{ bouquet_products.3.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
           </span>
           <p class="index-bouquets-8march__desc">{{ bouquet_products.3.name }}</p>
           {% if bouquet_products.3.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.3.price|rub_symbol }}</p>{% endif %}
-          <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.3.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
-        </a>
+          {% if bouquet_products.3.price %}
+          <a href="{{ bouquet_products.3.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+          {% else %}
+          <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
+          {% endif %}
+        </div>
       </div>
       <div class="index-bouquets-8march__grid-rest">
-        <a href="{{ bouquet_products.4.url }}" class="index-bouquets-8march__card">
+        <div class="index-bouquets-8march__card" onclick="window.location.href='{{ bouquet_products.4.url }}';" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='{{ bouquet_products.4.url }}';}">
           <span class="index-bouquets-8march__img-wrap">
             <img src="{{ bouquet_products.4.image }}" alt="{{ bouquet_products.4.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
           </span>
           <p class="index-bouquets-8march__desc">{{ bouquet_products.4.name }}</p>
           {% if bouquet_products.4.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.4.price|rub_symbol }}</p>{% endif %}
-          <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.4.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
-        </a>
-        <a href="{{ bouquet_products.5.url }}" class="index-bouquets-8march__card">
+          {% if bouquet_products.4.price %}
+          <a href="{{ bouquet_products.4.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+          {% else %}
+          <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
+          {% endif %}
+        </div>
+        <div class="index-bouquets-8march__card" onclick="window.location.href='{{ bouquet_products.5.url }}';" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='{{ bouquet_products.5.url }}';}">
           <span class="index-bouquets-8march__img-wrap">
             <img src="{{ bouquet_products.5.image }}" alt="{{ bouquet_products.5.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
           </span>
           <p class="index-bouquets-8march__desc">{{ bouquet_products.5.name }}</p>
           {% if bouquet_products.5.price %}<p class="index-bouquets-8march__price big_price_format pretty_numbers">{{ bouquet_products.5.price|rub_symbol }}</p>{% endif %}
-          <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.5.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
-        </a>
+          {% if bouquet_products.5.price %}
+          <a href="{{ bouquet_products.5.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+          {% else %}
+          <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
+          {% endif %}
+        </div>
       </div>
     </div>
     <div class="index-bouquets-8march__grid-row">
       <div class="index-bouquets-8march__grid-first">
-        <a href="{{ bouquet_products.6.url }}" class="index-bouquets-8march__card index-bouquets-8march__card--first">
+        <div class="index-bouquets-8march__card index-bouquets-8march__card--first" onclick="window.location.href='{{ bouquet_products.6.url }}';" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='{{ bouquet_products.6.url }}';}">
           <span class="index-bouquets-8march__img-wrap">
             <img src="{{ bouquet_products.6.image }}" alt="{{ bouquet_products.6.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
           </span>
           <p class="index-bouquets-8march__desc">{{ bouquet_products.6.name }}</p>
           {% if bouquet_products.6.price %}<p class="index-bouquets-8march__price big_price_format pretty_numbers">{{ bouquet_products.6.price|rub_symbol }}</p>{% endif %}
-          <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.6.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
-        </a>
+          {% if bouquet_products.6.price %}
+          <a href="{{ bouquet_products.6.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+          {% else %}
+          <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
+          {% endif %}
+        </div>
       </div>
       <div class="index-bouquets-8march__grid-rest">
-        <a href="{{ bouquet_products.7.url }}" class="index-bouquets-8march__card">
+        <div class="index-bouquets-8march__card" onclick="window.location.href='{{ bouquet_products.7.url }}';" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='{{ bouquet_products.7.url }}';}">
           <span class="index-bouquets-8march__img-wrap">
             <img src="{{ bouquet_products.7.image }}" alt="{{ bouquet_products.7.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
           </span>
           <p class="index-bouquets-8march__desc">{{ bouquet_products.7.name }}</p>
           {% if bouquet_products.7.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.7.price|rub_symbol }}</p>{% endif %}
-          <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.7.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
-        </a>
-        <a href="{{ bouquet_products.8.url }}" class="index-bouquets-8march__card">
+          {% if bouquet_products.7.price %}
+          <a href="{{ bouquet_products.7.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+          {% else %}
+          <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
+          {% endif %}
+        </div>
+        <div class="index-bouquets-8march__card" onclick="window.location.href='{{ bouquet_products.8.url }}';" role="link" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.location.href='{{ bouquet_products.8.url }}';}">
           <span class="index-bouquets-8march__img-wrap">
             <img src="{{ bouquet_products.8.image }}" alt="{{ bouquet_products.8.alt }}" class="index-bouquets-8march__img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='{% static 'images/empty-product.svg' %}';">
           </span>
           <p class="index-bouquets-8march__desc">{{ bouquet_products.8.name }}</p>
           {% if bouquet_products.8.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.8.price|rub_symbol }}</p>{% endif %}
-          <span class="index-bouquets-8march__btn beige_button">{% if bouquet_products.8.price %}В КОРЗИНУ{% else %}УЗНАТЬ ЦЕНУ{% endif %}</span>
-        </a>
+          {% if bouquet_products.8.price %}
+          <a href="{{ bouquet_products.8.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+          {% else %}
+          <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
@@ -97,3 +133,41 @@
     <a href="{% url 'catalog:index' %}" class="index-bouquets-8march__btn-catalog">СМОТРЕТЬ ВЕСЬ КАТАЛОГ</a>
   </div>
 </section>
+<script>
+(function() {
+  function updateCounters(count) {
+    if (typeof count === 'undefined') return;
+    var countStr = String(count);
+    var cartNumber = document.querySelectorAll('.cart-number');
+    cartNumber.forEach(function(el) { el.innerHTML = countStr; });
+    var headerCount = document.querySelectorAll('.header-8march__cart-count');
+    headerCount.forEach(function(el) { el.innerHTML = countStr; });
+    var badge = document.querySelector('.mobile-bottom-nav-8march__badge');
+    if (badge) {
+      badge.textContent = countStr;
+    } else if (countStr && countStr !== '0') {
+      var icon = document.querySelector('.mobile-bottom-nav-8march__icon--cart');
+      if (icon) {
+        icon.insertAdjacentHTML('beforeend', '<span class="mobile-bottom-nav-8march__badge">' + countStr + '</span>');
+      }
+    }
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.index-bouquets-8march__add-to-cart');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    var url = btn.getAttribute('href');
+    if (!url || typeof window.jQuery === 'undefined') {
+      if (url) window.location.href = url;
+      return;
+    }
+    window.jQuery.getJSON(url, function(response) {
+      if (response && response.result === 'success') {
+        updateCounters(response.count);
+      }
+    });
+  });
+})();
+</script>

@@ -161,6 +161,7 @@ def get_8march_index_context(request):
                     image_url = '/static/images/empty-product.svg'
                 bouquet_products.append({
                     'url': product.get_absolute_url() or reverse('catalog:index'),
+                    'add_to_cart_url': reverse('cart:add_to_cart', kwargs={'product_pk': product.pk}),
                     'image': image_url,
                     'alt': product.name or 'Сборный букет',
                     'name': product.name or 'Сборный букет',
@@ -171,6 +172,7 @@ def get_8march_index_context(request):
     else:
         bouquet_products = [{
             'url': reverse('catalog:index'),
+            'add_to_cart_url': '',
             'image': '/static/images/empty-product.svg',
             'alt': 'Сборный букет',
             'name': 'Сборный букет',
