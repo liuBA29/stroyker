@@ -5,17 +5,32 @@
    */
   function refreshMiniCart8marchPanelHtml() {
     var $sync = $("#mini-cart-8march-sync");
-    if (
-      !$sync.length ||
-      typeof URLS === "undefined" ||
-      typeof URLS.miniCart8march === "undefined"
-    ) {
+    var baseUrl =
+      typeof URLS !== "undefined" && URLS.miniCart8march
+        ? String(URLS.miniCart8march).trim()
+        : "";
+    if (!$sync.length || !baseUrl) {
       return;
     }
-    $.getJSON(URLS.miniCart8march, function (data) {
-      if (data && data.result === "success" && data.html) {
-        $sync.html(data.html);
-      }
+    var url =
+      baseUrl.indexOf("?") === -1
+        ? baseUrl + "?_=" + Date.now()
+        : baseUrl + "&_=" + Date.now();
+    $.ajax({
+      url: url,
+      dataType: "json",
+      cache: false,
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      success: function (data) {
+        if (
+          data &&
+          data.result === "success" &&
+          data.html != null &&
+          String(data.html).length
+        ) {
+          $sync.html(data.html);
+        }
+      },
     });
   }
 
@@ -104,7 +119,9 @@
             } else if (count && count !== "0") {
               $(".mobile-bottom-nav-8march__icon--cart").append('<span class="mobile-bottom-nav-8march__badge">' + count + '</span>');
             }
-            refreshMiniCart8marchPanelHtml();
+            window.setTimeout(function () {
+              refreshMiniCart8marchPanelHtml();
+            }, 0);
           }
         }
       });

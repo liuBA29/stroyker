@@ -167,7 +167,7 @@
       if (response && response.result === 'success') {
         updateCounters(response.count);
         if (typeof window.refreshMiniCart8marchPanelHtml === 'function') {
-          window.refreshMiniCart8marchPanelHtml();
+          window.setTimeout(function() { window.refreshMiniCart8marchPanelHtml(); }, 0);
         }
       }
     });
