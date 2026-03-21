@@ -1,5 +1,5 @@
 {% load static customization_tags %}
-<section class="index-bouquets-8march" aria-labelledby="index-bouquets-8march-title">
+<section class="index-bouquets-8march" aria-labelledby="index-bouquets-8march-title" data-cart-url="{% url 'cart:cart' %}">
   <h2 class="index-bouquets-8march__title big-title" id="index-bouquets-8march-title">СБОРНЫЕ БУКЕТЫ</h2>
   <div class="index-bouquets-8march__grid">
     <div class="index-bouquets-8march__grid-row">
@@ -11,7 +11,11 @@
           <p class="index-bouquets-8march__desc">{{ bouquet_products.0.name }}</p>
           {% if bouquet_products.0.price %}<p class="index-bouquets-8march__price big_price_format pretty_numbers">{{ bouquet_products.0.price|rub_symbol }}</p>{% endif %}
           {% if bouquet_products.0.price %}
-          <a href="{{ bouquet_products.0.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% if bouquet_products.0.pk in bouquets_in_cart_pks %}
+            <a href="{% url 'cart:cart' %}" class="index-bouquets-8march__btn beige_button" onclick="event.stopPropagation();">ОФОРМИТЬ</a>
+            {% else %}
+            <a href="{{ bouquet_products.0.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% endif %}
           {% else %}
           <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
           {% endif %}
@@ -25,7 +29,11 @@
           <p class="index-bouquets-8march__desc">{{ bouquet_products.1.name }}</p>
           {% if bouquet_products.1.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.1.price|rub_symbol }}</p>{% endif %}
           {% if bouquet_products.1.price %}
-          <a href="{{ bouquet_products.1.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% if bouquet_products.1.pk in bouquets_in_cart_pks %}
+            <a href="{% url 'cart:cart' %}" class="index-bouquets-8march__btn beige_button" onclick="event.stopPropagation();">ОФОРМИТЬ</a>
+            {% else %}
+            <a href="{{ bouquet_products.1.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% endif %}
           {% else %}
           <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
           {% endif %}
@@ -37,7 +45,11 @@
           <p class="index-bouquets-8march__desc">{{ bouquet_products.2.name }}</p>
           {% if bouquet_products.2.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.2.price|rub_symbol }}</p>{% endif %}
           {% if bouquet_products.2.price %}
-          <a href="{{ bouquet_products.2.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% if bouquet_products.2.pk in bouquets_in_cart_pks %}
+            <a href="{% url 'cart:cart' %}" class="index-bouquets-8march__btn beige_button" onclick="event.stopPropagation();">ОФОРМИТЬ</a>
+            {% else %}
+            <a href="{{ bouquet_products.2.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% endif %}
           {% else %}
           <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
           {% endif %}
@@ -53,7 +65,11 @@
           <p class="index-bouquets-8march__desc">{{ bouquet_products.3.name }}</p>
           {% if bouquet_products.3.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.3.price|rub_symbol }}</p>{% endif %}
           {% if bouquet_products.3.price %}
-          <a href="{{ bouquet_products.3.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% if bouquet_products.3.pk in bouquets_in_cart_pks %}
+            <a href="{% url 'cart:cart' %}" class="index-bouquets-8march__btn beige_button" onclick="event.stopPropagation();">ОФОРМИТЬ</a>
+            {% else %}
+            <a href="{{ bouquet_products.3.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% endif %}
           {% else %}
           <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
           {% endif %}
@@ -67,7 +83,11 @@
           <p class="index-bouquets-8march__desc">{{ bouquet_products.4.name }}</p>
           {% if bouquet_products.4.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.4.price|rub_symbol }}</p>{% endif %}
           {% if bouquet_products.4.price %}
-          <a href="{{ bouquet_products.4.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% if bouquet_products.4.pk in bouquets_in_cart_pks %}
+            <a href="{% url 'cart:cart' %}" class="index-bouquets-8march__btn beige_button" onclick="event.stopPropagation();">ОФОРМИТЬ</a>
+            {% else %}
+            <a href="{{ bouquet_products.4.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% endif %}
           {% else %}
           <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
           {% endif %}
@@ -79,7 +99,11 @@
           <p class="index-bouquets-8march__desc">{{ bouquet_products.5.name }}</p>
           {% if bouquet_products.5.price %}<p class="index-bouquets-8march__price big_price_format pretty_numbers">{{ bouquet_products.5.price|rub_symbol }}</p>{% endif %}
           {% if bouquet_products.5.price %}
-          <a href="{{ bouquet_products.5.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% if bouquet_products.5.pk in bouquets_in_cart_pks %}
+            <a href="{% url 'cart:cart' %}" class="index-bouquets-8march__btn beige_button" onclick="event.stopPropagation();">ОФОРМИТЬ</a>
+            {% else %}
+            <a href="{{ bouquet_products.5.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% endif %}
           {% else %}
           <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
           {% endif %}
@@ -95,7 +119,11 @@
           <p class="index-bouquets-8march__desc">{{ bouquet_products.6.name }}</p>
           {% if bouquet_products.6.price %}<p class="index-bouquets-8march__price big_price_format pretty_numbers">{{ bouquet_products.6.price|rub_symbol }}</p>{% endif %}
           {% if bouquet_products.6.price %}
-          <a href="{{ bouquet_products.6.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% if bouquet_products.6.pk in bouquets_in_cart_pks %}
+            <a href="{% url 'cart:cart' %}" class="index-bouquets-8march__btn beige_button" onclick="event.stopPropagation();">ОФОРМИТЬ</a>
+            {% else %}
+            <a href="{{ bouquet_products.6.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% endif %}
           {% else %}
           <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
           {% endif %}
@@ -109,7 +137,11 @@
           <p class="index-bouquets-8march__desc">{{ bouquet_products.7.name }}</p>
           {% if bouquet_products.7.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.7.price|rub_symbol }}</p>{% endif %}
           {% if bouquet_products.7.price %}
-          <a href="{{ bouquet_products.7.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% if bouquet_products.7.pk in bouquets_in_cart_pks %}
+            <a href="{% url 'cart:cart' %}" class="index-bouquets-8march__btn beige_button" onclick="event.stopPropagation();">ОФОРМИТЬ</a>
+            {% else %}
+            <a href="{{ bouquet_products.7.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% endif %}
           {% else %}
           <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
           {% endif %}
@@ -121,7 +153,11 @@
           <p class="index-bouquets-8march__desc">{{ bouquet_products.8.name }}</p>
           {% if bouquet_products.8.price %}<p class="index-bouquets-8march__price normal_price_format pretty_numbers">{{ bouquet_products.8.price|rub_symbol }}</p>{% endif %}
           {% if bouquet_products.8.price %}
-          <a href="{{ bouquet_products.8.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% if bouquet_products.8.pk in bouquets_in_cart_pks %}
+            <a href="{% url 'cart:cart' %}" class="index-bouquets-8march__btn beige_button" onclick="event.stopPropagation();">ОФОРМИТЬ</a>
+            {% else %}
+            <a href="{{ bouquet_products.8.add_to_cart_url }}" class="index-bouquets-8march__btn beige_button index-bouquets-8march__add-to-cart" onclick="event.stopPropagation();">В КОРЗИНУ</a>
+            {% endif %}
           {% else %}
           <span class="index-bouquets-8march__btn beige_button">УЗНАТЬ ЦЕНУ</span>
           {% endif %}
@@ -168,6 +204,17 @@
         updateCounters(response.count);
         if (typeof window.refreshMiniCart8marchPanelHtml === 'function') {
           window.setTimeout(function() { window.refreshMiniCart8marchPanelHtml(); }, 0);
+        }
+        var section = document.querySelector('.index-bouquets-8march');
+        var cartUrl = (section && section.getAttribute('data-cart-url')) ||
+          (typeof URLS !== 'undefined' && URLS.cart) || '/cart/';
+        var checkout = document.createElement('a');
+        checkout.href = cartUrl;
+        checkout.className = 'index-bouquets-8march__btn beige_button';
+        checkout.textContent = 'ОФОРМИТЬ';
+        checkout.onclick = function(event) { event.stopPropagation(); };
+        if (btn.parentNode) {
+          btn.parentNode.replaceChild(checkout, btn);
         }
       }
     });

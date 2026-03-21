@@ -284,6 +284,14 @@ def render_new_design_footer_copyright_block(context):
 @register.inclusion_tag('customization/tags/new_design_bouquets_block.html', takes_context=True)
 def render_new_design_bouquets_block(context):
     """new_design: сборные букеты."""
+    request = context.get('request')
+    if request:
+        from stroykerbox.apps.commerce.cart import Cart
+
+        cart = Cart.from_request(request)
+        context['bouquets_in_cart_pks'] = frozenset(cart.products.keys())
+    else:
+        context['bouquets_in_cart_pks'] = frozenset()
     return context
 
 
