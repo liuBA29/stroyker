@@ -214,6 +214,21 @@ function initSalesSliderCarousel(wrapEl) {
 
   function getCurrentIndex() {
     var scrollLeft = carousel.scrollLeft;
+    if (!isDesktop()) {
+      // На мобильном после центрирования определяем текущую карточку по ближайшему центру.
+      var viewportCenter = scrollLeft + carousel.clientWidth / 2;
+      var bestIdx = 0;
+      var bestDist = Infinity;
+      for (var j = 0; j < cards.length; j++) {
+        var cardCenter = cards[j].offsetLeft + cards[j].offsetWidth / 2;
+        var dist = Math.abs(cardCenter - viewportCenter);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestIdx = j;
+        }
+      }
+      return bestIdx;
+    }
     for (var i = cards.length - 1; i >= 0; i--) {
       if (scrollLeft >= cards[i].offsetLeft - 5) return i;
     }
